@@ -16,5 +16,5 @@ package protoschema
 
 const (
 	// Version is the current version of protoschema which is shared by all plugins.
-	Version = "0.0.1-dev"
+	Version = "0.1.0"
 )
