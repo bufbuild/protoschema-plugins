@@ -1,0 +1,20 @@
+syntax = "proto2";
+message BigQueryWellknownTypeTest {
+  optional Inline_google_protobuf_Value json_value = 1;
+  message Inline_google_protobuf_Struct {
+    map<string, Inline_google_protobuf_Value> fields = 1;
+  }
+  message Inline_google_protobuf_ListValue {
+    repeated Inline_google_protobuf_Value values = 1;
+  }
+  message Inline_google_protobuf_Value {
+    oneof kind {
+      int32 null_value = 1;
+      double number_value = 2;
+      string string_value = 3;
+      bool bool_value = 4;
+      Inline_google_protobuf_Struct struct_value = 5;
+      Inline_google_protobuf_ListValue list_value = 6;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/bufbuild/protoschema-plugins/internal/gen/proto
+    except:
+      - buf.build/bufbuild/protovalidate
+      - buf.build/liberetech/protoc-gen-bq-schema
+plugins:
+  - plugin: buf.build/protocolbuffers/go
+    out: internal/gen/proto
+    opt: paths=source_relative

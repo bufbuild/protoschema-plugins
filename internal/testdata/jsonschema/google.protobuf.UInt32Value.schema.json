@@ -1,0 +1,22 @@
+{
+  "$id": "google.protobuf.UInt32Value.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "anyOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    {
+      "exclusiveMaximum": 4294967296,
+      "minimum": 0,
+      "type": "integer"
+    }
+  ]
+}

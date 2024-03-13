@@ -1,0 +1,10 @@
+[
+ {
+  "name": "create_time",
+  "type": "TIMESTAMP"
+ },
+ {
+  "name": "stringField",
+  "type": "STRING"
+ }
+]

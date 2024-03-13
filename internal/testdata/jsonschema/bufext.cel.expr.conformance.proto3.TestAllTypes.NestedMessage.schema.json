@@ -1,0 +1,13 @@
+{
+  "$id": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bb": {
+      "exclusiveMaximum": 2147483648,
+      "minimum": -2147483648,
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

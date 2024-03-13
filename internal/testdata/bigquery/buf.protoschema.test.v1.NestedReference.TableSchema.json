@@ -1,0 +1,12 @@
+[
+ {
+  "fields": [
+   {
+    "name": "bb",
+    "type": "INTEGER"
+   }
+  ],
+  "name": "nested_message",
+  "type": "RECORD"
+ }
+]

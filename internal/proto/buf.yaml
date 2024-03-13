@@ -1,0 +1,7 @@
+version: v1
+deps:
+  - buf.build/bufbuild/protovalidate
+  - buf.build/liberetech/protoc-gen-bq-schema
+lint:
+  ignore:
+    - bufext

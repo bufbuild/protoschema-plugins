@@ -1,0 +1,11 @@
+[
+ {
+  "mode": "REPEATED",
+  "name": "int32_field",
+  "type": "INTEGER"
+ },
+ {
+  "name": "string_field",
+  "type": "STRING"
+ }
+]

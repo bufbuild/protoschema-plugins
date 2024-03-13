@@ -1,0 +1,68 @@
+// Copyright 2024 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.protoschema.test.v1;
+
+import "buf/validate/validate.proto";
+import "bufext/cel/expr/conformance/proto3/test_all_types.proto";
+import "protoc-gen-bq-schema/bq_field.proto";
+import "protoc-gen-bq-schema/bq_table.proto";
+
+message NestedReference {
+  bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage nested_message = 1;
+}
+
+message CustomOptions {
+  option (buf.validate.message).cel = {
+    id: "custom_option_id",
+    expression: "1 == 1",
+    message: "must be true"
+  };
+  option no_standard_descriptor_accessor = true;
+
+  repeated int32 int32_field = 1 [
+    packed = true,
+    (buf.validate.field).cel = {
+      id: "int32_field_id",
+      expression: "1 == 1",
+      message: "must be true"
+    }
+  ];
+
+  oneof kind {
+    option (buf.validate.oneof).required = true;
+    string string_field = 2 [(buf.validate.field).cel = {
+      id: "string_field_id",
+      expression: "1 == 1",
+      message: "must be true"
+    }];
+  }
+}
+
+message CustomBigQuery {
+  option (gen_bq_schema.bigquery_opts) = {
+    table_name: "CustomName"
+    use_json_names: true
+  };
+
+  int32 int32_field = 1 [(gen_bq_schema.bigquery) = {
+    type_override: "TIMESTAMP",
+    name: "create_time"
+  }];
+  string string_field = 2;
+
+  NestedReference nested_reference = 3 [(gen_bq_schema.bigquery) = {ignore: true}];
+}

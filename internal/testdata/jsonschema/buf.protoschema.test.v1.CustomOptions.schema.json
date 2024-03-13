@@ -1,0 +1,19 @@
+{
+  "$id": "buf.protoschema.test.v1.CustomOptions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "int32_field": {
+      "items": {
+        "exclusiveMaximum": 2147483648,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "string_field": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

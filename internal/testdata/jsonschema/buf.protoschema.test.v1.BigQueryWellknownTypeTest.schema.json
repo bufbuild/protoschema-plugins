@@ -1,0 +1,11 @@
+{
+  "$id": "buf.protoschema.test.v1.BigQueryWellknownTypeTest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "json_value": {
+      "$ref": "google.protobuf.Value.schema.json"
+    }
+  },
+  "type": "object"
+}

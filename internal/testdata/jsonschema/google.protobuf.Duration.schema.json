@@ -1,0 +1,26 @@
+{
+  "$id": "google.protobuf.Duration.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "anyOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "nanos": {
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "seconds": {
+          "exclusiveMaximum": 9223372036854776000,
+          "minimum": -9223372036854776000,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    {
+      "format": "duration",
+      "type": "string"
+    }
+  ]
+}
