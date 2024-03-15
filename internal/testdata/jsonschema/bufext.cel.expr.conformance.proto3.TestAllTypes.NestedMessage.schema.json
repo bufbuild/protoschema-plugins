@@ -9,5 +9,6 @@
       "type": "integer"
     }
   },
+  "title": "Nested Message",
   "type": "object"
 }

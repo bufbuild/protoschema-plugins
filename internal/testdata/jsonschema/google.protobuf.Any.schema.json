@@ -6,5 +6,6 @@
       "type": "string"
     }
   },
+  "title": "Any",
   "type": "object"
 }

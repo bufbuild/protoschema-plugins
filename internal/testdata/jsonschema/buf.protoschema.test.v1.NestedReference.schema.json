@@ -7,5 +7,6 @@
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
     }
   },
+  "title": "Nested Reference",
   "type": "object"
 }

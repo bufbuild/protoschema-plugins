@@ -11,9 +11,17 @@
           "type": "integer"
         },
         "seconds": {
-          "exclusiveMaximum": 9223372036854776000,
-          "minimum": -9223372036854776000,
-          "type": "integer"
+          "anyOf": [
+            {
+              "maximum": 9223372036854776000,
+              "minimum": -9223372036854776000,
+              "type": "integer"
+            },
+            {
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          ]
         }
       },
       "type": "object"
@@ -22,5 +30,6 @@
       "format": "duration",
       "type": "string"
     }
-  ]
+  ],
+  "title": "Duration"
 }

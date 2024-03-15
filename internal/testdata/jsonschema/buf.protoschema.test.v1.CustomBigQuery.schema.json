@@ -15,5 +15,6 @@
       "type": "string"
     }
   },
+  "title": "Custom Big Query",
   "type": "object"
 }

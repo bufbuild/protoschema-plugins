@@ -3,20 +3,14 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "anyOf": [
     {
-      "additionalProperties": false,
-      "properties": {
-        "value": {
-          "exclusiveMaximum": 9223372036854776000,
-          "minimum": -9223372036854776000,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    {
-      "exclusiveMaximum": 9223372036854776000,
+      "maximum": 9223372036854776000,
       "minimum": -9223372036854776000,
       "type": "integer"
+    },
+    {
+      "pattern": "^[0-9]+$",
+      "type": "string"
     }
-  ]
+  ],
+  "title": "Int64 Value"
 }

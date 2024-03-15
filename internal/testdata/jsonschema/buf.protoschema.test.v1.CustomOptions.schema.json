@@ -15,5 +15,6 @@
       "type": "string"
     }
   },
+  "title": "Custom Options",
   "type": "object"
 }
