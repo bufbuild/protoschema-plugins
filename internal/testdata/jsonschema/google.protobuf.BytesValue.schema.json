@@ -1,20 +1,7 @@
 {
   "$id": "google.protobuf.BytesValue.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "anyOf": [
-    {
-      "additionalProperties": false,
-      "properties": {
-        "value": {
-          "pattern": "^[A-Za-z0-9+/]*={0,2}$",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    {
-      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
-      "type": "string"
-    }
-  ]
+  "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+  "title": "Bytes Value",
+  "type": "string"
 }

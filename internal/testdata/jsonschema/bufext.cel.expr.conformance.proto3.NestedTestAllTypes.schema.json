@@ -10,5 +10,6 @@
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.schema.json"
     }
   },
+  "title": "Nested Test All Types",
   "type": "object"
 }

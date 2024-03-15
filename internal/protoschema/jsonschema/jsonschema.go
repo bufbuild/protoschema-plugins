@@ -16,6 +16,8 @@ package jsonschema
 
 import (
 	"math"
+	"strings"
+	"unicode"
 
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
@@ -57,6 +59,7 @@ func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) {
 	result := make(map[string]interface{})
 	result["$schema"] = "https://json-schema.org/draft/2020-12/schema"
 	result["$id"] = p.getID(desc)
+	result["title"] = p.generateTitle(desc.Name())
 	p.result[desc.FullName()] = result
 	if custom, ok := p.custom[desc.FullName()]; ok { // Custom generator.
 		custom(result, desc)
@@ -81,7 +84,7 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, result map[string]interface{}) {
 	src := desc.ParentFile().SourceLocations().ByDescriptor(desc)
 	if src.LeadingComments != "" {
-		result["description"] = src.LeadingComments
+		result["description"] = strings.TrimSpace(src.LeadingComments)
 	}
 }
 
@@ -139,23 +142,44 @@ func (p *jsonSchemaGenerator) generateBoolValidation(_ protoreflect.FieldDescrip
 	entry["type"] = jsBoolean
 }
 
+func (p *jsonSchemaGenerator) generateTitle(name protoreflect.Name) string {
+	// Convert camel case to space separated words.
+	var result strings.Builder
+	for i, r := range name {
+		if unicode.IsUpper(r) && i > 0 {
+			result.WriteRune(' ')
+		}
+		result.WriteRune(r)
+	}
+	return result.String()
+}
+
 func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, entry map[string]interface{}) {
 	var enum = make([]interface{}, 0)
 	for i := 0; i < field.Enum().Values().Len(); i++ {
 		enum = append(enum, field.Enum().Values().Get(i).Name())
 	}
 	anyOf := []map[string]interface{}{
-		{"type": jsString, "enum": enum},
+		{"type": jsString, "enum": enum, "title": p.generateTitle(field.Enum().Name())},
 		{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32},
 	}
 	entry["anyOf"] = anyOf
 }
 
 func (p *jsonSchemaGenerator) generateIntValidation(_ protoreflect.FieldDescriptor, entry map[string]interface{}, bitSize int) {
-	entry["type"] = jsInteger
 	// Use floats to handle integer overflow.
-	entry["minimum"] = -math.Pow(2, float64(bitSize-1))
-	entry["exclusiveMaximum"] = math.Pow(2, float64(bitSize-1))
+	min := -math.Pow(2, float64(bitSize-1))
+	max := math.Pow(2, float64(bitSize-1))
+	if bitSize <= 53 {
+		entry["type"] = jsInteger
+		entry["minimum"] = min
+		entry["exclusiveMaximum"] = max
+	} else {
+		entry["anyOf"] = []map[string]interface{}{
+			{"type": jsInteger, "minimum": min, "maximum": max},
+			{"type": jsString, "pattern": "^[0-9]+$"},
+		}
+	}
 }
 
 func (p *jsonSchemaGenerator) generateUintValidation(_ protoreflect.FieldDescriptor, entry map[string]interface{}, bitSize int) {
@@ -189,12 +213,9 @@ func (p *jsonSchemaGenerator) generateMessageValidation(field protoreflect.Field
 }
 
 func (p *jsonSchemaGenerator) generateWrapperValidation(result map[string]interface{}, desc protoreflect.MessageDescriptor) {
-	anyOf := []map[string]interface{}{
-		make(map[string]interface{}),
-		p.generateField(desc.Fields().ByName("value")),
-	}
-	p.generateDefault(anyOf[0], desc)
-	result["anyOf"] = anyOf
+	field := desc.Fields().Get(0)
+	p.setDescription(field, result)
+	p.generateValidation(field, result)
 }
 
 func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor) {

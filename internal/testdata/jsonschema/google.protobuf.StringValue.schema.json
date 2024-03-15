@@ -1,18 +1,6 @@
 {
   "$id": "google.protobuf.StringValue.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "anyOf": [
-    {
-      "additionalProperties": false,
-      "properties": {
-        "value": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    {
-      "type": "string"
-    }
-  ]
+  "title": "String Value",
+  "type": "string"
 }

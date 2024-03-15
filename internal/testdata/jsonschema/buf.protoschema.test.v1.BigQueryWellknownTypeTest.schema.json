@@ -7,5 +7,6 @@
       "$ref": "google.protobuf.Value.schema.json"
     }
   },
+  "title": "Big Query Wellknown Type Test",
   "type": "object"
 }

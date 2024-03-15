@@ -103,6 +103,7 @@
               "BAR",
               "BAZ"
             ],
+            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -172,9 +173,17 @@
     },
     "map_bool_int64": {
       "additionalProperties": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "boolean"
@@ -215,6 +224,7 @@
             "enum": [
               "NULL_VALUE"
             ],
+            "title": "Null Value",
             "type": "string"
           },
           {
@@ -427,6 +437,7 @@
               "BAR",
               "BAZ"
             ],
+            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -506,9 +517,17 @@
     },
     "map_int32_int64": {
       "additionalProperties": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "exclusiveMaximum": 2147483648,
@@ -557,6 +576,7 @@
             "enum": [
               "NULL_VALUE"
             ],
+            "title": "Null Value",
             "type": "string"
           },
           {
@@ -681,9 +701,17 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -692,9 +720,17 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -703,9 +739,17 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -715,9 +759,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -726,9 +778,17 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -752,9 +812,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -763,9 +831,17 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -774,9 +850,17 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -789,6 +873,7 @@
               "BAR",
               "BAZ"
             ],
+            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -799,9 +884,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -825,9 +918,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -836,9 +937,17 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -849,9 +958,17 @@
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -860,22 +977,46 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int64_int64": {
       "additionalProperties": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -884,9 +1025,17 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -895,9 +1044,17 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -906,9 +1063,17 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -917,9 +1082,17 @@
         "$ref": "bufext.cel.expr.conformance.proto3.NestedTestAllTypes.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -930,6 +1103,7 @@
             "enum": [
               "NULL_VALUE"
             ],
+            "title": "Null Value",
             "type": "string"
           },
           {
@@ -940,9 +1114,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -951,9 +1133,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -962,9 +1152,17 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -973,9 +1171,17 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -984,9 +1190,17 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -997,9 +1211,17 @@
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1008,9 +1230,17 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1021,9 +1251,17 @@
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1032,9 +1270,17 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1043,9 +1289,17 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1146,6 +1400,7 @@
               "BAR",
               "BAZ"
             ],
+            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -1215,9 +1470,17 @@
     },
     "map_string_int64": {
       "additionalProperties": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "string"
@@ -1258,6 +1521,7 @@
             "enum": [
               "NULL_VALUE"
             ],
+            "title": "Null Value",
             "type": "string"
           },
           {
@@ -1470,6 +1734,7 @@
               "BAR",
               "BAZ"
             ],
+            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -1549,9 +1814,17 @@
     },
     "map_uint32_int64": {
       "additionalProperties": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "exclusiveMaximum": 4294967296,
@@ -1600,6 +1873,7 @@
             "enum": [
               "NULL_VALUE"
             ],
+            "title": "Null Value",
             "type": "string"
           },
           {
@@ -1832,6 +2106,7 @@
               "BAR",
               "BAZ"
             ],
+            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -1911,9 +2186,17 @@
     },
     "map_uint64_int64": {
       "additionalProperties": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "exclusiveMaximum": 18446744073709552000,
@@ -1962,6 +2245,7 @@
             "enum": [
               "NULL_VALUE"
             ],
+            "title": "Null Value",
             "type": "string"
           },
           {
@@ -2087,6 +2371,7 @@
           "enum": [
             "NULL_VALUE"
           ],
+          "title": "Null Value",
           "type": "string"
         },
         {
@@ -2102,6 +2387,7 @@
           "enum": [
             "NULL_VALUE"
           ],
+          "title": "Null Value",
           "type": "string"
         },
         {
@@ -2240,9 +2526,17 @@
     },
     "repeated_int64": {
       "items": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2273,6 +2567,7 @@
               "BAR",
               "BAZ"
             ],
+            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -2297,6 +2592,7 @@
             "enum": [
               "NULL_VALUE"
             ],
+            "title": "Null Value",
             "type": "string"
           },
           {
@@ -2318,9 +2614,17 @@
     },
     "repeated_sfixed64": {
       "items": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2334,9 +2638,17 @@
     },
     "repeated_sint64": {
       "items": {
-        "exclusiveMaximum": 9223372036854776000,
-        "minimum": -9223372036854776000,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 9223372036854776000,
+            "minimum": -9223372036854776000,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2484,9 +2796,17 @@
       "$ref": "google.protobuf.Int32Value.schema.json"
     },
     "single_int64": {
-      "exclusiveMaximum": 9223372036854776000,
-      "minimum": -9223372036854776000,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 9223372036854776000,
+          "minimum": -9223372036854776000,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "single_int64_wrapper": {
       "$ref": "google.protobuf.Int64Value.schema.json"
@@ -2499,6 +2819,7 @@
             "BAR",
             "BAZ"
           ],
+          "title": "Nested Enum",
           "type": "string"
         },
         {
@@ -2517,9 +2838,17 @@
       "type": "integer"
     },
     "single_sfixed64": {
-      "exclusiveMaximum": 9223372036854776000,
-      "minimum": -9223372036854776000,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 9223372036854776000,
+          "minimum": -9223372036854776000,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "single_sint32": {
       "exclusiveMaximum": 2147483648,
@@ -2527,9 +2856,17 @@
       "type": "integer"
     },
     "single_sint64": {
-      "exclusiveMaximum": 9223372036854776000,
-      "minimum": -9223372036854776000,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 9223372036854776000,
+          "minimum": -9223372036854776000,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "single_string": {
       "type": "string"
@@ -2570,6 +2907,7 @@
             "BAR",
             "BAZ"
           ],
+          "title": "Nested Enum",
           "type": "string"
         },
         {
@@ -2583,5 +2921,6 @@
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
     }
   },
+  "title": "Test All Types",
   "type": "object"
 }
