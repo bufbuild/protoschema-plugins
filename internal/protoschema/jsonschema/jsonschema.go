@@ -59,7 +59,7 @@ func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) {
 	result := make(map[string]interface{})
 	result["$schema"] = "https://json-schema.org/draft/2020-12/schema"
 	result["$id"] = p.getID(desc)
-	result["title"] = p.generateTitle(desc.Name())
+	result["title"] = generateTitle(desc.Name())
 	p.result[desc.FullName()] = result
 	if custom, ok := p.custom[desc.FullName()]; ok { // Custom generator.
 		custom(result, desc)
@@ -142,14 +142,16 @@ func (p *jsonSchemaGenerator) generateBoolValidation(_ protoreflect.FieldDescrip
 	entry["type"] = jsBoolean
 }
 
-func (p *jsonSchemaGenerator) generateTitle(name protoreflect.Name) string {
+func generateTitle(name protoreflect.Name) string {
 	// Convert camel case to space separated words.
 	var result strings.Builder
-	for i, r := range name {
-		if unicode.IsUpper(r) && i > 0 {
+	for i, chr := range name {
+		isUpper := unicode.IsUpper(chr)
+		nextIsUpper := i+1 < len(name) && unicode.IsUpper(rune(name[i+1]))
+		if i > 0 && isUpper && !nextIsUpper {
 			result.WriteRune(' ')
 		}
-		result.WriteRune(r)
+		result.WriteRune(chr)
 	}
 	return result.String()
 }
@@ -160,7 +162,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		enum = append(enum, field.Enum().Values().Get(i).Name())
 	}
 	anyOf := []map[string]interface{}{
-		{"type": jsString, "enum": enum, "title": p.generateTitle(field.Enum().Name())},
+		{"type": jsString, "enum": enum, "title": generateTitle(field.Enum().Name())},
 		{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32},
 	}
 	entry["anyOf"] = anyOf
@@ -229,21 +231,13 @@ func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func
 		}
 	}
 
-	result["google.protobuf.Duration"] = func(result map[string]interface{}, desc protoreflect.MessageDescriptor) {
-		anyOf := []map[string]interface{}{
-			make(map[string]interface{}),
-			{"type": jsString, "format": "duration"},
-		}
-		p.generateDefault(anyOf[0], desc)
-		result["anyOf"] = anyOf
+	result["google.protobuf.Duration"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) {
+		result["type"] = jsString
+		result["format"] = "duration"
 	}
-	result["google.protobuf.Timestamp"] = func(result map[string]interface{}, desc protoreflect.MessageDescriptor) {
-		anyOf := []map[string]interface{}{
-			make(map[string]interface{}),
-			{"type": jsString, "format": "date-time"},
-		}
-		p.generateDefault(anyOf[0], desc)
-		result["anyOf"] = anyOf
+	result["google.protobuf.Timestamp"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) {
+		result["type"] = jsString
+		result["format"] = "date-time"
 	}
 
 	result["google.protobuf.Value"] = func(_ map[string]interface{}, _ protoreflect.MessageDescriptor) {}

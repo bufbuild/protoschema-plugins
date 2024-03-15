@@ -42,3 +42,14 @@ func TestJSONSchemaGolden(t *testing.T) {
 		}
 	}
 }
+
+func TestTitle(t *testing.T) {
+	t.Parallel()
+	require.Equal(t, "Foo", generateTitle("Foo"))
+	require.Equal(t, "Foo Bar", generateTitle("FooBar"))
+	require.Equal(t, "foo Bar", generateTitle("fooBar"))
+	require.Equal(t, "Foo Bar Baz", generateTitle("FooBarBaz"))
+	require.Equal(t, "FOO Bar", generateTitle("FOOBar"))
+	require.Equal(t, "U Int64 Value", generateTitle("UInt64Value"))
+	require.Equal(t, "Uint64 Value", generateTitle("Uint64Value"))
+}

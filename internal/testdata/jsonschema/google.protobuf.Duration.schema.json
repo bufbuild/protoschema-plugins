@@ -1,35 +1,7 @@
 {
   "$id": "google.protobuf.Duration.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "anyOf": [
-    {
-      "additionalProperties": false,
-      "properties": {
-        "nanos": {
-          "exclusiveMaximum": 2147483648,
-          "minimum": -2147483648,
-          "type": "integer"
-        },
-        "seconds": {
-          "anyOf": [
-            {
-              "maximum": 9223372036854776000,
-              "minimum": -9223372036854776000,
-              "type": "integer"
-            },
-            {
-              "pattern": "^[0-9]+$",
-              "type": "string"
-            }
-          ]
-        }
-      },
-      "type": "object"
-    },
-    {
-      "format": "duration",
-      "type": "string"
-    }
-  ],
-  "title": "Duration"
+  "format": "duration",
+  "title": "Duration",
+  "type": "string"
 }
