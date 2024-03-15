@@ -21,5 +21,5 @@ import (
 )
 
 func main() {
-	protoplugin.Main(protoplugin.HandlerFunc(pluginbigquery.Handle), protoplugin.WithVersion(protoschema.Version))
+	protoplugin.Main(protoplugin.HandlerFunc(pluginbigquery.Handle), protoplugin.WithVersion(protoschema.Version()))
 }

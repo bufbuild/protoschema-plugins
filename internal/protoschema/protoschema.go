@@ -14,7 +14,15 @@
 
 package protoschema
 
-const (
-	// Version is the current version of protoschema which is shared by all plugins.
-	Version = "0.2.0-dev"
+import (
+	"runtime/debug"
+	"strings"
 )
+
+func Version() string {
+	buildInfo, ok := debug.ReadBuildInfo()
+	if ok && buildInfo != nil && buildInfo.Main.Version != "" {
+		return strings.TrimSpace(buildInfo.Main.Version)
+	}
+	return "devel"
+}
