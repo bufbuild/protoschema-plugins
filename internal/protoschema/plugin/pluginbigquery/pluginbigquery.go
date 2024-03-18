@@ -25,8 +25,9 @@ import (
 // Handle implements protoplugin.Handler and is the main entry point for the plugin.
 func Handle(
 	_ context.Context,
-	responseWriter *protoplugin.ResponseWriter,
-	request *protoplugin.Request,
+	_ protoplugin.PluginEnv,
+	responseWriter protoplugin.ResponseWriter,
+	request protoplugin.Request,
 ) error {
 	fileDescriptors, err := request.FileDescriptorsToGenerate()
 	if err != nil {

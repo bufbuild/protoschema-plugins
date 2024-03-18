@@ -56,10 +56,11 @@ func TestBigQueryHandler(t *testing.T) {
 	stderr := bytes.NewBuffer(nil)
 	err = protoplugin.Run(
 		context.Background(),
-		nil, // no args
-		stdin,
-		stdout,
-		stderr,
+		protoplugin.Env{
+			Stdin:  stdin,
+			Stdout: stdout,
+			Stderr: stderr,
+		},
 		protoplugin.HandlerFunc(Handle),
 	)
 	require.NoError(t, err)
