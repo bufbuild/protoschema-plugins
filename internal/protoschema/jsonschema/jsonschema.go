@@ -72,7 +72,7 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 	result["type"] = jsObject
 	p.setDescription(desc, result)
 	var properties = make(map[string]interface{})
-	for i := 0; i < desc.Fields().Len(); i++ {
+	for i := range desc.Fields().Len() {
 		field := desc.Fields().Get(i)
 		name := string(field.Name())
 		properties[name] = p.generateField(field)
@@ -158,7 +158,7 @@ func generateTitle(name protoreflect.Name) string {
 
 func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, entry map[string]interface{}) {
 	var enum = make([]interface{}, 0)
-	for i := 0; i < field.Enum().Values().Len(); i++ {
+	for i := range field.Enum().Values().Len() {
 		enum = append(enum, field.Enum().Values().Get(i).Name())
 	}
 	anyOf := []map[string]interface{}{
