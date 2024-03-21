@@ -64,7 +64,7 @@ func run() error {
 				return errors.New("expected $id to be non-empty")
 			}
 			filePath := filepath.Join(outputDir, identifier)
-			if err := golden.GenerateGolden(filePath, string(data)); err != nil {
+			if err := golden.GenerateGolden(filePath, string(data)+"\n"); err != nil {
 				return err
 			}
 		}

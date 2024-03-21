@@ -56,7 +56,7 @@ func Handle(
 				}
 				responseWriter.AddFile(
 					identifier,
-					string(data),
+					string(data)+"\n",
 				)
 				seenIdentifiers[identifier] = true
 			}

@@ -148,7 +148,8 @@ func (p *bigQuerySchemaGenerator) generateFields(msgDesc protoreflect.MessageDes
 
 	result := make(bigquery.Schema, 0, msgDesc.Fields().Len())
 	p.seen[msgDesc.FullName()]++
-	for i := 0; i < len(msgPb.GetField()); i++ {
+	var i int
+	for ; i < len(msgPb.GetField()); i++ { // msgPb.Field may be modified in the loop.
 		fieldPb := msgPb.GetField()[i]
 		fieldDesc := msgDesc.Fields().ByNumber(protoreflect.FieldNumber(fieldPb.GetNumber()))
 		if fieldDesc == nil {
