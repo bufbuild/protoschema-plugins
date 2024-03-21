@@ -147,7 +147,7 @@ func generateTitle(name protoreflect.Name) string {
 	var result strings.Builder
 	for i, chr := range name {
 		isUpper := unicode.IsUpper(chr)
-		nextIsUpper := i+1 < len(name) && unicode.IsUpper(rune(name[i+1]))
+		nextIsUpper := i+1 >= len(name) || unicode.IsUpper(rune(name[i+1]))
 		if i > 0 && isUpper && !nextIsUpper {
 			result.WriteRune(' ')
 		}

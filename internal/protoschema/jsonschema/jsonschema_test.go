@@ -37,7 +37,7 @@ func TestJSONSchemaGolden(t *testing.T) {
 			require.NotEmpty(t, identifier)
 
 			filePath := filepath.Join(dirPath, identifier)
-			err = golden.CheckGolden(filePath, string(data))
+			err = golden.CheckGolden(filePath, string(data)+"\n")
 			require.NoError(t, err)
 		}
 	}
@@ -52,4 +52,5 @@ func TestTitle(t *testing.T) {
 	require.Equal(t, "FOO Bar", generateTitle("FOOBar"))
 	require.Equal(t, "U Int64 Value", generateTitle("UInt64Value"))
 	require.Equal(t, "Uint64 Value", generateTitle("Uint64Value"))
+	require.Equal(t, "FOO", generateTitle("FOO"))
 }
