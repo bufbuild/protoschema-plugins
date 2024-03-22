@@ -41,9 +41,9 @@ func Handle(
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
 
-			tableName := tryGetTableNameFromOptions(messageDescriptor)
-			if tableName == "" {
-				tableName = string(messageDescriptor.Name())
+			tablename := tryGetTableNameFromOptions(messageDescriptor)
+			if tablename == "" {
+				tablename = string(messageDescriptor.Name())
 			}
 			schema, _, err := bigquery.Generate(messageDescriptor)
 			if err != nil {
@@ -56,10 +56,10 @@ func Handle(
 			if len(data) == 0 || string(data) == "null" {
 				continue
 			}
-			name := tableName + "." + bigquery.FileExtension
-			filename := strings.ReplaceAll(string(fileDescriptor.Package()), ".", "/")
+			basename := tablename + "." + bigquery.FileExtension
+			dirPath := strings.ReplaceAll(string(fileDescriptor.Package()), ".", "/")
 			responseWriter.AddFile(
-				filepath.Join(filename, name),
+				filepath.Join(dirPath, basename),
 				string(data),
 			)
 		}
