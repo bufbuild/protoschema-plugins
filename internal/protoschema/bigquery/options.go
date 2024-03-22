@@ -33,9 +33,18 @@ func WithMaxRecursionDepth(maxRecursionDepth int) GenerateOptions {
 	})
 }
 
+// WithGenerateAllMessages returns a GenerateOptions that generates all messages, not just those
+// with the extension option.
+func WithGenerateAllMessages() GenerateOptions {
+	return generateOptionsFunc(func(options *generateOptions) {
+		options.generateAllMessages = true
+	})
+}
+
 type generateOptions struct {
-	maxDepth          int
-	maxRecursionDepth int
+	maxDepth            int
+	maxRecursionDepth   int
+	generateAllMessages bool
 }
 
 type generateOptionsFunc func(*generateOptions)

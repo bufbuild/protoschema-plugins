@@ -98,10 +98,11 @@ func Generate(input protoreflect.MessageDescriptor, opts ...GenerateOptions) (bi
 		"google.protobuf.ListValue",
 	))
 	generator := &bigQuerySchemaGenerator{
-		maxDepth:          options.maxDepth,
-		maxRecursionDepth: options.maxRecursionDepth,
-		seen:              make(map[protoreflect.FullName]int),
-		normalizer:        normalizer,
+		maxDepth:            options.maxDepth,
+		maxRecursionDepth:   options.maxRecursionDepth,
+		generateAllMessages: options.generateAllMessages,
+		seen:                make(map[protoreflect.FullName]int),
+		normalizer:          normalizer,
 	}
 	if generator.maxDepth == 0 || generator.maxDepth > 15 {
 		generator.maxDepth = 15
@@ -121,10 +122,11 @@ func Generate(input protoreflect.MessageDescriptor, opts ...GenerateOptions) (bi
 }
 
 type bigQuerySchemaGenerator struct {
-	maxDepth          int
-	maxRecursionDepth int
-	seen              map[protoreflect.FullName]int
-	normalizer        *normalize.Normalizer
+	maxDepth            int
+	maxRecursionDepth   int
+	generateAllMessages bool
+	seen                map[protoreflect.FullName]int
+	normalizer          *normalize.Normalizer
 }
 
 func (p *bigQuerySchemaGenerator) generate(msgDesc protoreflect.MessageDescriptor, depth int) (bigquery.Schema, error) {
@@ -140,7 +142,9 @@ func (p *bigQuerySchemaGenerator) generateFields(msgDesc protoreflect.MessageDes
 	if err != nil {
 		return nil, err
 	}
-
+	if msgOptions == nil && !p.generateAllMessages {
+		return nil, nil
+	}
 	msgPb, err := p.normalizer.FindDescriptorProto(msgDesc)
 	if err != nil {
 		return nil, err
@@ -174,9 +178,12 @@ func (p *bigQuerySchemaGenerator) generateFields(msgDesc protoreflect.MessageDes
 	return result, nil
 }
 
-func (p *bigQuerySchemaGenerator) generateField(msgOptions *bqproto.BigQueryMessageOptions,
-	fieldDesc protoreflect.FieldDescriptor, fieldPb *descriptorpb.FieldDescriptorProto,
-	depth int) (*bigquery.FieldSchema, error) {
+func (p *bigQuerySchemaGenerator) generateField(
+	msgOptions *bqproto.BigQueryMessageOptions,
+	fieldDesc protoreflect.FieldDescriptor,
+	fieldPb *descriptorpb.FieldDescriptorProto,
+	depth int,
+) (*bigquery.FieldSchema, error) {
 	if depth >= p.maxDepth {
 		return nil, nil
 	}
