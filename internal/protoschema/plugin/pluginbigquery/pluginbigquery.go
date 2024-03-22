@@ -16,7 +16,7 @@ package pluginbigquery
 
 import (
 	"context"
-	"path/filepath"
+	"path"
 	"strings"
 
 	bqproto "github.com/GoogleCloudPlatform/protoc-gen-bq-schema/protos"
@@ -57,9 +57,9 @@ func Handle(
 				continue
 			}
 			basename := tablename + "." + bigquery.FileExtension
-			dirPath := strings.ReplaceAll(string(fileDescriptor.Package()), ".", string(filepath.Separator))
+			dirPath := strings.ReplaceAll(string(fileDescriptor.Package()), ".", "/")
 			responseWriter.AddFile(
-				filepath.Join(dirPath, basename),
+				path.Join(dirPath, basename),
 				string(data),
 			)
 		}
