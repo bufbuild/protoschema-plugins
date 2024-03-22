@@ -57,7 +57,7 @@ func Handle(
 				continue
 			}
 			basename := tablename + "." + bigquery.FileExtension
-			dirPath := strings.ReplaceAll(string(fileDescriptor.Package()), ".", "/")
+			dirPath := filepath.FromSlash(strings.ReplaceAll(string(fileDescriptor.Package()), ".", "/"))
 			responseWriter.AddFile(
 				filepath.Join(dirPath, basename),
 				string(data),
