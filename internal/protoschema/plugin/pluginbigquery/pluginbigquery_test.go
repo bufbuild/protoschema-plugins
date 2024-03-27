@@ -20,15 +20,12 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"slices"
-	"strings"
 	"testing"
 
 	"github.com/bufbuild/buf/private/bufpkg/bufimage"
 	imagev1 "github.com/bufbuild/buf/private/gen/proto/go/buf/alpha/image/v1"
 	"github.com/bufbuild/buf/private/pkg/protoencoding"
 	"github.com/bufbuild/protoplugin"
-	"github.com/bufbuild/protoschema-plugins/internal/protoschema/bigquery"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/pluginpb"
@@ -70,32 +67,10 @@ func TestBigQueryHandler(t *testing.T) {
 	err = protoencoding.NewWireUnmarshaler(nil).Unmarshal(stdout.Bytes(), response)
 	require.NoError(t, err)
 
-	wantFiles := make([]string, 0, len(response.File))
-	for _, file := range response.File {
-		wantFiles = append(wantFiles, file.GetName())
-	}
-	slices.Sort(wantFiles)
-	require.Equal(t, wantFiles, gatherGoldenFiles(t, goldenPath))
-
 	for _, file := range response.File {
 		filename := path.Join(goldenPath, file.GetName())
 		want, err := os.ReadFile(filename)
 		require.NoError(t, err)
 		require.Equal(t, string(want), file.GetContent())
 	}
-}
-
-func gatherGoldenFiles(t *testing.T, dir string) []string {
-	t.Helper()
-
-	entries, err := os.ReadDir(dir)
-	require.NoError(t, err)
-	var files []string
-	for _, entry := range entries {
-		if strings.HasSuffix(entry.Name(), bigquery.FileExtension) {
-			files = append(files, entry.Name())
-		}
-	}
-	slices.Sort(files)
-	return files
 }

@@ -16,10 +16,14 @@ package pluginbigquery
 
 import (
 	"context"
-	"fmt"
+	"path"
+	"strings"
 
+	bqproto "github.com/GoogleCloudPlatform/protoc-gen-bq-schema/protos"
 	"github.com/bufbuild/protoplugin"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/bigquery"
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 // Handle implements protoplugin.Handler and is the main entry point for the plugin.
@@ -36,6 +40,11 @@ func Handle(
 	for _, fileDescriptor := range fileDescriptors {
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
+
+			tablename := tryGetTableNameFromOptions(messageDescriptor)
+			if tablename == "" {
+				tablename = string(messageDescriptor.Name())
+			}
 			schema, _, err := bigquery.Generate(messageDescriptor)
 			if err != nil {
 				return err
@@ -47,8 +56,10 @@ func Handle(
 			if len(data) == 0 || string(data) == "null" {
 				continue
 			}
+			basename := tablename + "." + bigquery.FileExtension
+			dirPath := strings.ReplaceAll(string(fileDescriptor.Package()), ".", "/")
 			responseWriter.AddFile(
-				fmt.Sprintf("%s.%s", messageDescriptor.FullName(), bigquery.FileExtension),
+				path.Join(dirPath, basename),
 				string(data),
 			)
 		}
@@ -56,4 +67,18 @@ func Handle(
 
 	responseWriter.SetFeatureProto3Optional()
 	return nil
+}
+
+func tryGetTableNameFromOptions(messageDescriptor protoreflect.MessageDescriptor) string {
+	if !proto.HasExtension(messageDescriptor.Options(), bqproto.E_BigqueryOpts) {
+		return ""
+	}
+	messageOptions, ok := proto.GetExtension(
+		messageDescriptor.Options(),
+		bqproto.E_BigqueryOpts,
+	).(*bqproto.BigQueryMessageOptions)
+	if !ok || messageOptions == nil {
+		return ""
+	}
+	return messageOptions.GetTableName()
 }

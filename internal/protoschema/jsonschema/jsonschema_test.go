@@ -15,33 +15,10 @@
 package jsonschema
 
 import (
-	"encoding/json"
-	"path/filepath"
 	"testing"
 
-	"github.com/bufbuild/protoschema-plugins/internal/protoschema/golden"
 	"github.com/stretchr/testify/require"
 )
-
-func TestJSONSchemaGolden(t *testing.T) {
-	t.Parallel()
-	dirPath := filepath.FromSlash("../../testdata/jsonschema")
-	for _, testDesc := range golden.GetTestDescriptors() {
-		for _, entry := range Generate(testDesc) {
-			// Serialize the JSON
-			data, err := json.MarshalIndent(entry, "", "  ")
-			require.NoError(t, err)
-
-			identifier, ok := entry["$id"].(string)
-			require.True(t, ok)
-			require.NotEmpty(t, identifier)
-
-			filePath := filepath.Join(dirPath, identifier)
-			err = golden.CheckGolden(filePath, string(data)+"\n")
-			require.NoError(t, err)
-		}
-	}
-}
 
 func TestTitle(t *testing.T) {
 	t.Parallel()

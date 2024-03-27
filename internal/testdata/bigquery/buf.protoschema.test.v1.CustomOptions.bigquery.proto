@@ -1,9 +1,0 @@
-syntax = "proto2";
-import "google/protobuf/struct.proto";
-message CustomOptions {
-  option no_standard_descriptor_accessor = true;
-  repeated int32 int32_field = 1 [packed = true];
-  oneof kind {
-    string string_field = 2;
-  }
-}
