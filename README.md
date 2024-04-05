@@ -9,7 +9,6 @@ The protoschema-plugins repository contains a collection of Protobuf plugins tha
 types of schema from protobuf files. This includes:
 
 - [PubSub](#pubsub-protobuf-schema)
-- [BigQuery](#bigquery-protobuf-schema)
 - [JSON Schema](#json-schema)
 
 ## PubSub Protobuf Schema
@@ -34,78 +33,6 @@ plugins:
 
 For examples see [testdata](/internal/testdata/pubsub/) which contains the generated schema for
 test case definitions found in [proto](/internal/proto/).
-
-## BigQuery Protobuf Schema
-
-Generates a Table schema that can be used to initialize a BigQuery table, and a self-contained
-message normalized to proto2, that can be used to upload data to that BigQuery table.
-
-Install the `protoc-gen-bigquery` directly:
-
-```sh
-go install github.com/bufbuild/protoschema-plugins/cmd/protoc-gen-bigquery@latest
-```
-
-Or reference it as a [Remote Plugin](https://buf.build/docs/generate/remote-plugins) in `buf.gen.yaml`:
-
-```yaml
-version: v1
-plugins:
-  - plugin: buf.build/bufbuild/protoschema-bigquery
-    out: ./gen
-```
-
-For examples see [testdata](/internal/testdata/bigquery/) which contains the generated schema for
-test case definitions found in [proto](/internal/proto/).
-
-This supports the `gen_bq_schema` annotations. For example:
-
-```proto
-message CustomBigQuery {
-  option (gen_bq_schema.bigquery_opts) = {
-    table_name: "CustomName"
-    use_json_names: true
-  };
-
-  int32 int32_field = 1 [(gen_bq_schema.bigquery) = {
-    type_override: "TIMESTAMP",
-    name: "create_time"
-  }];
-  string string_field = 2;
-
-  NestedReference nested_reference = 3 [(gen_bq_schema.bigquery) = {ignore: true}];
-}
-```
-
-Results in the Table schema:
-
-```json
-[
-  {
-    "name": "create_time",
-    "type": "TIMESTAMP"
-  },
-  {
-    "name": "stringField",
-    "type": "STRING"
-  }
-]
-```
-
-and the message:
-
-```proto
-message CustomBigQuery {
-  optional int32 create_time = 1;
-  optional string stringField = 2;
-}
-```
-
-### Limitations
-
-The well-known JSON types are not support in BigQuery. This includes `google.protobuf.Struct`,
-`google.protobuf.Value` and `google.protobuf.ListValue`. If these types are used in a message, the
-generated schema will not include them, and the generated message will not include them.
 
 ## JSON Schema
 
