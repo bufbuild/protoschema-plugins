@@ -59,8 +59,3 @@ issues:
     # Don't ban use of fmt.Errorf to create new errors, but the remaining
     # checks from err113 are useful.
     - "err113: do not define dynamic errors.*"
-  exclude-rules:
-    # We allow fmt.Println to be used.
-    - path: internal/cmd/bigquery-protobuf-uploader/main.go
-      linters:
-        - forbidigo
