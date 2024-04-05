@@ -32,8 +32,6 @@ func GetTestDescriptors() []protoreflect.MessageDescriptor {
 		(&proto3.NestedTestAllTypes{}).ProtoReflect().Descriptor(),
 		(&testv1.NestedReference{}).ProtoReflect().Descriptor(),
 		(&testv1.CustomOptions{}).ProtoReflect().Descriptor(),
-		(&testv1.CustomBigQuery{}).ProtoReflect().Descriptor(),
-		(&testv1.BigQueryWellknownTypeTest{}).ProtoReflect().Descriptor(),
 	}
 }
 

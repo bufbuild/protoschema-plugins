@@ -1,5 +1,0 @@
-syntax = "proto2";
-import "google/protobuf/struct.proto";
-message BigQueryWellknownTypeTest {
-  optional google.protobuf.Value json_value = 1;
-}

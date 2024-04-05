@@ -33,10 +33,8 @@ test: build $(BIN)/jv ## Run unit tests
 
 .PHONY: golden
 golden: generate
-	rm -rf internal/testdata/bigquery
 	rm -rf internal/testdata/pubsub
 	rm -rf internal/testdata/jsonschema
-	go run internal/cmd/bigquery-generate-testdata/main.go internal/testdata/bigquery
 	go run internal/cmd/pubsub-generate-testdata/main.go internal/testdata/pubsub
 	go run internal/cmd/jsonschema-generate-testdata/main.go internal/testdata/jsonschema
 	buf build ./internal/proto --exclude-source-info -o -#format=json > ./internal/testdata/codegenrequest/input.json
