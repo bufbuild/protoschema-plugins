@@ -74,6 +74,9 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 	var properties = make(map[string]interface{})
 	for i := range desc.Fields().Len() {
 		field := desc.Fields().Get(i)
+		if p.shouldIgnoreField(field) {
+			continue
+		}
 		name := string(field.Name())
 		properties[name] = p.generateField(field)
 	}
@@ -261,4 +264,11 @@ func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func
 	result["google.protobuf.UInt32Value"] = p.generateWrapperValidation
 	result["google.protobuf.UInt64Value"] = p.generateWrapperValidation
 	return result
+}
+
+func (p *jsonSchemaGenerator) shouldIgnoreField(fdesc protoreflect.FieldDescriptor) bool {
+	const ignoreComment = "jsonschema:ignore"
+	srcLoc := fdesc.ParentFile().SourceLocations().ByDescriptor(fdesc)
+	return strings.Contains(srcLoc.LeadingComments, ignoreComment) ||
+		strings.Contains(srcLoc.TrailingComments, ignoreComment)
 }

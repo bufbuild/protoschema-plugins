@@ -1,0 +1,6 @@
+syntax = "proto2";
+message IgnoreField {
+  optional string string_field = 1;
+  optional int32 int32_field = 2;
+  optional bool bool_field = 3;
+}

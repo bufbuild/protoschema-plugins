@@ -49,3 +49,10 @@ message CustomOptions {
     }];
   }
 }
+
+message IgnoreField {
+  string string_field = 1; // jsonschema:ignore
+  // jsonschema:ignore
+  int32 int32_field = 2;
+  bool bool_field = 3;
+}

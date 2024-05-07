@@ -26,7 +26,9 @@ import (
 func TestPubSubGolden(t *testing.T) {
 	t.Parallel()
 	dirPath := filepath.FromSlash("../../testdata/pubsub")
-	for _, testDesc := range golden.GetTestDescriptors() {
+	testDescs, err := golden.GetTestDescriptors("../../testdata")
+	require.NoError(t, err)
+	for _, testDesc := range testDescs {
 		filePath := filepath.Join(dirPath, string(testDesc.FullName()))
 		data, err := Generate(testDesc)
 		require.NoError(t, err)

@@ -12,5 +12,6 @@
       "type": "string"
     }
   ],
+  "description": "The int64 value.",
   "title": "Int64 Value"
 }

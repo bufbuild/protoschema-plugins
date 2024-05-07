@@ -26,7 +26,9 @@ import (
 func TestJSONSchemaGolden(t *testing.T) {
 	t.Parallel()
 	dirPath := filepath.FromSlash("../../testdata/jsonschema")
-	for _, testDesc := range golden.GetTestDescriptors() {
+	testDescs, err := golden.GetTestDescriptors("../../testdata")
+	require.NoError(t, err)
+	for _, testDesc := range testDescs {
 		for _, entry := range Generate(testDesc) {
 			// Serialize the JSON
 			data, err := json.MarshalIndent(entry, "", "  ")

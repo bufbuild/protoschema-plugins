@@ -1,0 +1,12 @@
+{
+  "$id": "buf.protoschema.test.v1.IgnoreField.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bool_field": {
+      "type": "boolean"
+    }
+  },
+  "title": "Ignore Field",
+  "type": "object"
+}
