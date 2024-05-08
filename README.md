@@ -162,19 +162,6 @@ Results in the following JSON Schema files:
 
 </details>
 
-### Ignoring Fields
-
-To exclude fields in a message from being included in the JSON Schema, add a 
-leading or trailing comment to the field containing `jsonschema:ignore`:
-
-```proto
-message Config {
-  string host = 1;
-  uint32 port = 2;
-  bool debug_mode = 3; // jsonschema:ignore
-}
-```
-
 ## Community
 
 For help and discussion around Protobuf, best practices, and more, join us
