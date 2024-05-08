@@ -18,21 +18,50 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 
-	testv1 "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
-	"github.com/bufbuild/protoschema-plugins/internal/gen/proto/bufext/cel/expr/conformance/proto3"
+	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/descriptorpb"
+	"google.golang.org/protobuf/types/dynamicpb"
 )
 
 // GetTestDescriptors returns the test descriptors that were generated from the ./internal/proto
 // directory.
-func GetTestDescriptors() []protoreflect.MessageDescriptor {
-	return []protoreflect.MessageDescriptor{
-		(&proto3.TestAllTypes{}).ProtoReflect().Descriptor(),
-		(&proto3.NestedTestAllTypes{}).ProtoReflect().Descriptor(),
-		(&testv1.NestedReference{}).ProtoReflect().Descriptor(),
-		(&testv1.CustomOptions{}).ProtoReflect().Descriptor(),
+func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, error) {
+	inputPath := filepath.Join(filepath.FromSlash(testdataPath), "codegenrequest", "input.json")
+	input, err := os.ReadFile(inputPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to open input file descritpor set at %q: %w", inputPath, err)
 	}
+	fdset := &descriptorpb.FileDescriptorSet{}
+	if err = (&protojson.UnmarshalOptions{DiscardUnknown: true}).Unmarshal(input, fdset); err != nil {
+		return nil, fmt.Errorf("failed to parse file descriptor set at %q: %w", inputPath, err)
+	}
+	files, err := protodesc.NewFiles(fdset)
+	if err != nil {
+		return nil, fmt.Errorf("failed to link file descriptor set at %q: %w", inputPath, err)
+	}
+	types := dynamicpb.NewTypes(files)
+
+	fqns := []protoreflect.FullName{
+		"bufext.cel.expr.conformance.proto3.TestAllTypes",
+		"bufext.cel.expr.conformance.proto3.NestedTestAllTypes",
+		"buf.protoschema.test.v1.NestedReference",
+		"buf.protoschema.test.v1.CustomOptions",
+		"buf.protoschema.test.v1.IgnoreField",
+	}
+
+	msgs := make([]protoreflect.MessageDescriptor, len(fqns))
+	for i, fqn := range fqns {
+		mType, err := types.FindMessageByName(fqn)
+		if err != nil {
+			return nil, fmt.Errorf("failed to find message %q: %w", fqn, err)
+		}
+		msgs[i] = mType.Descriptor()
+	}
+	return msgs, nil
 }
 
 // CheckGolden checks the golden file exists and matches the given data.

@@ -41,7 +41,11 @@ func run() error {
 	}
 	outputDir := os.Args[1]
 
-	for _, testDesc := range golden.GetTestDescriptors() {
+	testDescs, err := golden.GetTestDescriptors("./internal/testdata")
+	if err != nil {
+		return err
+	}
+	for _, testDesc := range testDescs {
 		// Generate the JSON schema
 		result := jsonschema.Generate(testDesc)
 

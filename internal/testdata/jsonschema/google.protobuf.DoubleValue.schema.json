@@ -17,5 +17,6 @@
       "type": "string"
     }
   ],
+  "description": "The double value.",
   "title": "Double Value"
 }

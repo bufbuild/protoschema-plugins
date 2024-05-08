@@ -35,9 +35,9 @@ test: build $(BIN)/jv ## Run unit tests
 golden: generate
 	rm -rf internal/testdata/pubsub
 	rm -rf internal/testdata/jsonschema
+	buf build ./internal/proto -o -#format=json > ./internal/testdata/codegenrequest/input.json
 	go run internal/cmd/pubsub-generate-testdata/main.go internal/testdata/pubsub
 	go run internal/cmd/jsonschema-generate-testdata/main.go internal/testdata/jsonschema
-	buf build ./internal/proto --exclude-source-info -o -#format=json > ./internal/testdata/codegenrequest/input.json
 
 .PHONY: build
 build: generate ## Build all packages
@@ -89,7 +89,7 @@ $(BIN)/license-header: $(BIN) Makefile
 	go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@latest
 
 $(BIN)/golangci-lint: $(BIN) Makefile
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.57.1
 
 $(BIN)/jv: $(BIN) Makefile
 	go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest

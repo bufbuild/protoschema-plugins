@@ -17,5 +17,6 @@
       "type": "string"
     }
   ],
+  "description": "The float value.",
   "title": "Float Value"
 }

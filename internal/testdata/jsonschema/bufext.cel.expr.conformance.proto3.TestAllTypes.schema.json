@@ -2,6 +2,7 @@
   "$id": "bufext.cel.expr.conformance.proto3.TestAllTypes.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "description": "This proto includes every type of field in both singular and repeated\n forms.",
   "properties": {
     "list_value": {
       "$ref": "google.protobuf.ListValue.schema.json"
@@ -1081,6 +1082,7 @@
       "additionalProperties": {
         "$ref": "bufext.cel.expr.conformance.proto3.NestedTestAllTypes.schema.json"
       },
+      "description": "Map",
       "propertyNames": {
         "anyOf": [
           {
@@ -2398,6 +2400,7 @@
       ]
     },
     "repeated_any": {
+      "description": "Repeated wellknown.",
       "items": {
         "$ref": "google.protobuf.Any.schema.json"
       },
@@ -2511,6 +2514,7 @@
       "type": "array"
     },
     "repeated_int32": {
+      "description": "Repeated",
       "items": {
         "exclusiveMaximum": 2147483648,
         "minimum": -2147483648,
@@ -2580,6 +2584,7 @@
       "type": "array"
     },
     "repeated_nested_message": {
+      "description": "Repeated and nested",
       "items": {
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
@@ -2717,7 +2722,8 @@
       "type": "array"
     },
     "single_any": {
-      "$ref": "google.protobuf.Any.schema.json"
+      "$ref": "google.protobuf.Any.schema.json",
+      "description": "Wellknown."
     },
     "single_bool": {
       "type": "boolean"
@@ -2788,6 +2794,7 @@
       "$ref": "google.protobuf.FloatValue.schema.json"
     },
     "single_int32": {
+      "description": "Singular",
       "exclusiveMaximum": 2147483648,
       "minimum": -2147483648,
       "type": "integer"

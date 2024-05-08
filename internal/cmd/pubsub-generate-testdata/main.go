@@ -51,7 +51,11 @@ func run() error {
 	}
 
 	// Generate the testdata
-	for _, testDesc := range golden.GetTestDescriptors() {
+	testDescs, err := golden.GetTestDescriptors("./internal/testdata")
+	if err != nil {
+		return err
+	}
+	for _, testDesc := range testDescs {
 		filePath := filepath.Join(dirPath, fmt.Sprintf("%s.%s", testDesc.FullName(), pubsub.FileExtension))
 		data, err := pubsub.Generate(testDesc)
 		if err != nil {
