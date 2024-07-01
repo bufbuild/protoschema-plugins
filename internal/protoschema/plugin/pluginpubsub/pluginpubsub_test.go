@@ -48,7 +48,8 @@ func TestPubsubHandler(t *testing.T) {
 	require.NoError(t, err)
 	image, err := bufimage.NewImageForProto(protoImage)
 	require.NoError(t, err)
-	codeGeneratorRequest := bufimage.ImageToCodeGeneratorRequest(image, "", nil, false, false)
+	codeGeneratorRequest, err := bufimage.ImageToCodeGeneratorRequest(image, "", nil, false, false)
+	require.NoError(t, err)
 
 	request, err := protoencoding.NewWireMarshaler().Marshal(codeGeneratorRequest)
 	require.NoError(t, err)

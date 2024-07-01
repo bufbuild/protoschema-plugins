@@ -25,8 +25,8 @@ message NestedReference {
 
 message CustomOptions {
   option (buf.validate.message).cel = {
-    id: "custom_option_id",
-    expression: "1 == 1",
+    id: "custom_option_id"
+    expression: "1 == 1"
     message: "must be true"
   };
   option no_standard_descriptor_accessor = true;
@@ -34,8 +34,8 @@ message CustomOptions {
   repeated int32 int32_field = 1 [
     packed = true,
     (buf.validate.field).cel = {
-      id: "int32_field_id",
-      expression: "1 == 1",
+      id: "int32_field_id"
+      expression: "1 == 1"
       message: "must be true"
     }
   ];
@@ -43,8 +43,8 @@ message CustomOptions {
   oneof kind {
     option (buf.validate.oneof).required = true;
     string string_field = 2 [(buf.validate.field).cel = {
-      id: "string_field_id",
-      expression: "1 == 1",
+      id: "string_field_id"
+      expression: "1 == 1"
       message: "must be true"
     }];
   }
