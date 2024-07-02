@@ -16,6 +16,7 @@ syntax = "proto3";
 
 package buf.protoschema.test.v1;
 
+import "buf/protoschema/v1/schema.proto";
 import "buf/validate/validate.proto";
 import "bufext/cel/expr/conformance/proto3/test_all_types.proto";
 
@@ -55,4 +56,8 @@ message IgnoreField {
   // jsonschema:ignore
   int32 int32_field = 2;
   bool bool_field = 3;
+}
+
+message SchemaMessage {
+  string string_schema_field = 1 [(buf.protoschema.v1.field).alias = "string_schema_field_alias"];
 }

@@ -1,0 +1,4 @@
+syntax = "proto2";
+message SchemaMessage {
+  optional string schema_string_field = 1;
+}

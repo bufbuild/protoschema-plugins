@@ -2,6 +2,20 @@
   "$id": "buf.protoschema.test.v1.IgnoreField.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "patternProperties": {
+    "^(boolField)$": {
+      "type": "boolean"
+    },
+    "^(int32_field|int32Field)$": {
+      "description": "jsonschema:ignore",
+      "exclusiveMaximum": 2147483648,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "^(string_field|stringField)$": {
+      "type": "string"
+    }
+  },
   "properties": {
     "bool_field": {
       "type": "boolean"

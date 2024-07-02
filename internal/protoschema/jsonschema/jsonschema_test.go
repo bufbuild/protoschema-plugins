@@ -29,7 +29,9 @@ func TestJSONSchemaGolden(t *testing.T) {
 	testDescs, err := golden.GetTestDescriptors("../../testdata")
 	require.NoError(t, err)
 	for _, testDesc := range testDescs {
-		for _, entry := range Generate(testDesc) {
+		entries, err := Generate(testDesc)
+		require.NoError(t, err)
+		for _, entry := range entries {
 			// Serialize the JSON
 			data, err := json.MarshalIndent(entry, "", "  ")
 			require.NoError(t, err)

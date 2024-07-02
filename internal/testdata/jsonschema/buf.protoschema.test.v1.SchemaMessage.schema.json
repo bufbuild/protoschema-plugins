@@ -1,0 +1,17 @@
+{
+  "$id": "buf.protoschema.test.v1.SchemaMessage.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^(schemaStringField|schema_string_field_alias_1|schema_string_field_alias_2|schemaStringFieldAlias1|schemaStringFieldAlias2)$": {
+      "type": "string"
+    }
+  },
+  "properties": {
+    "schema_string_field": {
+      "type": "string"
+    }
+  },
+  "title": "Schema Message",
+  "type": "object"
+}
