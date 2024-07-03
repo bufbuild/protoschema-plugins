@@ -1,4 +1,4 @@
 syntax = "proto2";
 message SchemaMessage {
-  optional string schema_string_field = 1;
+  optional string string_schema_field = 1;
 }

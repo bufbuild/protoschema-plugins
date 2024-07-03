@@ -23,7 +23,7 @@ option java_outer_classname = "SchemaProto";
 option java_package = "build.buf.protoschema.v1";
 
 extend google.protobuf.FieldOptions {
-  FieldSchema field = 1161;
+  FieldSchema field = 1162;
 }
 
 message FieldSchema {

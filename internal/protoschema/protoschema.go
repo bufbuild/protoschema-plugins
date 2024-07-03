@@ -33,10 +33,6 @@ func Version() string {
 	return "devel"
 }
 
-func GetMessageSchema(msg proto.Message) (*protoschemav1.MessageSchema, error) {
-	return getExt[*protoschemav1.MessageSchema](msg.ProtoReflect().Descriptor().Options(), protoschemav1.E_Message)
-}
-
 func GetFieldSchema(field protoreflect.FieldDescriptor) (*protoschemav1.FieldSchema, error) {
 	return getExt[*protoschemav1.FieldSchema](field.Options(), protoschemav1.E_Field)
 }
