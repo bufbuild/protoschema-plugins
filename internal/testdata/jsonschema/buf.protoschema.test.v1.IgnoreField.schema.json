@@ -5,6 +5,14 @@
   "patternProperties": {
     "^(boolField)$": {
       "type": "boolean"
+    },
+    "^(bytes_field|bytesField)$": {
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
+    "^(nested_reference|nestedReference)$": {
+      "$ref": "buf.protoschema.test.v1.NestedReference.schema.json",
+      "description": "jsonschema:hide"
     }
   },
   "properties": {
