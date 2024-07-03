@@ -33,6 +33,14 @@ const (
 	jsString  = "string"
 )
 
+type FieldVisibility int
+
+const (
+	FieldVisible FieldVisibility = iota
+	FieldHide
+	FieldIgnore
+)
+
 // Generate generates a JSON schema for the given message descriptor.
 func Generate(input protoreflect.MessageDescriptor) map[protoreflect.FullName]map[string]interface{} {
 	generator := &jsonSchemaGenerator{
@@ -75,20 +83,28 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 	var patternProperties = make(map[string]interface{})
 	for i := range desc.Fields().Len() {
 		field := desc.Fields().Get(i)
-		if p.shouldIgnoreField(field) {
+		visibility := p.shouldIgnoreField(field)
+		if visibility == FieldIgnore {
 			continue
 		}
 
-		// Generate the schema
+		// Generate the schema.
 		fieldSchema := p.generateField(field)
 
 		// TODO: Add an option to include custom alias.
 		aliases := make([]string, 0, 1)
 
-		// TODO: Optionally make the json name the 'primary' name.
-		properties[string(field.Name())] = fieldSchema
-		if field.JSONName() != string(field.Name()) {
-			aliases = append(aliases, field.JSONName())
+		if visibility == FieldHide {
+			aliases = append(aliases, string(field.Name()))
+			if field.JSONName() != string(field.Name()) {
+				aliases = append(aliases, field.JSONName())
+			}
+		} else {
+			// TODO: Optionally make the json name the 'primary' name.
+			properties[string(field.Name())] = fieldSchema
+			if field.JSONName() != string(field.Name()) {
+				aliases = append(aliases, field.JSONName())
+			}
 		}
 
 		if len(aliases) > 0 {
@@ -285,9 +301,18 @@ func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func
 	return result
 }
 
-func (p *jsonSchemaGenerator) shouldIgnoreField(fdesc protoreflect.FieldDescriptor) bool {
+func (p *jsonSchemaGenerator) shouldIgnoreField(fdesc protoreflect.FieldDescriptor) FieldVisibility {
 	const ignoreComment = "jsonschema:ignore"
+	const hideComment = "jsonschema:hide"
 	srcLoc := fdesc.ParentFile().SourceLocations().ByDescriptor(fdesc)
-	return strings.Contains(srcLoc.LeadingComments, ignoreComment) ||
-		strings.Contains(srcLoc.TrailingComments, ignoreComment)
+	switch {
+	case strings.Contains(srcLoc.LeadingComments, ignoreComment),
+		strings.Contains(srcLoc.TrailingComments, ignoreComment):
+		return FieldIgnore
+	case strings.Contains(srcLoc.LeadingComments, hideComment),
+		strings.Contains(srcLoc.TrailingComments, hideComment):
+		return FieldHide
+	default:
+		return FieldVisible
+	}
 }

@@ -55,4 +55,7 @@ message IgnoreField {
   // jsonschema:ignore
   int32 int32_field = 2;
   bool bool_field = 3;
+  bytes bytes_field = 4; // jsonschema:hide
+  // jsonschema:hide
+  NestedReference nested_reference = 5;
 }
