@@ -6,7 +6,7 @@ repeated_string:
 single_float_wrapper: 1.23
 single_int32: 0
 single_timestamp: "1970-01-01T00:00:00Z"
-list_value:
+listValue:
   - foo
   - 1.23
 repeated_bool_wrapper:
@@ -17,3 +17,5 @@ repeated_float_wrapper:
   - -Infinity
   - NaN
 single_duration: 1h2m3s
+singleNestedMessage:
+ bb: 1

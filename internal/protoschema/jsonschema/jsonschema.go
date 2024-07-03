@@ -72,16 +72,35 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 	result["type"] = jsObject
 	p.setDescription(desc, result)
 	var properties = make(map[string]interface{})
+	var patternProperties = make(map[string]interface{})
 	for i := range desc.Fields().Len() {
 		field := desc.Fields().Get(i)
 		if p.shouldIgnoreField(field) {
 			continue
 		}
-		name := string(field.Name())
-		properties[name] = p.generateField(field)
+
+		// Generate the schema
+		fieldSchema := p.generateField(field)
+
+		// TODO: Add an option to include custom alias.
+		aliases := make([]string, 0, 1)
+
+		// TODO: Optionally make the json name the 'primary' name.
+		properties[string(field.Name())] = fieldSchema
+		if field.JSONName() != string(field.Name()) {
+			aliases = append(aliases, field.JSONName())
+		}
+
+		if len(aliases) > 0 {
+			pattern := "^(" + strings.Join(aliases, "|") + ")$"
+			patternProperties[pattern] = fieldSchema
+		}
 	}
 	result["properties"] = properties
 	result["additionalProperties"] = false
+	if len(patternProperties) > 0 {
+		result["patternProperties"] = patternProperties
+	}
 }
 
 func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, result map[string]interface{}) {
