@@ -2,6 +2,11 @@
   "$id": "buf.protoschema.test.v1.IgnoreField.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "patternProperties": {
+    "^(boolField)$": {
+      "type": "boolean"
+    }
+  },
   "properties": {
     "bool_field": {
       "type": "boolean"
