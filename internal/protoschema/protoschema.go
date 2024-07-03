@@ -59,11 +59,10 @@ func getFieldAliases(fieldSchema *protoschemav1.FieldSchema) ([]protoreflect.Nam
 
 func getFieldAliasesJSON(jsonAliases []string, aliases []protoreflect.Name) []string {
 	if len(jsonAliases) > 0 {
+		// Use the provided JSON aliases if they are present.
 		return jsonAliases
 	}
-	if len(aliases) == 0 {
-		return nil
-	}
+	// Otherwise, generate JSON aliases from the field aliases.
 	result := make([]string, len(aliases))
 	for i, alias := range aliases {
 		result[i] = JSONName(string(alias))
