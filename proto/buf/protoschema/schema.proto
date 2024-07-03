@@ -14,7 +14,7 @@
 
 syntax = "proto3";
 
-package buf.protoschema.v1;
+package buf.protoschema;
 
 import "google/protobuf/descriptor.proto";
 

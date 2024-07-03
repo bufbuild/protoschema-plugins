@@ -3,11 +3,21 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "patternProperties": {
+    "^(int32SchemaField|int32_schema_field_alias|int32 schema field alias json)$": {
+      "exclusiveMaximum": 2147483648,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
     "^(stringSchemaField|string_schema_field_alias|stringSchemaFieldAlias)$": {
       "type": "string"
     }
   },
   "properties": {
+    "int32_schema_field": {
+      "exclusiveMaximum": 2147483648,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
     "string_schema_field": {
       "type": "string"
     }

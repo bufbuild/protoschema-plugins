@@ -20,7 +20,7 @@ import (
 	"strings"
 	"unicode"
 
-	protoschemav1 "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/v1"
+	"github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
@@ -33,11 +33,11 @@ func Version() string {
 	return "devel"
 }
 
-func GetFieldSchema(field protoreflect.FieldDescriptor) (*protoschemav1.FieldSchema, error) {
-	return getExt[*protoschemav1.FieldSchema](field.Options(), protoschemav1.E_Field)
+func GetFieldSchema(field protoreflect.FieldDescriptor) (*protoschema.FieldSchema, error) {
+	return getExt[*protoschema.FieldSchema](field.Options(), protoschema.E_Field)
 }
 
-func GetFieldAliases(fieldSchema *protoschemav1.FieldSchema) ([]protoreflect.Name, []string, error) {
+func GetFieldAliases(fieldSchema *protoschema.FieldSchema) ([]protoreflect.Name, []string, error) {
 	aliases, err := getFieldAliases(fieldSchema)
 	if err != nil {
 		return nil, nil, err
@@ -45,7 +45,7 @@ func GetFieldAliases(fieldSchema *protoschemav1.FieldSchema) ([]protoreflect.Nam
 	return aliases, getFieldAliasesJSON(fieldSchema.GetAliasJson(), aliases), nil
 }
 
-func getFieldAliases(fieldSchema *protoschemav1.FieldSchema) ([]protoreflect.Name, error) {
+func getFieldAliases(fieldSchema *protoschema.FieldSchema) ([]protoreflect.Name, error) {
 	result := make([]protoreflect.Name, len(fieldSchema.GetAlias()))
 	for i, alias := range fieldSchema.GetAlias() {
 		aliasName := protoreflect.Name(alias)

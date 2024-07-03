@@ -9,6 +9,7 @@ lint:
   except:
     - FIELD_NOT_REQUIRED
     - PACKAGE_NO_IMPORT_CYCLE
+    - PACKAGE_VERSION_SUFFIX
   ignore:
     - internal/proto/bufext
   disallow_comment_ignores: true
