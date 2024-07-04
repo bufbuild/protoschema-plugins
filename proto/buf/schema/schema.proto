@@ -14,8 +14,9 @@
 
 syntax = "proto3";
 
-package buf.protoschema;
+package buf.schema;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/descriptor.proto";
 
 option java_multiple_files = true;
@@ -28,7 +29,7 @@ extend google.protobuf.FieldOptions {
 
 message FieldSchema {
   // Additional names for the field.
-  repeated string alias = 1;
+  repeated string alias = 1 [(buf.validate.field).repeated.items.string.pattern = "^[a-zA-Z_][a-zA-Z0-9_]*$"];
 
   // Aditional json names for the field.
   //

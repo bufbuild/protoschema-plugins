@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package buf.protoschema.test.v1;
 
-import "buf/protoschema/schema.proto";
+import "buf/schema/schema.proto";
 import "buf/validate/validate.proto";
 import "bufext/cel/expr/conformance/proto3/test_all_types.proto";
 
@@ -62,9 +62,9 @@ message IgnoreField {
 }
 
 message SchemaMessage {
-  string string_schema_field = 1 [(buf.protoschema.field).alias = "string_schema_field_alias"];
+  string string_schema_field = 1 [(buf.schema.field).alias = "string_schema_field_alias"];
   int32 int32_schema_field = 2 [
-    (buf.protoschema.field).alias = "int32_schema_field_alias",
-    (buf.protoschema.field).alias_json = "int32 schema field alias json"
+    (buf.schema.field).alias = "int32_schema_field_alias",
+    (buf.schema.field).alias_json = "int32 schema field alias json"
   ];
 }
