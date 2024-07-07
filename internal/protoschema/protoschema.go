@@ -33,10 +33,34 @@ func Version() string {
 	return "devel"
 }
 
+// JSONName returns the default JSON name for a field with the given name.
+// This mirrors the algorithm in protoc:
+//
+//	https://github.com/protocolbuffers/protobuf/blob/v21.3/src/google/protobuf/descriptor.cc#L95
+func JSONName(name string) string {
+	var jsonName []rune
+	nextUpper := false
+	for _, chr := range name {
+		if chr == '_' {
+			nextUpper = true
+			continue
+		}
+		if nextUpper {
+			nextUpper = false
+			jsonName = append(jsonName, unicode.ToUpper(chr))
+		} else {
+			jsonName = append(jsonName, chr)
+		}
+	}
+	return string(jsonName)
+}
+
+// GetFieldSchema returns the schema.FieldSchema options for the given field.
 func GetFieldSchema(field protoreflect.FieldDescriptor) (*schema.FieldSchema, error) {
 	return getExt[*schema.FieldSchema](field.Options(), schema.E_Field)
 }
 
+// GetFieldAliases returns the name and JSON name aliases for the given field.
 func GetFieldAliases(fieldSchema *schema.FieldSchema) ([]protoreflect.Name, []string, error) {
 	aliases, err := getFieldAliases(fieldSchema)
 	if err != nil {
@@ -89,26 +113,4 @@ func getExt[T proto.Message](options proto.Message, extType protoreflect.Extensi
 		return extProto, fmt.Errorf("unexpected extension type %T", extProto)
 	}
 	return extProto, proto.Unmarshal(extData, extProto)
-}
-
-// JSONName returns the default JSON name for a field with the given name.
-// This mirrors the algorithm in protoc:
-//
-//	https://github.com/protocolbuffers/protobuf/blob/v21.3/src/google/protobuf/descriptor.cc#L95
-func JSONName(name string) string {
-	var jsonName []rune
-	nextUpper := false
-	for _, chr := range name {
-		if chr == '_' {
-			nextUpper = true
-			continue
-		}
-		if nextUpper {
-			nextUpper = false
-			jsonName = append(jsonName, unicode.ToUpper(chr))
-		} else {
-			jsonName = append(jsonName, chr)
-		}
-	}
-	return string(jsonName)
 }
