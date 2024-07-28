@@ -15,10 +15,12 @@
 package jsonschema
 
 import (
+	"errors"
 	"math"
 	"strings"
 	"unicode"
 
+	"github.com/bufbuild/protoschema-plugins/internal/protoschema"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
@@ -42,45 +44,51 @@ const (
 )
 
 // Generate generates a JSON schema for the given message descriptor.
-func Generate(input protoreflect.MessageDescriptor) map[protoreflect.FullName]map[string]interface{} {
+func Generate(input protoreflect.MessageDescriptor) (map[protoreflect.FullName]map[string]interface{}, error) {
 	generator := &jsonSchemaGenerator{
 		result: make(map[protoreflect.FullName]map[string]interface{}),
 	}
 	generator.custom = generator.makeWktGenerators()
-	generator.generate(input)
-	return generator.result
+	if err := generator.generate(input); err != nil {
+		return nil, err
+	}
+	return generator.result, nil
 }
 
 type jsonSchemaGenerator struct {
 	result map[protoreflect.FullName]map[string]interface{}
-	custom map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor)
+	custom map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor) error
 }
 
 func (p *jsonSchemaGenerator) getID(desc protoreflect.Descriptor) string {
 	return string(desc.FullName()) + ".schema.json"
 }
 
-func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) {
+func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) error {
 	if _, ok := p.result[desc.FullName()]; ok {
-		return // Already generated.
+		return nil // Already generated.
 	}
 	result := make(map[string]interface{})
 	result["$schema"] = "https://json-schema.org/draft/2020-12/schema"
 	result["$id"] = p.getID(desc)
 	result["title"] = generateTitle(desc.Name())
 	p.result[desc.FullName()] = result
-	if custom, ok := p.custom[desc.FullName()]; ok { // Custom generator.
-		custom(result, desc)
-	} else { // Default generator.
-		p.generateDefault(result, desc)
+
+	// Check for a custom generator.
+	if custom, ok := p.custom[desc.FullName()]; ok {
+		return custom(result, desc)
 	}
+
+	// Use the default generator.
+	return p.generateDefault(result, desc)
 }
 
-func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, desc protoreflect.MessageDescriptor) {
+func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, desc protoreflect.MessageDescriptor) error {
 	result["type"] = jsObject
 	p.setDescription(desc, result)
 	var properties = make(map[string]interface{})
 	var patternProperties = make(map[string]interface{})
+	var errs []error
 	for i := range desc.Fields().Len() {
 		field := desc.Fields().Get(i)
 		visibility := p.shouldIgnoreField(field)
@@ -89,7 +97,11 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 		}
 
 		// Generate the schema.
-		fieldSchema := p.generateField(field)
+		fieldSchema, err := p.generateField(field)
+		if err != nil {
+			errs = append(errs, err)
+			continue
+		}
 
 		// TODO: Add an option to include custom alias.
 		aliases := make([]string, 0, 1)
@@ -107,6 +119,32 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 			}
 		}
 
+		fieldExt, err := protoschema.GetFieldSchema(field)
+		if err != nil {
+			return err
+		}
+		nameAliases, jsonAliases, err := protoschema.GetFieldAliases(fieldExt)
+		if err != nil {
+			return err
+		}
+		if len(nameAliases) > 0 || len(jsonAliases) > 0 {
+			seen := make(map[string]struct{})
+			seen[string(field.Name())] = struct{}{}
+			seen[field.JSONName()] = struct{}{}
+			for _, alias := range nameAliases {
+				if _, ok := seen[string(alias)]; !ok {
+					seen[string(alias)] = struct{}{}
+					aliases = append(aliases, string(alias))
+				}
+			}
+			for _, alias := range jsonAliases {
+				if _, ok := seen[alias]; !ok {
+					seen[alias] = struct{}{}
+					aliases = append(aliases, alias)
+				}
+			}
+		}
+
 		if len(aliases) > 0 {
 			pattern := "^(" + strings.Join(aliases, "|") + ")$"
 			patternProperties[pattern] = fieldSchema
@@ -117,6 +155,7 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 	if len(patternProperties) > 0 {
 		result["patternProperties"] = patternProperties
 	}
+	return errors.Join(errs...)
 }
 
 func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, result map[string]interface{}) {
@@ -126,14 +165,16 @@ func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, resul
 	}
 }
 
-func (p *jsonSchemaGenerator) generateField(field protoreflect.FieldDescriptor) map[string]interface{} {
+func (p *jsonSchemaGenerator) generateField(field protoreflect.FieldDescriptor) (map[string]interface{}, error) {
 	var result = make(map[string]interface{})
 	p.setDescription(field, result)
-	p.generateValidation(field, result)
-	return result
+	if err := p.generateValidation(field, result); err != nil {
+		return nil, err
+	}
+	return result, nil
 }
 
-func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescriptor, entry map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescriptor, entry map[string]interface{}) error {
 	if field.IsList() {
 		entry["type"] = jsArray
 		items := make(map[string]interface{})
@@ -165,15 +206,21 @@ func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescrip
 		if field.IsMap() {
 			entry["type"] = jsObject
 			propertyNames := make(map[string]interface{})
-			p.generateValidation(field.MapKey(), propertyNames)
+			if err := p.generateValidation(field.MapKey(), propertyNames); err != nil {
+				return err
+			}
 			entry["propertyNames"] = propertyNames
 			properties := make(map[string]interface{})
-			p.generateValidation(field.MapValue(), properties)
+			if err := p.generateValidation(field.MapValue(), properties); err != nil {
+				return err
+			}
 			entry["additionalProperties"] = properties
+			return nil
 		} else {
-			p.generateMessageValidation(field, entry)
+			return p.generateMessageValidation(field, entry)
 		}
 	}
+	return nil
 }
 
 func (p *jsonSchemaGenerator) generateBoolValidation(_ protoreflect.FieldDescriptor, entry map[string]interface{}) {
@@ -246,47 +293,55 @@ func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescri
 	entry["pattern"] = "^[A-Za-z0-9+/]*={0,2}$"
 }
 
-func (p *jsonSchemaGenerator) generateMessageValidation(field protoreflect.FieldDescriptor, entry map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateMessageValidation(field protoreflect.FieldDescriptor, entry map[string]interface{}) error {
 	// Create a reference to the message type.
 	entry["$ref"] = p.getID(field.Message())
-	p.generate(field.Message())
+	return p.generate(field.Message())
 }
 
-func (p *jsonSchemaGenerator) generateWrapperValidation(result map[string]interface{}, desc protoreflect.MessageDescriptor) {
+func (p *jsonSchemaGenerator) generateWrapperValidation(result map[string]interface{}, desc protoreflect.MessageDescriptor) error {
 	field := desc.Fields().Get(0)
 	p.setDescription(field, result)
-	p.generateValidation(field, result)
+	return p.generateValidation(field, result)
 }
 
-func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor) {
-	var result = make(map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor))
-	result["google.protobuf.Any"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) {
+func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor) error {
+	var result = make(map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor) error)
+	result["google.protobuf.Any"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) error { //nolint:unparam
 		result["type"] = jsObject
 		result["properties"] = map[string]interface{}{
 			"@type": map[string]interface{}{
 				"type": "string",
 			},
 		}
+		return nil
 	}
 
-	result["google.protobuf.Duration"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) {
+	result["google.protobuf.Duration"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) error { //nolint:unparam
 		result["type"] = jsString
 		result["format"] = "duration"
+		return nil
 	}
-	result["google.protobuf.Timestamp"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) {
+	result["google.protobuf.Timestamp"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) error { //nolint:unparam
 		result["type"] = jsString
 		result["format"] = "date-time"
+		return nil
 	}
 
-	result["google.protobuf.Value"] = func(_ map[string]interface{}, _ protoreflect.MessageDescriptor) {}
-	result["google.protobuf.ListValue"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) {
+	result["google.protobuf.Value"] = func(_ map[string]interface{}, _ protoreflect.MessageDescriptor) error {
+		return nil
+	}
+	result["google.protobuf.ListValue"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) error { //nolint:unparam
 		result["type"] = jsArray
+		return nil
 	}
-	result["google.protobuf.NullValue"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) {
+	result["google.protobuf.NullValue"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) error { //nolint:unparam
 		result["type"] = jsNull
+		return nil
 	}
-	result["google.protobuf.Struct"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) {
+	result["google.protobuf.Struct"] = func(result map[string]interface{}, _ protoreflect.MessageDescriptor) error { //nolint:unparam
 		result["type"] = jsObject
+		return nil
 	}
 
 	result["google.protobuf.BoolValue"] = p.generateWrapperValidation

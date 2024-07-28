@@ -39,7 +39,11 @@ func Handle(
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
 
-			for _, entry := range jsonschema.Generate(messageDescriptor) {
+			entries, err := jsonschema.Generate(messageDescriptor)
+			if err != nil {
+				return err
+			}
+			for _, entry := range entries {
 				data, err := json.MarshalIndent(entry, "", "  ")
 				if err != nil {
 					return err

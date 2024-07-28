@@ -47,8 +47,10 @@ func run() error {
 	}
 	for _, testDesc := range testDescs {
 		// Generate the JSON schema
-		result := jsonschema.Generate(testDesc)
-
+		result, err := jsonschema.Generate(testDesc)
+		if err != nil {
+			return err
+		}
 		// Make sure the directory exists
 		if err := os.MkdirAll(outputDir, 0755); err != nil {
 			return err
