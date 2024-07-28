@@ -36,12 +36,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// FieldSchema encapsulates the additional schema for a field.
 type FieldSchema struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Additional names for the field.
+	//
+	// Must be a valid identifier.
 	Alias []string `protobuf:"bytes,1,rep,name=alias,proto3" json:"alias,omitempty"`
 	// Aditional json names for the field.
 	//
@@ -108,6 +111,8 @@ var file_buf_schema_schema_proto_extTypes = []protoimpl.ExtensionInfo{
 
 // Extension fields to descriptorpb.FieldOptions.
 var (
+	// Specifies the schema information this field.
+	//
 	// optional buf.schema.FieldSchema field = 1162;
 	E_Field = &file_buf_schema_schema_proto_extTypes[0]
 )
