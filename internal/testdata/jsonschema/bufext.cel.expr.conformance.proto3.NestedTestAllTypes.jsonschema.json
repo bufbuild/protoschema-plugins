@@ -1,0 +1,16 @@
+{
+  "$id": "bufext.cel.expr.conformance.proto3.NestedTestAllTypes.jsonschema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "This proto includes a recursively nested message.",
+  "properties": {
+    "child": {
+      "$ref": "bufext.cel.expr.conformance.proto3.NestedTestAllTypes.jsonschema.json"
+    },
+    "payload": {
+      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.jsonschema.json"
+    }
+  },
+  "title": "Nested Test All Types",
+  "type": "object"
+}

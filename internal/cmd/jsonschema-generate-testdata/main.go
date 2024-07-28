@@ -24,6 +24,7 @@ import (
 	_ "github.com/bufbuild/protoschema-plugins/internal/gen/proto/bufext/cel/expr/conformance/proto3"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/golden"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/jsonschema"
+	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 func main() {
@@ -40,37 +41,45 @@ func run() error {
 		return fmt.Errorf("usage: %s [output dir]", os.Args[0])
 	}
 	outputDir := os.Args[1]
+	// Make sure the directory exists
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		return err
+	}
 
 	testDescs, err := golden.GetTestDescriptors("./internal/testdata")
 	if err != nil {
 		return err
 	}
 	for _, testDesc := range testDescs {
-		// Generate the JSON schema
-		result := jsonschema.Generate(testDesc)
-
-		// Make sure the directory exists
-		if err := os.MkdirAll(outputDir, 0755); err != nil {
+		// Generate the JSON schema with proto names.
+		if err := writeJSONSchema(outputDir, jsonschema.Generate(testDesc)); err != nil {
 			return err
 		}
+		// Generate the JSON schema with JSON names.
+		if err := writeJSONSchema(outputDir, jsonschema.Generate(testDesc, jsonschema.WithJSONNames())); err != nil {
+			return err
+		}
+	}
+	return nil
+}
 
-		for _, jsonSchema := range result {
-			// Serialize the JSON
-			data, err := json.MarshalIndent(jsonSchema, "", "  ")
-			if err != nil {
-				return err
-			}
-			identifier, ok := jsonSchema["$id"].(string)
-			if !ok {
-				return errors.New("expected $id to be a string")
-			}
-			if identifier == "" {
-				return errors.New("expected $id to be non-empty")
-			}
-			filePath := filepath.Join(outputDir, identifier)
-			if err := golden.GenerateGolden(filePath, string(data)+"\n"); err != nil {
-				return err
-			}
+func writeJSONSchema(outputDir string, schema map[protoreflect.FullName]map[string]interface{}) error {
+	for _, jsonSchema := range schema {
+		// Serialize the JSON
+		data, err := json.MarshalIndent(jsonSchema, "", "  ")
+		if err != nil {
+			return err
+		}
+		identifier, ok := jsonSchema["$id"].(string)
+		if !ok {
+			return errors.New("expected $id to be a string")
+		}
+		if identifier == "" {
+			return errors.New("expected $id to be non-empty")
+		}
+		filePath := filepath.Join(outputDir, identifier)
+		if err := golden.GenerateGolden(filePath, string(data)+"\n"); err != nil {
+			return err
 		}
 	}
 	return nil

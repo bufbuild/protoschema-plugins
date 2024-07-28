@@ -41,22 +41,38 @@ const (
 	FieldIgnore
 )
 
-// Generate generates a JSON schema for the given message descriptor.
-func Generate(input protoreflect.MessageDescriptor) map[protoreflect.FullName]map[string]interface{} {
+type GeneratorOption func(*jsonSchemaGenerator)
+
+// WithJSONNames sets the generator to use JSON field names as the primary name.
+func WithJSONNames() GeneratorOption {
+	return func(p *jsonSchemaGenerator) {
+		p.useJsonNames = true
+	}
+}
+
+// Generate generates a JSON schema for the given message descriptor, with protobuf field names.
+func Generate(input protoreflect.MessageDescriptor, opts ...GeneratorOption) map[protoreflect.FullName]map[string]interface{} {
 	generator := &jsonSchemaGenerator{
 		result: make(map[protoreflect.FullName]map[string]interface{}),
 	}
 	generator.custom = generator.makeWktGenerators()
+	for _, opt := range opts {
+		opt(generator)
+	}
 	generator.generate(input)
 	return generator.result
 }
 
 type jsonSchemaGenerator struct {
-	result map[protoreflect.FullName]map[string]interface{}
-	custom map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor)
+	result       map[protoreflect.FullName]map[string]interface{}
+	custom       map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor)
+	useJsonNames bool
 }
 
 func (p *jsonSchemaGenerator) getID(desc protoreflect.Descriptor) string {
+	if p.useJsonNames {
+		return string(desc.FullName()) + ".jsonschema.json"
+	}
 	return string(desc.FullName()) + ".schema.json"
 }
 
@@ -99,8 +115,14 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 			if field.JSONName() != string(field.Name()) {
 				aliases = append(aliases, field.JSONName())
 			}
+		} else if p.useJsonNames {
+			// Use the JSON name as the primary name.
+			properties[string(field.JSONName())] = fieldSchema
+			if field.JSONName() != string(field.Name()) {
+				aliases = append(aliases, string(field.Name()))
+			}
 		} else {
-			// TODO: Optionally make the json name the 'primary' name.
+			// Use the proto name as the primary name.
 			properties[string(field.Name())] = fieldSchema
 			if field.JSONName() != string(field.Name()) {
 				aliases = append(aliases, field.JSONName())
