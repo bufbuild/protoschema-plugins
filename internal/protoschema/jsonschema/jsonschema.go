@@ -46,7 +46,7 @@ type GeneratorOption func(*jsonSchemaGenerator)
 // WithJSONNames sets the generator to use JSON field names as the primary name.
 func WithJSONNames() GeneratorOption {
 	return func(p *jsonSchemaGenerator) {
-		p.useJsonNames = true
+		p.useJSONNames = true
 	}
 }
 
@@ -66,11 +66,11 @@ func Generate(input protoreflect.MessageDescriptor, opts ...GeneratorOption) map
 type jsonSchemaGenerator struct {
 	result       map[protoreflect.FullName]map[string]interface{}
 	custom       map[protoreflect.FullName]func(map[string]interface{}, protoreflect.MessageDescriptor)
-	useJsonNames bool
+	useJSONNames bool
 }
 
 func (p *jsonSchemaGenerator) getID(desc protoreflect.Descriptor) string {
-	if p.useJsonNames {
+	if p.useJSONNames {
 		return string(desc.FullName()) + ".jsonschema.json"
 	}
 	return string(desc.FullName()) + ".schema.json"
@@ -110,18 +110,19 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 		// TODO: Add an option to include custom alias.
 		aliases := make([]string, 0, 1)
 
-		if visibility == FieldHide {
+		switch {
+		case visibility == FieldHide:
 			aliases = append(aliases, string(field.Name()))
 			if field.JSONName() != string(field.Name()) {
 				aliases = append(aliases, field.JSONName())
 			}
-		} else if p.useJsonNames {
+		case p.useJSONNames:
 			// Use the JSON name as the primary name.
-			properties[string(field.JSONName())] = fieldSchema
+			properties[field.JSONName()] = fieldSchema
 			if field.JSONName() != string(field.Name()) {
 				aliases = append(aliases, string(field.Name()))
 			}
-		} else {
+		default:
 			// Use the proto name as the primary name.
 			properties[string(field.Name())] = fieldSchema
 			if field.JSONName() != string(field.Name()) {
