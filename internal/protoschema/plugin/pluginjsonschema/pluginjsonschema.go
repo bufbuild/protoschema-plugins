@@ -21,6 +21,7 @@ import (
 
 	"github.com/bufbuild/protoplugin"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/jsonschema"
+	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 // Handle implements protoplugin.Handler and is the main entry point for the plugin.
@@ -38,31 +39,47 @@ func Handle(
 	for _, fileDescriptor := range fileDescriptors {
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
-
-			for _, entry := range jsonschema.Generate(messageDescriptor) {
-				data, err := json.MarshalIndent(entry, "", "  ")
-				if err != nil {
-					return err
-				}
-				identifier, ok := entry["$id"].(string)
-				if !ok {
-					return fmt.Errorf("expected unique id for message %q to be a string, got type %T", messageDescriptor.FullName(), entry["$id"])
-				}
-				if identifier == "" {
-					return fmt.Errorf("expected unique id for message %q to be a non-empty string", messageDescriptor.FullName())
-				}
-				if seenIdentifiers[identifier] {
-					continue
-				}
-				responseWriter.AddFile(
-					identifier,
-					string(data)+"\n",
-				)
-				seenIdentifiers[identifier] = true
+			protoNameSchema := jsonschema.Generate(messageDescriptor)
+			if err := writeFiles(responseWriter, messageDescriptor, protoNameSchema, seenIdentifiers); err != nil {
+				return err
+			}
+			jsonNameSchema := jsonschema.Generate(messageDescriptor, jsonschema.WithJSONNames())
+			if err := writeFiles(responseWriter, messageDescriptor, jsonNameSchema, seenIdentifiers); err != nil {
+				return err
 			}
 		}
 	}
 
 	responseWriter.SetFeatureProto3Optional()
+	return nil
+}
+
+func writeFiles(
+	responseWriter protoplugin.ResponseWriter,
+	messageDescriptor protoreflect.MessageDescriptor,
+	schema map[protoreflect.FullName]map[string]interface{},
+	seenIdentifiers map[string]bool,
+) error {
+	for _, entry := range schema {
+		data, err := json.MarshalIndent(entry, "", "  ")
+		if err != nil {
+			return err
+		}
+		identifier, ok := entry["$id"].(string)
+		if !ok {
+			return fmt.Errorf("expected unique id for message %q to be a string, got type %T", messageDescriptor.FullName(), entry["$id"])
+		}
+		if identifier == "" {
+			return fmt.Errorf("expected unique id for message %q to be a non-empty string", messageDescriptor.FullName())
+		}
+		if seenIdentifiers[identifier] {
+			continue
+		}
+		responseWriter.AddFile(
+			identifier,
+			string(data)+"\n",
+		)
+		seenIdentifiers[identifier] = true
+	}
 	return nil
 }
