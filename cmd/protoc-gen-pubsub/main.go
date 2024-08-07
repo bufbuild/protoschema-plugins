@@ -16,7 +16,7 @@ package main
 
 import (
 	"github.com/bufbuild/protoplugin"
-	"github.com/bufbuild/protoschema-plugins/internal/protoschema"
+	"github.com/bufbuild/protoschema-plugins"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/plugin/pluginpubsub"
 )
 

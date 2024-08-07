@@ -36,11 +36,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// A message comment.
 type NestedReference struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// A field comment.
 	NestedMessage *proto3.TestAllTypes_NestedMessage `protobuf:"bytes,1,opt,name=nested_message,json=nestedMessage,proto3" json:"nested_message,omitempty"`
 }
 

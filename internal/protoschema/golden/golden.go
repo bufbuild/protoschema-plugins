@@ -23,13 +23,14 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/reflect/protoregistry"
 	"google.golang.org/protobuf/types/descriptorpb"
 	"google.golang.org/protobuf/types/dynamicpb"
 )
 
 // GetTestDescriptors returns the test descriptors that were generated from the ./internal/proto
 // directory.
-func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, error) {
+func GetTestFileDescriptorSet(testdataPath string) (*descriptorpb.FileDescriptorSet, error) {
 	inputPath := filepath.Join(filepath.FromSlash(testdataPath), "codegenrequest", "input.json")
 	input, err := os.ReadFile(inputPath)
 	if err != nil {
@@ -39,9 +40,25 @@ func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, 
 	if err = (&protojson.UnmarshalOptions{DiscardUnknown: true}).Unmarshal(input, fdset); err != nil {
 		return nil, fmt.Errorf("failed to parse file descriptor set at %q: %w", inputPath, err)
 	}
+	return fdset, nil
+}
+
+func GetTestFiles(testdataPath string) (*protoregistry.Files, error) {
+	fdset, err := GetTestFileDescriptorSet(testdataPath)
+	if err != nil {
+		return nil, err
+	}
 	files, err := protodesc.NewFiles(fdset)
 	if err != nil {
-		return nil, fmt.Errorf("failed to link file descriptor set at %q: %w", inputPath, err)
+		return nil, fmt.Errorf("failed to link file descriptor set at %q: %w", testdataPath, err)
+	}
+	return files, nil
+}
+
+func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, error) {
+	files, err := GetTestFiles(testdataPath)
+	if err != nil {
+		return nil, err
 	}
 	types := dynamicpb.NewTypes(files)
 
