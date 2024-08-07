@@ -68,9 +68,6 @@ func GenFileContents(fileDescriptor protoreflect.FileDescriptor) (string, error)
 	if len(fileDescProto.GetSourceCodeInfo().GetLocation()) == 0 {
 		return "", nil
 	}
-	opts := protojson.MarshalOptions{
-		Multiline: true,
-	}
-	data, err := opts.Marshal(fileDescProto.GetSourceCodeInfo())
+	data, err := protojson.Marshal(fileDescProto.GetSourceCodeInfo())
 	return string(data), err
 }

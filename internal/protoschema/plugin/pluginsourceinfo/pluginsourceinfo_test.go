@@ -17,6 +17,7 @@ package pluginsourceinfo_test
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"os"
 	"path"
 	"path/filepath"
@@ -85,7 +86,16 @@ func TestSourceInfoHandler(t *testing.T) {
 		filename := path.Join(goldenPath, file.GetName())
 		want, err := os.ReadFile(filename)
 		require.NoError(t, err)
-		require.Equal(t, string(want), file.GetContent())
+
+		var actualJson interface{}
+		err = json.Unmarshal([]byte(file.GetContent()), &actualJson)
+		require.NoError(t, err)
+
+		var wantJson interface{}
+		err = json.Unmarshal(want, &wantJson)
+		require.NoError(t, err)
+
+		require.Equal(t, wantJson, actualJson)
 	}
 
 	err = protoschema.RegisterAllSourceInfo(goldenPath)
