@@ -30,11 +30,11 @@ import (
 )
 
 var (
-	// SourceInfoGlobalTypes is a replacement for protoregistry.GlobalTypes that includes
+	// GlobalTypes is a replacement for protoregistry.GlobalTypes that includes
 	// all registered source info.
 	GlobalFiles protodesc.Resolver = sourceinfo.GlobalFiles
 
-	// SourceInfoGlobalFiles is a replacement for protoregistry.GlobalFiles that includes
+	// GlobalFiles is a replacement for protoregistry.GlobalFiles that includes
 	// all registered source info.
 	GlobalTypes interface {
 		protoregistry.MessageTypeResolver
@@ -43,12 +43,12 @@ var (
 	} = sourceinfo.GlobalTypes
 )
 
-// RegisterAllSourceInfo registers all sourceinfo files under the given output path.
+// RegisterAll registers all sourceinfo files under the given output path.
 func RegisterAll(root string) error {
 	return RegisterAllFS(os.DirFS(root), ".")
 }
 
-// RegisterAllSourceInfoFS registers all sourceinfo files under the given output path, using the given fs.FS.
+// RegisterAllFS registers all sourceinfo files under the given output path, using the given fs.FS.
 func RegisterAllFS(fsys fs.FS, root string) error {
 	return fs.WalkDir(fsys, root, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {

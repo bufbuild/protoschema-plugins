@@ -34,6 +34,12 @@ func GetSourceInfoPath(fileDescriptor protoreflect.FileDescriptor) string {
 	return fmt.Sprintf("%s%s", path, FileExtension)
 }
 
+func GenFileContents(fileDescriptor protoreflect.FileDescriptor) ([]byte, error) {
+	// Convert the file descriptor to a descriptorpb.FileDescriptorProto.
+	fileDescProto := protodesc.ToFileDescriptorProto(fileDescriptor)
+	return proto.Marshal(fileDescProto.SourceCodeInfo)
+}
+
 // Handle implements protoplugin.Handler and is the main entry point for the plugin.
 func Handle(
 	_ context.Context,
@@ -57,10 +63,4 @@ func Handle(
 
 	responseWriter.SetFeatureProto3Optional()
 	return nil
-}
-
-func GenFileContents(fileDescriptor protoreflect.FileDescriptor) ([]byte, error) {
-	// Convert the file descriptor to a descriptorpb.FileDescriptorProto.
-	fileDescProto := protodesc.ToFileDescriptorProto(fileDescriptor)
-	return proto.Marshal(fileDescProto.SourceCodeInfo)
 }
