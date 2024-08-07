@@ -16,10 +16,10 @@ package main
 
 import (
 	"github.com/bufbuild/protoplugin"
-	"github.com/bufbuild/protoschema-plugins/cmd"
+	"github.com/bufbuild/protoschema-plugins/internal"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/plugin/pluginsourceinfo"
 )
 
 func main() {
-	protoplugin.Main(protoplugin.HandlerFunc(pluginsourceinfo.Handle), protoplugin.WithVersion(cmd.Version()))
+	protoplugin.Main(protoplugin.HandlerFunc(pluginsourceinfo.Handle), protoplugin.WithVersion(internal.Version()))
 }
