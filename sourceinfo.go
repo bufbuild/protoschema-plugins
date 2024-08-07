@@ -15,6 +15,7 @@
 package protoschema
 
 import (
+	"embed"
 	"os"
 	"path/filepath"
 	"strings"
@@ -35,8 +36,8 @@ var (
 )
 
 // RegisterAllSourceInfo registers all sourceinfo files under the given output path.
-func RegisterAllSourceInfo(outputPath string) error {
-	return filepath.Walk(outputPath, func(path string, info os.FileInfo, err error) error {
+func RegisterAllSourceInfo(root string) error {
+	return filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -50,18 +51,58 @@ func RegisterAllSourceInfo(outputPath string) error {
 		if err != nil {
 			return err
 		}
-		sourceInfo := &descriptorpb.SourceCodeInfo{}
-		if err := proto.Unmarshal(data, sourceInfo); err != nil {
-			return err
-		}
-		protoPath, err := filepath.Rel(outputPath, path)
+		relPath, err := filepath.Rel(root, path)
 		if err != nil {
 			return err
 		}
-		protoPath = filepath.ToSlash(protoPath)
-		protoPath = strings.TrimSuffix(protoPath, pluginsourceinfo.FileExtension)
-		protoPath += ".proto"
-		sourceinfo.RegisterSourceInfo(protoPath, sourceInfo)
-		return nil
+		return registerSourceInfoData(relPath, data)
 	})
+}
+
+// RegisterEmbeddedSourceInfo registers all sourceinfo files embedded in the given FS.
+func RegisterEmbeddedSourceInfo(files embed.FS, root string) error {
+	contents, err := files.ReadDir(root)
+	if err != nil {
+		return err
+	}
+	return registerEmbeddedDirs(files, root, contents, "")
+}
+
+func registerSourceInfoData(path string, data []byte) error {
+	sourceInfo := &descriptorpb.SourceCodeInfo{}
+	if err := proto.Unmarshal(data, sourceInfo); err != nil {
+		return err
+	}
+	protoPath := filepath.ToSlash(path)
+	protoPath = strings.TrimSuffix(protoPath, pluginsourceinfo.FileExtension)
+	protoPath += ".proto"
+	sourceinfo.RegisterSourceInfo(protoPath, sourceInfo)
+	return nil
+}
+
+func registerEmbeddedDirs(files embed.FS, root string, dir []os.DirEntry, prefix string) error {
+	for _, entry := range dir {
+		fullName := filepath.Join(prefix, entry.Name())
+		if entry.IsDir() {
+			subDir, err := files.ReadDir(filepath.Join(root, fullName))
+			if err != nil {
+				return err
+			}
+			if err := registerEmbeddedDirs(files, root, subDir, fullName); err != nil {
+				return err
+			}
+			continue
+		}
+		if !strings.HasSuffix(fullName, pluginsourceinfo.FileExtension) {
+			continue
+		}
+		data, err := files.ReadFile(filepath.Join(root, fullName))
+		if err != nil {
+			return err
+		}
+		if err := registerSourceInfoData(fullName, data); err != nil {
+			return err
+		}
+	}
+	return nil
 }
