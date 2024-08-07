@@ -12,18 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package protoschema
+package main
 
 import (
-	"runtime/debug"
-	"strings"
+	"github.com/bufbuild/protoplugin"
+	"github.com/bufbuild/protoschema-plugins/cmd"
+	"github.com/bufbuild/protoschema-plugins/internal/protoschema/plugin/pluginsourceinfo"
 )
 
-// Version returns the version of the protoschema library.
-func Version() string {
-	buildInfo, ok := debug.ReadBuildInfo()
-	if ok && buildInfo != nil && buildInfo.Main.Version != "" {
-		return strings.TrimSpace(buildInfo.Main.Version)
-	}
-	return "devel"
+func main() {
+	protoplugin.Main(protoplugin.HandlerFunc(pluginsourceinfo.Handle), protoplugin.WithVersion(cmd.Version()))
 }
