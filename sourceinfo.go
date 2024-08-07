@@ -21,7 +21,7 @@ import (
 
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/plugin/pluginsourceinfo"
 	"github.com/jhump/protoreflect/desc/sourceinfo"
-	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/descriptorpb"
 )
 
@@ -51,7 +51,7 @@ func RegisterAllSourceInfo(outputPath string) error {
 			return err
 		}
 		sourceInfo := &descriptorpb.SourceCodeInfo{}
-		if err := protojson.Unmarshal(data, sourceInfo); err != nil {
+		if err := proto.Unmarshal(data, sourceInfo); err != nil {
 			return err
 		}
 		protoPath, err := filepath.Rel(outputPath, path)

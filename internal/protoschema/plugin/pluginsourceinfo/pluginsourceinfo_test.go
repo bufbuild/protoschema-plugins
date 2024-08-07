@@ -17,7 +17,6 @@ package pluginsourceinfo_test
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"os"
 	"path"
 	"path/filepath"
@@ -35,6 +34,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/descriptorpb"
 	"google.golang.org/protobuf/types/pluginpb"
 )
 
@@ -87,15 +88,15 @@ func TestSourceInfoHandler(t *testing.T) {
 		want, err := os.ReadFile(filename)
 		require.NoError(t, err)
 
-		var actualJSON interface{}
-		err = json.Unmarshal([]byte(file.GetContent()), &actualJSON)
+		actualInfo := &descriptorpb.SourceCodeInfo{}
+		err = proto.Unmarshal([]byte(file.GetContent()), actualInfo)
 		require.NoError(t, err)
 
-		var wantJSON interface{}
-		err = json.Unmarshal(want, &wantJSON)
+		wantInfo := &descriptorpb.SourceCodeInfo{}
+		err = proto.Unmarshal(want, wantInfo)
 		require.NoError(t, err)
 
-		require.Equal(t, wantJSON, actualJSON)
+		require.True(t, proto.Equal(wantInfo, actualInfo), "file %s did not match", file.GetName())
 	}
 
 	err = protoschema.RegisterAllSourceInfo(goldenPath)

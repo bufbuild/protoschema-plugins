@@ -20,12 +20,12 @@ import (
 	"strings"
 
 	"github.com/bufbuild/protoplugin"
-	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
-const FileExtension = ".sourceinfo.json"
+const FileExtension = ".sourceinfo.binpb"
 
 // GetSourceInfoPath returns the path to the source info file for the given file descriptor.
 func GetSourceInfoPath(fileDescriptor protoreflect.FileDescriptor) string {
@@ -51,23 +51,16 @@ func Handle(
 		if err != nil {
 			return err
 		}
-		if data == "" {
-			continue
-		}
 		name := GetSourceInfoPath(fileDescriptor)
-		responseWriter.AddFile(name, data)
+		responseWriter.AddFile(name, string(data))
 	}
 
 	responseWriter.SetFeatureProto3Optional()
 	return nil
 }
 
-func GenFileContents(fileDescriptor protoreflect.FileDescriptor) (string, error) {
+func GenFileContents(fileDescriptor protoreflect.FileDescriptor) ([]byte, error) {
 	// Convert the file descriptor to a descriptorpb.FileDescriptorProto.
 	fileDescProto := protodesc.ToFileDescriptorProto(fileDescriptor)
-	if len(fileDescProto.GetSourceCodeInfo().GetLocation()) == 0 {
-		return "", nil
-	}
-	data, err := protojson.Marshal(fileDescProto.GetSourceCodeInfo())
-	return string(data), err
+	return proto.Marshal(fileDescProto.SourceCodeInfo)
 }

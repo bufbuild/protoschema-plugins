@@ -66,13 +66,13 @@ func run() error {
 			err = fmt.Errorf("failed to create directory for %s: %w", filePath, err)
 			return false
 		}
-		var data string
+		var data []byte
 		data, err = pluginsourceinfo.GenFileContents(testDesc)
 		if err != nil {
 			err = fmt.Errorf("failed to generate source info for %s: %w", testDesc.FullName(), err)
 			return false
 		}
-		if err = os.WriteFile(filePath, []byte(data), 0600); err != nil {
+		if err = os.WriteFile(filePath, data, 0600); err != nil {
 			err = fmt.Errorf("failed to write source info to %s: %w", filePath, err)
 			return false
 		}
