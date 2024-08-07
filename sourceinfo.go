@@ -26,10 +26,15 @@ import (
 )
 
 var (
+	// SourceInfoGlobalTypes is a replacement for protoregistry.GlobalTypes that includes
+	// all registered source info.
 	SourceInfoGlobalTypes = sourceinfo.GlobalTypes
+	// SourceInfoGlobalFiles is a replacement for protoregistry.GlobalFiles that includes
+	// all registered source info.
 	SourceInfoGlobalFiles = sourceinfo.GlobalFiles
 )
 
+// RegisterAllSourceInfo registers all sourceinfo files in the given output path.
 func RegisterAllSourceInfo(outputPath string) error {
 	return filepath.Walk(outputPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {

@@ -19,6 +19,7 @@ import (
 	"strings"
 )
 
+// Version returns the version of the protoschema library.
 func Version() string {
 	buildInfo, ok := debug.ReadBuildInfo()
 	if ok && buildInfo != nil && buildInfo.Main.Version != "" {
