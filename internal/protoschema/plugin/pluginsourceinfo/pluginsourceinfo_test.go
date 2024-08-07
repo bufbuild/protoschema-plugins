@@ -77,7 +77,7 @@ func TestSourceInfoHandler(t *testing.T) {
 
 	wantFiles := make([]string, 0, len(response.File))
 	for _, file := range response.File {
-		wantFiles = append(wantFiles, file.GetName())
+		wantFiles = append(wantFiles, filepath.FromSlash(file.GetName()))
 	}
 	slices.Sort(wantFiles)
 	require.Equal(t, wantFiles, gatherGoldenFiles(t, goldenPath))
