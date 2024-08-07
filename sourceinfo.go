@@ -53,6 +53,7 @@ func RegisterAllSourceInfo(outputPath string) error {
 		if err != nil {
 			return err
 		}
+		protoPath = filepath.ToSlash(protoPath)
 		protoPath = strings.TrimSuffix(protoPath, pluginsourceinfo.FileExtension)
 		protoPath += ".proto"
 		sourceinfo.RegisterSourceInfo(protoPath, sourceInfo)
