@@ -87,15 +87,15 @@ func TestSourceInfoHandler(t *testing.T) {
 		want, err := os.ReadFile(filename)
 		require.NoError(t, err)
 
-		var actualJson interface{}
-		err = json.Unmarshal([]byte(file.GetContent()), &actualJson)
+		var actualJSON interface{}
+		err = json.Unmarshal([]byte(file.GetContent()), &actualJSON)
 		require.NoError(t, err)
 
-		var wantJson interface{}
-		err = json.Unmarshal(want, &wantJson)
+		var wantJSON interface{}
+		err = json.Unmarshal(want, &wantJSON)
 		require.NoError(t, err)
 
-		require.Equal(t, wantJson, actualJson)
+		require.Equal(t, wantJSON, actualJSON)
 	}
 
 	err = protoschema.RegisterAllSourceInfo(goldenPath)
