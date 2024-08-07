@@ -28,7 +28,7 @@ var sourceInfoTestData embed.FS
 
 func TestEmbeddedSourceInfo(t *testing.T) {
 	t.Parallel()
-	err := RegisterEmbeddedSourceInfo(sourceInfoTestData, "internal/testdata/sourceinfo")
+	err := RegisterAllSourceInfoFS(sourceInfoTestData, "internal/testdata/sourceinfo")
 	require.NoError(t, err)
 
 	msgType, err := SourceInfoGlobalTypes.FindMessageByName(
