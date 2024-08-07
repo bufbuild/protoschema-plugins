@@ -30,11 +30,11 @@ import (
 )
 
 var (
-	// GlobalTypes is a replacement for protoregistry.GlobalTypes that includes
+	// GlobalFiles is a replacement for protoregistry.GlobalFiles that includes
 	// all registered source info.
 	GlobalFiles protodesc.Resolver = sourceinfo.GlobalFiles
 
-	// GlobalFiles is a replacement for protoregistry.GlobalFiles that includes
+	// GlobalTypes is a replacement for protoregistry.GlobalTypes that includes
 	// all registered source info.
 	GlobalTypes interface {
 		protoregistry.MessageTypeResolver
