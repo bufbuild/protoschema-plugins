@@ -23,7 +23,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-//go:embed internal/testdata/sourceinfo/**
+//go:embed internal/testdata/sourceinfo
 var sourceInfoTestData embed.FS
 
 func TestEmbeddedSourceInfo(t *testing.T) {
