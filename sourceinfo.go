@@ -34,7 +34,7 @@ var (
 	SourceInfoGlobalFiles = sourceinfo.GlobalFiles
 )
 
-// RegisterAllSourceInfo registers all sourceinfo files in the given output path.
+// RegisterAllSourceInfo registers all sourceinfo files under the given output path.
 func RegisterAllSourceInfo(outputPath string) error {
 	return filepath.Walk(outputPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
