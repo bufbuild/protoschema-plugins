@@ -28,9 +28,9 @@ import (
 	imagev1 "github.com/bufbuild/buf/private/gen/proto/go/buf/alpha/image/v1"
 	"github.com/bufbuild/buf/private/pkg/protoencoding"
 	"github.com/bufbuild/protoplugin"
-	"github.com/bufbuild/protoschema-plugins"
 	_ "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/plugin/pluginsourceinfo"
+	"github.com/bufbuild/protoschema-plugins/sourceinfo"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -99,10 +99,10 @@ func TestSourceInfoHandler(t *testing.T) {
 		require.True(t, proto.Equal(wantInfo, actualInfo), "file %s did not match", file.GetName())
 	}
 
-	err = protoschema.RegisterAllSourceInfo(goldenPath)
+	err = sourceinfo.RegisterAll(goldenPath)
 	require.NoError(t, err)
 
-	msgType, err := protoschema.SourceInfoGlobalTypes.FindMessageByName(
+	msgType, err := sourceinfo.GlobalTypes.FindMessageByName(
 		"buf.protoschema.test.v1.NestedReference",
 	)
 	require.NoError(t, err)

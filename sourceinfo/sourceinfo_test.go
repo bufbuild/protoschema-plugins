@@ -12,26 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package protoschema
+package sourceinfo
 
 import (
-	"embed"
 	"testing"
 
+	"github.com/bufbuild/protoschema-plugins/internal"
 	_ "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
-//go:embed internal/testdata/sourceinfo
-var sourceInfoTestData embed.FS
-
 func TestEmbeddedSourceInfo(t *testing.T) {
 	t.Parallel()
-	err := RegisterAllSourceInfoFS(sourceInfoTestData, "internal/testdata/sourceinfo")
+	err := RegisterAllFS(internal.SourceInfoTestData, "testdata/sourceinfo")
 	require.NoError(t, err)
 
-	msgType, err := SourceInfoGlobalTypes.FindMessageByName(
+	msgType, err := GlobalTypes.FindMessageByName(
 		"buf.protoschema.test.v1.NestedReference",
 	)
 	require.NoError(t, err)
