@@ -162,6 +162,19 @@ Results in the following JSON Schema files:
 
 </details>
 
+## SourceInfo
+
+The sourceinfo plugin provides a protoc-gen-sourceinfo command that generates an `.sourceinfo.binpb` file, for every `.proto` file.
+Each generated file contains the associated serialized `google.protobuf.SourceInfo` value.
+These files can then be loaded directly or embedded in a binary.
+
+The following helpers are provided for go via `import "github.com/bufbuild/protoschema-plugins/sourceinfo"`:
+
+- `sourceinfo.GlobalFiles`: A drop-in replacement for protoregistry.GlobalFiles
+- `sourceinfo.GlobalTypes`: A drop-in replacement for protogregistry.GlobalTypes
+- `sourceinfo.RegisterAll(root string)`: Registers all `*.sourceinfo.binpb` files found under the root dir.
+- `sourceinfo.RegisterAllFS(fsys fs.FS, root string)`: Same as above, except uses the given file system.
+
 ## Community
 
 For help and discussion around Protobuf, best practices, and more, join us
