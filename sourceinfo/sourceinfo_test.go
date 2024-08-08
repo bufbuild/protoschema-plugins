@@ -28,7 +28,7 @@ func TestEmbeddedSourceInfo(t *testing.T) {
 	err := RegisterAllFS(internal.SourceInfoTestData, "testdata/sourceinfo")
 	require.NoError(t, err)
 
-	msgType, err := GlobalTypes.FindMessageByName(
+	msgType, err := GlobalTypes().FindMessageByName(
 		"buf.protoschema.test.v1.NestedReference",
 	)
 	require.NoError(t, err)

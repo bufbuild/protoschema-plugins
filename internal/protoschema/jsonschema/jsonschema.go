@@ -33,12 +33,16 @@ const (
 	jsString  = "string"
 )
 
-type FieldVisibility int
+// fieldVisibility is an enumeration of the visibility of a field in the JSON schema.
+type fieldVisibility int
 
 const (
-	FieldVisible FieldVisibility = iota
-	FieldHide
-	FieldIgnore
+	// fieldVisible indicates that the field should be included in the schema.
+	fieldVisible fieldVisibility = iota
+	// fieldHide indicates that the field should be included in the schema, but not with a primary name.
+	fieldHide
+	// fieldIgnore indicates that the field should be excluded from the schema.
+	fieldIgnore
 )
 
 type GeneratorOption func(*jsonSchemaGenerator)
@@ -100,7 +104,7 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 	for i := range desc.Fields().Len() {
 		field := desc.Fields().Get(i)
 		visibility := p.shouldIgnoreField(field)
-		if visibility == FieldIgnore {
+		if visibility == fieldIgnore {
 			continue
 		}
 
@@ -111,7 +115,7 @@ func (p *jsonSchemaGenerator) generateDefault(result map[string]interface{}, des
 		aliases := make([]string, 0, 1)
 
 		switch {
-		case visibility == FieldHide:
+		case visibility == fieldHide:
 			aliases = append(aliases, string(field.Name()))
 			if field.JSONName() != string(field.Name()) {
 				aliases = append(aliases, field.JSONName())
@@ -324,18 +328,18 @@ func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func
 	return result
 }
 
-func (p *jsonSchemaGenerator) shouldIgnoreField(fdesc protoreflect.FieldDescriptor) FieldVisibility {
+func (p *jsonSchemaGenerator) shouldIgnoreField(fdesc protoreflect.FieldDescriptor) fieldVisibility {
 	const ignoreComment = "jsonschema:ignore"
 	const hideComment = "jsonschema:hide"
 	srcLoc := fdesc.ParentFile().SourceLocations().ByDescriptor(fdesc)
 	switch {
 	case strings.Contains(srcLoc.LeadingComments, ignoreComment),
 		strings.Contains(srcLoc.TrailingComments, ignoreComment):
-		return FieldIgnore
+		return fieldIgnore
 	case strings.Contains(srcLoc.LeadingComments, hideComment),
 		strings.Contains(srcLoc.TrailingComments, hideComment):
-		return FieldHide
+		return fieldHide
 	default:
-		return FieldVisible
+		return fieldVisible
 	}
 }

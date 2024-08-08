@@ -45,7 +45,7 @@ func run() error {
 		return err
 	}
 
-	testFiles, err := golden.GetTestFiles("./internal/testdata")
+	testFiles, err := golden.GetTestFiles(filepath.FromSlash("./internal/testdata"))
 	if err != nil {
 		return err
 	}
@@ -54,7 +54,6 @@ func run() error {
 		filepath.FromSlash("buf/protoschema/test/"),
 		filepath.FromSlash("bufext/cel/expr/conformance/proto3/"),
 	}
-	err = nil
 	testFiles.RangeFiles(func(testDesc protoreflect.FileDescriptor) bool {
 		if !shouldIncludeFile(testDesc, includePrefixes) {
 			return true

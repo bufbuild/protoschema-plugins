@@ -29,19 +29,21 @@ import (
 	"google.golang.org/protobuf/types/descriptorpb"
 )
 
-var (
-	// GlobalFiles is a replacement for protoregistry.GlobalFiles that includes
-	// all registered source info.
-	GlobalFiles protodesc.Resolver = sourceinfo.GlobalFiles
+// GlobalFiles is a replacement for protoregistry.GlobalFiles that includes
+// all registered source info.
+func GlobalFiles() protodesc.Resolver {
+	return sourceinfo.GlobalFiles
+}
 
-	// GlobalTypes is a replacement for protoregistry.GlobalTypes that includes
-	// all registered source info.
-	GlobalTypes interface {
-		protoregistry.MessageTypeResolver
-		protoregistry.ExtensionTypeResolver
-		RangeExtensionsByMessage(message protoreflect.FullName, f func(protoreflect.ExtensionType) bool)
-	} = sourceinfo.GlobalTypes
-)
+// GlobalTypes is a replacement for protoregistry.GlobalTypes that includes
+// all registered source info.
+func GlobalTypes() interface {
+	protoregistry.MessageTypeResolver
+	protoregistry.ExtensionTypeResolver
+	RangeExtensionsByMessage(message protoreflect.FullName, f func(protoreflect.ExtensionType) bool)
+} {
+	return sourceinfo.GlobalTypes
+}
 
 // RegisterAll registers all sourceinfo files under the given output path.
 func RegisterAll(root string) error {

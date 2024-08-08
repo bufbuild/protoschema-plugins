@@ -25,6 +25,7 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
+// FileExtension is the file extension for the source info files.
 const FileExtension = ".sourceinfo.binpb"
 
 // GetSourceInfoPath returns the path to the source info file for the given file descriptor.
@@ -34,6 +35,7 @@ func GetSourceInfoPath(fileDescriptor protoreflect.FileDescriptor) string {
 	return fmt.Sprintf("%s%s", path, FileExtension)
 }
 
+// GenFileContents generates the source info file contents for the given file descriptor.
 func GenFileContents(fileDescriptor protoreflect.FileDescriptor) ([]byte, error) {
 	// Convert the file descriptor to a descriptorpb.FileDescriptorProto.
 	fileDescProto := protodesc.ToFileDescriptorProto(fileDescriptor)

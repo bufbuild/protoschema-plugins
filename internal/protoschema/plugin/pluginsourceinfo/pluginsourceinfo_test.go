@@ -102,7 +102,7 @@ func TestSourceInfoHandler(t *testing.T) {
 	err = sourceinfo.RegisterAll(goldenPath)
 	require.NoError(t, err)
 
-	msgType, err := sourceinfo.GlobalTypes.FindMessageByName(
+	msgType, err := sourceinfo.GlobalTypes().FindMessageByName(
 		"buf.protoschema.test.v1.NestedReference",
 	)
 	require.NoError(t, err)

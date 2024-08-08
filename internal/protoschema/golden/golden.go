@@ -28,8 +28,8 @@ import (
 	"google.golang.org/protobuf/types/dynamicpb"
 )
 
-// GetTestDescriptors returns the test descriptors that were generated from the ./internal/proto
-// directory.
+// GetTestFileDescriptorSet returns the FileDescriptorSet descriptors that were generated from the
+// ./internal/proto directory.
 func GetTestFileDescriptorSet(testdataPath string) (*descriptorpb.FileDescriptorSet, error) {
 	inputPath := filepath.Join(filepath.FromSlash(testdataPath), "codegenrequest", "input.json")
 	input, err := os.ReadFile(inputPath)
@@ -43,6 +43,7 @@ func GetTestFileDescriptorSet(testdataPath string) (*descriptorpb.FileDescriptor
 	return fdset, nil
 }
 
+// GetTestFiles returns the protoregistry.Files for the test files defined in internal/proto.
 func GetTestFiles(testdataPath string) (*protoregistry.Files, error) {
 	fdset, err := GetTestFileDescriptorSet(testdataPath)
 	if err != nil {
@@ -55,6 +56,7 @@ func GetTestFiles(testdataPath string) (*protoregistry.Files, error) {
 	return files, nil
 }
 
+// GetTestDescriptors returns the descriptors for specific test messages defined in internal/proto.
 func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, error) {
 	files, err := GetTestFiles(testdataPath)
 	if err != nil {
@@ -104,6 +106,7 @@ func CheckGolden(filePath string, data string) error {
 	return nil
 }
 
+// GenerateGolden writes the given data to the golden file.
 func GenerateGolden(filePath string, data string) error {
 	file, err := os.Create(filePath)
 	if err != nil {
