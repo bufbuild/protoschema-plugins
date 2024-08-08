@@ -170,8 +170,8 @@ These files can then be loaded directly or embedded in a binary.
 
 The following helpers are provided for go via `import "github.com/bufbuild/protoschema-plugins/sourceinfo"`:
 
-- `sourceinfo.GlobalFiles`: A drop-in replacement for protoregistry.GlobalFiles
-- `sourceinfo.GlobalTypes`: A drop-in replacement for protogregistry.GlobalTypes
+- `sourceinfo.GlobalFiles()`: A drop-in replacement for protoregistry.GlobalFiles
+- `sourceinfo.GlobalTypes()`: A drop-in replacement for protogregistry.GlobalTypes
 - `sourceinfo.RegisterAll(root string)`: Registers all `*.sourceinfo.binpb` files found under the root dir.
 - `sourceinfo.RegisterAllFS(fsys fs.FS, root string)`: Same as above, except uses the given file system.
 
