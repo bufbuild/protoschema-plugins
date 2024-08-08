@@ -16,5 +16,7 @@ package internal
 
 import "embed"
 
+// SourceInfoTestData is the test data for from the internal/testdata/sourceinfo directory.
+//
 //go:embed testdata/sourceinfo
 var SourceInfoTestData embed.FS
