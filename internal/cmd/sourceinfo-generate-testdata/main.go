@@ -61,8 +61,8 @@ func run() error {
 		fileName := pluginsourceinfo.GetSourceInfoPath(testDesc)
 		filePath := filepath.Join(outputDir, fileName)
 		// Create any missing directories
-		if err = os.MkdirAll(filepath.Dir(filePath), 0755); err != nil {
-			err = fmt.Errorf("failed to create directory for %s: %w", filePath, err)
+		if innerErr := os.MkdirAll(filepath.Dir(filePath), 0755); innerErr != nil {
+			err = fmt.Errorf("failed to create directory for %s: %w", filePath, innerErr)
 			return false
 		}
 		var data []byte
@@ -71,8 +71,8 @@ func run() error {
 			err = fmt.Errorf("failed to generate source info for %s: %w", testDesc.FullName(), err)
 			return false
 		}
-		if err = os.WriteFile(filePath, data, 0600); err != nil {
-			err = fmt.Errorf("failed to write source info to %s: %w", filePath, err)
+		if innerErr := os.WriteFile(filePath, data, 0600); innerErr != nil {
+			err = fmt.Errorf("failed to write source info to %s: %w", filePath, innerErr)
 			return false
 		}
 		return true
