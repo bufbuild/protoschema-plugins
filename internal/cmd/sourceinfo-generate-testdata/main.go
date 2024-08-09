@@ -66,9 +66,9 @@ func run() error {
 			return false
 		}
 		var data []byte
-		data, err = pluginsourceinfo.GenFileContents(testDesc)
-		if err != nil {
-			err = fmt.Errorf("failed to generate source info for %s: %w", testDesc.FullName(), err)
+		data, innerErr := pluginsourceinfo.GenFileContents(testDesc)
+		if innerErr != nil {
+			err = fmt.Errorf("failed to generate source info for %s: %w", testDesc.FullName(), innerErr)
 			return false
 		}
 		if innerErr := os.WriteFile(filePath, data, 0600); innerErr != nil {
