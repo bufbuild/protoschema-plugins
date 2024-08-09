@@ -28,20 +28,6 @@ import (
 // FileExtension is the file extension for the source info files.
 const FileExtension = ".sourceinfo.binpb"
 
-// GetSourceInfoPath returns the path to the source info file for the given file descriptor.
-func GetSourceInfoPath(fileDescriptor protoreflect.FileDescriptor) string {
-	path := fileDescriptor.Path()
-	path = strings.TrimSuffix(path, ".proto")
-	return fmt.Sprintf("%s%s", path, FileExtension)
-}
-
-// GenFileContents generates the source info file contents for the given file descriptor.
-func GenFileContents(fileDescriptor protoreflect.FileDescriptor) ([]byte, error) {
-	// Convert the file descriptor to a descriptorpb.FileDescriptorProto.
-	fileDescProto := protodesc.ToFileDescriptorProto(fileDescriptor)
-	return proto.Marshal(fileDescProto.SourceCodeInfo)
-}
-
 // Handle implements protoplugin.Handler and is the main entry point for the plugin.
 func Handle(
 	_ context.Context,
@@ -65,4 +51,18 @@ func Handle(
 
 	responseWriter.SetFeatureProto3Optional()
 	return nil
+}
+
+// GetSourceInfoPath returns the path to the source info file for the given file descriptor.
+func GetSourceInfoPath(fileDescriptor protoreflect.FileDescriptor) string {
+	path := fileDescriptor.Path()
+	path = strings.TrimSuffix(path, ".proto")
+	return fmt.Sprintf("%s%s", path, FileExtension)
+}
+
+// GenFileContents generates the source info file contents for the given file descriptor.
+func GenFileContents(fileDescriptor protoreflect.FileDescriptor) ([]byte, error) {
+	// Convert the file descriptor to a descriptorpb.FileDescriptorProto.
+	fileDescProto := protodesc.ToFileDescriptorProto(fileDescriptor)
+	return proto.Marshal(fileDescProto.SourceCodeInfo)
 }
