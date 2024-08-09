@@ -19,7 +19,9 @@ package buf.protoschema.test.v1;
 import "buf/validate/validate.proto";
 import "bufext/cel/expr/conformance/proto3/test_all_types.proto";
 
+// A message comment.
 message NestedReference {
+  // A field comment.
   bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage nested_message = 1;
 }
 

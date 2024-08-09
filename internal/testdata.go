@@ -12,14 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package internal
 
-import (
-	"github.com/bufbuild/protoplugin"
-	"github.com/bufbuild/protoschema-plugins/internal"
-	"github.com/bufbuild/protoschema-plugins/internal/protoschema/plugin/pluginpubsub"
-)
+import "embed"
 
-func main() {
-	protoplugin.Main(protoplugin.HandlerFunc(pluginpubsub.Handle), protoplugin.WithVersion(internal.Version()))
-}
+// SourceInfoTestData is the test data for from the internal/testdata/sourceinfo directory.
+//
+//go:embed testdata/sourceinfo
+var SourceInfoTestData embed.FS

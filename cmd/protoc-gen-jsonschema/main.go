@@ -16,10 +16,10 @@ package main
 
 import (
 	"github.com/bufbuild/protoplugin"
-	"github.com/bufbuild/protoschema-plugins/internal/protoschema"
+	"github.com/bufbuild/protoschema-plugins/internal"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/plugin/pluginjsonschema"
 )
 
 func main() {
-	protoplugin.Main(protoplugin.HandlerFunc(pluginjsonschema.Handle), protoplugin.WithVersion(protoschema.Version()))
+	protoplugin.Main(protoplugin.HandlerFunc(pluginjsonschema.Handle), protoplugin.WithVersion(internal.Version()))
 }
