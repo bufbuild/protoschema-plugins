@@ -49,7 +49,7 @@ func run() error {
 	if err != nil {
 		return err
 	}
-	// TODO: Use normal the plugin to generate golden files
+	// TODO: Use the normal plugin to generate golden files
 	includePrefixes := []string{
 		filepath.FromSlash("buf/protoschema/test/"),
 		filepath.FromSlash("bufext/cel/expr/conformance/proto3/"),
