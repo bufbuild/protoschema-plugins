@@ -231,15 +231,15 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 
 func (p *jsonSchemaGenerator) generateIntValidation(_ protoreflect.FieldDescriptor, entry map[string]interface{}, bitSize int) {
 	// Use floats to handle integer overflow.
-	min := -math.Pow(2, float64(bitSize-1))
-	max := math.Pow(2, float64(bitSize-1))
+	minBitSize := -math.Pow(2, float64(bitSize-1))
+	maxBitSize := math.Pow(2, float64(bitSize-1))
 	if bitSize <= 53 {
 		entry["type"] = jsInteger
-		entry["minimum"] = min
-		entry["exclusiveMaximum"] = max
+		entry["minimum"] = minBitSize
+		entry["exclusiveMaximum"] = maxBitSize
 	} else {
 		entry["anyOf"] = []map[string]interface{}{
-			{"type": jsInteger, "minimum": min, "maximum": max},
+			{"type": jsInteger, "minimum": minBitSize, "maximum": maxBitSize},
 			{"type": jsString, "pattern": "^[0-9]+$"},
 		}
 	}
