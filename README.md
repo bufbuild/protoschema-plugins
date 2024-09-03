@@ -165,7 +165,7 @@ Results in the following JSON Schema files:
 ## SourceInfo
 
 The sourceinfo plugin provides a protoc-gen-sourceinfo command that generates an `.sourceinfo.binpb` file, for every `.proto` file.
-Each generated file contains the associated serialized `google.protobuf.SourceInfo` value.
+Each generated file contains the associated serialized `google.protobuf.SourceCodeInfo` value.
 These files can then be loaded directly or embedded in a binary.
 
 The following helpers are provided for go via `import "github.com/bufbuild/protoschema-plugins/sourceinfo"`:
