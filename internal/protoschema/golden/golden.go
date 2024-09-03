@@ -37,7 +37,7 @@ func GetTestFileDescriptorSet(testdataPath string) (*descriptorpb.FileDescriptor
 		return nil, fmt.Errorf("failed to open input file descritpor set at %q: %w", inputPath, err)
 	}
 	fdset := &descriptorpb.FileDescriptorSet{}
-	if err = (&protojson.UnmarshalOptions{DiscardUnknown: true}).Unmarshal(input, fdset); err != nil {
+	if err := (&protojson.UnmarshalOptions{DiscardUnknown: true}).Unmarshal(input, fdset); err != nil {
 		return nil, fmt.Errorf("failed to parse file descriptor set at %q: %w", inputPath, err)
 	}
 	return fdset, nil
