@@ -60,7 +60,7 @@ func GetSourceInfoPath(fileDescriptor protoreflect.FileDescriptor) string {
 	return fmt.Sprintf("%s%s", path, FileExtension)
 }
 
-// GenFileContents generates the source info file contents for the given file descriptor.
+// GenFileContents marshals the `SourceCodeInfo` field of the given file descriptor to protobuf bytes.
 func GenFileContents(fileDescriptor protoreflect.FileDescriptor) ([]byte, error) {
 	// Convert the file descriptor to a descriptorpb.FileDescriptorProto.
 	fileDescProto := protodesc.ToFileDescriptorProto(fileDescriptor)

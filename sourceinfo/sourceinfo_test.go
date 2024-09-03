@@ -12,23 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package sourceinfo
+package sourceinfo_test
 
 import (
 	"testing"
 
 	"github.com/bufbuild/protoschema-plugins/internal"
 	_ "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
+	"github.com/bufbuild/protoschema-plugins/sourceinfo"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func TestEmbeddedSourceInfo(t *testing.T) {
 	t.Parallel()
-	err := RegisterAllFS(internal.SourceInfoTestData, "testdata/sourceinfo")
+	err := sourceinfo.RegisterAllFS(internal.SourceInfoTestData, "testdata/sourceinfo")
 	require.NoError(t, err)
 
-	msgType, err := GlobalTypes().FindMessageByName(
+	msgType, err := sourceinfo.GlobalTypes().FindMessageByName(
 		"buf.protoschema.test.v1.NestedReference",
 	)
 	require.NoError(t, err)
