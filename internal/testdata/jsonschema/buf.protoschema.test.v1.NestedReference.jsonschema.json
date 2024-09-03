@@ -2,14 +2,17 @@
   "$id": "buf.protoschema.test.v1.NestedReference.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "description": "A message comment.",
   "patternProperties": {
     "^(nested_message)$": {
-      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
+      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json",
+      "description": "A field comment."
     }
   },
   "properties": {
     "nestedMessage": {
-      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
+      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json",
+      "description": "A field comment."
     }
   },
   "title": "Nested Reference",
