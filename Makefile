@@ -91,7 +91,7 @@ $(BIN)/license-header: $(BIN) Makefile
 	go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@latest
 
 $(BIN)/golangci-lint: $(BIN) Makefile
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.57.1
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.60.0
 
 $(BIN)/jv: $(BIN) Makefile
 	go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest
