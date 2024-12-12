@@ -9,8 +9,21 @@ MAKEFLAGS += --no-print-directory
 BIN := .tmp/bin
 export PATH := $(BIN):$(PATH)
 export GOBIN := $(abspath $(BIN))
+BUF_VERSION = $(shell go list -m -f '{{.Version}}' github.com/bufbuild/buf)
 COPYRIGHT_YEARS := 2024
+GOLANGCI_LINT_VERSION := v1.62.2
 LICENSE_IGNORE := --ignore testdata/
+
+UNAME_OS := $(shell uname -s)
+ifeq ($(UNAME_OS),Darwin)
+# Explicitly use the "BSD" sed shipped with Darwin. Otherwise if the user has a
+# different sed (such as gnu-sed) on their PATH this will fail in an opaque
+# manner. /usr/bin/sed can only be modified if SIP is disabled, so this should
+# be relatively safe.
+SED_I := /usr/bin/sed -i ''
+else
+SED_I := sed -i
+endif
 
 .PHONY: help
 help: ## Describe useful make targets
@@ -70,9 +83,15 @@ generate: $(BIN)/license-header $(BIN)/buf ## Regenerate code and licenses
 
 .PHONY: upgrade
 upgrade: ## Upgrade dependencies
-	go get -u -t ./...
-	go mod tidy -v
-	buf mod update internal/proto
+	@UPDATE_PKGS=$$(go list -u -f '{{if and .Update (not (or .Main .Indirect .Replace))}}{{.Path}}@{{.Update.Version}}{{end}}' -m all); \
+	if [[ -n "$${UPDATE_PKGS}" ]]; then \
+		go get $${UPDATE_PKGS}; \
+		go mod tidy -v; \
+	fi
+	buf dep update internal/proto
+	# Update protobuf version to match version in go.mod after upgrade
+	PROTOBUF_VERSION=$$(go list -m -f '{{.Version}}' google.golang.org/protobuf); \
+	$(SED_I) -e "s|buf.build/protocolbuffers/go:.*|buf.build/protocolbuffers/go:$${PROTOBUF_VERSION}|" buf.gen.yaml
 
 .PHONY: checkgenerate
 checkgenerate:
@@ -83,13 +102,13 @@ $(BIN):
 	@mkdir -p $(BIN)
 
 $(BIN)/buf: $(BIN) Makefile
-	go install github.com/bufbuild/buf/cmd/buf@latest
+	go install github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
 
 $(BIN)/license-header: $(BIN) Makefile
-	go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@latest
+	go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(BUF_VERSION)
 
 $(BIN)/golangci-lint: $(BIN) Makefile
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.60.0
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
 
 $(BIN)/jv: $(BIN) Makefile
 	go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest

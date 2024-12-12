@@ -11,9 +11,6 @@ permissions:
 jobs:
   ci:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        go-version: [1.22.x]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -22,7 +19,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: ${{ matrix.go-version }}
+          go-version: '1.23.x'
       - id: go-cache-paths
         shell: bash
         run: |

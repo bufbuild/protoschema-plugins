@@ -184,12 +184,12 @@ func (n *Normalizer) removeOneofs(msgDescPb *descriptorpb.DescriptorProto, empty
 	oneofRemap := map[int32]int32{}
 	newOneofDecl := []*descriptorpb.OneofDescriptorProto{}
 	for idx, oneOf := range msgDescPb.GetOneofDecl() {
-		idx := int32(idx)
+		idx := int32(idx) //nolint:gosec
 		if _, ok := emptyOneofs[idx]; ok {
 			continue
 		}
 		stripExtensionsAndUnknown(oneOf.GetOptions())
-		oneofRemap[idx] = int32(len(newOneofDecl))
+		oneofRemap[idx] = int32(len(newOneofDecl)) //nolint:gosec
 		newOneofDecl = append(newOneofDecl, oneOf)
 	}
 	for _, field := range msgDescPb.GetField() {

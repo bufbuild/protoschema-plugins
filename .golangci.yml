@@ -26,14 +26,13 @@ linters:
     - cyclop            # covered by gocyclo
     - depguard
     - exhaustive
-    - execinquery       # deprecated in golangci v1.58 
     - exhaustruct
+    - exportloopref     # deprecated since v1.60.2
     - funlen            # rely on code review to limit function length
     - gochecknoglobals  # globals are fine
     - gocognit          # dubious "cognitive overhead" quantification
     - gofumpt           # prefer standard gofmt
     - goimports         # rely on gci instead
-    - gomnd             # deprecated in golangci v1.58 in favor of mnd
     - mnd               # some unnamed constants are okay
     - ireturn           # "accept interfaces, return structs" isn't ironclad
     - lll               # don't want hard limits for line length
