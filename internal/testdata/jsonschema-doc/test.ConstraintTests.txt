@@ -1,0 +1,7 @@
+- at '/test_cases/1/required_implicit': missing properties 'bool_value', 'string_value'
+- at '/test_cases/2/required_implicit': validation failed
+  - at '/test_cases/2/required_implicit/string_value': minLength: got 0, want 1
+  - at '/test_cases/2/required_implicit/bool_value': value must be true
+- at '/test_cases/4/required_optional': missing properties 'bool_value', 'string_value'
+- at '/test_cases/5/required_optional/string_value': minLength: got 0, want 1
+- at '/test_cases/7/const_bool': value must be false

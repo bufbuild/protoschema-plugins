@@ -1,0 +1,28 @@
+syntax = "proto2";
+message ConstraintTest {
+  oneof test_case {
+    RequiredImplicit required_implicit = 1;
+    RequiredOptional required_optional = 2;
+    bool const_bool = 3;
+    string const_string = 4;
+    string len_string = 5;
+    string min_len_string = 6;
+    string max_len_string = 7;
+    string min_max_len_string = 8;
+    string in_string = 9;
+    string pattern_string = 10;
+    string prefix_string = 11;
+    string suffix_string = 12;
+    string contains_string = 13;
+    string prefix_suffix_string = 14;
+    string prefix_contains_suffix_string = 15;
+  }
+  message RequiredImplicit {
+    optional bool bool_value = 1;
+    optional string string_value = 2;
+  }
+  message RequiredOptional {
+    optional bool bool_value = 1;
+    optional string string_value = 2;
+  }
+}

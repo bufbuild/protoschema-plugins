@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=../jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.json
+test_cases:
+  - required_implicit:
+      bool_value: true
+      string_value: "foo"
+  - required_implicit: {}
+  - required_implicit:
+      bool_value: false
+      string_value: ""
+  - required_optional:
+      bool_value: true
+      string_value: "foo"
+  - required_optional: {}
+  - required_optional:
+      bool_value: false
+      string_value: ""
+  - const_bool: false
+  - const_bool: true
+  - const_string: const
+  - const_string: other
+  - len_string: "hello"
+  - len_string: "bye"
+  - min_len_string: "hello"
+  - min_len_string: "hello world"
+  - min_len_string: "bye"
+  - max_len_string: "hello"
+  - max_len_string: "bye"
+  - max_len_string: "hello world"
+  - min_max_len_string: "hello"
+  - min_max_len_string: "helloworld"
+  - min_max_len_string: "hello world"
+  - in_string: in1
+  - in_string: in2
+  - in_string: other
+  - pattern_string: "pattern"
+  - pattern_string: "pattttern"
+  - pattern_string: "other"
+  - suffix_string: "foo_suffix"
+  - suffix_string: "bar_suffix"
+  - suffix_string: "other"
+  - prefix_string: "prefix_foo"
+  - prefix_string: "prefix_bar"
+  - prefix_string: "other"
+  - prefix_suffix_string: "prefix_foo_suffix"
+  - prefix_suffix_string: "prefix_bar_suffix"
+  - prefix_suffix_string: "other_suffix"
+  - prefix_suffix_string: "prefix_other"
+  - contains_string: "foo_contains_bar"
+  - contains_string: "bar_contains_foo"
+  - contains_string: "other"
+  - prefix_contains_suffix_string: "prefix_foo_contains_bar_suffix"
+  - prefix_contains_suffix_string: "prefix_contains_suffix"
+  - prefix_contains_suffix_string: "other"
+  - prefix_contains_suffix_string: "prefix_foo_suffix"
+  - prefix_contains_suffix_string: "prefix_contains"
+  - prefix_contains_suffix_string: "contains_suffix"

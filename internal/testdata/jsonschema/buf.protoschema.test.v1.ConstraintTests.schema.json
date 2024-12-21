@@ -1,0 +1,23 @@
+{
+  "$id": "buf.protoschema.test.v1.ConstraintTests.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^(testCases)$": {
+      "items": {
+        "$ref": "buf.protoschema.test.v1.ConstraintTest.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "properties": {
+    "test_cases": {
+      "items": {
+        "$ref": "buf.protoschema.test.v1.ConstraintTest.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Constraint Tests",
+  "type": "object"
+}

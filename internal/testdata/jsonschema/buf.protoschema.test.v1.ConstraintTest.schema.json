@@ -1,0 +1,145 @@
+{
+  "$id": "buf.protoschema.test.v1.ConstraintTest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^(constBool)$": {
+      "enum": [
+        false
+      ],
+      "type": "boolean"
+    },
+    "^(constString)$": {
+      "enum": [
+        "const"
+      ],
+      "type": "string"
+    },
+    "^(containsString)$": {
+      "pattern": ".*_contains_.*",
+      "type": "string"
+    },
+    "^(inString)$": {
+      "enum": [
+        "in1",
+        "in2"
+      ],
+      "type": "string"
+    },
+    "^(lenString)$": {
+      "maxLength": 5,
+      "minLength": 5,
+      "type": "string"
+    },
+    "^(maxLenString)$": {
+      "maxLength": 5,
+      "type": "string"
+    },
+    "^(minLenString)$": {
+      "minLength": 5,
+      "type": "string"
+    },
+    "^(minMaxLenString)$": {
+      "maxLength": 10,
+      "minLength": 5,
+      "type": "string"
+    },
+    "^(patternString)$": {
+      "pattern": "^pat*ern$",
+      "type": "string"
+    },
+    "^(prefixContainsSuffixString)$": {
+      "pattern": "^prefix_.*contains.*_suffix$",
+      "type": "string"
+    },
+    "^(prefixString)$": {
+      "pattern": "^prefix_.*",
+      "type": "string"
+    },
+    "^(prefixSuffixString)$": {
+      "pattern": "^prefix_.*_suffix$",
+      "type": "string"
+    },
+    "^(requiredImplicit)$": {
+      "$ref": "buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.schema.json"
+    },
+    "^(requiredOptional)$": {
+      "$ref": "buf.protoschema.test.v1.ConstraintTest.RequiredOptional.schema.json"
+    },
+    "^(suffixString)$": {
+      "pattern": ".*_suffix$",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "const_bool": {
+      "enum": [
+        false
+      ],
+      "type": "boolean"
+    },
+    "const_string": {
+      "enum": [
+        "const"
+      ],
+      "type": "string"
+    },
+    "contains_string": {
+      "pattern": ".*_contains_.*",
+      "type": "string"
+    },
+    "in_string": {
+      "enum": [
+        "in1",
+        "in2"
+      ],
+      "type": "string"
+    },
+    "len_string": {
+      "maxLength": 5,
+      "minLength": 5,
+      "type": "string"
+    },
+    "max_len_string": {
+      "maxLength": 5,
+      "type": "string"
+    },
+    "min_len_string": {
+      "minLength": 5,
+      "type": "string"
+    },
+    "min_max_len_string": {
+      "maxLength": 10,
+      "minLength": 5,
+      "type": "string"
+    },
+    "pattern_string": {
+      "pattern": "^pat*ern$",
+      "type": "string"
+    },
+    "prefix_contains_suffix_string": {
+      "pattern": "^prefix_.*contains.*_suffix$",
+      "type": "string"
+    },
+    "prefix_string": {
+      "pattern": "^prefix_.*",
+      "type": "string"
+    },
+    "prefix_suffix_string": {
+      "pattern": "^prefix_.*_suffix$",
+      "type": "string"
+    },
+    "required_implicit": {
+      "$ref": "buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.schema.json"
+    },
+    "required_optional": {
+      "$ref": "buf.protoschema.test.v1.ConstraintTest.RequiredOptional.schema.json"
+    },
+    "suffix_string": {
+      "pattern": ".*_suffix$",
+      "type": "string"
+    }
+  },
+  "title": "Constraint Test",
+  "type": "object"
+}
