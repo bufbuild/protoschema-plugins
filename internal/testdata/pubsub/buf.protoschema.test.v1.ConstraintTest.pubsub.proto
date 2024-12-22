@@ -16,6 +16,24 @@ message ConstraintTest {
     string contains_string = 13;
     string prefix_suffix_string = 14;
     string prefix_contains_suffix_string = 15;
+    string hostname_string = 16;
+    string email_string = 17;
+    string ip_string = 18;
+    string ipv4_string = 19;
+    string ipv6_string = 20;
+    string uri_string = 21;
+    string uri_ref_string = 22;
+    string address_string = 23;
+    string uuid_string = 24;
+    string tuuid_string = 25;
+    string ip_with_prefixlen_string = 26;
+    string ipv4_with_prefixlen_string = 27;
+    string ipv6_with_prefixlen_string = 28;
+    string ip_prefix_string = 29;
+    string ipv4_prefix_string = 30;
+    string ipv6_prefix_string = 31;
+    string host_and_port_string = 32;
+    string http_header_name_strict_string = 33;
   }
   message RequiredImplicit {
     optional bool bool_value = 1;

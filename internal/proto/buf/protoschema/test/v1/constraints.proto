@@ -61,6 +61,27 @@ message ConstraintTest {
       prefix: "prefix_"
       contains: "contains"
     }];
+    string hostname_string = 16 [(buf.validate.field).string.hostname = true];
+    string email_string = 17 [(buf.validate.field).string.email = true];
+    string ip_string = 18 [(buf.validate.field).string.ip = true];
+    string ipv4_string = 19 [(buf.validate.field).string.ipv4 = true];
+    string ipv6_string = 20 [(buf.validate.field).string.ipv6 = true];
+    string uri_string = 21 [(buf.validate.field).string.uri = true];
+    string uri_ref_string = 22 [(buf.validate.field).string.uri_ref = true];
+    string address_string = 23 [(buf.validate.field).string.address = true];
+    string uuid_string = 24 [(buf.validate.field).string.uuid = true];
+    string tuuid_string = 25 [(buf.validate.field).string.tuuid = true];
+    string ip_with_prefixlen_string = 26 [(buf.validate.field).string.ip_with_prefixlen = true];
+    string ipv4_with_prefixlen_string = 27 [(buf.validate.field).string.ipv4_with_prefixlen = true];
+    string ipv6_with_prefixlen_string = 28 [(buf.validate.field).string.ipv6_with_prefixlen = true];
+    string ip_prefix_string = 29 [(buf.validate.field).string.ip_prefix = true];
+    string ipv4_prefix_string = 30 [(buf.validate.field).string.ipv4_prefix = true];
+    string ipv6_prefix_string = 31 [(buf.validate.field).string.ipv6_prefix = true];
+    string host_and_port_string = 32 [(buf.validate.field).string.host_and_port = true];
+    string http_header_name_strict_string = 33 [(buf.validate.field).string = {
+      well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME
+      strict: true
+    }];
   }
 }
 

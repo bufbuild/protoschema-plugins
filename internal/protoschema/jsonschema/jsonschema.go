@@ -15,6 +15,7 @@
 package jsonschema
 
 import (
+	"fmt"
 	"math"
 	"strings"
 	"unicode"
@@ -286,6 +287,28 @@ func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescri
 	}
 }
 
+const (
+	ipv4PatternBit     = "((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
+	ipv6PatternBit     = "(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)"
+	ipv4LenPatternBit  = "/([0-9]|[12][0-9]|3[0-2])"
+	ipv6LenPatternBit  = "/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])"
+	portPatternBit     = "([1-9][0-9]{0,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])"
+	hostnamePatternBit = "[A-Za-z0-9][A-Za-z0-9-]{0,63}(\\.[A-Za-z0-9-][A-Za-z0-9-]{0,63})*"
+
+	ipv4Pattern          = "^" + ipv4PatternBit + "$"
+	ipv6Pattern          = "^" + ipv6PatternBit + "$"
+	hostnamePattern      = "^" + hostnamePatternBit + "$"
+	uriPattern           = "^(?:(?:[a-zA-Z][a-zA-Z\\d+\\-.]*):)?(?://(?:[A-Za-z0-9\\-\\.]+(?::\\d+)?))?(/[^\\?#]*)?(?:\\?([^\\#]*))?(?:\\#(.*))?$"
+	uriRefPattern        = "^(?:(?:[a-zA-Z][a-zA-Z\\d+\\-.]*):)?(?:\\/\\/(?:[A-Za-z0-9\\-\\.]+(?::\\d+)?))?(/[^\\?#]*)?(?:\\?([^\\#]*))?(?:\\#(.*))?$"
+	uuidPattern          = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+	tuuidPattern         = "^[0-9a-fA-F]{32}$"
+	ipv4PrefixLenPattern = "^" + ipv4PatternBit + ipv4LenPatternBit + "$"
+	ipv6PrefixLenPattern = "^" + ipv6PatternBit + ipv6LenPatternBit + "$"
+	ipv4PrefixPattern    = "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}0/([0-9]|[12][0-9]|3[0-2])$"
+	ipv6PrefixPattern    = "^(([0-9a-fA-F]{1,4}:){1,7}:|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$"
+	hostAndPortPattern   = "^(" + hostnamePatternBit + "|" + ipv4PatternBit + "|\\[" + ipv6PatternBit + "\\]):" + portPatternBit + "$"
+)
+
 func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
 	schema["type"] = jsString
 	if constraints.GetString_() == nil {
@@ -316,11 +339,15 @@ func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescr
 	switch wellKnown := constraints.GetString_().GetWellKnown().(type) {
 	case *validate.StringRules_Hostname:
 		if wellKnown.Hostname {
-			schema["format"] = "hostname"
+			schema["pattern"] = hostnamePattern
 		}
 	case *validate.StringRules_Email:
 		if wellKnown.Email {
 			schema["format"] = "email"
+		}
+	case *validate.StringRules_Ip:
+		if wellKnown.Ip {
+			schema["pattern"] = fmt.Sprintf("%s|%s", ipv4Pattern, ipv6Pattern)
 		}
 	case *validate.StringRules_Ipv4:
 		if wellKnown.Ipv4 {
@@ -330,17 +357,60 @@ func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescr
 		if wellKnown.Ipv6 {
 			schema["format"] = "ipv6"
 		}
-	case *validate.StringRules_Uuid:
-		if wellKnown.Uuid {
-			schema["format"] = "uuid"
-		}
 	case *validate.StringRules_Uri:
 		if wellKnown.Uri {
-			schema["format"] = "uri"
+			schema["pattern"] = uriPattern
 		}
 	case *validate.StringRules_UriRef:
 		if wellKnown.UriRef {
-			schema["format"] = "uri-reference"
+			schema["pattern"] = uriRefPattern
+		}
+	case *validate.StringRules_Address:
+		if wellKnown.Address {
+			schema["pattern"] = fmt.Sprintf("%s|%s|%s", ipv4Pattern, ipv6Pattern, hostnamePattern)
+		}
+	case *validate.StringRules_Uuid:
+		if wellKnown.Uuid {
+			schema["pattern"] = uuidPattern
+		}
+	case *validate.StringRules_Tuuid:
+		if wellKnown.Tuuid {
+			schema["pattern"] = tuuidPattern
+		}
+	case *validate.StringRules_Ipv4WithPrefixlen:
+		if wellKnown.Ipv4WithPrefixlen {
+			schema["pattern"] = ipv4PrefixLenPattern
+		}
+	case *validate.StringRules_Ipv6WithPrefixlen:
+		if wellKnown.Ipv6WithPrefixlen {
+			schema["pattern"] = ipv6PrefixLenPattern
+		}
+	case *validate.StringRules_IpWithPrefixlen:
+		if wellKnown.IpWithPrefixlen {
+			schema["pattern"] = fmt.Sprintf("%s|%s", ipv4PrefixLenPattern, ipv6PrefixLenPattern)
+		}
+	case *validate.StringRules_Ipv4Prefix:
+		if wellKnown.Ipv4Prefix {
+			schema["pattern"] = ipv4PrefixPattern
+		}
+	case *validate.StringRules_Ipv6Prefix:
+		if wellKnown.Ipv6Prefix {
+			schema["pattern"] = ipv6PrefixPattern
+		}
+	case *validate.StringRules_IpPrefix:
+		if wellKnown.IpPrefix {
+			schema["pattern"] = fmt.Sprintf("%s|%s", ipv4PrefixPattern, ipv6PrefixPattern)
+		}
+	case *validate.StringRules_HostAndPort:
+		if wellKnown.HostAndPort {
+			schema["pattern"] = hostAndPortPattern
+		}
+	case *validate.StringRules_WellKnownRegex:
+		switch wellKnown.WellKnownRegex {
+		case validate.KnownRegex_KNOWN_REGEX_HTTP_HEADER_NAME:
+			if constraints.GetString_().GetStrict() {
+				schema["pattern"] = "^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$"
+			}
 		}
 	}
 
