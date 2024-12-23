@@ -89,7 +89,117 @@ message ConstraintTest {
       min_len: 5
       max_len: 10
     }];
+    int32 const_int32 = 38 [(buf.validate.field).int32.const = 5];
+    int32 lt_int32 = 39 [(buf.validate.field).int32.lt = 5];
+    int32 lte_int32 = 40 [(buf.validate.field).int32.lte = 5];
+    int32 gt_int32 = 41 [(buf.validate.field).int32.gt = 5];
+    int32 gte_int32 = 42 [(buf.validate.field).int32.gte = 5];
+    int32 in_int32 = 43 [(buf.validate.field).int32 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    int64 const_int64 = 44 [(buf.validate.field).int64.const = 5];
+    int64 lt_int64 = 45 [(buf.validate.field).int64.lt = 5];
+    int64 lte_int64 = 46 [(buf.validate.field).int64.lte = 5];
+    int64 gt_int64 = 47 [(buf.validate.field).int64.gt = 5];
+    int64 gte_int64 = 48 [(buf.validate.field).int64.gte = 5];
+    int64 in_int64 = 49 [(buf.validate.field).int64 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    uint32 const_uint32 = 50 [(buf.validate.field).uint32.const = 5];
+    uint32 lt_uint32 = 51 [(buf.validate.field).uint32.lt = 5];
+    uint32 lte_uint32 = 52 [(buf.validate.field).uint32.lte = 5];
+    uint32 gt_uint32 = 53 [(buf.validate.field).uint32.gt = 5];
+    uint32 gte_uint32 = 54 [(buf.validate.field).uint32.gte = 5];
+    uint32 in_uint32 = 55 [(buf.validate.field).uint32 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    uint64 const_uint64 = 56 [(buf.validate.field).uint64.const = 5];
+    uint64 lt_uint64 = 57 [(buf.validate.field).uint64.lt = 5];
+    uint64 lte_uint64 = 58 [(buf.validate.field).uint64.lte = 5];
+    uint64 gt_uint64 = 59 [(buf.validate.field).uint64.gt = 5];
+    uint64 gte_uint64 = 60 [(buf.validate.field).uint64.gte = 5];
+    uint64 in_uint64 = 61 [(buf.validate.field).uint64 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    sint32 const_sint32 = 62 [(buf.validate.field).sint32.const = 5];
+    sint32 lt_sint32 = 63 [(buf.validate.field).sint32.lt = 5];
+    sint32 lte_sint32 = 64 [(buf.validate.field).sint32.lte = 5];
+    sint32 gt_sint32 = 65 [(buf.validate.field).sint32.gt = 5];
+    sint32 gte_sint32 = 66 [(buf.validate.field).sint32.gte = 5];
+    sint32 in_sint32 = 67 [(buf.validate.field).sint32 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    sint64 const_sint64 = 68 [(buf.validate.field).sint64.const = 5];
+    sint64 lt_sint64 = 69 [(buf.validate.field).sint64.lt = 5];
+    sint64 lte_sint64 = 70 [(buf.validate.field).sint64.lte = 5];
+    sint64 gt_sint64 = 71 [(buf.validate.field).sint64.gt = 5];
+    sint64 gte_sint64 = 72 [(buf.validate.field).sint64.gte = 5];
+    sint64 in_sint64 = 73 [(buf.validate.field).sint64 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    sfixed32 const_sfixed32 = 74 [(buf.validate.field).sfixed32.const = 5];
+    sfixed32 lt_sfixed32 = 75 [(buf.validate.field).sfixed32.lt = 5];
+    sfixed32 lte_sfixed32 = 76 [(buf.validate.field).sfixed32.lte = 5];
+    sfixed32 gt_sfixed32 = 77 [(buf.validate.field).sfixed32.gt = 5];
+    sfixed32 gte_sfixed32 = 78 [(buf.validate.field).sfixed32.gte = 5];
+    sfixed32 in_sfixed32 = 79 [(buf.validate.field).sfixed32 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    sfixed64 const_sfixed64 = 80 [(buf.validate.field).sfixed64.const = 5];
+    sfixed64 lt_sfixed64 = 81 [(buf.validate.field).sfixed64.lt = 5];
+    sfixed64 lte_sfixed64 = 82 [(buf.validate.field).sfixed64.lte = 5];
+    sfixed64 gt_sfixed64 = 83 [(buf.validate.field).sfixed64.gt = 5];
+    sfixed64 gte_sfixed64 = 84 [(buf.validate.field).sfixed64.gte = 5];
+    sfixed64 in_sfixed64 = 85 [(buf.validate.field).sfixed64 = {
+      in: [
+        1,
+        2
+      ]
+    }];
   }
+  fixed32 const_fixed32 = 86 [(buf.validate.field).fixed32.const = 5];
+  fixed32 lt_fixed32 = 87 [(buf.validate.field).fixed32.lt = 5];
+  fixed32 lte_fixed32 = 88 [(buf.validate.field).fixed32.lte = 5];
+  fixed32 gt_fixed32 = 89 [(buf.validate.field).fixed32.gt = 5];
+  fixed32 gte_fixed32 = 90 [(buf.validate.field).fixed32.gte = 5];
+  fixed32 in_fixed32 = 91 [(buf.validate.field).fixed32 = {
+    in: [
+      1,
+      2
+    ]
+  }];
+  fixed64 const_fixed64 = 92 [(buf.validate.field).fixed64.const = 5];
+  fixed64 lt_fixed64 = 93 [(buf.validate.field).fixed64.lt = 5];
+  fixed64 lte_fixed64 = 94 [(buf.validate.field).fixed64.lte = 5];
+  fixed64 gt_fixed64 = 95 [(buf.validate.field).fixed64.gt = 5];
+  fixed64 gte_fixed64 = 96 [(buf.validate.field).fixed64.gte = 5];
+  fixed64 in_fixed64 = 97 [(buf.validate.field).fixed64 = {
+    in: [
+      1,
+      2
+    ]
+  }];
 }
 
 message ConstraintTests {

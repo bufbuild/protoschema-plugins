@@ -1,9 +1,17 @@
 {
   "$id": "google.protobuf.UInt64Value.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "anyOf": [
+    {
+      "exclusiveMaximum": 18446744073709552000,
+      "minimum": 0,
+      "type": "integer"
+    },
+    {
+      "pattern": "^[0-9]+$",
+      "type": "string"
+    }
+  ],
   "description": "The uint64 value.",
-  "exclusiveMaximum": 18446744073709552000,
-  "minimum": 0,
-  "title": "U Int64 Value",
-  "type": "integer"
+  "title": "U Int64 Value"
 }

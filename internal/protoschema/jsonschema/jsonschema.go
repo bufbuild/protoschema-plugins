@@ -182,13 +182,13 @@ func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescrip
 	case protoreflect.EnumKind:
 		p.generateEnumValidation(field, schema)
 	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
-		p.generateIntValidation(field, schema, 32)
+		p.generateInt32Validation(field, constraints, schema)
 	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
-		p.generateIntValidation(field, schema, 64)
+		p.generateInt64Validation(field, constraints, schema)
 	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
-		p.generateUintValidation(field, schema, 32)
+		p.generateUint32Validation(field, constraints, schema)
 	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
-		p.generateUintValidation(field, schema, 64)
+		p.generateUint64Validation(field, constraints, schema)
 	case protoreflect.FloatKind:
 		p.generateFloatValidation(field, schema, 32)
 	case protoreflect.DoubleKind:
@@ -257,26 +257,278 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 	schema["anyOf"] = anyOf
 }
 
-func (p *jsonSchemaGenerator) generateIntValidation(_ protoreflect.FieldDescriptor, schema map[string]interface{}, bitSize int) {
-	// Use floats to handle integer overflow.
-	minSize := -math.Pow(2, float64(bitSize-1))
-	maxSize := math.Pow(2, float64(bitSize-1))
-	if bitSize <= 53 {
-		schema["type"] = jsInteger
-		schema["minimum"] = minSize
-		schema["exclusiveMaximum"] = maxSize
-	} else {
-		schema["anyOf"] = []map[string]interface{}{
-			{"type": jsInteger, "minimum": minSize, "maximum": maxSize},
-			{"type": jsString, "pattern": "^[0-9]+$"},
+func (p *jsonSchemaGenerator) generateInt32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+	schema["type"] = jsInteger
+	switch {
+	default:
+		schema["minimum"] = math.MinInt32
+		schema["maximum"] = math.MaxInt32
+	case constraints.GetInt32() != nil:
+		if constraints.GetInt32().Const != nil {
+			schema["enum"] = []int32{constraints.GetInt32().GetConst()}
+		} else if len(constraints.GetInt32().GetIn()) > 0 {
+			schema["enum"] = constraints.GetInt32().GetIn()
+		}
+		switch greaterThan := constraints.GetInt32().GetGreaterThan().(type) {
+		case *validate.Int32Rules_Gt:
+			schema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.Int32Rules_Gte:
+			schema["minimum"] = greaterThan.Gte
+		default:
+			schema["minimum"] = math.MinInt32
+		}
+		switch lessThan := constraints.GetInt32().GetLessThan().(type) {
+		case *validate.Int32Rules_Lt:
+			schema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.Int32Rules_Lte:
+			schema["maximum"] = lessThan.Lte
+		default:
+			schema["maximum"] = math.MaxInt32
+		}
+	case constraints.GetSint32() != nil:
+		if constraints.GetSint32().Const != nil {
+			schema["enum"] = []int32{constraints.GetSint32().GetConst()}
+		} else if len(constraints.GetSint32().GetIn()) > 0 {
+			schema["enum"] = constraints.GetSint32().GetIn()
+		}
+		switch greaterThan := constraints.GetSint32().GetGreaterThan().(type) {
+		case *validate.SInt32Rules_Gt:
+			schema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.SInt32Rules_Gte:
+			schema["minimum"] = greaterThan.Gte
+		default:
+			schema["minimum"] = math.MinInt32
+		}
+		switch lessThan := constraints.GetSint32().GetLessThan().(type) {
+		case *validate.SInt32Rules_Lt:
+			schema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.SInt32Rules_Lte:
+			schema["maximum"] = lessThan.Lte
+		default:
+			schema["maximum"] = math.MaxInt32
+		}
+	case constraints.GetSfixed32() != nil:
+		if constraints.GetSfixed32().Const != nil {
+			schema["enum"] = []int32{constraints.GetSfixed32().GetConst()}
+		} else if len(constraints.GetSfixed32().GetIn()) > 0 {
+			schema["enum"] = constraints.GetSfixed32().GetIn()
+		}
+		switch greaterThan := constraints.GetSfixed32().GetGreaterThan().(type) {
+		case *validate.SFixed32Rules_Gt:
+			schema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.SFixed32Rules_Gte:
+			schema["minimum"] = greaterThan.Gte
+		default:
+			schema["minimum"] = math.MinInt32
+		}
+		switch lessThan := constraints.GetSfixed32().GetLessThan().(type) {
+		case *validate.SFixed32Rules_Lt:
+			schema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.SFixed32Rules_Lte:
+			schema["maximum"] = lessThan.Lte
+		default:
+			schema["maximum"] = math.MaxInt32
 		}
 	}
 }
 
-func (p *jsonSchemaGenerator) generateUintValidation(_ protoreflect.FieldDescriptor, schema map[string]interface{}, bitSize int) {
+func (p *jsonSchemaGenerator) generateInt64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+	intSchema := map[string]interface{}{
+		"type": jsInteger,
+	}
+	switch {
+	default:
+		intSchema["minimum"] = math.MinInt64
+		intSchema["exclusiveMaximum"] = math.Pow(2, 63)
+	case constraints.GetInt64() != nil:
+		if constraints.GetInt64().Const != nil {
+			intSchema["enum"] = []int64{constraints.GetInt64().GetConst()}
+		} else if len(constraints.GetInt64().GetIn()) > 0 {
+			intSchema["enum"] = constraints.GetInt64().GetIn()
+		}
+		switch greaterThan := constraints.GetInt64().GetGreaterThan().(type) {
+		case *validate.Int64Rules_Gt:
+			intSchema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.Int64Rules_Gte:
+			intSchema["minimum"] = greaterThan.Gte
+		default:
+			intSchema["minimum"] = math.MinInt64
+		}
+		switch lessThan := constraints.GetInt64().GetLessThan().(type) {
+		case *validate.Int64Rules_Lt:
+			intSchema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.Int64Rules_Lte:
+			intSchema["maximum"] = lessThan.Lte
+		default:
+			intSchema["exclusiveMaximum"] = math.Pow(2, 63)
+		}
+	case constraints.GetSint64() != nil:
+		if constraints.GetSint64().Const != nil {
+			intSchema["enum"] = []int64{constraints.GetSint64().GetConst()}
+		}
+		if len(constraints.GetSint64().GetIn()) > 0 {
+			intSchema["enum"] = constraints.GetSint64().GetIn()
+		}
+		switch greaterThan := constraints.GetSint64().GetGreaterThan().(type) {
+		case *validate.SInt64Rules_Gt:
+			intSchema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.SInt64Rules_Gte:
+			intSchema["minimum"] = greaterThan.Gte
+		default:
+			intSchema["minimum"] = math.MinInt64
+		}
+		switch lessThan := constraints.GetSint64().GetLessThan().(type) {
+		case *validate.SInt64Rules_Lt:
+			intSchema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.SInt64Rules_Lte:
+			intSchema["maximum"] = lessThan.Lte
+		default:
+			intSchema["exclusiveMaximum"] = math.Pow(2, 63)
+		}
+	case constraints.GetSfixed64() != nil:
+		if constraints.GetSfixed64().Const != nil {
+			intSchema["enum"] = []int64{constraints.GetSfixed64().GetConst()}
+		}
+		if len(constraints.GetSfixed64().GetIn()) > 0 {
+			intSchema["enum"] = constraints.GetSfixed64().GetIn()
+		}
+		switch greaterThan := constraints.GetSfixed64().GetGreaterThan().(type) {
+		case *validate.SFixed64Rules_Gt:
+			intSchema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.SFixed64Rules_Gte:
+			intSchema["minimum"] = greaterThan.Gte
+		default:
+			intSchema["minimum"] = math.MinInt64
+		}
+		switch lessThan := constraints.GetSfixed64().GetLessThan().(type) {
+		case *validate.SFixed64Rules_Lt:
+			intSchema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.SFixed64Rules_Lte:
+			intSchema["maximum"] = lessThan.Lte
+		default:
+			intSchema["exclusiveMaximum"] = math.Pow(2, 63)
+		}
+	}
+
+	schema["anyOf"] = []map[string]interface{}{
+		intSchema,
+		{"type": jsString, "pattern": "^-?[0-9]+$"},
+	}
+}
+
+func (p *jsonSchemaGenerator) generateUint32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
 	schema["type"] = jsInteger
-	schema["minimum"] = 0
-	schema["exclusiveMaximum"] = math.Pow(2, float64(bitSize))
+	switch {
+	default:
+		schema["minimum"] = 0
+		schema["maximum"] = math.MaxUint32
+	case constraints.GetUint32() != nil:
+		if constraints.GetUint32().Const != nil {
+			schema["enum"] = []uint32{constraints.GetUint32().GetConst()}
+		} else if len(constraints.GetUint32().GetIn()) > 0 {
+			schema["enum"] = constraints.GetUint32().GetIn()
+		}
+		switch greaterThan := constraints.GetUint32().GetGreaterThan().(type) {
+		case *validate.UInt32Rules_Gt:
+			schema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.UInt32Rules_Gte:
+			schema["minimum"] = greaterThan.Gte
+		default:
+			schema["minimum"] = 0
+		}
+		switch lessThan := constraints.GetUint32().GetLessThan().(type) {
+		case *validate.UInt32Rules_Lt:
+			schema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.UInt32Rules_Lte:
+			schema["maximum"] = lessThan.Lte
+		default:
+			schema["maximum"] = math.MaxUint32
+		}
+	case constraints.GetFixed32() != nil:
+		if constraints.GetFixed32().Const != nil {
+			schema["enum"] = []uint32{constraints.GetFixed32().GetConst()}
+		}
+		if len(constraints.GetFixed32().GetIn()) > 0 {
+			schema["enum"] = constraints.GetFixed32().GetIn()
+		}
+		switch greaterThan := constraints.GetFixed32().GetGreaterThan().(type) {
+		case *validate.Fixed32Rules_Gt:
+			schema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.Fixed32Rules_Gte:
+			schema["minimum"] = greaterThan.Gte
+		default:
+			schema["minimum"] = 0
+		}
+		switch lessThan := constraints.GetFixed32().GetLessThan().(type) {
+		case *validate.Fixed32Rules_Lt:
+			schema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.Fixed32Rules_Lte:
+			schema["maximum"] = lessThan.Lte
+		default:
+			schema["maximum"] = math.MaxUint32
+		}
+	}
+}
+
+func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+	intSchema := map[string]interface{}{
+		"type": jsInteger,
+	}
+	switch {
+	default:
+		intSchema["minimum"] = 0
+		intSchema["exclusiveMaximum"] = math.Pow(2, 64)
+	case constraints.GetUint64() != nil:
+		if constraints.GetUint64().Const != nil {
+			intSchema["enum"] = []uint64{constraints.GetUint64().GetConst()}
+		} else if len(constraints.GetUint64().GetIn()) > 0 {
+			intSchema["enum"] = constraints.GetUint64().GetIn()
+		}
+		switch greaterThan := constraints.GetUint64().GetGreaterThan().(type) {
+		case *validate.UInt64Rules_Gt:
+			intSchema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.UInt64Rules_Gte:
+			intSchema["minimum"] = greaterThan.Gte
+		default:
+			intSchema["minimum"] = 0
+		}
+		switch lessThan := constraints.GetUint64().GetLessThan().(type) {
+		case *validate.UInt64Rules_Lt:
+			intSchema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.UInt64Rules_Lte:
+			intSchema["maximum"] = lessThan.Lte
+		default:
+			intSchema["exclusiveMaximum"] = math.Pow(2, 64)
+		}
+	case constraints.GetFixed64() != nil:
+		if constraints.GetFixed64().Const != nil {
+			intSchema["enum"] = []uint64{constraints.GetFixed64().GetConst()}
+		}
+		if len(constraints.GetFixed64().GetIn()) > 0 {
+			intSchema["enum"] = constraints.GetFixed64().GetIn()
+		}
+		switch greaterThan := constraints.GetFixed64().GetGreaterThan().(type) {
+		case *validate.Fixed64Rules_Gt:
+			intSchema["exclusiveMinimum"] = greaterThan.Gt
+		case *validate.Fixed64Rules_Gte:
+			intSchema["minimum"] = greaterThan.Gte
+		default:
+			intSchema["minimum"] = 0
+		}
+		switch lessThan := constraints.GetFixed64().GetLessThan().(type) {
+		case *validate.Fixed64Rules_Lt:
+			intSchema["exclusiveMaximum"] = lessThan.Lt
+		case *validate.Fixed64Rules_Lte:
+			intSchema["maximum"] = lessThan.Lte
+		default:
+			intSchema["exclusiveMaximum"] = math.Pow(2, 64)
+		}
+	}
+
+	schema["anyOf"] = []map[string]interface{}{
+		intSchema,
+		{"type": jsString, "pattern": "^[0-9]+$"},
+	}
 }
 
 func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescriptor, schema map[string]interface{}, _ int) {

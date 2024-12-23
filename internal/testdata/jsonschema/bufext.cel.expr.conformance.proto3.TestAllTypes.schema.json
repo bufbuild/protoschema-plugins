@@ -154,7 +154,7 @@
     },
     "^(mapBoolInt32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -176,12 +176,12 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -278,7 +278,7 @@
     },
     "^(mapBoolUint32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -298,9 +298,17 @@
     },
     "^(mapBoolUint64)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "boolean"
@@ -330,7 +338,7 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -341,7 +349,7 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -352,7 +360,7 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -364,7 +372,7 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -375,7 +383,7 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -401,7 +409,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -412,7 +420,7 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -423,7 +431,7 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -449,7 +457,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -475,7 +483,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -486,7 +494,7 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -494,12 +502,12 @@
     },
     "^(mapInt32Int32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -510,7 +518,7 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -520,18 +528,18 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -542,7 +550,7 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -553,7 +561,7 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -564,7 +572,7 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -588,7 +596,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -599,7 +607,7 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -610,7 +618,7 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -621,7 +629,7 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -632,7 +640,7 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -640,12 +648,12 @@
     },
     "^(mapInt32Uint32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -656,7 +664,7 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -664,12 +672,20 @@
     },
     "^(mapInt32Uint64)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -680,7 +696,7 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -691,7 +707,7 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -704,12 +720,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -723,12 +739,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -742,12 +758,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -762,12 +778,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -781,12 +797,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -815,12 +831,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -834,12 +850,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -853,12 +869,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -887,12 +903,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -921,12 +937,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -940,12 +956,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -954,19 +970,19 @@
     },
     "^(mapInt64Int32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -980,12 +996,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -996,12 +1012,12 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1009,12 +1025,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1028,12 +1044,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1047,12 +1063,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1066,12 +1082,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1086,12 +1102,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1118,12 +1134,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1137,12 +1153,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1156,12 +1172,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1175,12 +1191,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1194,12 +1210,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1208,19 +1224,19 @@
     },
     "^(mapInt64Uint32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1234,12 +1250,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1248,19 +1264,27 @@
     },
     "^(mapInt64Uint64)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
             "type": "integer"
           },
           {
             "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1274,12 +1298,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1293,12 +1317,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1452,7 +1476,7 @@
     },
     "^(mapStringInt32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -1474,12 +1498,12 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -1576,7 +1600,7 @@
     },
     "^(mapStringUint32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1596,9 +1620,17 @@
     },
     "^(mapStringUint64)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "string"
@@ -1628,7 +1660,7 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1639,7 +1671,7 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1650,7 +1682,7 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1662,7 +1694,7 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1673,7 +1705,7 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1699,7 +1731,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1710,7 +1742,7 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1721,7 +1753,7 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1747,7 +1779,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1773,7 +1805,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1784,7 +1816,7 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1792,12 +1824,12 @@
     },
     "^(mapUint32Int32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1808,7 +1840,7 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1818,18 +1850,18 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1840,7 +1872,7 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1851,7 +1883,7 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1862,7 +1894,7 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1886,7 +1918,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1897,7 +1929,7 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1908,7 +1940,7 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1919,7 +1951,7 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1930,7 +1962,7 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1938,12 +1970,12 @@
     },
     "^(mapUint32Uint32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1954,7 +1986,7 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1962,12 +1994,20 @@
     },
     "^(mapUint32Uint64)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1978,7 +2018,7 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -1989,7 +2029,7 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -2000,9 +2040,17 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2011,9 +2059,17 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2022,9 +2078,17 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2034,9 +2098,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2045,9 +2117,17 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2071,9 +2151,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2082,9 +2170,17 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2093,9 +2189,17 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2119,9 +2223,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2145,53 +2257,10 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "type": "object"
-    },
-    "^(mapUint64FloatWrapper)$": {
-      "additionalProperties": {
-        "$ref": "google.protobuf.FloatValue.schema.json"
-      },
-      "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "type": "object"
-    },
-    "^(mapUint64Int32)$": {
-      "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
-        "minimum": -2147483648,
-        "type": "integer"
-      },
-      "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "type": "object"
-    },
-    "^(mapUint64Int32Wrapper)$": {
-      "additionalProperties": {
-        "$ref": "google.protobuf.Int32Value.schema.json"
-      },
-      "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "type": "object"
-    },
-    "^(mapUint64Int64)$": {
-      "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
             "type": "integer"
           },
           {
@@ -2200,10 +2269,93 @@
           }
         ]
       },
+      "type": "object"
+    },
+    "^(mapUint64FloatWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Int32)$": {
+      "additionalProperties": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
         "type": "integer"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Int32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Int64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2212,9 +2364,17 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2223,9 +2383,17 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2234,9 +2402,17 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2258,9 +2434,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2269,9 +2453,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2280,9 +2472,17 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2291,9 +2491,17 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2302,22 +2510,38 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "^(mapUint64Uint32)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2326,22 +2550,46 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "^(mapUint64Uint64)$": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2350,9 +2598,17 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2361,9 +2617,17 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -2472,7 +2736,7 @@
     },
     "^(repeatedFixed32)$": {
       "items": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -2480,9 +2744,17 @@
     },
     "^(repeatedFixed64)$": {
       "items": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2516,7 +2788,7 @@
     "^(repeatedInt32)$": {
       "description": "Repeated",
       "items": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -2532,12 +2804,12 @@
       "items": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -2611,7 +2883,7 @@
     },
     "^(repeatedSfixed32)$": {
       "items": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -2621,12 +2893,12 @@
       "items": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -2635,7 +2907,7 @@
     },
     "^(repeatedSint32)$": {
       "items": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -2645,12 +2917,12 @@
       "items": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -2689,7 +2961,7 @@
     },
     "^(repeatedUint32)$": {
       "items": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -2703,9 +2975,17 @@
     },
     "^(repeatedUint64)$": {
       "items": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2763,14 +3043,22 @@
       "$ref": "google.protobuf.Duration.schema.json"
     },
     "^(singleFixed32)$": {
-      "exclusiveMaximum": 4294967296,
+      "maximum": 4294967295,
       "minimum": 0,
       "type": "integer"
     },
     "^(singleFixed64)$": {
-      "exclusiveMaximum": 18446744073709552000,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 18446744073709552000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(singleFloat)$": {
       "anyOf": [
@@ -2795,7 +3083,7 @@
     },
     "^(singleInt32)$": {
       "description": "Singular",
-      "exclusiveMaximum": 2147483648,
+      "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
     },
@@ -2805,12 +3093,12 @@
     "^(singleInt64)$": {
       "anyOf": [
         {
-          "maximum": 9223372036854776000,
-          "minimum": -9223372036854776000,
+          "exclusiveMaximum": 9223372036854776000,
+          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
-          "pattern": "^[0-9]+$",
+          "pattern": "^-?[0-9]+$",
           "type": "string"
         }
       ]
@@ -2840,37 +3128,37 @@
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
     },
     "^(singleSfixed32)$": {
-      "exclusiveMaximum": 2147483648,
+      "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
     },
     "^(singleSfixed64)$": {
       "anyOf": [
         {
-          "maximum": 9223372036854776000,
-          "minimum": -9223372036854776000,
+          "exclusiveMaximum": 9223372036854776000,
+          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
-          "pattern": "^[0-9]+$",
+          "pattern": "^-?[0-9]+$",
           "type": "string"
         }
       ]
     },
     "^(singleSint32)$": {
-      "exclusiveMaximum": 2147483648,
+      "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
     },
     "^(singleSint64)$": {
       "anyOf": [
         {
-          "maximum": 9223372036854776000,
-          "minimum": -9223372036854776000,
+          "exclusiveMaximum": 9223372036854776000,
+          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
-          "pattern": "^[0-9]+$",
+          "pattern": "^-?[0-9]+$",
           "type": "string"
         }
       ]
@@ -2888,7 +3176,7 @@
       "$ref": "google.protobuf.Timestamp.schema.json"
     },
     "^(singleUint32)$": {
-      "exclusiveMaximum": 4294967296,
+      "maximum": 4294967295,
       "minimum": 0,
       "type": "integer"
     },
@@ -2896,9 +3184,17 @@
       "$ref": "google.protobuf.UInt32Value.schema.json"
     },
     "^(singleUint64)$": {
-      "exclusiveMaximum": 18446744073709552000,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 18446744073709552000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(singleUint64Wrapper)$": {
       "$ref": "google.protobuf.UInt64Value.schema.json"
@@ -3079,7 +3375,7 @@
     },
     "map_bool_int32": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3101,12 +3397,12 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3203,7 +3499,7 @@
     },
     "map_bool_uint32": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -3223,9 +3519,17 @@
     },
     "map_bool_uint64": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "boolean"
@@ -3255,7 +3559,7 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3266,7 +3570,7 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3277,7 +3581,7 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3289,7 +3593,7 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3300,7 +3604,7 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3326,7 +3630,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3337,7 +3641,7 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3348,7 +3652,7 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3374,7 +3678,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3400,7 +3704,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3411,7 +3715,7 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3419,12 +3723,12 @@
     },
     "map_int32_int32": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3435,7 +3739,7 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3445,18 +3749,18 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3467,7 +3771,7 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3478,7 +3782,7 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3489,7 +3793,7 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3513,7 +3817,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3524,7 +3828,7 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3535,7 +3839,7 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3546,7 +3850,7 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3557,7 +3861,7 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3565,12 +3869,12 @@
     },
     "map_int32_uint32": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3581,7 +3885,7 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3589,12 +3893,20 @@
     },
     "map_int32_uint64": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3605,7 +3917,7 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3616,7 +3928,7 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -3629,12 +3941,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3648,12 +3960,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3667,12 +3979,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3687,12 +3999,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3706,12 +4018,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3740,12 +4052,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3759,12 +4071,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3778,12 +4090,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3812,12 +4124,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3846,12 +4158,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3865,12 +4177,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3879,19 +4191,19 @@
     },
     "map_int64_int32": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3905,12 +4217,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3921,12 +4233,12 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3934,12 +4246,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3953,12 +4265,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3972,12 +4284,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -3991,12 +4303,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4011,12 +4323,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4043,12 +4355,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4062,12 +4374,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4081,12 +4393,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4100,12 +4412,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4119,12 +4431,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4133,19 +4445,19 @@
     },
     "map_int64_uint32": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4159,12 +4471,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4173,19 +4485,27 @@
     },
     "map_int64_uint64": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
             "type": "integer"
           },
           {
             "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4199,12 +4519,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4218,12 +4538,12 @@
       "propertyNames": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4377,7 +4697,7 @@
     },
     "map_string_int32": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -4399,12 +4719,12 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -4501,7 +4821,7 @@
     },
     "map_string_uint32": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4521,9 +4841,17 @@
     },
     "map_string_uint64": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "string"
@@ -4553,7 +4881,7 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4564,7 +4892,7 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4575,7 +4903,7 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4587,7 +4915,7 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4598,7 +4926,7 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4624,7 +4952,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4635,7 +4963,7 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4646,7 +4974,7 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4672,7 +5000,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4698,7 +5026,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4709,7 +5037,7 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4717,12 +5045,12 @@
     },
     "map_uint32_int32": {
       "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4733,7 +5061,7 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4743,18 +5071,18 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4765,7 +5093,7 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4776,7 +5104,7 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4787,7 +5115,7 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4811,7 +5139,7 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4822,7 +5150,7 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4833,7 +5161,7 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4844,7 +5172,7 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4855,7 +5183,7 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4863,12 +5191,12 @@
     },
     "map_uint32_uint32": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4879,7 +5207,7 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4887,12 +5215,20 @@
     },
     "map_uint32_uint64": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4903,7 +5239,7 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4914,7 +5250,7 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -4925,9 +5261,17 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -4936,9 +5280,17 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -4947,9 +5299,17 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -4959,9 +5319,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -4970,9 +5338,17 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -4996,9 +5372,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5007,9 +5391,17 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5018,9 +5410,17 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5044,9 +5444,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5070,53 +5478,10 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "type": "object"
-    },
-    "map_uint64_float_wrapper": {
-      "additionalProperties": {
-        "$ref": "google.protobuf.FloatValue.schema.json"
-      },
-      "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "type": "object"
-    },
-    "map_uint64_int32": {
-      "additionalProperties": {
-        "exclusiveMaximum": 2147483648,
-        "minimum": -2147483648,
-        "type": "integer"
-      },
-      "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "type": "object"
-    },
-    "map_uint64_int32_wrapper": {
-      "additionalProperties": {
-        "$ref": "google.protobuf.Int32Value.schema.json"
-      },
-      "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
-      },
-      "type": "object"
-    },
-    "map_uint64_int64": {
-      "additionalProperties": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
             "type": "integer"
           },
           {
@@ -5125,10 +5490,93 @@
           }
         ]
       },
+      "type": "object"
+    },
+    "map_uint64_float_wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "map_uint64_int32": {
+      "additionalProperties": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
         "type": "integer"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "map_uint64_int32_wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "map_uint64_int64": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5137,9 +5585,17 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5148,9 +5604,17 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5159,9 +5623,17 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5183,9 +5655,17 @@
         ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5194,9 +5674,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5205,9 +5693,17 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5216,9 +5712,17 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5227,22 +5731,38 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint64_uint32": {
       "additionalProperties": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5251,22 +5771,46 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint64_uint64": {
       "additionalProperties": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5275,9 +5819,17 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5286,9 +5838,17 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -5397,7 +5957,7 @@
     },
     "repeated_fixed32": {
       "items": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -5405,9 +5965,17 @@
     },
     "repeated_fixed64": {
       "items": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -5441,7 +6009,7 @@
     "repeated_int32": {
       "description": "Repeated",
       "items": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -5457,12 +6025,12 @@
       "items": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -5536,7 +6104,7 @@
     },
     "repeated_sfixed32": {
       "items": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -5546,12 +6114,12 @@
       "items": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -5560,7 +6128,7 @@
     },
     "repeated_sint32": {
       "items": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -5570,12 +6138,12 @@
       "items": {
         "anyOf": [
           {
-            "maximum": 9223372036854776000,
-            "minimum": -9223372036854776000,
+            "exclusiveMaximum": 9223372036854776000,
+            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
-            "pattern": "^[0-9]+$",
+            "pattern": "^-?[0-9]+$",
             "type": "string"
           }
         ]
@@ -5614,7 +6182,7 @@
     },
     "repeated_uint32": {
       "items": {
-        "exclusiveMaximum": 4294967296,
+        "maximum": 4294967295,
         "minimum": 0,
         "type": "integer"
       },
@@ -5628,9 +6196,17 @@
     },
     "repeated_uint64": {
       "items": {
-        "exclusiveMaximum": 18446744073709552000,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "exclusiveMaximum": 18446744073709552000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -5688,14 +6264,22 @@
       "$ref": "google.protobuf.Duration.schema.json"
     },
     "single_fixed32": {
-      "exclusiveMaximum": 4294967296,
+      "maximum": 4294967295,
       "minimum": 0,
       "type": "integer"
     },
     "single_fixed64": {
-      "exclusiveMaximum": 18446744073709552000,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 18446744073709552000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "single_float": {
       "anyOf": [
@@ -5720,7 +6304,7 @@
     },
     "single_int32": {
       "description": "Singular",
-      "exclusiveMaximum": 2147483648,
+      "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
     },
@@ -5730,12 +6314,12 @@
     "single_int64": {
       "anyOf": [
         {
-          "maximum": 9223372036854776000,
-          "minimum": -9223372036854776000,
+          "exclusiveMaximum": 9223372036854776000,
+          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
-          "pattern": "^[0-9]+$",
+          "pattern": "^-?[0-9]+$",
           "type": "string"
         }
       ]
@@ -5765,37 +6349,37 @@
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
     },
     "single_sfixed32": {
-      "exclusiveMaximum": 2147483648,
+      "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
     },
     "single_sfixed64": {
       "anyOf": [
         {
-          "maximum": 9223372036854776000,
-          "minimum": -9223372036854776000,
+          "exclusiveMaximum": 9223372036854776000,
+          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
-          "pattern": "^[0-9]+$",
+          "pattern": "^-?[0-9]+$",
           "type": "string"
         }
       ]
     },
     "single_sint32": {
-      "exclusiveMaximum": 2147483648,
+      "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
     },
     "single_sint64": {
       "anyOf": [
         {
-          "maximum": 9223372036854776000,
-          "minimum": -9223372036854776000,
+          "exclusiveMaximum": 9223372036854776000,
+          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
-          "pattern": "^[0-9]+$",
+          "pattern": "^-?[0-9]+$",
           "type": "string"
         }
       ]
@@ -5813,7 +6397,7 @@
       "$ref": "google.protobuf.Timestamp.schema.json"
     },
     "single_uint32": {
-      "exclusiveMaximum": 4294967296,
+      "maximum": 4294967295,
       "minimum": 0,
       "type": "integer"
     },
@@ -5821,9 +6405,17 @@
       "$ref": "google.protobuf.UInt32Value.schema.json"
     },
     "single_uint64": {
-      "exclusiveMaximum": 18446744073709552000,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 18446744073709552000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "single_uint64_wrapper": {
       "$ref": "google.protobuf.UInt64Value.schema.json"
