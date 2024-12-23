@@ -111,3 +111,16 @@ test_cases:
   - host_and_port_string: "example.com"
   - http_header_name_strict_string: "Content-Type"
   - http_header_name_strict_string: "\t"
+  - len_bytes: AAAAAAA
+  - len_bytes: AAAAAAA=
+  - len_bytes: AAAAAAA==
+  - len_bytes: AAAAAA
+  - max_len_bytes: AAAA
+  - max_len_bytes: AAAAAAA=
+  - max_len_bytes: AAAAAAA==
+  - min_len_bytes: AAAAAAA
+  - min_len_bytes: AAAAAA
+  - min_max_len_bytes: AAAAAAA
+  - min_max_len_bytes: AAAAAAAAAAAAAAAA
+  - min_max_len_bytes: AAAAAA
+  - min_max_len_bytes: AAAAAAAAAAAAAAAAA

@@ -36,6 +36,10 @@ message ConstraintTests {
       string ipv6_prefix_string = 31;
       string host_and_port_string = 32;
       string http_header_name_strict_string = 33;
+      bytes len_bytes = 34;
+      bytes min_len_bytes = 35;
+      bytes max_len_bytes = 36;
+      bytes min_max_len_bytes = 37;
     }
     message RequiredImplicit {
       optional bool bool_value = 1;

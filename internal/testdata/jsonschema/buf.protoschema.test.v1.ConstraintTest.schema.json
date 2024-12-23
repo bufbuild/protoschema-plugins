@@ -82,17 +82,39 @@
       "pattern": "^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$",
       "type": "string"
     },
+    "^(lenBytes)$": {
+      "maxLength": 8,
+      "minLength": 7,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
     "^(lenString)$": {
       "maxLength": 5,
       "minLength": 5,
+      "type": "string"
+    },
+    "^(maxLenBytes)$": {
+      "maxLength": 8,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
       "type": "string"
     },
     "^(maxLenString)$": {
       "maxLength": 5,
       "type": "string"
     },
+    "^(minLenBytes)$": {
+      "minLength": 7,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
     "^(minLenString)$": {
       "minLength": 5,
+      "type": "string"
+    },
+    "^(minMaxLenBytes)$": {
+      "maxLength": 16,
+      "minLength": 7,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
       "type": "string"
     },
     "^(minMaxLenString)$": {
@@ -223,17 +245,39 @@
       "pattern": "^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$",
       "type": "string"
     },
+    "len_bytes": {
+      "maxLength": 8,
+      "minLength": 7,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
     "len_string": {
       "maxLength": 5,
       "minLength": 5,
+      "type": "string"
+    },
+    "max_len_bytes": {
+      "maxLength": 8,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
       "type": "string"
     },
     "max_len_string": {
       "maxLength": 5,
       "type": "string"
     },
+    "min_len_bytes": {
+      "minLength": 7,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
     "min_len_string": {
       "minLength": 5,
+      "type": "string"
+    },
+    "min_max_len_bytes": {
+      "maxLength": 16,
+      "minLength": 7,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
       "type": "string"
     },
     "min_max_len_string": {

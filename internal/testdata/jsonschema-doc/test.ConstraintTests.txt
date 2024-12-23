@@ -40,3 +40,9 @@
 - at '/test_cases/96/ipv6_prefix_string': '2001:0db8:85a3::8a2e:0370:7334/128' does not match pattern '^(([0-9a-fA-F]{1,4}:){1,7}:|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$'
 - at '/test_cases/100/host_and_port_string': 'example.com' does not match pattern '^([A-Za-z0-9][A-Za-z0-9-]{0,63}(\\.[A-Za-z0-9-][A-Za-z0-9-]{0,63})*|((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|\\[(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)\\]):([1-9][0-9]{0,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$'
 - at '/test_cases/102/http_header_name_strict_string': '\t' does not match pattern '^:?[0-9a-zA-Z!#$%&\\\'*+-.^_|~\\x60]+$'
+- at '/test_cases/105/len_bytes': maxLength: got 9, want 8
+- at '/test_cases/106/len_bytes': minLength: got 6, want 7
+- at '/test_cases/109/max_len_bytes': maxLength: got 9, want 8
+- at '/test_cases/111/min_len_bytes': minLength: got 6, want 7
+- at '/test_cases/114/min_max_len_bytes': minLength: got 6, want 7
+- at '/test_cases/115/min_max_len_bytes': maxLength: got 17, want 16

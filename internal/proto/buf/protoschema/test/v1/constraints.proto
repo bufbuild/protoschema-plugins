@@ -82,6 +82,13 @@ message ConstraintTest {
       well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME
       strict: true
     }];
+    bytes len_bytes = 34 [(buf.validate.field).bytes.len = 5];
+    bytes min_len_bytes = 35 [(buf.validate.field).bytes.min_len = 5];
+    bytes max_len_bytes = 36 [(buf.validate.field).bytes.max_len = 5];
+    bytes min_max_len_bytes = 37 [(buf.validate.field).bytes = {
+      min_len: 5
+      max_len: 10
+    }];
   }
 }
 

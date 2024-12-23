@@ -196,7 +196,7 @@ func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescrip
 	case protoreflect.StringKind:
 		p.generateStringValidation(field, constraints, schema)
 	case protoreflect.BytesKind:
-		p.generateBytesValidation(field, schema)
+		p.generateBytesValidation(field, constraints, schema)
 	case protoreflect.MessageKind, protoreflect.GroupKind:
 		if field.IsMap() {
 			schema["type"] = jsObject
@@ -443,10 +443,42 @@ func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescr
 	}
 }
 
-func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescriptor, schema map[string]interface{}) {
+func base64EncodedLength(inputSize int) (characters, padding int) {
+	// Base64 encoding is 4/3 the size of the input.
+	// Padding is added to make the output size a multiple of 4.
+	// For example 5 bytes is encoded as
+	characters = inputSize * 4 / 3
+	if inputSize%3 != 0 {
+		characters++
+	}
+	padding = 4 - (characters % 4)
+	return characters, padding
+}
+
+func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
 	schema["type"] = jsString
 	// Set a regex to match base64 encoded strings.
 	schema["pattern"] = "^[A-Za-z0-9+/]*={0,2}$"
+	if constraints.GetBytes() == nil {
+		return
+	}
+
+	if constraints.GetBytes().Len != nil {
+		size, padding := base64EncodedLength(int(constraints.GetBytes().GetLen()))
+		schema["minLength"] = size
+		schema["maxLength"] = size + padding
+	} else {
+		if constraints.GetBytes().MaxLen != nil {
+			size, padding := base64EncodedLength(int(constraints.GetBytes().GetMaxLen()))
+			schema["maxLength"] = size + padding
+		}
+		if constraints.GetBytes().MinLen != nil {
+			size, _ := base64EncodedLength(int(constraints.GetBytes().GetMinLen()))
+			schema["minLength"] = size
+		} else if constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
+			schema["minLength"] = 1
+		}
+	}
 }
 
 func (p *jsonSchemaGenerator) generateMessageValidation(field protoreflect.FieldDescriptor, schema map[string]interface{}) {
