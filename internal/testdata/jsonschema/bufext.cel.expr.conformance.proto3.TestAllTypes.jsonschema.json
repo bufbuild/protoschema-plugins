@@ -60,14 +60,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -123,17 +123,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -396,14 +398,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -467,17 +469,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -816,14 +820,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -919,17 +923,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -1382,14 +1388,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -1445,17 +1451,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -1718,14 +1726,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -1789,17 +1797,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -2138,14 +2148,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -2241,17 +2251,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -2708,14 +2720,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -2762,17 +2774,19 @@
       "items": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -3024,14 +3038,14 @@
           "type": "number"
         },
         {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
           "type": "string"
         },
         {
-          "enum": [
-            "NaN",
-            "Infinity",
-            "-Infinity"
-          ],
           "type": "string"
         }
       ]
@@ -3063,17 +3077,19 @@
     "^(single_float)$": {
       "anyOf": [
         {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
           "type": "number"
         },
         {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
           "type": "string"
         },
         {
-          "enum": [
-            "NaN",
-            "Infinity",
-            "-Infinity"
-          ],
           "type": "string"
         }
       ]
@@ -3281,14 +3297,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -3344,17 +3360,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -3617,14 +3635,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -3688,17 +3706,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -4037,14 +4057,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -4140,17 +4160,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -4603,14 +4625,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -4666,17 +4688,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -4939,14 +4963,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -5010,17 +5034,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -5359,14 +5385,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -5462,17 +5488,19 @@
       "additionalProperties": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -5929,14 +5957,14 @@
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -5983,17 +6011,19 @@
       "items": {
         "anyOf": [
           {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
             "type": "number"
           },
           {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
             "type": "string"
           },
           {
-            "enum": [
-              "NaN",
-              "Infinity",
-              "-Infinity"
-            ],
             "type": "string"
           }
         ]
@@ -6245,14 +6275,14 @@
           "type": "number"
         },
         {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
           "type": "string"
         },
         {
-          "enum": [
-            "NaN",
-            "Infinity",
-            "-Infinity"
-          ],
           "type": "string"
         }
       ]
@@ -6284,17 +6314,19 @@
     "singleFloat": {
       "anyOf": [
         {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
           "type": "number"
         },
         {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
           "type": "string"
         },
         {
-          "enum": [
-            "NaN",
-            "Infinity",
-            "-Infinity"
-          ],
           "type": "string"
         }
       ]

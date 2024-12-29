@@ -13,6 +13,20 @@
       ],
       "type": "boolean"
     },
+    "^(constDouble)$": {
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ]
+    },
     "^(constFixed32)$": {
       "enum": [
         5
@@ -33,6 +47,22 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "^(constFloat)$": {
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
       ]
@@ -147,6 +177,47 @@
       "format": "email",
       "type": "string"
     },
+    "^(finiteDouble)$": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ]
+    },
+    "^(finiteFloat)$": {
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ]
+    },
+    "^(gtDouble)$": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
     "^(gtFixed32)$": {
       "exclusiveMinimum": 5,
       "maximum": 4294967295,
@@ -161,6 +232,24 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "^(gtFloat)$": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 5,
+          "maximum": 3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
           "type": "string"
         }
       ]
@@ -237,6 +326,23 @@
         }
       ]
     },
+    "^(gteDouble)$": {
+      "anyOf": [
+        {
+          "minimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
     "^(gteFixed32)$": {
       "maximum": 4294967295,
       "minimum": 5,
@@ -251,6 +357,24 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "^(gteFloat)$": {
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
           "type": "string"
         }
       ]
@@ -339,6 +463,21 @@
       "pattern": "^:?[0-9a-zA-Z!#$%\u0026\\'*+-.^_|~\\x60]+$",
       "type": "string"
     },
+    "^(inDouble)$": {
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ]
+    },
     "^(inFixed32)$": {
       "enum": [
         1,
@@ -361,6 +500,23 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "^(inFloat)$": {
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
       ]
@@ -390,6 +546,23 @@
           "type": "string"
         }
       ]
+    },
+    "^(inMap)$": {
+      "additionalProperties": {
+        "enum": [
+          "value1",
+          "value2"
+        ],
+        "type": "string"
+      },
+      "propertyNames": {
+        "enum": [
+          "key1",
+          "key2"
+        ],
+        "type": "string"
+      },
+      "type": "object"
     },
     "^(inSfixed32)$": {
       "enum": [
@@ -523,6 +696,23 @@
       "minLength": 5,
       "type": "string"
     },
+    "^(ltDouble)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
     "^(ltFixed32)$": {
       "exclusiveMaximum": 5,
       "minimum": 0,
@@ -538,6 +728,132 @@
         {
           "pattern": "^[0-9]+$",
           "type": "string"
+        }
+      ]
+    },
+    "^(ltFloat)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "^(ltGtDouble)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "type": "number"
+        },
+        {
+          "exclusiveMinimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "^(ltGtFloat)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "type": "number"
+        },
+        {
+          "exclusiveMinimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "^(ltGtInt32)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "exclusiveMinimum": 5,
+          "maximum": 2147483647,
+          "type": "integer"
+        }
+      ]
+    },
+    "^(ltGtInt64)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        },
+        {
+          "exclusiveMaximum": 9223372036854776000,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        }
+      ]
+    },
+    "^(ltGtUint32)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "exclusiveMinimum": 5,
+          "maximum": 4294967295,
+          "type": "integer"
+        }
+      ]
+    },
+    "^(ltGtUint64)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        },
+        {
+          "exclusiveMaximum": 18446744073709552000,
+          "exclusiveMinimum": 5,
+          "type": "integer"
         }
       ]
     },
@@ -613,6 +929,23 @@
         }
       ]
     },
+    "^(lteDouble)$": {
+      "anyOf": [
+        {
+          "maximum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
     "^(lteFixed32)$": {
       "maximum": 5,
       "minimum": 0,
@@ -627,6 +960,24 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "^(lteFloat)$": {
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
           "type": "string"
         }
       ]
@@ -786,6 +1137,20 @@
       ],
       "type": "boolean"
     },
+    "const_double": {
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ]
+    },
     "const_fixed32": {
       "enum": [
         5
@@ -806,6 +1171,22 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "const_float": {
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
       ]
@@ -920,6 +1301,47 @@
       "format": "email",
       "type": "string"
     },
+    "finite_double": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ]
+    },
+    "finite_float": {
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ]
+    },
+    "gt_double": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
     "gt_fixed32": {
       "exclusiveMinimum": 5,
       "maximum": 4294967295,
@@ -934,6 +1356,24 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "gt_float": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 5,
+          "maximum": 3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
           "type": "string"
         }
       ]
@@ -1010,6 +1450,23 @@
         }
       ]
     },
+    "gte_double": {
+      "anyOf": [
+        {
+          "minimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
     "gte_fixed32": {
       "maximum": 4294967295,
       "minimum": 5,
@@ -1024,6 +1481,24 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "gte_float": {
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
           "type": "string"
         }
       ]
@@ -1112,6 +1587,21 @@
       "pattern": "^:?[0-9a-zA-Z!#$%\u0026\\'*+-.^_|~\\x60]+$",
       "type": "string"
     },
+    "in_double": {
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ]
+    },
     "in_fixed32": {
       "enum": [
         1,
@@ -1134,6 +1624,23 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "in_float": {
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
       ]
@@ -1163,6 +1670,23 @@
           "type": "string"
         }
       ]
+    },
+    "in_map": {
+      "additionalProperties": {
+        "enum": [
+          "value1",
+          "value2"
+        ],
+        "type": "string"
+      },
+      "propertyNames": {
+        "enum": [
+          "key1",
+          "key2"
+        ],
+        "type": "string"
+      },
+      "type": "object"
     },
     "in_sfixed32": {
       "enum": [
@@ -1296,6 +1820,23 @@
       "minLength": 5,
       "type": "string"
     },
+    "lt_double": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
     "lt_fixed32": {
       "exclusiveMaximum": 5,
       "minimum": 0,
@@ -1311,6 +1852,132 @@
         {
           "pattern": "^[0-9]+$",
           "type": "string"
+        }
+      ]
+    },
+    "lt_float": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "lt_gt_double": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "type": "number"
+        },
+        {
+          "exclusiveMinimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "lt_gt_float": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "type": "number"
+        },
+        {
+          "exclusiveMinimum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "lt_gt_int32": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "exclusiveMinimum": 5,
+          "maximum": 2147483647,
+          "type": "integer"
+        }
+      ]
+    },
+    "lt_gt_int64": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        },
+        {
+          "exclusiveMaximum": 9223372036854776000,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        }
+      ]
+    },
+    "lt_gt_uint32": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "exclusiveMinimum": 5,
+          "maximum": 4294967295,
+          "type": "integer"
+        }
+      ]
+    },
+    "lt_gt_uint64": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        },
+        {
+          "exclusiveMaximum": 18446744073709552000,
+          "exclusiveMinimum": 5,
+          "type": "integer"
         }
       ]
     },
@@ -1386,6 +2053,23 @@
         }
       ]
     },
+    "lte_double": {
+      "anyOf": [
+        {
+          "maximum": 5,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
     "lte_fixed32": {
       "maximum": 5,
       "minimum": 0,
@@ -1400,6 +2084,24 @@
         },
         {
           "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "lte_float": {
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
           "type": "string"
         }
       ]

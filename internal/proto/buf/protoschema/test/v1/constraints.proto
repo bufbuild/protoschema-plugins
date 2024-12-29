@@ -100,6 +100,10 @@ message ConstraintTest {
         2
       ]
     }];
+    int32 lt_gt_int32 = 114 [(buf.validate.field).int32 = {
+      lt: 1
+      gt: 5
+    }];
     int64 const_int64 = 44 [(buf.validate.field).int64.const = 5];
     int64 lt_int64 = 45 [(buf.validate.field).int64.lt = 5];
     int64 lte_int64 = 46 [(buf.validate.field).int64.lte = 5];
@@ -110,6 +114,10 @@ message ConstraintTest {
         1,
         2
       ]
+    }];
+    int64 lt_gt_int64 = 115 [(buf.validate.field).int64 = {
+      lt: 1
+      gt: 5
     }];
     uint32 const_uint32 = 50 [(buf.validate.field).uint32.const = 5];
     uint32 lt_uint32 = 51 [(buf.validate.field).uint32.lt = 5];
@@ -122,6 +130,10 @@ message ConstraintTest {
         2
       ]
     }];
+    uint32 lt_gt_uint32 = 116 [(buf.validate.field).uint32 = {
+      lt: 1
+      gt: 5
+    }];
     uint64 const_uint64 = 56 [(buf.validate.field).uint64.const = 5];
     uint64 lt_uint64 = 57 [(buf.validate.field).uint64.lt = 5];
     uint64 lte_uint64 = 58 [(buf.validate.field).uint64.lte = 5];
@@ -132,6 +144,10 @@ message ConstraintTest {
         1,
         2
       ]
+    }];
+    uint64 lt_gt_uint64 = 117 [(buf.validate.field).uint64 = {
+      lt: 1
+      gt: 5
     }];
     sint32 const_sint32 = 62 [(buf.validate.field).sint32.const = 5];
     sint32 lt_sint32 = 63 [(buf.validate.field).sint32.lt = 5];
@@ -199,6 +215,58 @@ message ConstraintTest {
       1,
       2
     ]
+  }];
+
+  double const_double = 98 [(buf.validate.field).double.const = 5];
+  double lt_double = 99 [(buf.validate.field).double.lt = 5];
+  double lte_double = 100 [(buf.validate.field).double.lte = 5];
+  double gt_double = 101 [(buf.validate.field).double.gt = 5];
+  double gte_double = 102 [(buf.validate.field).double.gte = 5];
+  double in_double = 103 [(buf.validate.field).double = {
+    in: [
+      1,
+      2
+    ]
+  }];
+  double finite_double = 104 [(buf.validate.field).double.finite = true];
+  double lt_gt_double = 105 [(buf.validate.field).double = {
+    lt: 1
+    gt: 5
+  }];
+  float const_float = 106 [(buf.validate.field).float.const = 5];
+  float lt_float = 107 [(buf.validate.field).float.lt = 5];
+  float lte_float = 108 [(buf.validate.field).float.lte = 5];
+  float gt_float = 109 [(buf.validate.field).float.gt = 5];
+  float gte_float = 110 [(buf.validate.field).float.gte = 5];
+  float in_float = 111 [(buf.validate.field).float = {
+    in: [
+      1,
+      2
+    ]
+  }];
+  float finite_float = 112 [(buf.validate.field).float.finite = true];
+  float lt_gt_float = 113 [(buf.validate.field).float = {
+    lt: 1
+    gt: 5
+  }];
+
+  map<string, string> in_map = 118 [(buf.validate.field).map = {
+    keys: {
+      string: {
+        in: [
+          "key1",
+          "key2"
+        ]
+      }
+    }
+    values: {
+      string: {
+        in: [
+          "value1",
+          "value2"
+        ]
+      }
+    }
   }];
 }
 

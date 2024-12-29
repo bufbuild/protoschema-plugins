@@ -137,6 +137,10 @@ test_cases:
   - in_int32: 1
   - in_int32: 2
   - in_int32: 3
+  - lt_gt_int32: 0
+  - lt_gt_int32: 6
+  - lt_gt_int32: 5
+  - lt_gt_int32: 1
   - const_int64: 5
   - const_int64: 6
   - lt_int64: 4
@@ -150,6 +154,10 @@ test_cases:
   - in_int64: 1
   - in_int64: 2
   - in_int64: 3
+  - lt_gt_int64: 0
+  - lt_gt_int64: 6
+  - lt_gt_int64: 5
+  - lt_gt_int64: 1
   - const_uint32: 5
   - const_uint32: 6
   - lt_uint32: 4
@@ -163,6 +171,10 @@ test_cases:
   - in_uint32: 1
   - in_uint32: 2
   - in_uint32: 3
+  - lt_gt_uint32: 0
+  - lt_gt_uint32: 6
+  - lt_gt_uint32: 5
+  - lt_gt_uint32: 1
   - const_uint64: 5
   - const_uint64: 6
   - lt_uint64: 4
@@ -176,6 +188,10 @@ test_cases:
   - in_uint64: 1
   - in_uint64: 2
   - in_uint64: 3
+  - lt_gt_uint64: 0
+  - lt_gt_uint64: 6
+  - lt_gt_uint64: 5
+  - lt_gt_uint64: 1
   - const_sint32: 5
   - const_sint32: 6
   - lt_sint32: 4
@@ -254,3 +270,55 @@ test_cases:
   - in_fixed64: 1
   - in_fixed64: 2
   - in_fixed64: 3
+  - const_double: 5.0
+  - const_double: 5
+  - const_double: "5"
+  - const_double: 6.0
+  - lt_double: 4.9
+  - lt_double: 5.0
+  - lte_double: 5.0
+  - lte_double: 5.1
+  - gt_double: 5.1
+  - gt_double: 5.0
+  - gte_double: 5.0
+  - gte_double: 4.9
+  - in_double: 1.0
+  - in_double: 2.0
+  - in_double: 3.0
+  - finite_double: 5.0
+  - finite_double: "-5.5e12"
+  - finite_double: Infinity
+  - finite_double: -Infinity
+  - finite_double: NaN
+  - lt_gt_double: 5.1
+  - lt_gt_double: 0.9
+  - lt_gt_double: 5.0
+  - lt_gt_double: 1.0
+  - const_float: 5.0
+  - const_float: 5
+  - const_float: "5"
+  - const_float: 6.0
+  - lt_float: 4.9
+  - lt_float: 5.0
+  - lte_float: 5.0
+  - lte_float: 5.1
+  - gt_float: 5.1
+  - gt_float: 5.0
+  - gte_float: 5.0
+  - gte_float: 4.9
+  - in_float: 1.0
+  - in_float: 2.0
+  - in_float: 3.0
+  - finite_float: 5.0
+  - finite_float: "-5.5e12"
+  - finite_float: Infinity
+  - finite_float: -Infinity
+  - finite_float: NaN
+  - lt_gt_float: 5.1
+  - lt_gt_float: 0.9
+  - lt_gt_float: 5.0
+  - lt_gt_float: 1.0
+  - in_map:
+      key1: value1
+      key2: value2
+      key3: value3
