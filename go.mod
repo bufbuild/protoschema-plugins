@@ -3,12 +3,12 @@ module github.com/bufbuild/protoschema-plugins
 go 1.23.0
 
 require (
-	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.35.2-20241127180247-a33202765966.1
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.1-20241127180247-a33202765966.1
 	github.com/bufbuild/buf v1.47.2
 	github.com/bufbuild/protoplugin v0.0.0-20240911180120-7bb73e41a54a
 	github.com/jhump/protoreflect v1.17.0
 	github.com/stretchr/testify v1.10.0
-	google.golang.org/protobuf v1.35.2
+	google.golang.org/protobuf v1.36.1
 )
 
 require (
