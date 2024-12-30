@@ -257,544 +257,239 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 	schema["anyOf"] = anyOf
 }
 
-func (p *jsonSchemaGenerator) generateInt32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
-	numberSchema := make(map[string]interface{})
-	numberSchema["type"] = jsInteger
-	var orNumberSchema map[string]interface{}
-	switch {
-	default:
-		numberSchema["minimum"] = math.MinInt32
-		numberSchema["maximum"] = math.MaxInt32
-	case constraints.GetInt32() != nil:
-		if constraints.GetInt32().Const != nil {
-			numberSchema["enum"] = []int32{constraints.GetInt32().GetConst()}
-		} else if len(constraints.GetInt32().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetInt32().GetIn()
-		}
-		switch greaterThan := constraints.GetInt32().GetGreaterThan().(type) {
-		case *validate.Int32Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetInt32().GetLessThan().(type) {
-			case *validate.Int32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.Int32Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.Int32Rules_Gte:
-			isOr := false
-			switch lessThan := constraints.GetInt32().GetLessThan().(type) {
-			case *validate.Int32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.Int32Rules_Lte:
-				isOr = lessThan.Lte < greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = math.MinInt32
-		}
-		switch lessThan := constraints.GetInt32().GetLessThan().(type) {
-		case *validate.Int32Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.Int32Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["maximum"] = math.MaxInt32
-		}
-	case constraints.GetSint32() != nil:
-		if constraints.GetSint32().Const != nil {
-			numberSchema["enum"] = []int32{constraints.GetSint32().GetConst()}
-		} else if len(constraints.GetSint32().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetSint32().GetIn()
-		}
-		switch greaterThan := constraints.GetSint32().GetGreaterThan().(type) {
-		case *validate.SInt32Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetSint32().GetLessThan().(type) {
-			case *validate.SInt32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.SInt32Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.SInt32Rules_Gte:
-			isOr := false
-			switch lessThan := constraints.GetSint32().GetLessThan().(type) {
-			case *validate.SInt32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.SInt32Rules_Lte:
-				isOr = lessThan.Lte < greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = math.MinInt32
-		}
-		switch lessThan := constraints.GetSint32().GetLessThan().(type) {
-		case *validate.SInt32Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.SInt32Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["maximum"] = math.MaxInt32
-		}
-	case constraints.GetSfixed32() != nil:
-		if constraints.GetSfixed32().Const != nil {
-			numberSchema["enum"] = []int32{constraints.GetSfixed32().GetConst()}
-		} else if len(constraints.GetSfixed32().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetSfixed32().GetIn()
-		}
-		switch greaterThan := constraints.GetSfixed32().GetGreaterThan().(type) {
-		case *validate.SFixed32Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetSfixed32().GetLessThan().(type) {
-			case *validate.SFixed32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.SFixed32Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.SFixed32Rules_Gte:
-			isOr := false
-			switch lessThan := constraints.GetSfixed32().GetLessThan().(type) {
-			case *validate.SFixed32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.SFixed32Rules_Lte:
-				isOr = lessThan.Lte < greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = math.MinInt32
-		}
-		switch lessThan := constraints.GetSfixed32().GetLessThan().(type) {
-		case *validate.SFixed32Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.SFixed32Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["maximum"] = math.MaxInt32
-		}
+type baseRule[T comparable] interface {
+	HasConst() bool
+	GetConst() T
+	GetIn() []T
+}
+
+type numberRule[T comparable] interface {
+	baseRule[T]
+
+	HasGte() bool
+	GetGte() T
+	HasGt() bool
+	GetGt() T
+	HasLte() bool
+	GetLte() T
+	HasLt() bool
+	GetLt() T
+}
+
+func generateConstInValidation[T comparable](constraints baseRule[T], schema map[string]interface{}) {
+	if constraints.HasConst() {
+		schema["enum"] = []T{constraints.GetConst()}
+	} else if len(constraints.GetIn()) > 0 {
+		schema["enum"] = constraints.GetIn()
 	}
-	if orNumberSchema != nil {
-		numberSchema["minimum"] = math.MinInt32
-		orNumberSchema["maximum"] = math.MaxInt32
-		orNumberSchema["type"] = jsInteger
-		schema["anyOf"] = []map[string]interface{}{
-			numberSchema,
-			orNumberSchema,
+}
+
+func generateIntValidation[T int32 | int64](
+	constraints numberRule[T],
+	bits int,
+	schema map[string]interface{},
+) {
+	numberSchema := map[string]interface{}{
+		"type": jsInteger,
+	}
+	minVal := -(1 << (bits - 1))
+	maxExclVal := uint64(1) << (bits - 1)
+	var orNumberSchema map[string]interface{}
+
+	generateConstInValidation(constraints, numberSchema)
+	switch {
+	case constraints.HasGt():
+		var isOr bool
+		switch {
+		case constraints.HasLt():
+			isOr = constraints.GetLt() <= constraints.GetGt()
+		case constraints.HasLte():
+			isOr = constraints.GetLte() <= constraints.GetGt()
 		}
+		if isOr {
+			orNumberSchema = map[string]interface{}{"exclusiveMinimum": constraints.GetGt()}
+		} else {
+			numberSchema["exclusiveMinimum"] = constraints.GetGt()
+		}
+	case constraints.HasGte():
+		var isOr bool
+		switch {
+		case constraints.HasLt():
+			isOr = constraints.GetLt() <= constraints.GetGte()
+		case constraints.HasLte():
+			isOr = constraints.GetLte() < constraints.GetGte()
+		}
+		if isOr {
+			orNumberSchema = map[string]interface{}{"minimum": constraints.GetGte()}
+		} else {
+			numberSchema["minimum"] = constraints.GetGte()
+		}
+	default:
+		numberSchema["minimum"] = minVal
+	}
+	switch {
+	case constraints.HasLt():
+		numberSchema["exclusiveMaximum"] = constraints.GetLt()
+	case constraints.HasLte():
+		numberSchema["maximum"] = constraints.GetLte()
+	default:
+		numberSchema["exclusiveMaximum"] = maxExclVal
+	}
+
+	anyOf := []map[string]interface{}{
+		numberSchema,
+	}
+
+	if orNumberSchema != nil {
+		numberSchema["minimum"] = minVal
+		orNumberSchema["exclusiveMaximum"] = maxExclVal
+		orNumberSchema["type"] = jsInteger
+		anyOf = append(anyOf, orNumberSchema)
+	}
+	if bits > 52 {
+		anyOf = append(anyOf, map[string]interface{}{
+			"type":    jsString,
+			"pattern": "^-?[0-9]+$",
+		})
+	}
+	if len(anyOf) > 1 {
+		schema["anyOf"] = anyOf
 	} else {
 		for key, value := range numberSchema {
 			schema[key] = value
 		}
+	}
+}
+
+func (p *jsonSchemaGenerator) generateInt32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+	switch {
+	default:
+		schema["type"] = jsInteger
+		schema["minimum"] = math.MinInt32
+		schema["maximum"] = math.MaxInt32
+	case constraints.GetInt32() != nil:
+		generateIntValidation(constraints.GetInt32(), 32, schema)
+	case constraints.GetSint32() != nil:
+		generateIntValidation(constraints.GetSint32(), 32, schema)
+	case constraints.GetSfixed32() != nil:
+		generateIntValidation(constraints.GetSfixed32(), 32, schema)
 	}
 }
 
 func (p *jsonSchemaGenerator) generateInt64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+	switch {
+	default:
+		schema["anyOf"] = []map[string]interface{}{
+			{"type": jsInteger, "minimum": math.MinInt64, "exclusiveMaximum": math.Pow(2, 63)},
+			{"type": jsString, "pattern": "^-?[0-9]+$"},
+		}
+	case constraints.GetInt64() != nil:
+		generateIntValidation(constraints.GetInt64(), 64, schema)
+	case constraints.GetSint64() != nil:
+		generateIntValidation(constraints.GetSint64(), 64, schema)
+	case constraints.GetSfixed64() != nil:
+		generateIntValidation(constraints.GetSfixed64(), 64, schema)
+	}
+}
+
+func generateUintValidation[T uint32 | uint64](
+	constraints numberRule[T],
+	bits int,
+	schema map[string]interface{},
+) {
 	numberSchema := map[string]interface{}{
 		"type": jsInteger,
 	}
 	var orNumberSchema map[string]interface{}
+	maxExclVal := float64(uint64(1)<<(bits-1)) * 2
+	generateConstInValidation(constraints, numberSchema)
 	switch {
+	case constraints.HasGt():
+		var isOr bool
+		switch {
+		case constraints.HasLt():
+			isOr = constraints.GetLt() <= constraints.GetGt()
+		case constraints.HasLte():
+			isOr = constraints.GetLte() <= constraints.GetGt()
+		}
+		if isOr {
+			orNumberSchema = map[string]interface{}{"exclusiveMinimum": constraints.GetGt()}
+		} else {
+			numberSchema["exclusiveMinimum"] = constraints.GetGt()
+		}
+	case constraints.HasGte():
+		var isOr bool
+		switch {
+		case constraints.HasLt():
+			isOr = constraints.GetLt() <= constraints.GetGte()
+		case constraints.HasLte():
+			isOr = constraints.GetLte() < constraints.GetGte()
+		}
+		if isOr {
+			orNumberSchema = map[string]interface{}{"minimum": constraints.GetGte()}
+		} else {
+			numberSchema["minimum"] = constraints.GetGte()
+		}
 	default:
-		numberSchema["minimum"] = math.MinInt64
-		numberSchema["exclusiveMaximum"] = math.Pow(2, 63)
-	case constraints.GetInt64() != nil:
-		if constraints.GetInt64().Const != nil {
-			numberSchema["enum"] = []int64{constraints.GetInt64().GetConst()}
-		} else if len(constraints.GetInt64().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetInt64().GetIn()
-		}
-		switch greaterThan := constraints.GetInt64().GetGreaterThan().(type) {
-		case *validate.Int64Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetInt64().GetLessThan().(type) {
-			case *validate.Int64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.Int64Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.Int64Rules_Gte:
-			isOr := false
-			switch lessThan := constraints.GetInt64().GetLessThan().(type) {
-			case *validate.Int64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.Int64Rules_Lte:
-				isOr = lessThan.Lte < greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = math.MinInt64
-		}
-		switch lessThan := constraints.GetInt64().GetLessThan().(type) {
-		case *validate.Int64Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.Int64Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["exclusiveMaximum"] = math.Pow(2, 63)
-		}
-	case constraints.GetSint64() != nil:
-		if constraints.GetSint64().Const != nil {
-			numberSchema["enum"] = []int64{constraints.GetSint64().GetConst()}
-		}
-		if len(constraints.GetSint64().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetSint64().GetIn()
-		}
-		switch greaterThan := constraints.GetSint64().GetGreaterThan().(type) {
-		case *validate.SInt64Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetSint64().GetLessThan().(type) {
-			case *validate.SInt64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.SInt64Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.SInt64Rules_Gte:
-			isOr := false
-			switch lessThan := constraints.GetSint64().GetLessThan().(type) {
-			case *validate.SInt64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.SInt64Rules_Lte:
-				isOr = lessThan.Lte < greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = math.MinInt64
-		}
-		switch lessThan := constraints.GetSint64().GetLessThan().(type) {
-		case *validate.SInt64Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.SInt64Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["exclusiveMaximum"] = math.Pow(2, 63)
-		}
-	case constraints.GetSfixed64() != nil:
-		if constraints.GetSfixed64().Const != nil {
-			numberSchema["enum"] = []int64{constraints.GetSfixed64().GetConst()}
-		}
-		if len(constraints.GetSfixed64().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetSfixed64().GetIn()
-		}
-		switch greaterThan := constraints.GetSfixed64().GetGreaterThan().(type) {
-		case *validate.SFixed64Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetSfixed64().GetLessThan().(type) {
-			case *validate.SFixed64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.SFixed64Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.SFixed64Rules_Gte:
-			isOr := false
-			switch lessThan := constraints.GetSfixed64().GetLessThan().(type) {
-			case *validate.SFixed64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.SFixed64Rules_Lte:
-				isOr = lessThan.Lte < greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = math.MinInt64
-		}
-		switch lessThan := constraints.GetSfixed64().GetLessThan().(type) {
-		case *validate.SFixed64Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.SFixed64Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["exclusiveMaximum"] = math.Pow(2, 63)
-		}
+		numberSchema["minimum"] = 0
+	}
+	switch {
+	case constraints.HasLt():
+		numberSchema["exclusiveMaximum"] = constraints.GetLt()
+	case constraints.HasLte():
+		numberSchema["maximum"] = constraints.GetLte()
+	default:
+		numberSchema["exclusiveMaximum"] = maxExclVal
 	}
 
 	anyOf := []map[string]interface{}{
 		numberSchema,
-		{"type": jsString, "pattern": "^-?[0-9]+$"},
+	}
+	if bits > 52 {
+		anyOf = append(anyOf, map[string]interface{}{
+			"type":    jsString,
+			"pattern": "^[0-9]+$",
+		})
 	}
 	if orNumberSchema != nil {
-		numberSchema["minimum"] = math.MinInt64
-		orNumberSchema["exclusiveMaximum"] = math.Pow(2, 63)
+		numberSchema["minimum"] = 0
+		orNumberSchema["exclusiveMaximum"] = maxExclVal
 		orNumberSchema["type"] = jsInteger
 		anyOf = append(anyOf, orNumberSchema)
 	}
-	schema["anyOf"] = anyOf
-}
-
-func (p *jsonSchemaGenerator) generateUint32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
-	numberSchema := make(map[string]interface{})
-	numberSchema["type"] = jsInteger
-	var orNumberSchema map[string]interface{}
-	switch {
-	default:
-		numberSchema["minimum"] = 0
-		numberSchema["maximum"] = math.MaxUint32
-	case constraints.GetUint32() != nil:
-		if constraints.GetUint32().Const != nil {
-			numberSchema["enum"] = []uint32{constraints.GetUint32().GetConst()}
-		} else if len(constraints.GetUint32().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetUint32().GetIn()
-		}
-		switch greaterThan := constraints.GetUint32().GetGreaterThan().(type) {
-		case *validate.UInt32Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetUint32().GetLessThan().(type) {
-			case *validate.UInt32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.UInt32Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.UInt32Rules_Gte:
-			isOr := false
-			switch lessThan := constraints.GetUint32().GetLessThan().(type) {
-			case *validate.UInt32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.UInt32Rules_Lte:
-				isOr = lessThan.Lte < greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = 0
-		}
-		switch lessThan := constraints.GetUint32().GetLessThan().(type) {
-		case *validate.UInt32Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.UInt32Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["maximum"] = math.MaxUint32
-		}
-	case constraints.GetFixed32() != nil:
-		if constraints.GetFixed32().Const != nil {
-			numberSchema["enum"] = []uint32{constraints.GetFixed32().GetConst()}
-		}
-		if len(constraints.GetFixed32().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetFixed32().GetIn()
-		}
-		switch greaterThan := constraints.GetFixed32().GetGreaterThan().(type) {
-		case *validate.Fixed32Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetFixed32().GetLessThan().(type) {
-			case *validate.Fixed32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.Fixed32Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.Fixed32Rules_Gte:
-			var isOr bool
-			switch lessThan := constraints.GetFixed32().GetLessThan().(type) {
-			case *validate.Fixed32Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.Fixed32Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = 0
-		}
-		switch lessThan := constraints.GetFixed32().GetLessThan().(type) {
-		case *validate.Fixed32Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.Fixed32Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["maximum"] = math.MaxUint32
-		}
-	}
-	if orNumberSchema != nil {
-		numberSchema["minimum"] = 0
-		orNumberSchema["maximum"] = math.MaxUint32
-		orNumberSchema["type"] = jsInteger
-		schema["anyOf"] = []map[string]interface{}{
-			numberSchema,
-			orNumberSchema,
-		}
+	if len(anyOf) > 1 {
+		schema["anyOf"] = anyOf
 	} else {
 		for key, value := range numberSchema {
 			schema[key] = value
 		}
 	}
 }
-
-func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
-	numberSchema := map[string]interface{}{
-		"type": jsInteger,
-	}
-	var orNumberSchema map[string]interface{}
+func (p *jsonSchemaGenerator) generateUint32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
 	switch {
 	default:
-		numberSchema["minimum"] = 0
-		numberSchema["exclusiveMaximum"] = math.Pow(2, 64)
-	case constraints.GetUint64() != nil:
-		if constraints.GetUint64().Const != nil {
-			numberSchema["enum"] = []uint64{constraints.GetUint64().GetConst()}
-		} else if len(constraints.GetUint64().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetUint64().GetIn()
-		}
-		switch greaterThan := constraints.GetUint64().GetGreaterThan().(type) {
-		case *validate.UInt64Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetUint64().GetLessThan().(type) {
-			case *validate.UInt64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.UInt64Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.UInt64Rules_Gte:
-			var isOr bool
-			switch lessThan := constraints.GetUint64().GetLessThan().(type) {
-			case *validate.UInt64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.UInt64Rules_Lte:
-				isOr = lessThan.Lte < greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = 0
-		}
-		switch lessThan := constraints.GetUint64().GetLessThan().(type) {
-		case *validate.UInt64Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.UInt64Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["exclusiveMaximum"] = math.Pow(2, 64)
-		}
-	case constraints.GetFixed64() != nil:
-		if constraints.GetFixed64().Const != nil {
-			numberSchema["enum"] = []uint64{constraints.GetFixed64().GetConst()}
-		}
-		if len(constraints.GetFixed64().GetIn()) > 0 {
-			numberSchema["enum"] = constraints.GetFixed64().GetIn()
-		}
-		switch greaterThan := constraints.GetFixed64().GetGreaterThan().(type) {
-		case *validate.Fixed64Rules_Gt:
-			var isOr bool
-			switch lessThan := constraints.GetFixed64().GetLessThan().(type) {
-			case *validate.Fixed64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gt
-			case *validate.Fixed64Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gt
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"exclusiveMinimum": greaterThan.Gt}
-			} else {
-				numberSchema["exclusiveMinimum"] = greaterThan.Gt
-			}
-		case *validate.Fixed64Rules_Gte:
-			var isOr bool
-			switch lessThan := constraints.GetFixed64().GetLessThan().(type) {
-			case *validate.Fixed64Rules_Lt:
-				isOr = lessThan.Lt <= greaterThan.Gte
-			case *validate.Fixed64Rules_Lte:
-				isOr = lessThan.Lte <= greaterThan.Gte
-			}
-			if isOr {
-				orNumberSchema = map[string]interface{}{"minimum": greaterThan.Gte}
-			} else {
-				numberSchema["minimum"] = greaterThan.Gte
-			}
-		default:
-			numberSchema["minimum"] = 0
-		}
-		switch lessThan := constraints.GetFixed64().GetLessThan().(type) {
-		case *validate.Fixed64Rules_Lt:
-			numberSchema["exclusiveMaximum"] = lessThan.Lt
-		case *validate.Fixed64Rules_Lte:
-			numberSchema["maximum"] = lessThan.Lte
-		default:
-			numberSchema["exclusiveMaximum"] = math.Pow(2, 64)
-		}
+		schema["type"] = jsInteger
+		schema["minimum"] = 0
+		schema["maximum"] = math.MaxUint32
+	case constraints.GetUint32() != nil:
+		generateUintValidation(constraints.GetUint32(), 32, schema)
+	case constraints.GetFixed32() != nil:
+		generateUintValidation(constraints.GetFixed32(), 32, schema)
 	}
+}
 
-	anyOf := []map[string]interface{}{
-		numberSchema,
-		{"type": jsString, "pattern": "^[0-9]+$"},
+func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+	switch {
+	default:
+		schema["anyOf"] = []map[string]interface{}{
+			{"type": jsInteger, "minimum": 0, "exclusiveMaximum": float64(uint64(1)<<63) * 2},
+			{"type": jsString, "pattern": "^[0-9]+$"},
+		}
+	case constraints.GetUint64() != nil:
+		generateUintValidation(constraints.GetUint64(), 64, schema)
+	case constraints.GetFixed64() != nil:
+		generateUintValidation(constraints.GetFixed64(), 64, schema)
 	}
-	if orNumberSchema != nil {
-		numberSchema["minimum"] = 0
-		orNumberSchema["exclusiveMaximum"] = math.Pow(2, 64)
-		orNumberSchema["type"] = jsInteger
-		anyOf = append(anyOf, orNumberSchema)
-	}
-	schema["anyOf"] = anyOf
 }
 
 func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}, bits int) {
@@ -1061,32 +756,32 @@ const (
 
 func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
 	schema["type"] = jsString
-	if constraints.GetString_() == nil {
+	if constraints.GetString() == nil {
 		return
 	}
 
 	// Bytes are <= Characters, so we can only enforce an upper bound.
-	if constraints.GetString_().LenBytes != nil {
-		schema["maxLength"] = constraints.GetString_().GetMaxBytes()
-	} else if constraints.GetString_().MaxBytes != nil {
-		schema["maxLength"] = constraints.GetString_().GetMaxBytes()
+	if constraints.GetString().LenBytes != nil {
+		schema["maxLength"] = constraints.GetString().GetMaxBytes()
+	} else if constraints.GetString().MaxBytes != nil {
+		schema["maxLength"] = constraints.GetString().GetMaxBytes()
 	}
 
-	if constraints.GetString_().Len != nil {
-		schema["minLength"] = constraints.GetString_().GetLen()
-		schema["maxLength"] = constraints.GetString_().GetLen()
+	if constraints.GetString().Len != nil {
+		schema["minLength"] = constraints.GetString().GetLen()
+		schema["maxLength"] = constraints.GetString().GetLen()
 	} else {
-		if constraints.GetString_().MinLen != nil && constraints.GetString_().GetMinLen() > 0 {
-			schema["minLength"] = constraints.GetString_().GetMinLen()
+		if constraints.GetString().MinLen != nil && constraints.GetString().GetMinLen() > 0 {
+			schema["minLength"] = constraints.GetString().GetMinLen()
 		} else if constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
 			schema["minLength"] = 1
 		}
-		if constraints.GetString_().MaxLen != nil {
-			schema["maxLength"] = constraints.GetString_().GetMaxLen()
+		if constraints.GetString().MaxLen != nil {
+			schema["maxLength"] = constraints.GetString().GetMaxLen()
 		}
 	}
 
-	switch wellKnown := constraints.GetString_().GetWellKnown().(type) {
+	switch wellKnown := constraints.GetString().GetWellKnown().(type) {
 	case *validate.StringRules_Hostname:
 		if wellKnown.Hostname {
 			schema["pattern"] = hostnamePattern
@@ -1158,38 +853,38 @@ func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescr
 	case *validate.StringRules_WellKnownRegex:
 		switch wellKnown.WellKnownRegex {
 		case validate.KnownRegex_KNOWN_REGEX_HTTP_HEADER_NAME:
-			if constraints.GetString_().GetStrict() {
+			if constraints.GetString().GetStrict() {
 				schema["pattern"] = "^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$"
 			}
 		}
 	}
 
-	if constraints.GetString_().Pattern != nil {
-		schema["pattern"] = constraints.GetString_().GetPattern()
-	} else if constraints.GetString_().Prefix != nil ||
-		constraints.GetString_().Suffix != nil ||
-		constraints.GetString_().Contains != nil {
+	if constraints.GetString().Pattern != nil {
+		schema["pattern"] = constraints.GetString().GetPattern()
+	} else if constraints.GetString().Prefix != nil ||
+		constraints.GetString().Suffix != nil ||
+		constraints.GetString().Contains != nil {
 		pattern := ""
-		if constraints.GetString_().Prefix != nil {
-			pattern += "^" + constraints.GetString_().GetPrefix()
+		if constraints.GetString().Prefix != nil {
+			pattern += "^" + constraints.GetString().GetPrefix()
 		}
 		pattern += ".*"
-		if constraints.GetString_().Contains != nil {
-			pattern += constraints.GetString_().GetContains()
+		if constraints.GetString().Contains != nil {
+			pattern += constraints.GetString().GetContains()
 			pattern += ".*"
 		}
-		if constraints.GetString_().Suffix != nil {
-			pattern += constraints.GetString_().GetSuffix() + "$"
+		if constraints.GetString().Suffix != nil {
+			pattern += constraints.GetString().GetSuffix() + "$"
 		}
 		schema["pattern"] = pattern
-	} else if constraints.GetString_().Contains != nil {
-		schema["pattern"] = ".*" + constraints.GetString_().GetContains() + ".*"
+	} else if constraints.GetString().Contains != nil {
+		schema["pattern"] = ".*" + constraints.GetString().GetContains() + ".*"
 	}
 
-	if constraints.GetString_().Const != nil {
-		schema["enum"] = []string{constraints.GetString_().GetConst()}
-	} else if len(constraints.GetString_().In) > 0 {
-		schema["enum"] = constraints.GetString_().GetIn()
+	if constraints.GetString().Const != nil {
+		schema["enum"] = []string{constraints.GetString().GetConst()}
+	} else if len(constraints.GetString().In) > 0 {
+		schema["enum"] = constraints.GetString().GetIn()
 	}
 }
 

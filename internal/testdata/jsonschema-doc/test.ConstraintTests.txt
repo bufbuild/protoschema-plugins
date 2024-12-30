@@ -78,12 +78,12 @@
   - at '/test_cases/145/in_int64': got number, want string
 - at '/test_cases/148/lt_gt_int64': anyOf failed
   - at '/test_cases/148/lt_gt_int64': exclusiveMaximum: got 5, want 1
-  - at '/test_cases/148/lt_gt_int64': got number, want string
   - at '/test_cases/148/lt_gt_int64': exclusiveMinimum: got 5, want 5
+  - at '/test_cases/148/lt_gt_int64': got number, want string
 - at '/test_cases/149/lt_gt_int64': anyOf failed
   - at '/test_cases/149/lt_gt_int64': exclusiveMaximum: got 1, want 1
-  - at '/test_cases/149/lt_gt_int64': got number, want string
   - at '/test_cases/149/lt_gt_int64': exclusiveMinimum: got 1, want 5
+  - at '/test_cases/149/lt_gt_int64': got number, want string
 - at '/test_cases/151/const_uint32': value must be 5
 - at '/test_cases/153/lt_uint32': exclusiveMaximum: got 5, want 5
 - at '/test_cases/155/lte_uint32': maximum: got 6, want 5
