@@ -213,8 +213,8 @@ func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescrip
 	}
 }
 
-func (p *jsonSchemaGenerator) getFieldConstraints(field protoreflect.FieldDescriptor) (constraints *validate.FieldConstraints) {
-	constraints = p.resolver.ResolveFieldConstraints(field)
+func (p *jsonSchemaGenerator) getFieldConstraints(field protoreflect.FieldDescriptor) *validate.FieldConstraints {
+	constraints := p.resolver.ResolveFieldConstraints(field)
 	if constraints == nil || constraints.GetIgnore() == validate.Ignore_IGNORE_ALWAYS {
 		return nil
 	}
@@ -492,6 +492,7 @@ func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescr
 	}
 }
 
+// nolint: gocyclo
 func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}, bits int) {
 	includePosInf := true
 	includeNegInf := true
@@ -754,33 +755,8 @@ const (
 	hostAndPortPattern   = "^(" + hostnamePatternBit + "|" + ipv4PatternBit + "|\\[" + ipv6PatternBit + "\\]):" + portPatternBit + "$"
 )
 
-func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
-	schema["type"] = jsString
-	if constraints.GetString() == nil {
-		return
-	}
-
-	// Bytes are <= Characters, so we can only enforce an upper bound.
-	if constraints.GetString().LenBytes != nil {
-		schema["maxLength"] = constraints.GetString().GetMaxBytes()
-	} else if constraints.GetString().MaxBytes != nil {
-		schema["maxLength"] = constraints.GetString().GetMaxBytes()
-	}
-
-	if constraints.GetString().Len != nil {
-		schema["minLength"] = constraints.GetString().GetLen()
-		schema["maxLength"] = constraints.GetString().GetLen()
-	} else {
-		if constraints.GetString().MinLen != nil && constraints.GetString().GetMinLen() > 0 {
-			schema["minLength"] = constraints.GetString().GetMinLen()
-		} else if constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
-			schema["minLength"] = 1
-		}
-		if constraints.GetString().MaxLen != nil {
-			schema["maxLength"] = constraints.GetString().GetMaxLen()
-		}
-	}
-
+// nolint: gocyclo
+func generateWellKnownPattern(constraints *validate.FieldConstraints, schema map[string]interface{}) {
 	switch wellKnown := constraints.GetString().GetWellKnown().(type) {
 	case *validate.StringRules_Hostname:
 		if wellKnown.Hostname {
@@ -851,19 +827,48 @@ func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescr
 			schema["pattern"] = hostAndPortPattern
 		}
 	case *validate.StringRules_WellKnownRegex:
-		switch wellKnown.WellKnownRegex {
-		case validate.KnownRegex_KNOWN_REGEX_HTTP_HEADER_NAME:
-			if constraints.GetString().GetStrict() {
-				schema["pattern"] = "^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$"
-			}
+		if wellKnown.WellKnownRegex == validate.KnownRegex_KNOWN_REGEX_HTTP_HEADER_NAME &&
+			constraints.GetString().GetStrict() {
+			schema["pattern"] = "^:?[0-9a-zA-Z!#$%&\\'*+-.^_|~\\x60]+$"
+		}
+	}
+}
+
+func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+	schema["type"] = jsString
+	if constraints.GetString() == nil {
+		return
+	}
+
+	// Bytes are <= Characters, so we can only enforce an upper bound.
+	if constraints.GetString().LenBytes != nil {
+		schema["maxLength"] = constraints.GetString().GetMaxBytes()
+	} else if constraints.GetString().MaxBytes != nil {
+		schema["maxLength"] = constraints.GetString().GetMaxBytes()
+	}
+
+	if constraints.GetString().Len != nil {
+		schema["minLength"] = constraints.GetString().GetLen()
+		schema["maxLength"] = constraints.GetString().GetLen()
+	} else {
+		if constraints.GetString().MinLen != nil && constraints.GetString().GetMinLen() > 0 {
+			schema["minLength"] = constraints.GetString().GetMinLen()
+		} else if constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
+			schema["minLength"] = 1
+		}
+		if constraints.GetString().MaxLen != nil {
+			schema["maxLength"] = constraints.GetString().GetMaxLen()
 		}
 	}
 
-	if constraints.GetString().Pattern != nil {
+	generateWellKnownPattern(constraints, schema)
+
+	switch {
+	case constraints.GetString().Pattern != nil:
 		schema["pattern"] = constraints.GetString().GetPattern()
-	} else if constraints.GetString().Prefix != nil ||
-		constraints.GetString().Suffix != nil ||
-		constraints.GetString().Contains != nil {
+	case constraints.GetString().Prefix != nil,
+		constraints.GetString().Suffix != nil,
+		constraints.GetString().Contains != nil:
 		pattern := ""
 		if constraints.GetString().Prefix != nil {
 			pattern += "^" + constraints.GetString().GetPrefix()
@@ -877,8 +882,6 @@ func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescr
 			pattern += constraints.GetString().GetSuffix() + "$"
 		}
 		schema["pattern"] = pattern
-	} else if constraints.GetString().Contains != nil {
-		schema["pattern"] = ".*" + constraints.GetString().GetContains() + ".*"
 	}
 
 	if constraints.GetString().Const != nil {
@@ -888,15 +891,15 @@ func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescr
 	}
 }
 
-func base64EncodedLength(inputSize int) (characters, padding int) {
+func base64EncodedLength(inputSize uint64) (uint64, uint64) {
 	// Base64 encoding is 4/3 the size of the input.
 	// Padding is added to make the output size a multiple of 4.
 	// For example 5 bytes is encoded as
-	characters = inputSize * 4 / 3
+	characters := inputSize * 4 / 3
 	if inputSize%3 != 0 {
 		characters++
 	}
-	padding = 4 - (characters % 4)
+	padding := 4 - (characters % 4)
 	return characters, padding
 }
 
@@ -909,16 +912,16 @@ func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescri
 	}
 
 	if constraints.GetBytes().Len != nil {
-		size, padding := base64EncodedLength(int(constraints.GetBytes().GetLen()))
+		size, padding := base64EncodedLength(constraints.GetBytes().GetLen())
 		schema["minLength"] = size
 		schema["maxLength"] = size + padding
 	} else {
 		if constraints.GetBytes().MaxLen != nil {
-			size, padding := base64EncodedLength(int(constraints.GetBytes().GetMaxLen()))
+			size, padding := base64EncodedLength(constraints.GetBytes().GetMaxLen())
 			schema["maxLength"] = size + padding
 		}
 		if constraints.GetBytes().MinLen != nil {
-			size, _ := base64EncodedLength(int(constraints.GetBytes().GetMinLen()))
+			size, _ := base64EncodedLength(constraints.GetBytes().GetMinLen())
 			schema["minLength"] = size
 		} else if constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
 			schema["minLength"] = 1
