@@ -3,17 +3,19 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "anyOf": [
     {
+      "maximum": 3.4028234663852886e+38,
+      "minimum": -3.4028234663852886e+38,
       "type": "number"
     },
     {
+      "enum": [
+        "Infinity",
+        "-Infinity",
+        "NaN"
+      ],
       "type": "string"
     },
     {
-      "enum": [
-        "NaN",
-        "Infinity",
-        "-Infinity"
-      ],
       "type": "string"
     }
   ],

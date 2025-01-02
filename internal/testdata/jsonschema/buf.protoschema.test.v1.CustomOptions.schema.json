@@ -5,7 +5,7 @@
   "patternProperties": {
     "^(int32Field)$": {
       "items": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
@@ -18,7 +18,7 @@
   "properties": {
     "int32_field": {
       "items": {
-        "exclusiveMaximum": 2147483648,
+        "maximum": 2147483647,
         "minimum": -2147483648,
         "type": "integer"
       },
