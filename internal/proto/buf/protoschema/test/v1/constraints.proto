@@ -1,0 +1,274 @@
+// Copyright 2024 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.protoschema.test.v1;
+
+import "buf/validate/validate.proto";
+
+message ConstraintTest {
+  message RequiredImplicit {
+    bool bool_value = 1 [(buf.validate.field).required = true];
+    string string_value = 2 [(buf.validate.field).required = true];
+  }
+
+  message RequiredOptional {
+    optional bool bool_value = 1 [(buf.validate.field).required = true];
+    optional string string_value = 2 [(buf.validate.field).required = true];
+  }
+
+  oneof test_case {
+    RequiredImplicit required_implicit = 1;
+    RequiredOptional required_optional = 2;
+    bool const_bool = 3 [(buf.validate.field).bool.const = false];
+    string const_string = 4 [(buf.validate.field).string.const = "const"];
+    string len_string = 5 [(buf.validate.field).string.len = 5];
+    string min_len_string = 6 [(buf.validate.field).string.min_len = 5];
+    string max_len_string = 7 [(buf.validate.field).string.max_len = 5];
+    string min_max_len_string = 8 [(buf.validate.field).string = {
+      min_len: 5
+      max_len: 10
+    }];
+    string in_string = 9 [(buf.validate.field).string = {
+      in: [
+        "in1",
+        "in2"
+      ]
+    }];
+    string pattern_string = 10 [(buf.validate.field).string.pattern = "^pat*ern$"];
+    string prefix_string = 11 [(buf.validate.field).string.prefix = "prefix_"];
+    string suffix_string = 12 [(buf.validate.field).string.suffix = "_suffix"];
+    string contains_string = 13 [(buf.validate.field).string.contains = "_contains_"];
+    string prefix_suffix_string = 14 [(buf.validate.field).string = {
+      suffix: "_suffix"
+      prefix: "prefix_"
+    }];
+    string prefix_contains_suffix_string = 15 [(buf.validate.field).string = {
+      suffix: "_suffix"
+      prefix: "prefix_"
+      contains: "contains"
+    }];
+    string hostname_string = 16 [(buf.validate.field).string.hostname = true];
+    string email_string = 17 [(buf.validate.field).string.email = true];
+    string ip_string = 18 [(buf.validate.field).string.ip = true];
+    string ipv4_string = 19 [(buf.validate.field).string.ipv4 = true];
+    string ipv6_string = 20 [(buf.validate.field).string.ipv6 = true];
+    string uri_string = 21 [(buf.validate.field).string.uri = true];
+    string uri_ref_string = 22 [(buf.validate.field).string.uri_ref = true];
+    string address_string = 23 [(buf.validate.field).string.address = true];
+    string uuid_string = 24 [(buf.validate.field).string.uuid = true];
+    string tuuid_string = 25 [(buf.validate.field).string.tuuid = true];
+    string ip_with_prefixlen_string = 26 [(buf.validate.field).string.ip_with_prefixlen = true];
+    string ipv4_with_prefixlen_string = 27 [(buf.validate.field).string.ipv4_with_prefixlen = true];
+    string ipv6_with_prefixlen_string = 28 [(buf.validate.field).string.ipv6_with_prefixlen = true];
+    string ip_prefix_string = 29 [(buf.validate.field).string.ip_prefix = true];
+    string ipv4_prefix_string = 30 [(buf.validate.field).string.ipv4_prefix = true];
+    string ipv6_prefix_string = 31 [(buf.validate.field).string.ipv6_prefix = true];
+    string host_and_port_string = 32 [(buf.validate.field).string.host_and_port = true];
+    string http_header_name_strict_string = 33 [(buf.validate.field).string = {
+      well_known_regex: KNOWN_REGEX_HTTP_HEADER_NAME
+      strict: true
+    }];
+    bytes len_bytes = 34 [(buf.validate.field).bytes.len = 5];
+    bytes min_len_bytes = 35 [(buf.validate.field).bytes.min_len = 5];
+    bytes max_len_bytes = 36 [(buf.validate.field).bytes.max_len = 5];
+    bytes min_max_len_bytes = 37 [(buf.validate.field).bytes = {
+      min_len: 5
+      max_len: 10
+    }];
+    int32 const_int32 = 38 [(buf.validate.field).int32.const = 5];
+    int32 lt_int32 = 39 [(buf.validate.field).int32.lt = 5];
+    int32 lte_int32 = 40 [(buf.validate.field).int32.lte = 5];
+    int32 gt_int32 = 41 [(buf.validate.field).int32.gt = 5];
+    int32 gte_int32 = 42 [(buf.validate.field).int32.gte = 5];
+    int32 in_int32 = 43 [(buf.validate.field).int32 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    int32 lt_gt_int32 = 114 [(buf.validate.field).int32 = {
+      lt: 1
+      gt: 5
+    }];
+    int64 const_int64 = 44 [(buf.validate.field).int64.const = 5];
+    int64 lt_int64 = 45 [(buf.validate.field).int64.lt = 5];
+    int64 lte_int64 = 46 [(buf.validate.field).int64.lte = 5];
+    int64 gt_int64 = 47 [(buf.validate.field).int64.gt = 5];
+    int64 gte_int64 = 48 [(buf.validate.field).int64.gte = 5];
+    int64 in_int64 = 49 [(buf.validate.field).int64 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    int64 lt_gt_int64 = 115 [(buf.validate.field).int64 = {
+      lt: 1
+      gt: 5
+    }];
+    uint32 const_uint32 = 50 [(buf.validate.field).uint32.const = 5];
+    uint32 lt_uint32 = 51 [(buf.validate.field).uint32.lt = 5];
+    uint32 lte_uint32 = 52 [(buf.validate.field).uint32.lte = 5];
+    uint32 gt_uint32 = 53 [(buf.validate.field).uint32.gt = 5];
+    uint32 gte_uint32 = 54 [(buf.validate.field).uint32.gte = 5];
+    uint32 in_uint32 = 55 [(buf.validate.field).uint32 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    uint32 lt_gt_uint32 = 116 [(buf.validate.field).uint32 = {
+      lt: 1
+      gt: 5
+    }];
+    uint64 const_uint64 = 56 [(buf.validate.field).uint64.const = 5];
+    uint64 lt_uint64 = 57 [(buf.validate.field).uint64.lt = 5];
+    uint64 lte_uint64 = 58 [(buf.validate.field).uint64.lte = 5];
+    uint64 gt_uint64 = 59 [(buf.validate.field).uint64.gt = 5];
+    uint64 gte_uint64 = 60 [(buf.validate.field).uint64.gte = 5];
+    uint64 in_uint64 = 61 [(buf.validate.field).uint64 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    uint64 lt_gt_uint64 = 117 [(buf.validate.field).uint64 = {
+      lt: 1
+      gt: 5
+    }];
+    sint32 const_sint32 = 62 [(buf.validate.field).sint32.const = 5];
+    sint32 lt_sint32 = 63 [(buf.validate.field).sint32.lt = 5];
+    sint32 lte_sint32 = 64 [(buf.validate.field).sint32.lte = 5];
+    sint32 gt_sint32 = 65 [(buf.validate.field).sint32.gt = 5];
+    sint32 gte_sint32 = 66 [(buf.validate.field).sint32.gte = 5];
+    sint32 in_sint32 = 67 [(buf.validate.field).sint32 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    sint64 const_sint64 = 68 [(buf.validate.field).sint64.const = 5];
+    sint64 lt_sint64 = 69 [(buf.validate.field).sint64.lt = 5];
+    sint64 lte_sint64 = 70 [(buf.validate.field).sint64.lte = 5];
+    sint64 gt_sint64 = 71 [(buf.validate.field).sint64.gt = 5];
+    sint64 gte_sint64 = 72 [(buf.validate.field).sint64.gte = 5];
+    sint64 in_sint64 = 73 [(buf.validate.field).sint64 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    sfixed32 const_sfixed32 = 74 [(buf.validate.field).sfixed32.const = 5];
+    sfixed32 lt_sfixed32 = 75 [(buf.validate.field).sfixed32.lt = 5];
+    sfixed32 lte_sfixed32 = 76 [(buf.validate.field).sfixed32.lte = 5];
+    sfixed32 gt_sfixed32 = 77 [(buf.validate.field).sfixed32.gt = 5];
+    sfixed32 gte_sfixed32 = 78 [(buf.validate.field).sfixed32.gte = 5];
+    sfixed32 in_sfixed32 = 79 [(buf.validate.field).sfixed32 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    sfixed64 const_sfixed64 = 80 [(buf.validate.field).sfixed64.const = 5];
+    sfixed64 lt_sfixed64 = 81 [(buf.validate.field).sfixed64.lt = 5];
+    sfixed64 lte_sfixed64 = 82 [(buf.validate.field).sfixed64.lte = 5];
+    sfixed64 gt_sfixed64 = 83 [(buf.validate.field).sfixed64.gt = 5];
+    sfixed64 gte_sfixed64 = 84 [(buf.validate.field).sfixed64.gte = 5];
+    sfixed64 in_sfixed64 = 85 [(buf.validate.field).sfixed64 = {
+      in: [
+        1,
+        2
+      ]
+    }];
+  }
+  fixed32 const_fixed32 = 86 [(buf.validate.field).fixed32.const = 5];
+  fixed32 lt_fixed32 = 87 [(buf.validate.field).fixed32.lt = 5];
+  fixed32 lte_fixed32 = 88 [(buf.validate.field).fixed32.lte = 5];
+  fixed32 gt_fixed32 = 89 [(buf.validate.field).fixed32.gt = 5];
+  fixed32 gte_fixed32 = 90 [(buf.validate.field).fixed32.gte = 5];
+  fixed32 in_fixed32 = 91 [(buf.validate.field).fixed32 = {
+    in: [
+      1,
+      2
+    ]
+  }];
+  fixed64 const_fixed64 = 92 [(buf.validate.field).fixed64.const = 5];
+  fixed64 lt_fixed64 = 93 [(buf.validate.field).fixed64.lt = 5];
+  fixed64 lte_fixed64 = 94 [(buf.validate.field).fixed64.lte = 5];
+  fixed64 gt_fixed64 = 95 [(buf.validate.field).fixed64.gt = 5];
+  fixed64 gte_fixed64 = 96 [(buf.validate.field).fixed64.gte = 5];
+  fixed64 in_fixed64 = 97 [(buf.validate.field).fixed64 = {
+    in: [
+      1,
+      2
+    ]
+  }];
+
+  double const_double = 98 [(buf.validate.field).double.const = 5];
+  double lt_double = 99 [(buf.validate.field).double.lt = 5];
+  double lte_double = 100 [(buf.validate.field).double.lte = 5];
+  double gt_double = 101 [(buf.validate.field).double.gt = 5];
+  double gte_double = 102 [(buf.validate.field).double.gte = 5];
+  double in_double = 103 [(buf.validate.field).double = {
+    in: [
+      1,
+      2
+    ]
+  }];
+  double finite_double = 104 [(buf.validate.field).double.finite = true];
+  double lt_gt_double = 105 [(buf.validate.field).double = {
+    lt: 1
+    gt: 5
+  }];
+  float const_float = 106 [(buf.validate.field).float.const = 5];
+  float lt_float = 107 [(buf.validate.field).float.lt = 5];
+  float lte_float = 108 [(buf.validate.field).float.lte = 5];
+  float gt_float = 109 [(buf.validate.field).float.gt = 5];
+  float gte_float = 110 [(buf.validate.field).float.gte = 5];
+  float in_float = 111 [(buf.validate.field).float = {
+    in: [
+      1,
+      2
+    ]
+  }];
+  float finite_float = 112 [(buf.validate.field).float.finite = true];
+  float lt_gt_float = 113 [(buf.validate.field).float = {
+    lt: 1
+    gt: 5
+  }];
+
+  map<string, string> in_map = 118 [(buf.validate.field).map = {
+    keys: {
+      string: {
+        in: [
+          "key1",
+          "key2"
+        ]
+      }
+    }
+    values: {
+      string: {
+        in: [
+          "value1",
+          "value2"
+        ]
+      }
+    }
+  }];
+}
+
+message ConstraintTests {
+  repeated ConstraintTest test_cases = 1;
+}

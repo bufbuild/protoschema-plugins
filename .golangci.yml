@@ -43,6 +43,7 @@ linters:
     - testpackage       # internal tests are fine
     - wrapcheck         # don't _always_ need to wrap errors
     - wsl               # generous whitespace violates house style
+    - nolintlint
 issues:
   exclude-dirs-use-default: false
   exclude:
