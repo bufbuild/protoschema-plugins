@@ -10,8 +10,8 @@ BIN := .tmp/bin
 export PATH := $(BIN):$(PATH)
 export GOBIN := $(abspath $(BIN))
 BUF_VERSION = $(shell go list -m -f '{{.Version}}' github.com/bufbuild/buf)
-COPYRIGHT_YEARS := 2024
-GOLANGCI_LINT_VERSION := v1.62.2
+COPYRIGHT_YEARS := 2024-2025
+GOLANGCI_LINT_VERSION := v1.63.4
 LICENSE_IGNORE := --ignore testdata/
 
 UNAME_OS := $(shell uname -s)
@@ -91,7 +91,9 @@ upgrade: ## Upgrade dependencies
 	buf dep update internal/proto
 	# Update protobuf version to match version in go.mod after upgrade
 	PROTOBUF_VERSION=$$(go list -m -f '{{.Version}}' google.golang.org/protobuf); \
-	$(SED_I) -e "s|buf.build/protocolbuffers/go:.*|buf.build/protocolbuffers/go:$${PROTOBUF_VERSION}|" buf.gen.yaml
+	if [[ "$${PROTOBUF_VERSION}" =~ ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$$ ]]; then \
+		$(SED_I) -e "s|buf.build/protocolbuffers/go:.*|buf.build/protocolbuffers/go:$${PROTOBUF_VERSION}|" buf.gen.yaml; \
+	fi
 
 .PHONY: checkgenerate
 checkgenerate:
