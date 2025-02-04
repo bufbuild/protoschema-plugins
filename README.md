@@ -76,6 +76,9 @@ message Product {
 
 Results in the following JSON Schema files:
 
+*  `*.schema.json` files are generated with underscore-case fields
+*  `*.jsonschema.json` files are generated with camelCase
+
 <details>
 <summary>Product.schema.json</summary>
 
