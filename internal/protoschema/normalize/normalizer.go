@@ -127,8 +127,11 @@ func (n *Normalizer) inlineRefs(msgDescPb *descriptorpb.DescriptorProto, msgDesc
 	for _, field := range msgDescPb.GetField() {
 		stripExtensionsAndUnknown(field.GetOptions())
 		if field.GetProto3Optional() {
-			// Convert to proto2 optional.
-			field.Label = descriptorpb.FieldDescriptorProto_LABEL_OPTIONAL.Enum()
+			// Since we currently normalize to proto2, we need to
+			// Remove the weird proto3-specific synthetic oneof for
+			// explicit presence fields.
+			// TODO: use editions to normalize and add relevant
+			//       field presence feature to field options here
 			field.Proto3Optional = nil
 			syntheticOneofs[field.GetOneofIndex()] = struct{}{}
 			field.OneofIndex = nil
@@ -150,7 +153,7 @@ func (n *Normalizer) inlineFieldRefs(
 	switch field.GetType() {
 	case descriptorpb.FieldDescriptorProto_TYPE_ENUM:
 		fieldDesc := msgDesc.Fields().ByName(protoreflect.Name(field.GetName()))
-		if fieldDesc.Enum().Syntax() == protoreflect.Proto3 {
+		if !fieldDesc.Enum().IsClosed() {
 			// Convert to int32.
 			field.Type = descriptorpb.FieldDescriptorProto_TYPE_INT32.Enum()
 			field.TypeName = nil
