@@ -37,7 +37,10 @@ func Generate(input protoreflect.MessageDescriptor) (string, error) {
 		return "", err
 	}
 	file := &descriptorpb.FileDescriptorProto{
-		Name:   proto.String(FileExtension),
+		Name: proto.String(FileExtension),
+		// TODO: If/when Pub/Bub schemas support editions, use Edition 2023 so
+		//       there is no loss of fidelity for syntax-specific semantics
+		//       (such as field presence).
 		Syntax: proto.String("proto2"),
 		MessageType: []*descriptorpb.DescriptorProto{
 			rootMsg,
