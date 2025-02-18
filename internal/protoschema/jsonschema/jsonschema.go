@@ -21,7 +21,7 @@ import (
 	"unicode"
 
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	"github.com/bufbuild/protovalidate-go/resolver"
+	"github.com/bufbuild/protovalidate-go/resolve"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
@@ -70,7 +70,6 @@ type jsonSchemaGenerator struct {
 	schema       map[protoreflect.FullName]map[string]interface{}
 	custom       map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]interface{})
 	useJSONNames bool
-	resolver     resolver.DefaultResolver
 }
 
 func (p *jsonSchemaGenerator) getID(desc protoreflect.Descriptor) string {
@@ -214,7 +213,7 @@ func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescrip
 }
 
 func (p *jsonSchemaGenerator) getFieldConstraints(field protoreflect.FieldDescriptor) *validate.FieldConstraints {
-	constraints := p.resolver.ResolveFieldConstraints(field)
+	constraints := resolve.FieldConstraints(field)
 	if constraints == nil || constraints.GetIgnore() == validate.Ignore_IGNORE_ALWAYS {
 		return nil
 	}

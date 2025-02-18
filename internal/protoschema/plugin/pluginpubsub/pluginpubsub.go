@@ -20,6 +20,7 @@ import (
 
 	"github.com/bufbuild/protoplugin"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/pubsub"
+	"google.golang.org/protobuf/types/descriptorpb"
 )
 
 // Handle implements protoplugin.Handler and is the main entry point for the plugin.
@@ -48,5 +49,6 @@ func Handle(
 	}
 
 	responseWriter.SetFeatureProto3Optional()
+	responseWriter.SetFeatureSupportsEditions(descriptorpb.Edition_EDITION_2023, descriptorpb.Edition_EDITION_2023)
 	return nil
 }
