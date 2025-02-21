@@ -29,10 +29,45 @@ message ConstraintTest {
     optional string string_value = 2 [(buf.validate.field).required = true];
   }
 
+  enum Enum {
+    ENUM_UNSPECIFIED = 0;
+    ENUM_VAL1 = 1;
+    ENUM_VAL2 = 2;
+    ENUM_VAL7 = 7;
+  }
+
   oneof test_case {
     RequiredImplicit required_implicit = 1;
     RequiredOptional required_optional = 2;
     bool const_bool = 3 [(buf.validate.field).bool.const = false];
+    Enum const_enum = 119 [(buf.validate.field).enum.const = 2];
+    Enum defined_only_enum = 120 [(buf.validate.field).enum.defined_only = true];
+    Enum in_enum = 121 [(buf.validate.field).enum = {
+      in: [
+        1,
+        2
+      ]
+    }];
+    Enum not_in_enum = 122 [(buf.validate.field).enum = {
+      not_in: [
+        0,
+        7
+      ]
+    }];
+    Enum defined_only_not_in_enum = 123 [(buf.validate.field).enum = {
+      defined_only: true
+      not_in: [0]
+    }];
+    Enum in_and_not_in_enum = 124 [(buf.validate.field).enum = {
+      in: [
+        1,
+        7
+      ]
+      not_in: [
+        0,
+        7
+      ]
+    }];
     string const_string = 4 [(buf.validate.field).string.const = "const"];
     string len_string = 5 [(buf.validate.field).string.len = 5];
     string min_len_string = 6 [(buf.validate.field).string.min_len = 5];

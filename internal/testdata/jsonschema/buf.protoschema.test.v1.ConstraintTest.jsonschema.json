@@ -27,6 +27,23 @@
         }
       ]
     },
+    "^(const_enum)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL2"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            2
+          ],
+          "type": "integer"
+        }
+      ]
+    },
     "^(const_fixed32)$": {
       "enum": [
         5
@@ -172,6 +189,50 @@
     "^(contains_string)$": {
       "pattern": ".*_contains_.*",
       "type": "string"
+    },
+    "^(defined_only_enum)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            0,
+            1,
+            2,
+            7
+          ],
+          "type": "integer"
+        }
+      ]
+    },
+    "^(defined_only_not_in_enum)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            1,
+            2,
+            7
+          ],
+          "type": "integer"
+        }
+      ]
     },
     "^(email_string)$": {
       "format": "email",
@@ -463,6 +524,23 @@
       "pattern": "^:?[0-9a-zA-Z!#$%\u0026\\'*+-.^_|~\\x60]+$",
       "type": "string"
     },
+    "^(in_and_not_in_enum)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            1
+          ],
+          "type": "integer"
+        }
+      ]
+    },
     "^(in_double)$": {
       "anyOf": [
         {
@@ -475,6 +553,25 @@
         {
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
+        }
+      ]
+    },
+    "^(in_enum)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "type": "integer"
         }
       ]
     },
@@ -1083,6 +1180,23 @@
       "minLength": 5,
       "type": "string"
     },
+    "^(not_in_enum)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ]
+    },
     "^(pattern_string)$": {
       "pattern": "^pat*ern$",
       "type": "string"
@@ -1148,6 +1262,23 @@
         {
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
+        }
+      ]
+    },
+    "constEnum": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL2"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            2
+          ],
+          "type": "integer"
         }
       ]
     },
@@ -1296,6 +1427,50 @@
     "containsString": {
       "pattern": ".*_contains_.*",
       "type": "string"
+    },
+    "definedOnlyEnum": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            0,
+            1,
+            2,
+            7
+          ],
+          "type": "integer"
+        }
+      ]
+    },
+    "definedOnlyNotInEnum": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            1,
+            2,
+            7
+          ],
+          "type": "integer"
+        }
+      ]
     },
     "emailString": {
       "format": "email",
@@ -1587,6 +1762,23 @@
       "pattern": "^:?[0-9a-zA-Z!#$%\u0026\\'*+-.^_|~\\x60]+$",
       "type": "string"
     },
+    "inAndNotInEnum": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            1
+          ],
+          "type": "integer"
+        }
+      ]
+    },
     "inDouble": {
       "anyOf": [
         {
@@ -1599,6 +1791,25 @@
         {
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
+        }
+      ]
+    },
+    "inEnum": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "type": "integer"
         }
       ]
     },
@@ -2206,6 +2417,23 @@
       "maxLength": 10,
       "minLength": 5,
       "type": "string"
+    },
+    "notInEnum": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ]
     },
     "patternString": {
       "pattern": "^pat*ern$",
