@@ -33,7 +33,7 @@ func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, 
 	inputPath := filepath.Join(filepath.FromSlash(testdataPath), "codegenrequest", "input.json")
 	input, err := os.ReadFile(inputPath)
 	if err != nil {
-		return nil, fmt.Errorf("failed to open input file descritpor set at %q: %w", inputPath, err)
+		return nil, fmt.Errorf("failed to open input file descriptor set at %q: %w", inputPath, err)
 	}
 	fdset := &descriptorpb.FileDescriptorSet{}
 	if err = (&protojson.UnmarshalOptions{DiscardUnknown: true}).Unmarshal(input, fdset); err != nil {
