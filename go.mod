@@ -2,6 +2,8 @@ module github.com/bufbuild/protoschema-plugins
 
 go 1.23.0
 
+toolchain go1.24.1
+
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.5-20250307204501-0409229c3780.1
 	github.com/bufbuild/buf v1.50.1
@@ -10,7 +12,7 @@ require (
 	github.com/jhump/protoreflect v1.17.0
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.1
 	github.com/stretchr/testify v1.10.0
-	google.golang.org/protobuf v1.36.5
+	google.golang.org/protobuf v1.36.6
 	gopkg.in/yaml.v3 v3.0.1
 )
 
