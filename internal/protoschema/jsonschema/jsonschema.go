@@ -17,6 +17,7 @@ package jsonschema
 import (
 	"fmt"
 	"math"
+	"slices"
 	"strings"
 	"unicode"
 
@@ -179,7 +180,7 @@ func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescrip
 	case protoreflect.BoolKind:
 		p.generateBoolValidation(field, constraints, schema)
 	case protoreflect.EnumKind:
-		p.generateEnumValidation(field, schema)
+		p.generateEnumValidation(field, constraints, schema)
 	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
 		p.generateInt32Validation(field, constraints, schema)
 	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
@@ -244,16 +245,82 @@ func generateTitle(name protoreflect.Name) string {
 	return result.String()
 }
 
-func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, schema map[string]interface{}) {
-	var enum = make([]interface{}, 0)
+type enumFieldSelector struct {
+	selected bool
+	index    int
+}
+
+func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+	enumFieldSelectors := make(map[int32]enumFieldSelector, field.Enum().Values().Len())
 	for i := range field.Enum().Values().Len() {
-		enum = append(enum, field.Enum().Values().Get(i).Name())
+		val := field.Enum().Values().Get(i)
+		enumFieldSelectors[int32(val.Number())] = enumFieldSelector{
+			selected: true,
+			index:    i,
+		}
 	}
-	anyOf := []map[string]interface{}{
-		{"type": jsString, "enum": enum, "title": generateTitle(field.Enum().Name())},
-		{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32},
+
+	if constraints.GetEnum() != nil && constraints.GetEnum().HasConst() {
+		for number := range enumFieldSelectors {
+			if number != constraints.GetEnum().GetConst() {
+				enumFieldSelectors[number] = enumFieldSelector{}
+			}
+		}
 	}
-	schema["anyOf"] = anyOf
+
+	if constraints.GetEnum() != nil && len(constraints.GetEnum().In) > 0 {
+		inMap := make(map[int32]struct{}, len(constraints.GetEnum().In))
+		for _, value := range constraints.GetEnum().In {
+			inMap[value] = struct{}{}
+		}
+
+		for number := range enumFieldSelectors {
+			if _, ok := inMap[number]; !ok {
+				enumFieldSelectors[number] = enumFieldSelector{}
+			}
+		}
+	}
+
+	if constraints.GetEnum() != nil && len(constraints.GetEnum().NotIn) > 0 {
+		for _, value := range constraints.GetEnum().NotIn {
+			enumFieldSelectors[value] = enumFieldSelector{}
+		}
+	}
+
+	onlySelectIntValues := constraints.GetEnum() != nil &&
+		(constraints.GetEnum().GetDefinedOnly() ||
+			constraints.GetEnum().HasConst() ||
+			constraints.GetEnum().GetIn() != nil)
+
+	validIntegers := map[string]interface{}{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32}
+	if onlySelectIntValues {
+		var integerValues = make([]int32, 0)
+		for number, val := range enumFieldSelectors {
+			if val.selected {
+				integerValues = append(integerValues, number)
+			}
+		}
+		slices.Sort(integerValues)
+
+		validIntegers = map[string]interface{}{"type": jsInteger, "enum": integerValues}
+	}
+
+	validIndexes := make([]int, 0, len(enumFieldSelectors))
+	for _, val := range enumFieldSelectors {
+		if val.selected {
+			validIndexes = append(validIndexes, val.index)
+		}
+	}
+	slices.Sort(validIndexes)
+
+	var stringValues = make([]string, 0)
+	for _, index := range validIndexes {
+		stringValues = append(stringValues, string(field.Enum().Values().Get(index).Name()))
+	}
+
+	validStrings := map[string]interface{}{"type": jsString, "enum": stringValues, "title": generateTitle(field.Enum().Name())}
+
+	schema["anyOf"] = []map[string]interface{}{validStrings, validIntegers}
 }
 
 type baseRule[T comparable] interface {
