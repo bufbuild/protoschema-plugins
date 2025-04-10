@@ -63,7 +63,7 @@ func run() error {
 	return nil
 }
 
-func writeJSONSchema(outputDir string, schema map[protoreflect.FullName]map[string]interface{}) error {
+func writeJSONSchema(outputDir string, schema map[protoreflect.FullName]map[string]any) error {
 	for _, jsonSchema := range schema {
 		// Serialize the JSON
 		data, err := json.MarshalIndent(jsonSchema, "", "  ")

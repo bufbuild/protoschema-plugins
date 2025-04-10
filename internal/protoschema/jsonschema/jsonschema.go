@@ -25,6 +25,7 @@ import (
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	"github.com/bufbuild/protovalidate-go/resolve"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"maps"
 )
 
 // An enumeration of the JSON Schema type names.
@@ -60,9 +61,9 @@ func WithJSONNames() GeneratorOption {
 }
 
 // Generate generates a JSON schema for the given message descriptor, with protobuf field names.
-func Generate(input protoreflect.MessageDescriptor, opts ...GeneratorOption) map[protoreflect.FullName]map[string]interface{} {
+func Generate(input protoreflect.MessageDescriptor, opts ...GeneratorOption) map[protoreflect.FullName]map[string]any {
 	generator := &jsonSchemaGenerator{
-		schema: make(map[protoreflect.FullName]map[string]interface{}),
+		schema: make(map[protoreflect.FullName]map[string]any),
 	}
 	generator.custom = generator.makeWktGenerators()
 	for _, opt := range opts {
@@ -73,8 +74,8 @@ func Generate(input protoreflect.MessageDescriptor, opts ...GeneratorOption) map
 }
 
 type jsonSchemaGenerator struct {
-	schema       map[protoreflect.FullName]map[string]interface{}
-	custom       map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]interface{})
+	schema       map[protoreflect.FullName]map[string]any
+	custom       map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]any)
 	useJSONNames bool
 }
 
@@ -89,7 +90,7 @@ func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) {
 	if _, ok := p.schema[desc.FullName()]; ok {
 		return // Already generated.
 	}
-	schema := make(map[string]interface{})
+	schema := make(map[string]any)
 	schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
 	schema["$id"] = p.getID(desc)
 	schema["title"] = generateTitle(desc.Name())
@@ -101,12 +102,12 @@ func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) {
 	}
 }
 
-func (p *jsonSchemaGenerator) generateDefault(desc protoreflect.MessageDescriptor, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateDefault(desc protoreflect.MessageDescriptor, schema map[string]any) {
 	schema["type"] = jsObject
 	p.setDescription(desc, schema)
 	var required []string
-	properties := make(map[string]interface{})
-	patternProperties := make(map[string]interface{})
+	properties := make(map[string]any)
+	patternProperties := make(map[string]any)
 	for i := range desc.Fields().Len() {
 		field := desc.Fields().Get(i)
 		visibility := p.shouldIgnoreField(field)
@@ -159,24 +160,24 @@ func (p *jsonSchemaGenerator) generateDefault(desc protoreflect.MessageDescripto
 	}
 }
 
-func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
 	src := desc.ParentFile().SourceLocations().ByDescriptor(desc)
 	if src.LeadingComments != "" {
 		schema["description"] = strings.TrimSpace(src.LeadingComments)
 	}
 }
 
-func (p *jsonSchemaGenerator) generateField(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints) map[string]interface{} {
-	var schema = make(map[string]interface{})
+func (p *jsonSchemaGenerator) generateField(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints) map[string]any {
+	var schema = make(map[string]any)
 	p.setDescription(field, schema)
 	p.generateValidation(field, constraints, schema)
 	return schema
 }
 
-func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	if field.IsList() {
 		schema["type"] = jsArray
-		items := make(map[string]interface{})
+		items := make(map[string]any)
 		schema["items"] = items
 		schema = items
 		constraints = constraints.GetRepeated().GetItems()
@@ -205,11 +206,11 @@ func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescrip
 	case protoreflect.MessageKind, protoreflect.GroupKind:
 		if field.IsMap() {
 			schema["type"] = jsObject
-			propertyNames := make(map[string]interface{})
+			propertyNames := make(map[string]any)
 			constraints := p.getFieldConstraints(field)
 			p.generateValidation(field.MapKey(), constraints.GetMap().GetKeys(), propertyNames)
 			schema["propertyNames"] = propertyNames
-			properties := make(map[string]interface{})
+			properties := make(map[string]any)
 			p.generateValidation(field.MapValue(), constraints.GetMap().GetValues(), properties)
 			schema["additionalProperties"] = properties
 		} else {
@@ -226,7 +227,7 @@ func (p *jsonSchemaGenerator) getFieldConstraints(field protoreflect.FieldDescri
 	return constraints
 }
 
-func (p *jsonSchemaGenerator) generateBoolValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateBoolValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	schema["type"] = jsBoolean
 	if !field.HasPresence() && constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
 		// False is not allowed.
@@ -255,7 +256,7 @@ type enumFieldSelector struct {
 	index    int
 }
 
-func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	enumFieldSelectors := make(map[int32]enumFieldSelector, field.Enum().Values().Len())
 	for i := range field.Enum().Values().Len() {
 		val := field.Enum().Values().Get(i)
@@ -297,7 +298,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 			constraints.GetEnum().HasConst() ||
 			constraints.GetEnum().GetIn() != nil)
 
-	validIntegers := map[string]interface{}{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32}
+	validIntegers := map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32}
 	if onlySelectIntValues {
 		var integerValues = make([]int32, 0)
 		for number, val := range enumFieldSelectors {
@@ -307,7 +308,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		}
 		slices.Sort(integerValues)
 
-		validIntegers = map[string]interface{}{"type": jsInteger, "enum": integerValues}
+		validIntegers = map[string]any{"type": jsInteger, "enum": integerValues}
 	}
 
 	validIndexes := make([]int, 0, len(enumFieldSelectors))
@@ -323,9 +324,9 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		stringValues = append(stringValues, string(field.Enum().Values().Get(index).Name()))
 	}
 
-	validStrings := map[string]interface{}{"type": jsString, "enum": stringValues, "title": generateTitle(field.Enum().Name())}
+	validStrings := map[string]any{"type": jsString, "enum": stringValues, "title": generateTitle(field.Enum().Name())}
 
-	schema["anyOf"] = []map[string]interface{}{validStrings, validIntegers}
+	schema["anyOf"] = []map[string]any{validStrings, validIntegers}
 }
 
 type baseRule[T comparable] interface {
@@ -347,7 +348,7 @@ type numberRule[T comparable] interface {
 	GetLt() T
 }
 
-func generateConstInValidation[T comparable](constraints baseRule[T], schema map[string]interface{}) {
+func generateConstInValidation[T comparable](constraints baseRule[T], schema map[string]any) {
 	if constraints.HasConst() {
 		schema["enum"] = []T{constraints.GetConst()}
 	} else if len(constraints.GetIn()) > 0 {
@@ -358,14 +359,14 @@ func generateConstInValidation[T comparable](constraints baseRule[T], schema map
 func generateIntValidation[T int32 | int64](
 	constraints numberRule[T],
 	bits int,
-	schema map[string]interface{},
+	schema map[string]any,
 ) {
-	numberSchema := map[string]interface{}{
+	numberSchema := map[string]any{
 		"type": jsInteger,
 	}
 	minVal := -(1 << (bits - 1))
 	maxExclVal := uint64(1) << (bits - 1)
-	var orNumberSchema map[string]interface{}
+	var orNumberSchema map[string]any
 
 	generateConstInValidation(constraints, numberSchema)
 	switch {
@@ -378,7 +379,7 @@ func generateIntValidation[T int32 | int64](
 			isOr = constraints.GetLte() <= constraints.GetGt()
 		}
 		if isOr {
-			orNumberSchema = map[string]interface{}{"exclusiveMinimum": constraints.GetGt()}
+			orNumberSchema = map[string]any{"exclusiveMinimum": constraints.GetGt()}
 		} else {
 			numberSchema["exclusiveMinimum"] = constraints.GetGt()
 		}
@@ -391,7 +392,7 @@ func generateIntValidation[T int32 | int64](
 			isOr = constraints.GetLte() < constraints.GetGte()
 		}
 		if isOr {
-			orNumberSchema = map[string]interface{}{"minimum": constraints.GetGte()}
+			orNumberSchema = map[string]any{"minimum": constraints.GetGte()}
 		} else {
 			numberSchema["minimum"] = constraints.GetGte()
 		}
@@ -407,7 +408,7 @@ func generateIntValidation[T int32 | int64](
 		numberSchema["exclusiveMaximum"] = maxExclVal
 	}
 
-	anyOf := []map[string]interface{}{
+	anyOf := []map[string]any{
 		numberSchema,
 	}
 
@@ -418,7 +419,7 @@ func generateIntValidation[T int32 | int64](
 		anyOf = append(anyOf, orNumberSchema)
 	}
 	if bits > 52 {
-		anyOf = append(anyOf, map[string]interface{}{
+		anyOf = append(anyOf, map[string]any{
 			"type":    jsString,
 			"pattern": "^-?[0-9]+$",
 		})
@@ -426,13 +427,11 @@ func generateIntValidation[T int32 | int64](
 	if len(anyOf) > 1 {
 		schema["anyOf"] = anyOf
 	} else {
-		for key, value := range numberSchema {
-			schema[key] = value
-		}
+		maps.Copy(schema, numberSchema)
 	}
 }
 
-func (p *jsonSchemaGenerator) generateInt32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateInt32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
 		schema["type"] = jsInteger
@@ -447,10 +446,10 @@ func (p *jsonSchemaGenerator) generateInt32Validation(_ protoreflect.FieldDescri
 	}
 }
 
-func (p *jsonSchemaGenerator) generateInt64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateInt64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
-		schema["anyOf"] = []map[string]interface{}{
+		schema["anyOf"] = []map[string]any{
 			{"type": jsInteger, "minimum": math.MinInt64, "exclusiveMaximum": uint64(math.MaxInt64) + 1},
 			{"type": jsString, "pattern": "^-?[0-9]+$"},
 		}
@@ -466,12 +465,12 @@ func (p *jsonSchemaGenerator) generateInt64Validation(_ protoreflect.FieldDescri
 func generateUintValidation[T uint32 | uint64](
 	constraints numberRule[T],
 	bits int,
-	schema map[string]interface{},
+	schema map[string]any,
 ) {
-	numberSchema := map[string]interface{}{
+	numberSchema := map[string]any{
 		"type": jsInteger,
 	}
-	var orNumberSchema map[string]interface{}
+	var orNumberSchema map[string]any
 	maxExclVal := float64(uint64(1)<<(bits-1)) * 2
 	generateConstInValidation(constraints, numberSchema)
 	switch {
@@ -484,7 +483,7 @@ func generateUintValidation[T uint32 | uint64](
 			isOr = constraints.GetLte() <= constraints.GetGt()
 		}
 		if isOr {
-			orNumberSchema = map[string]interface{}{"exclusiveMinimum": constraints.GetGt()}
+			orNumberSchema = map[string]any{"exclusiveMinimum": constraints.GetGt()}
 		} else {
 			numberSchema["exclusiveMinimum"] = constraints.GetGt()
 		}
@@ -497,7 +496,7 @@ func generateUintValidation[T uint32 | uint64](
 			isOr = constraints.GetLte() < constraints.GetGte()
 		}
 		if isOr {
-			orNumberSchema = map[string]interface{}{"minimum": constraints.GetGte()}
+			orNumberSchema = map[string]any{"minimum": constraints.GetGte()}
 		} else {
 			numberSchema["minimum"] = constraints.GetGte()
 		}
@@ -513,11 +512,11 @@ func generateUintValidation[T uint32 | uint64](
 		numberSchema["exclusiveMaximum"] = maxExclVal
 	}
 
-	anyOf := []map[string]interface{}{
+	anyOf := []map[string]any{
 		numberSchema,
 	}
 	if bits > 52 {
-		anyOf = append(anyOf, map[string]interface{}{
+		anyOf = append(anyOf, map[string]any{
 			"type":    jsString,
 			"pattern": "^[0-9]+$",
 		})
@@ -531,12 +530,10 @@ func generateUintValidation[T uint32 | uint64](
 	if len(anyOf) > 1 {
 		schema["anyOf"] = anyOf
 	} else {
-		for key, value := range numberSchema {
-			schema[key] = value
-		}
+		maps.Copy(schema, numberSchema)
 	}
 }
-func (p *jsonSchemaGenerator) generateUint32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateUint32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
 		schema["type"] = jsInteger
@@ -549,10 +546,10 @@ func (p *jsonSchemaGenerator) generateUint32Validation(_ protoreflect.FieldDescr
 	}
 }
 
-func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
-		schema["anyOf"] = []map[string]interface{}{
+		schema["anyOf"] = []map[string]any{
 			{"type": jsInteger, "minimum": 0, "exclusiveMaximum": exclusiveMaxUint64},
 			{"type": jsString, "pattern": "^[0-9]+$"},
 		}
@@ -564,15 +561,15 @@ func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescr
 }
 
 // nolint: gocyclo
-func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}, bits int) {
+func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any, bits int) {
 	includePosInf := true
 	includeNegInf := true
 	includeNaN := true
 
-	numberSchema := map[string]interface{}{
+	numberSchema := map[string]any{
 		"type": jsNumber,
 	}
-	var orNumberSchema map[string]interface{}
+	var orNumberSchema map[string]any
 
 	switch {
 	default:
@@ -629,7 +626,7 @@ func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescri
 				isOr = lessThan.Lte <= greaterThan.Gt
 			}
 			if isOr {
-				orNumberSchema = map[string]interface{}{
+				orNumberSchema = map[string]any{
 					"type":             jsNumber,
 					"exclusiveMinimum": greaterThan.Gt,
 				}
@@ -647,7 +644,7 @@ func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescri
 				isOr = lessThan.Lte < greaterThan.Gte
 			}
 			if isOr {
-				orNumberSchema = map[string]interface{}{
+				orNumberSchema = map[string]any{
 					"type":    jsNumber,
 					"minimum": greaterThan.Gte,
 				}
@@ -725,7 +722,7 @@ func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescri
 				isOr = lessThan.Lte <= greaterThan.Gt
 			}
 			if isOr {
-				orNumberSchema = map[string]interface{}{
+				orNumberSchema = map[string]any{
 					"type":             jsNumber,
 					"exclusiveMinimum": greaterThan.Gt,
 				}
@@ -743,7 +740,7 @@ func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescri
 				isOr = lessThan.Lte < greaterThan.Gte
 			}
 			if isOr {
-				orNumberSchema = map[string]interface{}{
+				orNumberSchema = map[string]any{
 					"type":    jsNumber,
 					"minimum": greaterThan.Gte,
 				}
@@ -770,14 +767,14 @@ func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescri
 		}
 	}
 
-	anyOf := []map[string]interface{}{
+	anyOf := []map[string]any{
 		numberSchema,
 	}
 	if orNumberSchema != nil {
 		anyOf = append(anyOf, orNumberSchema)
 	}
 
-	extremaEnum := []interface{}{}
+	extremaEnum := []any{}
 	if includePosInf {
 		extremaEnum = append(extremaEnum, "Infinity")
 	}
@@ -788,14 +785,14 @@ func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescri
 		extremaEnum = append(extremaEnum, "NaN")
 	}
 	if len(extremaEnum) > 0 {
-		anyOf = append(anyOf, map[string]interface{}{
+		anyOf = append(anyOf, map[string]any{
 			"type": jsString,
 			"enum": extremaEnum,
-		}, map[string]interface{}{
+		}, map[string]any{
 			"type": jsString, // Allow other form of NaN, -Infinity, and Infinity.
 		})
 	} else {
-		anyOf = append(anyOf, map[string]interface{}{
+		anyOf = append(anyOf, map[string]any{
 			"type":    jsString,
 			"pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
 		})
@@ -827,7 +824,7 @@ const (
 )
 
 // nolint: gocyclo
-func generateWellKnownPattern(constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func generateWellKnownPattern(constraints *validate.FieldConstraints, schema map[string]any) {
 	switch wellKnown := constraints.GetString().GetWellKnown().(type) {
 	case *validate.StringRules_Hostname:
 		if wellKnown.Hostname {
@@ -905,7 +902,7 @@ func generateWellKnownPattern(constraints *validate.FieldConstraints, schema map
 	}
 }
 
-func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	schema["type"] = jsString
 	if constraints.GetString() == nil {
 		return
@@ -974,7 +971,7 @@ func base64EncodedLength(inputSize uint64) (uint64, uint64) {
 	return characters, padding
 }
 
-func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
 	schema["type"] = jsString
 	// Set a regex to match base64 encoded strings.
 	schema["pattern"] = "^[A-Za-z0-9+/]*={0,2}$"
@@ -1000,7 +997,7 @@ func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescri
 	}
 }
 
-func (p *jsonSchemaGenerator) generateMessageValidation(field protoreflect.FieldDescriptor, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) generateMessageValidation(field protoreflect.FieldDescriptor, schema map[string]any) {
 	// Create a reference to the message type.
 	schema["$ref"] = p.getID(field.Message())
 	p.generate(field.Message())
@@ -1009,41 +1006,41 @@ func (p *jsonSchemaGenerator) generateMessageValidation(field protoreflect.Field
 func (p *jsonSchemaGenerator) generateWrapperValidation(
 	desc protoreflect.MessageDescriptor,
 	constraints *validate.FieldConstraints,
-	schema map[string]interface{},
+	schema map[string]any,
 ) {
 	field := desc.Fields().Get(0)
 	p.setDescription(field, schema)
 	p.generateValidation(field, constraints, schema)
 }
 
-func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]interface{}) {
-	var result = make(map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]interface{}))
-	result["google.protobuf.Any"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]interface{}) {
+func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]any) {
+	var result = make(map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]any))
+	result["google.protobuf.Any"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]any) {
 		schema["type"] = jsObject
-		schema["properties"] = map[string]interface{}{
-			"@type": map[string]interface{}{
+		schema["properties"] = map[string]any{
+			"@type": map[string]any{
 				"type": "string",
 			},
 		}
 	}
 
-	result["google.protobuf.Duration"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]interface{}) {
+	result["google.protobuf.Duration"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]any) {
 		schema["type"] = jsString
 		schema["format"] = "duration"
 	}
-	result["google.protobuf.Timestamp"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]interface{}) {
+	result["google.protobuf.Timestamp"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]any) {
 		schema["type"] = jsString
 		schema["format"] = "date-time"
 	}
 
-	result["google.protobuf.Value"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, _ map[string]interface{}) {}
-	result["google.protobuf.ListValue"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]interface{}) {
+	result["google.protobuf.Value"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, _ map[string]any) {}
+	result["google.protobuf.ListValue"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]any) {
 		schema["type"] = jsArray
 	}
-	result["google.protobuf.NullValue"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]interface{}) {
+	result["google.protobuf.NullValue"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]any) {
 		schema["type"] = jsNull
 	}
-	result["google.protobuf.Struct"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]interface{}) {
+	result["google.protobuf.Struct"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldConstraints, schema map[string]any) {
 		schema["type"] = jsObject
 	}
 

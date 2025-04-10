@@ -59,7 +59,7 @@ func Handle(
 func writeFiles(
 	responseWriter protoplugin.ResponseWriter,
 	messageDescriptor protoreflect.MessageDescriptor,
-	schema map[protoreflect.FullName]map[string]interface{},
+	schema map[protoreflect.FullName]map[string]any,
 	seenIdentifiers map[string]bool,
 ) error {
 	for _, entry := range schema {
