@@ -70,14 +70,14 @@ func TestJSONSchemaHandler(t *testing.T) {
 	err = protoencoding.NewWireUnmarshaler(nil).Unmarshal(stdout.Bytes(), response)
 	require.NoError(t, err)
 
-	wantFiles := make([]string, 0, len(response.File))
-	for _, file := range response.File {
+	wantFiles := make([]string, 0, len(response.GetFile()))
+	for _, file := range response.GetFile() {
 		wantFiles = append(wantFiles, file.GetName())
 	}
 	slices.Sort(wantFiles)
 	require.Equal(t, wantFiles, gatherGoldenFiles(t, goldenPath))
 
-	for _, file := range response.File {
+	for _, file := range response.GetFile() {
 		filename := path.Join(goldenPath, file.GetName())
 		want, err := os.ReadFile(filename)
 		require.NoError(t, err)

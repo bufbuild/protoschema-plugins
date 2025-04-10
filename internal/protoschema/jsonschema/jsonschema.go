@@ -273,9 +273,9 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		}
 	}
 
-	if constraints.GetEnum() != nil && len(constraints.GetEnum().In) > 0 {
-		inMap := make(map[int32]struct{}, len(constraints.GetEnum().In))
-		for _, value := range constraints.GetEnum().In {
+	if constraints.GetEnum() != nil && len(constraints.GetEnum().GetIn()) > 0 {
+		inMap := make(map[int32]struct{}, len(constraints.GetEnum().GetIn()))
+		for _, value := range constraints.GetEnum().GetIn() {
 			inMap[value] = struct{}{}
 		}
 
@@ -286,8 +286,8 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		}
 	}
 
-	if constraints.GetEnum() != nil && len(constraints.GetEnum().NotIn) > 0 {
-		for _, value := range constraints.GetEnum().NotIn {
+	if constraints.GetEnum() != nil && len(constraints.GetEnum().GetNotIn()) > 0 {
+		for _, value := range constraints.GetEnum().GetNotIn() {
 			enumFieldSelectors[value] = enumFieldSelector{}
 		}
 	}
@@ -957,7 +957,7 @@ func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescr
 
 	if constraints.GetString().Const != nil {
 		schema["enum"] = []string{constraints.GetString().GetConst()}
-	} else if len(constraints.GetString().In) > 0 {
+	} else if len(constraints.GetString().GetIn()) > 0 {
 		schema["enum"] = constraints.GetString().GetIn()
 	}
 }
