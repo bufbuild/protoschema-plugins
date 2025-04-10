@@ -75,7 +75,7 @@ func TestConstraints(t *testing.T) {
 	expectedData, err := os.ReadFile(expectedPath)
 	require.NoError(t, err)
 
-	var jsonData map[string]interface{}
+	var jsonData map[string]any
 	err = yaml.Unmarshal(yamlData, &jsonData)
 	require.NoError(t, err)
 
