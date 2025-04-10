@@ -16,7 +16,6 @@ package golden
 
 import (
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
 
@@ -68,17 +67,7 @@ func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, 
 
 // CheckGolden checks the golden file exists and matches the given data.
 func CheckGolden(filePath string, data string) error {
-	if _, err := os.Stat(filePath); err != nil {
-		return err
-	}
-
-	file, err := os.Open(filePath)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	actualBytes, err := io.ReadAll(file)
+	actualBytes, err := os.ReadFile(filePath)
 	if err != nil {
 		return err
 	}
