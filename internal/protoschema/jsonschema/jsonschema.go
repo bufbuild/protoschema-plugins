@@ -17,6 +17,7 @@ package jsonschema
 import (
 	"fmt"
 	"math"
+	"math/big"
 	"slices"
 	"strings"
 	"unicode"
@@ -43,6 +44,10 @@ const (
 	FieldVisible FieldVisibility = iota
 	FieldHide
 	FieldIgnore
+)
+
+var (
+	exclusiveMaxUint64 = big.NewInt(0).Exp(big.NewInt(2), big.NewInt(64), nil)
 )
 
 type GeneratorOption func(*jsonSchemaGenerator)
@@ -446,7 +451,7 @@ func (p *jsonSchemaGenerator) generateInt64Validation(_ protoreflect.FieldDescri
 	switch {
 	default:
 		schema["anyOf"] = []map[string]interface{}{
-			{"type": jsInteger, "minimum": math.MinInt64, "exclusiveMaximum": math.Pow(2, 63)},
+			{"type": jsInteger, "minimum": math.MinInt64, "exclusiveMaximum": uint64(math.MaxInt64) + 1},
 			{"type": jsString, "pattern": "^-?[0-9]+$"},
 		}
 	case constraints.GetInt64() != nil:
@@ -548,7 +553,7 @@ func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescr
 	switch {
 	default:
 		schema["anyOf"] = []map[string]interface{}{
-			{"type": jsInteger, "minimum": 0, "exclusiveMaximum": float64(uint64(1)<<63) * 2},
+			{"type": jsInteger, "minimum": 0, "exclusiveMaximum": exclusiveMaxUint64},
 			{"type": jsString, "pattern": "^[0-9]+$"},
 		}
 	case constraints.GetUint64() != nil:
