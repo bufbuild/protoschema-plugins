@@ -29,8 +29,6 @@ linters:
         - pattern: ^print$
         - pattern: ^println$
         - pattern: ^panic$
-    gocyclo:
-      min-complexity: 25
     godox:
       # TODO, OPT, etc. comments are fine to commit. Use FIXME comments for
       # temporary hacks, and use godox to prevent committing them.
