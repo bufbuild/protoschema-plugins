@@ -16,6 +16,7 @@ package jsonschema
 
 import (
 	"fmt"
+	"maps"
 	"math"
 	"math/big"
 	"slices"
@@ -25,7 +26,6 @@ import (
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	"github.com/bufbuild/protovalidate-go/resolve"
 	"google.golang.org/protobuf/reflect/protoreflect"
-	"maps"
 )
 
 // An enumeration of the JSON Schema type names.
