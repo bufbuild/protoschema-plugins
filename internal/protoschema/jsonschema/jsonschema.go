@@ -86,6 +86,13 @@ func (p *jsonSchemaGenerator) getID(desc protoreflect.Descriptor) string {
 	return string(desc.FullName()) + ".schema.json"
 }
 
+func (p *jsonSchemaGenerator) getRef(fdesc protoreflect.FieldDescriptor) string {
+	if fdesc.Parent() == fdesc.Message() {
+		return "#"
+	}
+	return p.getID(fdesc.Message())
+}
+
 func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) {
 	if _, ok := p.schema[desc.FullName()]; ok {
 		return // Already generated.
@@ -999,7 +1006,7 @@ func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescri
 
 func (p *jsonSchemaGenerator) generateMessageValidation(field protoreflect.FieldDescriptor, schema map[string]any) {
 	// Create a reference to the message type.
-	schema["$ref"] = p.getID(field.Message())
+	schema["$ref"] = p.getRef(field)
 	p.generate(field.Message())
 }
 
