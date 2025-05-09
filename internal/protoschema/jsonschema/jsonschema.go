@@ -170,7 +170,13 @@ func (p *jsonSchemaGenerator) generateDefault(desc protoreflect.MessageDescripto
 func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
 	src := desc.ParentFile().SourceLocations().ByDescriptor(desc)
 	if src.LeadingComments != "" {
-		schema["description"] = strings.TrimSpace(src.LeadingComments)
+		comments := strings.TrimSpace(src.LeadingComments)
+		if parts := strings.SplitN(comments, "\n\n", 2); len(parts) >= 2 {
+			schema["title"] = strings.TrimSpace(parts[0])
+			schema["description"] = strings.TrimSpace(parts[1])
+		} else {
+			schema["description"] = comments
+		}
 	}
 }
 
