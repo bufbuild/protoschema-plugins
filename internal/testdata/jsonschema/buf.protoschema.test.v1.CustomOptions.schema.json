@@ -2,6 +2,7 @@
   "$id": "buf.protoschema.test.v1.CustomOptions.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "description": "This is a test case for the custom options in the buf.validate package... and\n comment parsing.",
   "patternProperties": {
     "^(int32Field)$": {
       "items": {
@@ -28,6 +29,6 @@
       "type": "string"
     }
   },
-  "title": "Custom Options",
+  "title": "The title for CustomOptions. On\n multiple lines.",
   "type": "object"
 }

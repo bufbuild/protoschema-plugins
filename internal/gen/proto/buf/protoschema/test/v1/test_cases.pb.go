@@ -81,6 +81,11 @@ func (x *NestedReference) GetNestedMessage() *proto3.TestAllTypes_NestedMessage 
 	return nil
 }
 
+// The title for CustomOptions. On
+// multiple lines.
+//
+// This is a test case for the custom options in the buf.validate package... and
+// comment parsing.
 type CustomOptions struct {
 	state      protoimpl.MessageState `protogen:"open.v1"`
 	Int32Field []int32                `protobuf:"varint,1,rep,packed,name=int32_field,json=int32Field,proto3" json:"int32_field,omitempty"`

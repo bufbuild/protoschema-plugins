@@ -23,6 +23,11 @@ message NestedReference {
   bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage nested_message = 1;
 }
 
+// The title for CustomOptions. On
+// multiple lines.
+//
+// This is a test case for the custom options in the buf.validate package... and
+// comment parsing.
 message CustomOptions {
   option (buf.validate.message).cel = {
     id: "custom_option_id"
