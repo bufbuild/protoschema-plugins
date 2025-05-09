@@ -87,8 +87,11 @@ func (x *NestedReference) GetNestedMessage() *proto3.TestAllTypes_NestedMessage 
 // This is a test case for the custom options in the buf.validate package... and
 // comment parsing.
 type CustomOptions struct {
-	state      protoimpl.MessageState `protogen:"open.v1"`
-	Int32Field []int32                `protobuf:"varint,1,rep,packed,name=int32_field,json=int32Field,proto3" json:"int32_field,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A field with a title.
+	//
+	// This field has a title!
+	Int32Field []int32 `protobuf:"varint,1,rep,packed,name=int32_field,json=int32Field,proto3" json:"int32_field,omitempty"`
 	// Types that are valid to be assigned to Kind:
 	//
 	//	*CustomOptions_StringField

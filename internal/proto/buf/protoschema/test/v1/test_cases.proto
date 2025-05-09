@@ -36,6 +36,9 @@ message CustomOptions {
   };
   option no_standard_descriptor_accessor = true;
 
+  // A field with a title.
+  //
+  // This field has a title!
   repeated int32 int32_field = 1 [
     packed = true,
     (buf.validate.field).cel = {
