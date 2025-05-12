@@ -425,7 +425,8 @@ func generateIntValidation[T int32 | int64](
 		orNumberSchema["type"] = jsInteger
 		anyOf = append(anyOf, orNumberSchema)
 	}
-	// Also allow string representation of numbers to match
+
+	// Always allow string representation of numbers to match
 	// https://protobuf.dev/programming-guides/json/
 	anyOf = append(anyOf, map[string]any{
 		"type":    jsString,
@@ -530,7 +531,7 @@ func generateUintValidation[T uint32 | uint64](
 		anyOf = append(anyOf, orNumberSchema)
 	}
 
-	// Also allow string representation of uints to match
+	// Always allow string representation of uints to match
 	// https://protobuf.dev/programming-guides/json/
 	anyOf = append(anyOf, map[string]any{
 		"type":    jsString,
