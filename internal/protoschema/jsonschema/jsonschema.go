@@ -175,7 +175,12 @@ func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, schem
 		// To support this, split the comments into to sections.
 		// Sections are separated by two newlines.
 		// The first 'section' is the title, the rest are the description.
-		if parts := strings.SplitN(comments, "\n\n", 2); len(parts) >= 2 {
+		parts := strings.SplitN(comments, "\n\n", 2)
+		if len(parts) < 2 {
+			// Check for Windows line endings.
+			parts = strings.SplitN(comments, "\r\n\r\n", 2)
+		}
+		if len(parts) == 2 {
 			// Found at least two sections.
 			// The first section is the title.
 			schema["title"] = strings.TrimSpace(parts[0])
