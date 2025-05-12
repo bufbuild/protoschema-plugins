@@ -43,8 +43,8 @@ func Handle(
 	if err != nil {
 		return err
 	}
-	// Also create options for the schema with JSON names.
 	optionsWithJSONNames = append(optionsWithJSONNames, jsonschema.WithJSONNames())
+	// Also create options with protobuf names.
 	options := optionsWithJSONNames[:len(optionsWithJSONNames)-1]
 
 	// Generate the JSON schema for each message descriptor.
