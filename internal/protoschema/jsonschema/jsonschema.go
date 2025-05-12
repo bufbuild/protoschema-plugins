@@ -425,12 +425,13 @@ func generateIntValidation[T int32 | int64](
 		orNumberSchema["type"] = jsInteger
 		anyOf = append(anyOf, orNumberSchema)
 	}
-	if bits > 52 {
-		anyOf = append(anyOf, map[string]any{
-			"type":    jsString,
-			"pattern": "^-?[0-9]+$",
-		})
-	}
+	// Also allow string representation of numbers to match
+	// https://protobuf.dev/programming-guides/json/
+	anyOf = append(anyOf, map[string]any{
+		"type":    jsString,
+		"pattern": "^-?[0-9]+$",
+	})
+
 	if len(anyOf) > 1 {
 		schema["anyOf"] = anyOf
 	} else {
@@ -522,18 +523,20 @@ func generateUintValidation[T uint32 | uint64](
 	anyOf := []map[string]any{
 		numberSchema,
 	}
-	if bits > 52 {
-		anyOf = append(anyOf, map[string]any{
-			"type":    jsString,
-			"pattern": "^[0-9]+$",
-		})
-	}
 	if orNumberSchema != nil {
 		numberSchema["minimum"] = 0
 		orNumberSchema["exclusiveMaximum"] = maxExclVal
 		orNumberSchema["type"] = jsInteger
 		anyOf = append(anyOf, orNumberSchema)
 	}
+
+	// Also allow string representation of uints to match
+	// https://protobuf.dev/programming-guides/json/
+	anyOf = append(anyOf, map[string]any{
+		"type":    jsString,
+		"pattern": "^[0-9]+$",
+	})
+
 	if len(anyOf) > 1 {
 		schema["anyOf"] = anyOf
 	} else {
