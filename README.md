@@ -67,14 +67,14 @@ message Product {
   // A point on the earth's surface.
   message Location {
     double lat = 1 [
-      (buf.validate.field).float.finite = true,
-      (buf.validate.field).float.gte = -90,
-      (buf.validate.field).float.lte = 90
+      (buf.validate.field).double.finite = true,
+      (buf.validate.field).double.gte = -90,
+      (buf.validate.field).double.lte = 90
     ];
     double long = 2 [
-      (buf.validate.field).float.finite = true,
-      (buf.validate.field).float.gte = -180,
-      (buf.validate.field).float.lte = 180
+      (buf.validate.field).double.finite = true,
+      (buf.validate.field).double.gte = -180,
+      (buf.validate.field).double.lte = 180
     ];
   }
 
