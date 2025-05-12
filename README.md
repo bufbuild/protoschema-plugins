@@ -170,7 +170,7 @@ Results in the following JSON Schema files:
 The JSON Schema plugin supports the following options:
 
 - `additional_properties` - If specified, the generated schema will allow additional properties. Used to
-  allow the sender of a message to have a newer version of the schema than the receiver.
+  allow a client/sender to have a schema version that is newer than the server/receiver.
 
 ## Community
 
