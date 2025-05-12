@@ -1,0 +1,12 @@
+syntax = "proto2";
+message Product {
+  optional int32 product_id = 1;
+  optional string product_name = 2;
+  optional float price = 3;
+  repeated string tags = 4;
+  optional Location location = 5;
+  message Location {
+    optional double lat = 1;
+    optional double long = 2;
+  }
+}

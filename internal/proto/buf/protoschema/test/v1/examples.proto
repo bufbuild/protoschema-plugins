@@ -1,0 +1,52 @@
+// Copyright 2024-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package buf.protoschema.test.v1;
+
+import "buf/validate/validate.proto";
+
+// A product.
+//
+// A product is a good or service that is offered for sale.
+message Product {
+  // A point on the earth's surface.
+  message Location {
+    double lat = 1 [
+      (buf.validate.field).float.finite = true,
+      (buf.validate.field).float.gte = -90,
+      (buf.validate.field).float.lte = 90
+    ];
+    double long = 2 [
+      (buf.validate.field).float.finite = true,
+      (buf.validate.field).float.gte = -180,
+      (buf.validate.field).float.lte = 180
+    ];
+  }
+
+  // The unique identifier for the product.
+  int32 product_id = 1 [(buf.validate.field).required = true];
+  // The name of the product.
+  string product_name = 2 [(buf.validate.field).required = true];
+  // The price of the product.
+  float price = 3 [
+    (buf.validate.field).float.finite = true,
+    (buf.validate.field).float.gte = 0
+  ];
+  // The tags associated with the product.
+  repeated string tags = 4;
+  // The location of the product.
+  Location location = 5 [(buf.validate.field).required = true];
+}

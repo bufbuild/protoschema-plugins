@@ -52,6 +52,7 @@ func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, 
 		"buf.protoschema.test.v1.IgnoreField",
 		"buf.protoschema.test.v1.ConstraintTest",
 		"buf.protoschema.test.v1.ConstraintTests",
+		"buf.protoschema.test.v1.Product",
 	}
 
 	msgs := make([]protoreflect.MessageDescriptor, len(fqns))
