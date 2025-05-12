@@ -29,7 +29,7 @@ import (
 // Handle implements protoplugin.Handler and is the main entry point for the plugin.
 func Handle(
 	_ context.Context,
-	pluginEnv protoplugin.PluginEnv,
+	_ protoplugin.PluginEnv,
 	responseWriter protoplugin.ResponseWriter,
 	request protoplugin.Request,
 ) error {
@@ -39,12 +39,13 @@ func Handle(
 	}
 
 	// Parse the parameters from the request.
-	options, err := parseOptions(request.Parameter())
+	optionsWithJSONNames, err := parseOptions(request.Parameter())
 	if err != nil {
 		return err
 	}
 	// Also create options for the schema with JSON names.
-	optionsWithJSONNames := append(options, jsonschema.WithJSONNames())
+	optionsWithJSONNames = append(optionsWithJSONNames, jsonschema.WithJSONNames())
+	options := optionsWithJSONNames[:len(optionsWithJSONNames)-1]
 
 	// Generate the JSON schema for each message descriptor.
 	seenIdentifiers := make(map[string]bool)
@@ -100,9 +101,12 @@ func writeFiles(
 }
 
 func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
+	var options []jsonschema.GeneratorOption
+	if param == "" {
+		return options, nil
+	}
 	// Params are in the form of "param1,param2,..."
 	params := strings.Split(param, ",")
-	var options []jsonschema.GeneratorOption
 	for _, param := range params {
 		switch strings.TrimSpace(param) {
 		case "additional_properties":
