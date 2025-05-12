@@ -18,6 +18,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	"github.com/bufbuild/protoplugin"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/jsonschema"
@@ -28,7 +29,7 @@ import (
 // Handle implements protoplugin.Handler and is the main entry point for the plugin.
 func Handle(
 	_ context.Context,
-	_ protoplugin.PluginEnv,
+	pluginEnv protoplugin.PluginEnv,
 	responseWriter protoplugin.ResponseWriter,
 	request protoplugin.Request,
 ) error {
@@ -36,15 +37,27 @@ func Handle(
 	if err != nil {
 		return err
 	}
+
+	// Parse the parameters from the request.
+	options, err := parseOptions(request.Parameter())
+	if err != nil {
+		return err
+	}
+	// Also create options for the schema with JSON names.
+	optionsWithJSONNames := append(options, jsonschema.WithJSONNames())
+
+	// Generate the JSON schema for each message descriptor.
 	seenIdentifiers := make(map[string]bool)
 	for _, fileDescriptor := range fileDescriptors {
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
-			protoNameSchema := jsonschema.Generate(messageDescriptor)
+			// Generate the proto name schema.
+			protoNameSchema := jsonschema.Generate(messageDescriptor, options...)
 			if err := writeFiles(responseWriter, messageDescriptor, protoNameSchema, seenIdentifiers); err != nil {
 				return err
 			}
-			jsonNameSchema := jsonschema.Generate(messageDescriptor, jsonschema.WithJSONNames())
+			// Generate the JSON name schema.
+			jsonNameSchema := jsonschema.Generate(messageDescriptor, optionsWithJSONNames...)
 			if err := writeFiles(responseWriter, messageDescriptor, jsonNameSchema, seenIdentifiers); err != nil {
 				return err
 			}
@@ -84,4 +97,19 @@ func writeFiles(
 		seenIdentifiers[identifier] = true
 	}
 	return nil
+}
+
+func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
+	// Params are in the form of "param1,param2,..."
+	params := strings.Split(param, ",")
+	var options []jsonschema.GeneratorOption
+	for _, param := range params {
+		switch strings.TrimSpace(param) {
+		case "additional_properties":
+			options = append(options, jsonschema.WithAdditionalProperties())
+		default:
+			return nil, fmt.Errorf("unknown parameter %q", param)
+		}
+	}
+	return options, nil
 }
