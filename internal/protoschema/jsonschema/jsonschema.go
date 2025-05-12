@@ -172,7 +172,7 @@ func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, schem
 	if src.LeadingComments != "" {
 		comments := strings.TrimSpace(src.LeadingComments)
 		// JSON schema has two fields for 'comments': title and description
-		// To support this, split the comments into two sections.
+		// To support this, split the comments into to sections.
 		// Sections are separated by two newlines.
 		// The first 'section' is the title, the rest are the description.
 		if parts := strings.SplitN(comments, "\n\n", 2); len(parts) >= 2 {
