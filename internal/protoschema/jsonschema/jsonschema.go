@@ -71,10 +71,9 @@ func WithAdditionalProperties() GeneratorOption {
 // WithStrict sets the generator to require input be pre-normalized.
 //
 // When a JSON value is converted to protobuf, the converter uses the protobuf
-// schema to normalize and further validate the value.
-//
-// By default, the generated schema takes this normalization into account,
-// allowing for implicit default values, aliases, and other leniencies.
+// schema to normalize and validate it further. The default generated schema
+// takes this into account, allowing for implicit default values, aliases, and
+// other leniencies.
 //
 // When strict is enabled, the generated schema will not allow these leniencies.
 // Specifically, the JSON schema:
@@ -83,7 +82,10 @@ func WithAdditionalProperties() GeneratorOption {
 //   - Does not allow aliases for field names.
 //   - Does not allow numbers to be represented as strings.
 //   - Requires Infinity and NaN values to be exactly capitalized.
-//   - Does not allow integers to be represented as floats.
+//   - Does not allow integers to be represented as strings.
+//
+// The "always emit fields without presence" option must be set for ProtoJSON to
+// output to be valid when strict is enabled. See https://protobuf.dev/programming-guides/json/#json-options
 func WithStrict() GeneratorOption {
 	return func(p *jsonSchemaGenerator) {
 		p.strict = true
