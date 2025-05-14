@@ -33,7 +33,6 @@
           "enum": [
             "ENUM_VAL2"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -42,7 +41,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "^(const_fixed32)$": {
       "anyOf": [
@@ -239,7 +239,6 @@
             "ENUM_VAL2",
             "ENUM_VAL7"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -251,7 +250,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "^(defined_only_not_in_enum)$": {
       "anyOf": [
@@ -261,7 +261,6 @@
             "ENUM_VAL2",
             "ENUM_VAL7"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -272,7 +271,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "^(email_string)$": {
       "format": "email",
@@ -650,7 +650,6 @@
           "enum": [
             "ENUM_VAL1"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -659,7 +658,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "^(in_double)$": {
       "anyOf": [
@@ -683,7 +683,6 @@
             "ENUM_VAL1",
             "ENUM_VAL2"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -693,7 +692,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "^(in_fixed32)$": {
       "anyOf": [
@@ -1435,7 +1435,6 @@
             "ENUM_VAL1",
             "ENUM_VAL2"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -1443,7 +1442,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "^(pattern_string)$": {
       "pattern": "^pat*ern$",
@@ -1519,7 +1519,6 @@
           "enum": [
             "ENUM_VAL2"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -1528,7 +1527,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "constFixed32": {
       "anyOf": [
@@ -1725,7 +1725,6 @@
             "ENUM_VAL2",
             "ENUM_VAL7"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -1737,7 +1736,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "definedOnlyNotInEnum": {
       "anyOf": [
@@ -1747,7 +1747,6 @@
             "ENUM_VAL2",
             "ENUM_VAL7"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -1758,7 +1757,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "emailString": {
       "format": "email",
@@ -2136,7 +2136,6 @@
           "enum": [
             "ENUM_VAL1"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -2145,7 +2144,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "inDouble": {
       "anyOf": [
@@ -2169,7 +2169,6 @@
             "ENUM_VAL1",
             "ENUM_VAL2"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -2179,7 +2178,8 @@
           ],
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "inFixed32": {
       "anyOf": [
@@ -2921,7 +2921,6 @@
             "ENUM_VAL1",
             "ENUM_VAL2"
           ],
-          "title": "Enum",
           "type": "string"
         },
         {
@@ -2929,7 +2928,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Enum"
     },
     "patternString": {
       "pattern": "^pat*ern$",
