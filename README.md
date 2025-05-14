@@ -210,6 +210,15 @@ Results in the following JSON Schema files:
 
 </details>
 
+### Options
+
+The JSON Schema plugin supports the following options:
+
+- `additional_properties` - If `true`, the generated schema will set `additionalProperties` to
+  `true`, causing unknown fields to be ignored instead of erroring. Defaults to `false`. Useful when a
+  client/sender may have a newer schema (which may include new fields) than the server/receiver. Similar
+  to the "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
+
 ## Community
 
 For help and discussion around Protobuf, best practices, and more, join us

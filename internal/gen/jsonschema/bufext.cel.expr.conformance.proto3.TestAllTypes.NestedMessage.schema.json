@@ -1,0 +1,15 @@
+{
+  "$id": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "bb": {
+      "description": "The field name \"b\" fails to compile in proto1 because it conflicts with\n a local variable named \"b\" in one of the generated methods.\n This file needs to compile in proto1 to test backwards-compatibility.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    }
+  },
+  "title": "Nested Message",
+  "type": "object"
+}

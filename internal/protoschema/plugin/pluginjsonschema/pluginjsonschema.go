@@ -18,6 +18,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	"github.com/bufbuild/protoplugin"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/jsonschema"
@@ -36,15 +37,28 @@ func Handle(
 	if err != nil {
 		return err
 	}
+
+	// Parse the parameters from the request.
+	optionsWithJSONNames, err := parseOptions(request.Parameter())
+	if err != nil {
+		return err
+	}
+	optionsWithJSONNames = append(optionsWithJSONNames, jsonschema.WithJSONNames())
+	// Also create options with protobuf names.
+	options := optionsWithJSONNames[:len(optionsWithJSONNames)-1]
+
+	// Generate the JSON schema for each message descriptor.
 	seenIdentifiers := make(map[string]bool)
 	for _, fileDescriptor := range fileDescriptors {
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
-			protoNameSchema := jsonschema.Generate(messageDescriptor)
+			// Generate the proto name schema.
+			protoNameSchema := jsonschema.Generate(messageDescriptor, options...)
 			if err := writeFiles(responseWriter, messageDescriptor, protoNameSchema, seenIdentifiers); err != nil {
 				return err
 			}
-			jsonNameSchema := jsonschema.Generate(messageDescriptor, jsonschema.WithJSONNames())
+			// Generate the JSON name schema.
+			jsonNameSchema := jsonschema.Generate(messageDescriptor, optionsWithJSONNames...)
 			if err := writeFiles(responseWriter, messageDescriptor, jsonNameSchema, seenIdentifiers); err != nil {
 				return err
 			}
@@ -84,4 +98,35 @@ func writeFiles(
 		seenIdentifiers[identifier] = true
 	}
 	return nil
+}
+
+func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
+	var options []jsonschema.GeneratorOption
+	if param == "" {
+		return options, nil
+	}
+	// Params are in the form of "key1=value1,key2=value2"
+	params := strings.Split(param, ",")
+	for _, param := range params {
+		// Split the param into key and value.
+		pos := strings.Index(param, "=")
+		if pos == -1 {
+			return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
+		}
+		key := strings.TrimSpace(param[:pos])
+		value := strings.TrimSpace(param[pos+1:])
+		switch key {
+		case "additional_properties":
+			switch value {
+			case "true":
+				options = append(options, jsonschema.WithAdditionalProperties())
+			case "false":
+			default:
+				return nil, fmt.Errorf("invalid value %q for parameter %q, expected true or false", value, key)
+			}
+		default:
+			return nil, fmt.Errorf("unknown parameter %q", param)
+		}
+	}
+	return options, nil
 }

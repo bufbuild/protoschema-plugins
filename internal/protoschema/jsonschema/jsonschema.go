@@ -60,6 +60,13 @@ func WithJSONNames() GeneratorOption {
 	}
 }
 
+// WithAdditionalProperties sets the generator to allow additional properties on messages.
+func WithAdditionalProperties() GeneratorOption {
+	return func(p *jsonSchemaGenerator) {
+		p.additionalProperties = true
+	}
+}
+
 // Generate generates a JSON schema for the given message descriptor, with protobuf field names.
 func Generate(input protoreflect.MessageDescriptor, opts ...GeneratorOption) map[protoreflect.FullName]map[string]any {
 	generator := &jsonSchemaGenerator{
@@ -74,9 +81,10 @@ func Generate(input protoreflect.MessageDescriptor, opts ...GeneratorOption) map
 }
 
 type jsonSchemaGenerator struct {
-	schema       map[protoreflect.FullName]map[string]any
-	custom       map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]any)
-	useJSONNames bool
+	schema               map[protoreflect.FullName]map[string]any
+	custom               map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]any)
+	useJSONNames         bool
+	additionalProperties bool
 }
 
 func (p *jsonSchemaGenerator) getID(desc protoreflect.Descriptor) string {
@@ -158,7 +166,7 @@ func (p *jsonSchemaGenerator) generateDefault(desc protoreflect.MessageDescripto
 		}
 	}
 	schema["properties"] = properties
-	schema["additionalProperties"] = false
+	schema["additionalProperties"] = p.additionalProperties
 	if len(patternProperties) > 0 {
 		schema["patternProperties"] = patternProperties
 	}
