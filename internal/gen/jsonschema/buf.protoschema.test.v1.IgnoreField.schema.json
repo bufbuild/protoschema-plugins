@@ -4,9 +4,11 @@
   "additionalProperties": true,
   "patternProperties": {
     "^(boolField)$": {
+      "default": false,
       "type": "boolean"
     },
     "^(bytes_field|bytesField)$": {
+      "default": null,
       "pattern": "^[A-Za-z0-9+/]*={0,2}$",
       "type": "string"
     },
@@ -17,6 +19,7 @@
   },
   "properties": {
     "bool_field": {
+      "default": false,
       "type": "boolean"
     }
   },

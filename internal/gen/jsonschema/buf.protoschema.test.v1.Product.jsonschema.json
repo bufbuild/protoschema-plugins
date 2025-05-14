@@ -32,6 +32,7 @@
           "type": "string"
         }
       ],
+      "default": 0,
       "description": "The price of the product."
     },
     "productId": {
