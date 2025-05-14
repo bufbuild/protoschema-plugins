@@ -53,12 +53,18 @@ func Handle(
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
 			// Generate the proto name schema.
-			protoNameSchema := jsonschema.Generate(messageDescriptor, options...)
+			protoNameSchema, err := jsonschema.Generate(messageDescriptor, options...)
+			if err != nil {
+				return err
+			}
 			if err := writeFiles(responseWriter, messageDescriptor, protoNameSchema, seenIdentifiers); err != nil {
 				return err
 			}
 			// Generate the JSON name schema.
-			jsonNameSchema := jsonschema.Generate(messageDescriptor, optionsWithJSONNames...)
+			jsonNameSchema, err := jsonschema.Generate(messageDescriptor, optionsWithJSONNames...)
+			if err != nil {
+				return err
+			}
 			if err := writeFiles(responseWriter, messageDescriptor, jsonNameSchema, seenIdentifiers); err != nil {
 				return err
 			}

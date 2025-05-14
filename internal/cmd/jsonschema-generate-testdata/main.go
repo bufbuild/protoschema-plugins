@@ -52,11 +52,19 @@ func run() error {
 	}
 	for _, testDesc := range testDescs {
 		// Generate the JSON schema with proto names.
-		if err := writeJSONSchema(outputDir, jsonschema.Generate(testDesc)); err != nil {
+		schema, err := jsonschema.Generate(testDesc)
+		if err != nil {
+			return err
+		}
+		if err := writeJSONSchema(outputDir, schema); err != nil {
 			return err
 		}
 		// Generate the JSON schema with JSON names.
-		if err := writeJSONSchema(outputDir, jsonschema.Generate(testDesc, jsonschema.WithJSONNames())); err != nil {
+		schema, err = jsonschema.Generate(testDesc, jsonschema.WithJSONNames())
+		if err != nil {
+			return err
+		}
+		if err := writeJSONSchema(outputDir, schema); err != nil {
 			return err
 		}
 	}
