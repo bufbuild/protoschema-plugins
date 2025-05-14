@@ -111,18 +111,6 @@ Results in the following JSON Schema files:
   "title": "A product.",
   "description": "A product is a good or service that is offered for sale.",
   "type": "object",
-  "patternProperties": {
-    "^(productId)$": {
-      "description": "The unique identifier for the product.",
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
-    },
-    "^(productName)$": {
-      "description": "The name of the product.",
-      "type": "string"
-    }
-  },
   "properties": {
     "location": {
       "$ref": "buf.protoschema.test.v1.Product.Location.schema.json",
@@ -162,6 +150,18 @@ Results in the following JSON Schema files:
     }
   },
   "required": ["product_id", "product_name", "location"]
+  "patternProperties": {
+    "^(productId)$": {
+      "description": "The unique identifier for the product.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "^(productName)$": {
+      "description": "The name of the product.",
+      "type": "string"
+    }
+  },
 }
 ```
 
