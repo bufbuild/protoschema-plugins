@@ -8,8 +8,8 @@
     }
   },
   "required": [
-    "bool_field",
-    "bytes_field"
+    "boolField",
+    "bytesField"
   ],
   "title": "Ignore Field",
   "type": "object"

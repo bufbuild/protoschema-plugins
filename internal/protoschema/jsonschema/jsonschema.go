@@ -158,7 +158,11 @@ func (p *jsonSchemaGenerator) generateMessage(desc protoreflect.MessageDescripto
 		constraints := p.getFieldConstraints(field)
 		if (constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED) || // Required by validate rules.
 			(p.strict && p.hasImplicitDefault(field, field.IsList() || field.IsMap(), constraints)) { // Required by strict mode.
-			required = append(required, string(field.Name()))
+			if p.useJSONNames {
+				required = append(required, field.JSONName())
+			} else {
+				required = append(required, string(field.Name()))
+			}
 		}
 
 		// Generate the schema.

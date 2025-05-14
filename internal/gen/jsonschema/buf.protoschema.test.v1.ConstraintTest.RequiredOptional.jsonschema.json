@@ -11,8 +11,8 @@
     }
   },
   "required": [
-    "bool_value",
-    "string_value"
+    "boolValue",
+    "stringValue"
   ],
   "title": "Required Optional",
   "type": "object"

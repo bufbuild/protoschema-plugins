@@ -70,8 +70,8 @@
     }
   },
   "required": [
-    "product_id",
-    "product_name",
+    "productId",
+    "productName",
     "location"
   ],
   "title": "A product.",

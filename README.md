@@ -100,6 +100,8 @@ Results in the following JSON Schema files:
 - `*.schema.json` files are generated with underscore-case fields
 - `*.jsonschema.json` files are generated with camelCase
 
+For example, the above protobuf generates the following `*.schema.json` files:
+
 <details>
 <summary>Product.schema.json</summary>
 
@@ -208,6 +210,83 @@ Results in the following JSON Schema files:
       "default": 0
     }
   }
+}
+```
+
+</details>
+
+Or the following `*.jsonschema.json` files, when the `strict` option is set to `true`:
+
+<details>
+<summary>Product.jsonschema.json</summary>
+
+```json
+{
+  "$id": "Product.jsonschema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "title": "A product.",
+  "description": "A product is a good or service that is offered for sale.",
+  "type": "object",
+  "properties": {
+    "productId": {
+      "description": "The unique identifier for the product.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "productName": {
+      "description": "The name of the product.",
+      "type": "string"
+    },
+    "price": {
+      "description": "The price of the product.",
+      "maximum": 3.4028234663852886e38,
+      "minimum": 0,
+      "type": "number"
+    },
+    "tags": {
+      "description": "The tags associated with the product.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "location": {
+      "$ref": "Product.Location.jsonschema.json",
+      "description": "The location of the product."
+    }
+  },
+  "required": ["productId", "productName", "price", "location"]
+}
+```
+
+</details>
+
+<details>
+<summary>Product.Location.jsonschema.json</summary>
+
+```json
+{
+  "$id": "buf.protoschema.test.v1.Product.Location.jsonschema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "title": "Location",
+  "description": "A point on the earth's surface.",
+  "type": "object",
+  "properties": {
+    "lat": {
+      "maximum": 90,
+      "minimum": -90,
+      "type": "number"
+    },
+    "long": {
+      "maximum": 180,
+      "minimum": -180,
+      "type": "number"
+    }
+  },
+  "required": ["lat", "long"]
 }
 ```
 
