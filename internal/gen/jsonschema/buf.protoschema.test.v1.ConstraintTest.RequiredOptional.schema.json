@@ -2,14 +2,6 @@
   "$id": "buf.protoschema.test.v1.ConstraintTest.RequiredOptional.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
-  "patternProperties": {
-    "^(boolValue)$": {
-      "type": "boolean"
-    },
-    "^(stringValue)$": {
-      "type": "string"
-    }
-  },
   "properties": {
     "bool_value": {
       "type": "boolean"

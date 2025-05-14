@@ -2,11 +2,6 @@
   "$id": "buf.protoschema.test.v1.NestedReference.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
-  "patternProperties": {
-    "^(nested_message)$": {
-      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
-    }
-  },
   "properties": {
     "nestedMessage": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"

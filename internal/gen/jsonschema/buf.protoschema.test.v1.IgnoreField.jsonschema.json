@@ -2,27 +2,15 @@
   "$id": "buf.protoschema.test.v1.IgnoreField.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
-  "patternProperties": {
-    "^(bool_field)$": {
-      "default": false,
-      "type": "boolean"
-    },
-    "^(bytes_field|bytesField)$": {
-      "default": null,
-      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
-      "type": "string"
-    },
-    "^(nested_reference|nestedReference)$": {
-      "$ref": "buf.protoschema.test.v1.NestedReference.jsonschema.json",
-      "description": "jsonschema:hide"
-    }
-  },
   "properties": {
     "boolField": {
-      "default": false,
       "type": "boolean"
     }
   },
+  "required": [
+    "bool_field",
+    "bytes_field"
+  ],
   "title": "Ignore Field",
   "type": "object"
 }
