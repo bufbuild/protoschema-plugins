@@ -111,44 +111,6 @@ Results in the following JSON Schema files:
   "title": "A product.",
   "description": "A product is a good or service that is offered for sale.",
   "type": "object",
-  "properties": {
-    "product_id": {
-      "description": "The unique identifier for the product.",
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
-    },
-    "product_name": {
-      "description": "The name of the product.",
-      "type": "string"
-    },
-    "price": {
-      "anyOf": [
-        {
-          "maximum": 3.4028234663852886e38,
-          "minimum": -3.4028234663852886e38,
-          "type": "number"
-        },
-        {
-          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
-          "type": "string"
-        }
-      ],
-      "description": "The price of the product."
-    },
-    "tags": {
-      "description": "The tags associated with the product.",
-      "items": {
-        "type": "string"
-      },
-      "type": "array"
-    }
-    "location": {
-      "$ref": "Location.schema.json",
-      "description": "The location of the product."
-    },
-  },
-  "required": ["product_id", "product_name", "location"],
   "patternProperties": {
     "^(productId)$": {
       "description": "The unique identifier for the product.",
@@ -160,7 +122,46 @@ Results in the following JSON Schema files:
       "description": "The name of the product.",
       "type": "string"
     }
-  }
+  },
+  "properties": {
+    "location": {
+      "$ref": "buf.protoschema.test.v1.Product.Location.schema.json",
+      "description": "The location of the product."
+    },
+    "price": {
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e38,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "The price of the product."
+    },
+    "product_id": {
+      "description": "The unique identifier for the product.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "product_name": {
+      "description": "The name of the product.",
+      "type": "string"
+    },
+    "tags": {
+      "description": "The tags associated with the product.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": ["product_id", "product_name", "location"]
 }
 ```
 
@@ -189,7 +190,8 @@ Results in the following JSON Schema files:
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "long": {
       "anyOf": [
@@ -202,7 +204,8 @@ Results in the following JSON Schema files:
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     }
   }
 }

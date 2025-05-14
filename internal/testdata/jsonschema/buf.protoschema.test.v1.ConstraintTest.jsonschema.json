@@ -25,7 +25,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(const_enum)$": {
       "anyOf": [
@@ -58,7 +59,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(const_fixed64)$": {
       "anyOf": [
@@ -74,7 +76,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(const_float)$": {
       "anyOf": [
@@ -90,7 +93,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(const_int32)$": {
       "anyOf": [
@@ -287,7 +291,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(finite_float)$": {
       "anyOf": [
@@ -300,7 +305,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gt_double)$": {
       "anyOf": [
@@ -317,7 +323,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gt_fixed32)$": {
       "anyOf": [
@@ -330,7 +337,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gt_fixed64)$": {
       "anyOf": [
@@ -343,7 +351,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gt_float)$": {
       "anyOf": [
@@ -361,7 +370,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gt_int32)$": {
       "anyOf": [
@@ -482,7 +492,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gte_fixed32)$": {
       "anyOf": [
@@ -495,7 +506,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gte_fixed64)$": {
       "anyOf": [
@@ -508,7 +520,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gte_float)$": {
       "anyOf": [
@@ -526,7 +539,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(gte_int32)$": {
       "anyOf": [
@@ -674,7 +688,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(in_enum)$": {
       "anyOf": [
@@ -710,7 +725,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(in_fixed64)$": {
       "anyOf": [
@@ -727,7 +743,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(in_float)$": {
       "anyOf": [
@@ -744,7 +761,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(in_int32)$": {
       "anyOf": [
@@ -968,7 +986,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lt_fixed32)$": {
       "anyOf": [
@@ -981,7 +1000,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lt_fixed64)$": {
       "anyOf": [
@@ -994,7 +1014,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lt_float)$": {
       "anyOf": [
@@ -1012,7 +1033,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lt_gt_double)$": {
       "anyOf": [
@@ -1034,7 +1056,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lt_gt_float)$": {
       "anyOf": [
@@ -1056,7 +1079,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lt_gt_int32)$": {
       "anyOf": [
@@ -1249,7 +1273,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lte_fixed32)$": {
       "anyOf": [
@@ -1262,7 +1287,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lte_fixed64)$": {
       "anyOf": [
@@ -1275,7 +1301,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lte_float)$": {
       "anyOf": [
@@ -1293,7 +1320,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(lte_int32)$": {
       "anyOf": [
@@ -1511,7 +1539,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "constEnum": {
       "anyOf": [
@@ -1544,7 +1573,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "constFixed64": {
       "anyOf": [
@@ -1560,7 +1590,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "constFloat": {
       "anyOf": [
@@ -1576,7 +1607,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "constInt32": {
       "anyOf": [
@@ -1773,7 +1805,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "finiteFloat": {
       "anyOf": [
@@ -1786,7 +1819,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gtDouble": {
       "anyOf": [
@@ -1803,7 +1837,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gtFixed32": {
       "anyOf": [
@@ -1816,7 +1851,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gtFixed64": {
       "anyOf": [
@@ -1829,7 +1865,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gtFloat": {
       "anyOf": [
@@ -1847,7 +1884,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gtInt32": {
       "anyOf": [
@@ -1968,7 +2006,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gteFixed32": {
       "anyOf": [
@@ -1981,7 +2020,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gteFixed64": {
       "anyOf": [
@@ -1994,7 +2034,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gteFloat": {
       "anyOf": [
@@ -2012,7 +2053,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "gteInt32": {
       "anyOf": [
@@ -2160,7 +2202,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "inEnum": {
       "anyOf": [
@@ -2196,7 +2239,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "inFixed64": {
       "anyOf": [
@@ -2213,7 +2257,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "inFloat": {
       "anyOf": [
@@ -2230,7 +2275,8 @@
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "inInt32": {
       "anyOf": [
@@ -2454,7 +2500,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "ltFixed32": {
       "anyOf": [
@@ -2467,7 +2514,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "ltFixed64": {
       "anyOf": [
@@ -2480,7 +2528,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "ltFloat": {
       "anyOf": [
@@ -2498,7 +2547,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "ltGtDouble": {
       "anyOf": [
@@ -2520,7 +2570,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "ltGtFloat": {
       "anyOf": [
@@ -2542,7 +2593,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "ltGtInt32": {
       "anyOf": [
@@ -2735,7 +2787,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "lteFixed32": {
       "anyOf": [
@@ -2748,7 +2801,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "lteFixed64": {
       "anyOf": [
@@ -2761,7 +2815,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "lteFloat": {
       "anyOf": [
@@ -2779,7 +2834,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "lteInt32": {
       "anyOf": [

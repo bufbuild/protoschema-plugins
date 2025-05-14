@@ -105,11 +105,11 @@ func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) {
 	if custom, ok := p.custom[desc.FullName()]; ok { // Custom generator.
 		custom(desc, nil, schema)
 	} else { // Default generator.
-		p.generateDefault(desc, schema)
+		p.generateMessage(desc, schema)
 	}
 }
 
-func (p *jsonSchemaGenerator) generateDefault(desc protoreflect.MessageDescriptor, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateMessage(desc protoreflect.MessageDescriptor, schema map[string]any) {
 	schema["type"] = jsObject
 	p.setDescription(desc, schema)
 	var required []string
@@ -198,11 +198,11 @@ func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, schem
 func (p *jsonSchemaGenerator) generateField(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints) map[string]any {
 	var schema = make(map[string]any)
 	p.setDescription(field, schema)
-	p.generateValidation(field, constraints, schema)
+	p.generateFieldValidation(field, false, constraints, schema)
 	return schema
 }
 
-func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateFieldValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	if field.IsList() {
 		schema["type"] = jsArray
 		items := make(map[string]any)
@@ -212,34 +212,34 @@ func (p *jsonSchemaGenerator) generateValidation(field protoreflect.FieldDescrip
 	}
 	switch field.Kind() {
 	case protoreflect.BoolKind:
-		p.generateBoolValidation(field, constraints, schema)
+		p.generateBoolValidation(field, hasImplicitPresence, constraints, schema)
 	case protoreflect.EnumKind:
-		p.generateEnumValidation(field, constraints, schema)
+		p.generateEnumValidation(field, hasImplicitPresence, constraints, schema)
 	case protoreflect.Int32Kind, protoreflect.Sint32Kind, protoreflect.Sfixed32Kind:
-		p.generateInt32Validation(field, constraints, schema)
+		p.generateInt32Validation(field, hasImplicitPresence, constraints, schema)
 	case protoreflect.Int64Kind, protoreflect.Sint64Kind, protoreflect.Sfixed64Kind:
-		p.generateInt64Validation(field, constraints, schema)
+		p.generateInt64Validation(field, hasImplicitPresence, constraints, schema)
 	case protoreflect.Uint32Kind, protoreflect.Fixed32Kind:
-		p.generateUint32Validation(field, constraints, schema)
+		p.generateUint32Validation(field, hasImplicitPresence, constraints, schema)
 	case protoreflect.Uint64Kind, protoreflect.Fixed64Kind:
-		p.generateUint64Validation(field, constraints, schema)
+		p.generateUint64Validation(field, hasImplicitPresence, constraints, schema)
 	case protoreflect.FloatKind:
-		p.generateFloatValidation(field, constraints, schema, 32)
+		p.generateFloatValidation(field, hasImplicitPresence, constraints, schema, 32)
 	case protoreflect.DoubleKind:
-		p.generateFloatValidation(field, constraints, schema, 64)
+		p.generateFloatValidation(field, hasImplicitPresence, constraints, schema, 64)
 	case protoreflect.StringKind:
-		p.generateStringValidation(field, constraints, schema)
+		p.generateStringValidation(field, hasImplicitPresence, constraints, schema)
 	case protoreflect.BytesKind:
-		p.generateBytesValidation(field, constraints, schema)
+		p.generateBytesValidation(field, hasImplicitPresence, constraints, schema)
 	case protoreflect.MessageKind, protoreflect.GroupKind:
 		if field.IsMap() {
 			schema["type"] = jsObject
 			propertyNames := make(map[string]any)
 			constraints := p.getFieldConstraints(field)
-			p.generateValidation(field.MapKey(), constraints.GetMap().GetKeys(), propertyNames)
+			p.generateFieldValidation(field.MapKey(), true, constraints.GetMap().GetKeys(), propertyNames)
 			schema["propertyNames"] = propertyNames
 			properties := make(map[string]any)
-			p.generateValidation(field.MapValue(), constraints.GetMap().GetValues(), properties)
+			p.generateFieldValidation(field.MapValue(), true, constraints.GetMap().GetValues(), properties)
 			schema["additionalProperties"] = properties
 		} else {
 			p.generateMessageValidation(field, schema)
@@ -255,13 +255,21 @@ func (p *jsonSchemaGenerator) getFieldConstraints(field protoreflect.FieldDescri
 	return constraints
 }
 
-func (p *jsonSchemaGenerator) generateBoolValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
-	schema["type"] = jsBoolean
-	if !field.HasPresence() && constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
-		// False is not allowed.
-		schema["enum"] = []bool{true}
-	} else if constraints.GetBool() != nil && constraints.GetBool().Const != nil {
-		schema["enum"] = []bool{constraints.GetBool().GetConst()}
+func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescriptor, hasPresence bool, constraints *validate.FieldConstraints, schema map[string]any) bool {
+	if field.HasPresence() || hasPresence || field.IsList() {
+		return false // Default values is absence.
+	}
+	if field.Cardinality() == protoreflect.Required || (constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED) {
+		return false // A value is required.
+	}
+	// The value is always present so has an implicit default.
+	return true
+}
+
+func (p *jsonSchemaGenerator) generateDefault(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
+	if p.hasImplicitDefault(field, hasImplicitPresence, constraints, schema) {
+		// Explicitly define the implicit protobuf default value in the JSON schema.
+		schema["default"] = field.Default().Interface()
 	}
 }
 
@@ -279,12 +287,25 @@ func generateTitle(name protoreflect.Name) string {
 	return result.String()
 }
 
+func (p *jsonSchemaGenerator) generateBoolValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
+	schema["type"] = jsBoolean
+	if !field.HasPresence() && constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
+		// False is not allowed.
+		schema["enum"] = []bool{true}
+		return
+	}
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
+	if constraints.GetBool() != nil && constraints.GetBool().Const != nil {
+		schema["enum"] = []bool{constraints.GetBool().GetConst()}
+	}
+}
+
 type enumFieldSelector struct {
 	selected bool
 	index    int
 }
 
-func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	enumFieldSelectors := make(map[int32]enumFieldSelector, field.Enum().Values().Len())
 	for i := range field.Enum().Values().Len() {
 		val := field.Enum().Values().Get(i)
@@ -355,6 +376,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 	validStrings := map[string]any{"type": jsString, "enum": stringValues, "title": generateTitle(field.Enum().Name())}
 
 	schema["anyOf"] = []map[string]any{validStrings, validIntegers}
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
 
 type baseRule[T comparable] interface {
@@ -461,7 +483,7 @@ func generateIntValidation[T int32 | int64](
 	}
 }
 
-func (p *jsonSchemaGenerator) generateInt32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateInt32Validation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
 		schema["type"] = jsInteger
@@ -474,9 +496,10 @@ func (p *jsonSchemaGenerator) generateInt32Validation(_ protoreflect.FieldDescri
 	case constraints.GetSfixed32() != nil:
 		generateIntValidation(constraints.GetSfixed32(), 32, schema)
 	}
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
 
-func (p *jsonSchemaGenerator) generateInt64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateInt64Validation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
 		schema["anyOf"] = []map[string]any{
@@ -490,6 +513,7 @@ func (p *jsonSchemaGenerator) generateInt64Validation(_ protoreflect.FieldDescri
 	case constraints.GetSfixed64() != nil:
 		generateIntValidation(constraints.GetSfixed64(), 64, schema)
 	}
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
 
 func generateUintValidation[T uint32 | uint64](
@@ -565,7 +589,7 @@ func generateUintValidation[T uint32 | uint64](
 		maps.Copy(schema, numberSchema)
 	}
 }
-func (p *jsonSchemaGenerator) generateUint32Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateUint32Validation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
 		schema["type"] = jsInteger
@@ -576,9 +600,10 @@ func (p *jsonSchemaGenerator) generateUint32Validation(_ protoreflect.FieldDescr
 	case constraints.GetFixed32() != nil:
 		generateUintValidation(constraints.GetFixed32(), 32, schema)
 	}
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
 
-func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateUint64Validation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
 		schema["anyOf"] = []map[string]any{
@@ -590,10 +615,11 @@ func (p *jsonSchemaGenerator) generateUint64Validation(_ protoreflect.FieldDescr
 	case constraints.GetFixed64() != nil:
 		generateUintValidation(constraints.GetFixed64(), 64, schema)
 	}
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
 
 // nolint: gocyclo
-func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any, bits int) {
+func (p *jsonSchemaGenerator) generateFloatValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any, bits int) {
 	includePosInf := true
 	includeNegInf := true
 	includeNaN := true
@@ -831,6 +857,7 @@ func (p *jsonSchemaGenerator) generateFloatValidation(_ protoreflect.FieldDescri
 	}
 
 	schema["anyOf"] = anyOf
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
 
 const (
@@ -934,8 +961,9 @@ func generateWellKnownPattern(constraints *validate.FieldConstraints, schema map
 	}
 }
 
-func (p *jsonSchemaGenerator) generateStringValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateStringValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	schema["type"] = jsString
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 	if constraints.GetString() == nil {
 		return
 	}
@@ -1003,10 +1031,11 @@ func base64EncodedLength(inputSize uint64) (uint64, uint64) {
 	return characters, padding
 }
 
-func (p *jsonSchemaGenerator) generateBytesValidation(_ protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+func (p *jsonSchemaGenerator) generateBytesValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	schema["type"] = jsString
 	// Set a regex to match base64 encoded strings.
 	schema["pattern"] = "^[A-Za-z0-9+/]*={0,2}$"
+	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 	if constraints.GetBytes() == nil {
 		return
 	}
@@ -1042,7 +1071,7 @@ func (p *jsonSchemaGenerator) generateWrapperValidation(
 ) {
 	field := desc.Fields().Get(0)
 	p.setDescription(field, schema)
-	p.generateValidation(field, constraints, schema)
+	p.generateFieldValidation(field, true, constraints, schema)
 }
 
 func (p *jsonSchemaGenerator) makeWktGenerators() map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]any) {
