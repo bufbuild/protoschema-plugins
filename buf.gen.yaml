@@ -14,4 +14,4 @@ plugins:
   - local: ["go", "run", "./cmd/protoc-gen-jsonschema"]
     out: internal/gen/jsonschema
     opt:
-     - additional_properties
+     - additional_properties=true

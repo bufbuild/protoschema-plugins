@@ -105,12 +105,25 @@ func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
 	if param == "" {
 		return options, nil
 	}
-	// Params are in the form of "param1,param2,..."
+	// Params are in the form of "key1=value1,key2=value2"
 	params := strings.Split(param, ",")
 	for _, param := range params {
-		switch strings.TrimSpace(param) {
+		// Split the param into key and value.
+		pos := strings.Index(param, "=")
+		if pos == -1 {
+			return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
+		}
+		key := strings.TrimSpace(param[:pos])
+		value := strings.TrimSpace(param[pos+1:])
+		switch key {
 		case "additional_properties":
-			options = append(options, jsonschema.WithAdditionalProperties())
+			switch value {
+			case "true":
+				options = append(options, jsonschema.WithAdditionalProperties())
+			case "false":
+			default:
+				return nil, fmt.Errorf("invalid value %q for parameter %q, expected true or false", value, key)
+			}
 		default:
 			return nil, fmt.Errorf("unknown parameter %q", param)
 		}

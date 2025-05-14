@@ -49,6 +49,7 @@ golden: generate
 	rm -rf internal/testdata/pubsub
 	rm -rf internal/testdata/jsonschema
 	buf build ./internal/proto -o -#format=json > ./internal/testdata/codegenrequest/input.json
+	buf generate
 	go run internal/cmd/pubsub-generate-testdata/main.go internal/testdata/pubsub
 	go run internal/cmd/jsonschema-generate-testdata/main.go internal/testdata/jsonschema
 

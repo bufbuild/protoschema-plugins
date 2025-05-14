@@ -45,12 +45,20 @@
       ]
     },
     "^(constFixed32)$": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 4294967296,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(constFixed64)$": {
       "anyOf": [
@@ -85,12 +93,20 @@
       ]
     },
     "^(constInt32)$": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(constInt64)$": {
       "anyOf": [
@@ -109,12 +125,20 @@
       ]
     },
     "^(constSfixed32)$": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(constSfixed64)$": {
       "anyOf": [
@@ -133,12 +157,20 @@
       ]
     },
     "^(constSint32)$": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(constSint64)$": {
       "anyOf": [
@@ -163,12 +195,20 @@
       "type": "string"
     },
     "^(constUint32)$": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 4294967296,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(constUint64)$": {
       "anyOf": [
@@ -280,9 +320,17 @@
       ]
     },
     "^(gtFixed32)$": {
-      "exclusiveMaximum": 4294967296,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gtFixed64)$": {
       "anyOf": [
@@ -316,9 +364,17 @@
       ]
     },
     "^(gtInt32)$": {
-      "exclusiveMaximum": 2147483648,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gtInt64)$": {
       "anyOf": [
@@ -334,9 +390,17 @@
       ]
     },
     "^(gtSfixed32)$": {
-      "exclusiveMaximum": 2147483648,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gtSfixed64)$": {
       "anyOf": [
@@ -352,9 +416,17 @@
       ]
     },
     "^(gtSint32)$": {
-      "exclusiveMaximum": 2147483648,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gtSint64)$": {
       "anyOf": [
@@ -370,9 +442,17 @@
       ]
     },
     "^(gtUint32)$": {
-      "exclusiveMaximum": 4294967296,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gtUint64)$": {
       "anyOf": [
@@ -405,9 +485,17 @@
       ]
     },
     "^(gteFixed32)$": {
-      "exclusiveMaximum": 4294967296,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gteFixed64)$": {
       "anyOf": [
@@ -441,9 +529,17 @@
       ]
     },
     "^(gteInt32)$": {
-      "exclusiveMaximum": 2147483648,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gteInt64)$": {
       "anyOf": [
@@ -459,9 +555,17 @@
       ]
     },
     "^(gteSfixed32)$": {
-      "exclusiveMaximum": 2147483648,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gteSfixed64)$": {
       "anyOf": [
@@ -477,9 +581,17 @@
       ]
     },
     "^(gteSint32)$": {
-      "exclusiveMaximum": 2147483648,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gteSint64)$": {
       "anyOf": [
@@ -495,9 +607,17 @@
       ]
     },
     "^(gteUint32)$": {
-      "exclusiveMaximum": 4294967296,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(gteUint64)$": {
       "anyOf": [
@@ -576,13 +696,21 @@
       ]
     },
     "^(inFixed32)$": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 4294967296,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(inFixed64)$": {
       "anyOf": [
@@ -619,13 +747,21 @@
       ]
     },
     "^(inInt32)$": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(inInt64)$": {
       "anyOf": [
@@ -662,13 +798,21 @@
       "type": "object"
     },
     "^(inSfixed32)$": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(inSfixed64)$": {
       "anyOf": [
@@ -688,13 +832,21 @@
       ]
     },
     "^(inSint32)$": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(inSint64)$": {
       "anyOf": [
@@ -721,13 +873,21 @@
       "type": "string"
     },
     "^(inUint32)$": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 4294967296,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(inUint64)$": {
       "anyOf": [
@@ -811,9 +971,17 @@
       ]
     },
     "^(ltFixed32)$": {
-      "exclusiveMaximum": 5,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(ltFixed64)$": {
       "anyOf": [
@@ -901,6 +1069,10 @@
           "exclusiveMaximum": 2147483648,
           "exclusiveMinimum": 5,
           "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
         }
       ]
     },
@@ -933,6 +1105,10 @@
           "exclusiveMaximum": 4294967296,
           "exclusiveMinimum": 5,
           "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
         }
       ]
     },
@@ -944,20 +1120,28 @@
           "type": "integer"
         },
         {
-          "pattern": "^[0-9]+$",
-          "type": "string"
-        },
-        {
           "exclusiveMaximum": 18446744073709552000,
           "exclusiveMinimum": 5,
           "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
         }
       ]
     },
     "^(ltInt32)$": {
-      "exclusiveMaximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(ltInt64)$": {
       "anyOf": [
@@ -973,9 +1157,17 @@
       ]
     },
     "^(ltSfixed32)$": {
-      "exclusiveMaximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(ltSfixed64)$": {
       "anyOf": [
@@ -991,9 +1183,17 @@
       ]
     },
     "^(ltSint32)$": {
-      "exclusiveMaximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(ltSint64)$": {
       "anyOf": [
@@ -1009,9 +1209,17 @@
       ]
     },
     "^(ltUint32)$": {
-      "exclusiveMaximum": 5,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(ltUint64)$": {
       "anyOf": [
@@ -1044,9 +1252,17 @@
       ]
     },
     "^(lteFixed32)$": {
-      "maximum": 5,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(lteFixed64)$": {
       "anyOf": [
@@ -1080,9 +1296,17 @@
       ]
     },
     "^(lteInt32)$": {
-      "maximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(lteInt64)$": {
       "anyOf": [
@@ -1098,9 +1322,17 @@
       ]
     },
     "^(lteSfixed32)$": {
-      "maximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(lteSfixed64)$": {
       "anyOf": [
@@ -1116,9 +1348,17 @@
       ]
     },
     "^(lteSint32)$": {
-      "maximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(lteSint64)$": {
       "anyOf": [
@@ -1134,9 +1374,17 @@
       ]
     },
     "^(lteUint32)$": {
-      "maximum": 5,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "^(lteUint64)$": {
       "anyOf": [
@@ -1283,12 +1531,20 @@
       ]
     },
     "const_fixed32": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 4294967296,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "const_fixed64": {
       "anyOf": [
@@ -1323,12 +1579,20 @@
       ]
     },
     "const_int32": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "const_int64": {
       "anyOf": [
@@ -1347,12 +1611,20 @@
       ]
     },
     "const_sfixed32": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "const_sfixed64": {
       "anyOf": [
@@ -1371,12 +1643,20 @@
       ]
     },
     "const_sint32": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "const_sint64": {
       "anyOf": [
@@ -1401,12 +1681,20 @@
       "type": "string"
     },
     "const_uint32": {
-      "enum": [
-        5
-      ],
-      "exclusiveMaximum": 4294967296,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "const_uint64": {
       "anyOf": [
@@ -1518,9 +1806,17 @@
       ]
     },
     "gt_fixed32": {
-      "exclusiveMaximum": 4294967296,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gt_fixed64": {
       "anyOf": [
@@ -1554,9 +1850,17 @@
       ]
     },
     "gt_int32": {
-      "exclusiveMaximum": 2147483648,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gt_int64": {
       "anyOf": [
@@ -1572,9 +1876,17 @@
       ]
     },
     "gt_sfixed32": {
-      "exclusiveMaximum": 2147483648,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gt_sfixed64": {
       "anyOf": [
@@ -1590,9 +1902,17 @@
       ]
     },
     "gt_sint32": {
-      "exclusiveMaximum": 2147483648,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gt_sint64": {
       "anyOf": [
@@ -1608,9 +1928,17 @@
       ]
     },
     "gt_uint32": {
-      "exclusiveMaximum": 4294967296,
-      "exclusiveMinimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gt_uint64": {
       "anyOf": [
@@ -1643,9 +1971,17 @@
       ]
     },
     "gte_fixed32": {
-      "exclusiveMaximum": 4294967296,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gte_fixed64": {
       "anyOf": [
@@ -1679,9 +2015,17 @@
       ]
     },
     "gte_int32": {
-      "exclusiveMaximum": 2147483648,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gte_int64": {
       "anyOf": [
@@ -1697,9 +2041,17 @@
       ]
     },
     "gte_sfixed32": {
-      "exclusiveMaximum": 2147483648,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gte_sfixed64": {
       "anyOf": [
@@ -1715,9 +2067,17 @@
       ]
     },
     "gte_sint32": {
-      "exclusiveMaximum": 2147483648,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gte_sint64": {
       "anyOf": [
@@ -1733,9 +2093,17 @@
       ]
     },
     "gte_uint32": {
-      "exclusiveMaximum": 4294967296,
-      "minimum": 5,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "minimum": 5,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "gte_uint64": {
       "anyOf": [
@@ -1814,13 +2182,21 @@
       ]
     },
     "in_fixed32": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 4294967296,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "in_fixed64": {
       "anyOf": [
@@ -1857,13 +2233,21 @@
       ]
     },
     "in_int32": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "in_int64": {
       "anyOf": [
@@ -1900,13 +2284,21 @@
       "type": "object"
     },
     "in_sfixed32": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "in_sfixed64": {
       "anyOf": [
@@ -1926,13 +2318,21 @@
       ]
     },
     "in_sint32": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 2147483648,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "in_sint64": {
       "anyOf": [
@@ -1959,13 +2359,21 @@
       "type": "string"
     },
     "in_uint32": {
-      "enum": [
-        1,
-        2
-      ],
-      "exclusiveMaximum": 4294967296,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "enum": [
+            1,
+            2
+          ],
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "in_uint64": {
       "anyOf": [
@@ -2049,9 +2457,17 @@
       ]
     },
     "lt_fixed32": {
-      "exclusiveMaximum": 5,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lt_fixed64": {
       "anyOf": [
@@ -2139,6 +2555,10 @@
           "exclusiveMaximum": 2147483648,
           "exclusiveMinimum": 5,
           "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
         }
       ]
     },
@@ -2171,6 +2591,10 @@
           "exclusiveMaximum": 4294967296,
           "exclusiveMinimum": 5,
           "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
         }
       ]
     },
@@ -2182,20 +2606,28 @@
           "type": "integer"
         },
         {
-          "pattern": "^[0-9]+$",
-          "type": "string"
-        },
-        {
           "exclusiveMaximum": 18446744073709552000,
           "exclusiveMinimum": 5,
           "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
         }
       ]
     },
     "lt_int32": {
-      "exclusiveMaximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lt_int64": {
       "anyOf": [
@@ -2211,9 +2643,17 @@
       ]
     },
     "lt_sfixed32": {
-      "exclusiveMaximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lt_sfixed64": {
       "anyOf": [
@@ -2229,9 +2669,17 @@
       ]
     },
     "lt_sint32": {
-      "exclusiveMaximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lt_sint64": {
       "anyOf": [
@@ -2247,9 +2695,17 @@
       ]
     },
     "lt_uint32": {
-      "exclusiveMaximum": 5,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lt_uint64": {
       "anyOf": [
@@ -2282,9 +2738,17 @@
       ]
     },
     "lte_fixed32": {
-      "maximum": 5,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lte_fixed64": {
       "anyOf": [
@@ -2318,9 +2782,17 @@
       ]
     },
     "lte_int32": {
-      "maximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lte_int64": {
       "anyOf": [
@@ -2336,9 +2808,17 @@
       ]
     },
     "lte_sfixed32": {
-      "maximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lte_sfixed64": {
       "anyOf": [
@@ -2354,9 +2834,17 @@
       ]
     },
     "lte_sint32": {
-      "maximum": 5,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lte_sint64": {
       "anyOf": [
@@ -2372,9 +2860,17 @@
       ]
     },
     "lte_uint32": {
-      "maximum": 5,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ]
     },
     "lte_uint64": {
       "anyOf": [
