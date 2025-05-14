@@ -145,7 +145,7 @@ Results in the following JSON Schema files:
       "type": "array"
     },
     "location": {
-      "$ref": "buf.protoschema.test.v1.Product.Location.schema.json",
+      "$ref": "Product.Location.schema.json",
       "description": "The location of the product."
     }
   },
