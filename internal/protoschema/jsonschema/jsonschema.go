@@ -255,7 +255,7 @@ func (p *jsonSchemaGenerator) getFieldConstraints(field protoreflect.FieldDescri
 	return constraints
 }
 
-func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescriptor, hasPresence bool, constraints *validate.FieldConstraints, schema map[string]any) bool {
+func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescriptor, hasPresence bool, constraints *validate.FieldConstraints) bool {
 	if field.HasPresence() || hasPresence || field.IsList() {
 		return false // Default values is absence.
 	}
@@ -267,7 +267,7 @@ func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescrip
 }
 
 func (p *jsonSchemaGenerator) generateDefault(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
-	if p.hasImplicitDefault(field, hasImplicitPresence, constraints, schema) {
+	if p.hasImplicitDefault(field, hasImplicitPresence, constraints) {
 		// Explicitly define the implicit protobuf default value in the JSON schema.
 		schema["default"] = field.Default().Interface()
 	}
