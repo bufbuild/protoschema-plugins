@@ -14,9 +14,6 @@
         "NaN"
       ],
       "type": "string"
-    },
-    {
-      "type": "string"
     }
   ],
   "description": "The float value.",

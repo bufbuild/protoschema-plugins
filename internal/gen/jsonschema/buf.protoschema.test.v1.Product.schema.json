@@ -9,18 +9,10 @@
       "description": "The location of the product."
     },
     "price": {
-      "anyOf": [
-        {
-          "maximum": 3.4028234663852886e+38,
-          "minimum": 0,
-          "type": "number"
-        },
-        {
-          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
-          "type": "string"
-        }
-      ],
-      "description": "The price of the product."
+      "description": "The price of the product.",
+      "maximum": 3.4028234663852886e+38,
+      "minimum": 0,
+      "type": "number"
     },
     "product_id": {
       "description": "The unique identifier for the product.",

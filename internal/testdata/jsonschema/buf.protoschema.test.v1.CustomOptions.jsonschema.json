@@ -7,9 +7,17 @@
     "^(int32_field)$": {
       "description": "This field has a title!",
       "items": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "title": "A field with a title.",
       "type": "array"
@@ -22,9 +30,17 @@
     "int32Field": {
       "description": "This field has a title!",
       "items": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "title": "A field with a title.",
       "type": "array"

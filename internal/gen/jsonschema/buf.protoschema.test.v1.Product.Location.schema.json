@@ -5,30 +5,14 @@
   "description": "A point on the earth's surface.",
   "properties": {
     "lat": {
-      "anyOf": [
-        {
-          "maximum": 90,
-          "minimum": -90,
-          "type": "number"
-        },
-        {
-          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
-          "type": "string"
-        }
-      ]
+      "maximum": 90,
+      "minimum": -90,
+      "type": "number"
     },
     "long": {
-      "anyOf": [
-        {
-          "maximum": 180,
-          "minimum": -180,
-          "type": "number"
-        },
-        {
-          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
-          "type": "string"
-        }
-      ]
+      "maximum": 180,
+      "minimum": -180,
+      "type": "number"
     }
   },
   "required": [

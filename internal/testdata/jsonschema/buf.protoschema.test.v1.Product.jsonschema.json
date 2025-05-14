@@ -5,10 +5,18 @@
   "description": "A product is a good or service that is offered for sale.",
   "patternProperties": {
     "^(product_id)$": {
-      "description": "The unique identifier for the product.",
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "The unique identifier for the product."
     },
     "^(product_name)$": {
       "description": "The name of the product.",
@@ -36,10 +44,18 @@
       "description": "The price of the product."
     },
     "productId": {
-      "description": "The unique identifier for the product.",
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "The unique identifier for the product."
     },
     "productName": {
       "description": "The name of the product.",

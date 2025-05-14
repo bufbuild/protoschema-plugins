@@ -12,9 +12,6 @@
         "NaN"
       ],
       "type": "string"
-    },
-    {
-      "type": "string"
     }
   ],
   "description": "The double value.",
