@@ -126,7 +126,7 @@ Results in the following JSON Schema files:
       "anyOf": [
         {
           "maximum": 3.4028234663852886e38,
-          "minimum": -3.4028234663852886e38,
+          "minimum": 0,
           "type": "number"
         },
         {
@@ -134,6 +134,7 @@ Results in the following JSON Schema files:
           "type": "string"
         }
       ],
+      "default": 0,
       "description": "The price of the product."
     },
     "tags": {
@@ -142,11 +143,11 @@ Results in the following JSON Schema files:
         "type": "string"
       },
       "type": "array"
-    }
-    "location": {
-      "$ref": "Location.schema.json",
-      "description": "The location of the product."
     },
+    "location": {
+      "$ref": "Product.Location.schema.json",
+      "description": "The location of the product."
+    }
   },
   "required": ["product_id", "product_name", "location"],
   "patternProperties": {
@@ -189,7 +190,8 @@ Results in the following JSON Schema files:
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "long": {
       "anyOf": [
@@ -202,7 +204,8 @@ Results in the following JSON Schema files:
           "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     }
   }
 }

@@ -2657,6 +2657,7 @@
           "type": "integer"
         }
       ],
+      "default": 0,
       "title": "Null Value"
     },
     "^(optional_null_value)$": {
@@ -3020,12 +3021,14 @@
       "description": "Wellknown."
     },
     "^(single_bool)$": {
+      "default": false,
       "type": "boolean"
     },
     "^(single_bool_wrapper)$": {
       "$ref": "google.protobuf.BoolValue.jsonschema.json"
     },
     "^(single_bytes)$": {
+      "default": null,
       "pattern": "^[A-Za-z0-9+/]*={0,2}$",
       "type": "string"
     },
@@ -3048,7 +3051,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(single_double_wrapper)$": {
       "$ref": "google.protobuf.DoubleValue.jsonschema.json"
@@ -3057,6 +3061,7 @@
       "$ref": "google.protobuf.Duration.jsonschema.json"
     },
     "^(single_fixed32)$": {
+      "default": 0,
       "maximum": 4294967295,
       "minimum": 0,
       "type": "integer"
@@ -3072,7 +3077,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(single_float)$": {
       "anyOf": [
@@ -3092,12 +3098,14 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(single_float_wrapper)$": {
       "$ref": "google.protobuf.FloatValue.jsonschema.json"
     },
     "^(single_int32)$": {
+      "default": 0,
       "description": "Singular",
       "maximum": 2147483647,
       "minimum": -2147483648,
@@ -3117,7 +3125,8 @@
           "pattern": "^-?[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(single_int64_wrapper)$": {
       "$ref": "google.protobuf.Int64Value.jsonschema.json"
@@ -3144,6 +3153,7 @@
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
     },
     "^(single_sfixed32)$": {
+      "default": 0,
       "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
@@ -3159,9 +3169,11 @@
           "pattern": "^-?[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(single_sint32)$": {
+      "default": 0,
       "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
@@ -3177,9 +3189,11 @@
           "pattern": "^-?[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(single_string)$": {
+      "default": "",
       "type": "string"
     },
     "^(single_string_wrapper)$": {
@@ -3192,6 +3206,7 @@
       "$ref": "google.protobuf.Timestamp.jsonschema.json"
     },
     "^(single_uint32)$": {
+      "default": 0,
       "maximum": 4294967295,
       "minimum": 0,
       "type": "integer"
@@ -3210,7 +3225,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "^(single_uint64_wrapper)$": {
       "$ref": "google.protobuf.UInt64Value.jsonschema.json"
@@ -3234,6 +3250,7 @@
           "type": "integer"
         }
       ],
+      "default": 0,
       "title": "Nested Enum"
     },
     "^(standalone_message)$": {
@@ -5894,6 +5911,7 @@
           "type": "integer"
         }
       ],
+      "default": 0,
       "title": "Null Value"
     },
     "optionalNullValue": {
@@ -6257,12 +6275,14 @@
       "description": "Wellknown."
     },
     "singleBool": {
+      "default": false,
       "type": "boolean"
     },
     "singleBoolWrapper": {
       "$ref": "google.protobuf.BoolValue.jsonschema.json"
     },
     "singleBytes": {
+      "default": null,
       "pattern": "^[A-Za-z0-9+/]*={0,2}$",
       "type": "string"
     },
@@ -6285,7 +6305,8 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "singleDoubleWrapper": {
       "$ref": "google.protobuf.DoubleValue.jsonschema.json"
@@ -6294,6 +6315,7 @@
       "$ref": "google.protobuf.Duration.jsonschema.json"
     },
     "singleFixed32": {
+      "default": 0,
       "maximum": 4294967295,
       "minimum": 0,
       "type": "integer"
@@ -6309,7 +6331,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "singleFloat": {
       "anyOf": [
@@ -6329,12 +6352,14 @@
         {
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "singleFloatWrapper": {
       "$ref": "google.protobuf.FloatValue.jsonschema.json"
     },
     "singleInt32": {
+      "default": 0,
       "description": "Singular",
       "maximum": 2147483647,
       "minimum": -2147483648,
@@ -6354,7 +6379,8 @@
           "pattern": "^-?[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "singleInt64Wrapper": {
       "$ref": "google.protobuf.Int64Value.jsonschema.json"
@@ -6381,6 +6407,7 @@
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
     },
     "singleSfixed32": {
+      "default": 0,
       "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
@@ -6396,9 +6423,11 @@
           "pattern": "^-?[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "singleSint32": {
+      "default": 0,
       "maximum": 2147483647,
       "minimum": -2147483648,
       "type": "integer"
@@ -6414,9 +6443,11 @@
           "pattern": "^-?[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "singleString": {
+      "default": "",
       "type": "string"
     },
     "singleStringWrapper": {
@@ -6429,6 +6460,7 @@
       "$ref": "google.protobuf.Timestamp.jsonschema.json"
     },
     "singleUint32": {
+      "default": 0,
       "maximum": 4294967295,
       "minimum": 0,
       "type": "integer"
@@ -6447,7 +6479,8 @@
           "pattern": "^[0-9]+$",
           "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "singleUint64Wrapper": {
       "$ref": "google.protobuf.UInt64Value.jsonschema.json"
@@ -6471,6 +6504,7 @@
           "type": "integer"
         }
       ],
+      "default": 0,
       "title": "Nested Enum"
     },
     "standaloneMessage": {
