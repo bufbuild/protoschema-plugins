@@ -60,18 +60,39 @@ test case definitions found in [proto](/internal/proto/).
 Here is a simple generated schema from the following protobuf:
 
 ```proto
+// A product.
+//
+// A product is a good or service that is offered for sale.
 message Product {
+  // A point on the earth's surface.
   message Location {
-    float lat = 1;
-    float long = 2;
+    double lat = 1 [
+      (buf.validate.field).double.finite = true,
+      (buf.validate.field).double.gte = -90,
+      (buf.validate.field).double.lte = 90
+    ];
+    double long = 2 [
+      (buf.validate.field).double.finite = true,
+      (buf.validate.field).double.gte = -180,
+      (buf.validate.field).double.lte = 180
+    ];
   }
 
-  int32 product_id = 1;
-  string product_name = 2;
-  float price = 3;
+  // The unique identifier for the product.
+  int32 product_id = 1 [(buf.validate.field).required = true];
+  // The name of the product.
+  string product_name = 2 [(buf.validate.field).required = true];
+  // The price of the product.
+  float price = 3 [
+    (buf.validate.field).float.finite = true,
+    (buf.validate.field).float.gte = 0
+  ];
+  // The tags associated with the product.
   repeated string tags = 4;
-  Location location = 5;
+  // The location of the product.
+  Location location = 5 [(buf.validate.field).required = true];
 }
+
 ```
 
 Results in the following JSON Schema files:
@@ -84,38 +105,62 @@ Results in the following JSON Schema files:
 
 ```json
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "Product.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "title": "A product.",
+  "description": "A product is a good or service that is offered for sale.",
   "type": "object",
   "properties": {
     "product_id": {
+      "description": "The unique identifier for the product.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
       "type": "integer"
     },
     "product_name": {
+      "description": "The name of the product.",
       "type": "string"
     },
     "price": {
-      "type": "number"
-    },
-    "tags": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "location": {
-      "type": "object",
-      "properties": {
-        "lat": {
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e38,
+          "minimum": -3.4028234663852886e38,
           "type": "number"
         },
-        "long": {
-          "type": "number"
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
         }
+      ],
+      "description": "The price of the product."
+    },
+    "tags": {
+      "description": "The tags associated with the product.",
+      "items": {
+        "type": "string"
       },
-      "required": ["lat", "long"]
+      "type": "array"
     }
+    "location": {
+      "$ref": "Location.schema.json",
+      "description": "The location of the product."
+    },
   },
-  "required": ["product_id", "product_name", "price", "tags", "location"]
+  "required": ["product_id", "product_name", "location"],
+  "patternProperties": {
+    "^(productId)$": {
+      "description": "The unique identifier for the product.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "^(productName)$": {
+      "description": "The name of the product.",
+      "type": "string"
+    }
+  }
 }
 ```
 
@@ -126,20 +171,22 @@ Results in the following JSON Schema files:
 
 ```json
 {
-  "$id": "Product.Location.schema.json",
+  "$id": "Location.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "title": "Location",
+  "description": "A point on the earth's surface.",
+  "type": "object",
   "properties": {
     "lat": {
       "anyOf": [
         {
+          "maximum": 90,
+          "minimum": -90,
           "type": "number"
         },
         {
-          "type": "string"
-        },
-        {
-          "enum": ["NaN", "Infinity", "-Infinity"],
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
       ]
@@ -147,19 +194,17 @@ Results in the following JSON Schema files:
     "long": {
       "anyOf": [
         {
+          "maximum": 180,
+          "minimum": -180,
           "type": "number"
         },
         {
-          "type": "string"
-        },
-        {
-          "enum": ["NaN", "Infinity", "-Infinity"],
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
           "type": "string"
         }
       ]
     }
-  },
-  "type": "object"
+  }
 }
 ```
 

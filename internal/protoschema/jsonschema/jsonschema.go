@@ -178,7 +178,28 @@ func (p *jsonSchemaGenerator) generateDefault(desc protoreflect.MessageDescripto
 func (p *jsonSchemaGenerator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
 	src := desc.ParentFile().SourceLocations().ByDescriptor(desc)
 	if src.LeadingComments != "" {
-		schema["description"] = strings.TrimSpace(src.LeadingComments)
+		comments := strings.TrimSpace(src.LeadingComments)
+		// JSON schema has two fields for 'comments': title and description
+		// To support this, split the comments into to sections.
+		// Sections are separated by two newlines.
+		// The first 'section' is the title, the rest are the description.
+		parts := strings.SplitN(comments, "\n\n", 2)
+		if len(parts) < 2 {
+			// Check for Windows line endings.
+			parts = strings.SplitN(comments, "\r\n\r\n", 2)
+		}
+		if len(parts) == 2 {
+			// Found at least two sections.
+			// The first section is the title.
+			schema["title"] = strings.TrimSpace(parts[0])
+			// The rest are the description.
+			schema["description"] = strings.TrimSpace(parts[1])
+		} else {
+			// Only one section.
+			// Use the whole comment as the description.
+			schema["description"] = comments
+			// Leave the title as the default (empty for fields, the message name for messages).
+		}
 	}
 }
 
@@ -433,12 +454,14 @@ func generateIntValidation[T int32 | int64](
 		orNumberSchema["type"] = jsInteger
 		anyOf = append(anyOf, orNumberSchema)
 	}
-	if bits > 52 {
-		anyOf = append(anyOf, map[string]any{
-			"type":    jsString,
-			"pattern": "^-?[0-9]+$",
-		})
-	}
+
+	// Always allow string representation of numbers to match
+	// https://protobuf.dev/programming-guides/json/
+	anyOf = append(anyOf, map[string]any{
+		"type":    jsString,
+		"pattern": "^-?[0-9]+$",
+	})
+
 	if len(anyOf) > 1 {
 		schema["anyOf"] = anyOf
 	} else {
@@ -530,18 +553,20 @@ func generateUintValidation[T uint32 | uint64](
 	anyOf := []map[string]any{
 		numberSchema,
 	}
-	if bits > 52 {
-		anyOf = append(anyOf, map[string]any{
-			"type":    jsString,
-			"pattern": "^[0-9]+$",
-		})
-	}
 	if orNumberSchema != nil {
 		numberSchema["minimum"] = 0
 		orNumberSchema["exclusiveMaximum"] = maxExclVal
 		orNumberSchema["type"] = jsInteger
 		anyOf = append(anyOf, orNumberSchema)
 	}
+
+	// Always allow string representation of uints to match
+	// https://protobuf.dev/programming-guides/json/
+	anyOf = append(anyOf, map[string]any{
+		"type":    jsString,
+		"pattern": "^[0-9]+$",
+	})
+
 	if len(anyOf) > 1 {
 		schema["anyOf"] = anyOf
 	} else {
