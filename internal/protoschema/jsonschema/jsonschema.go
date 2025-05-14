@@ -100,7 +100,7 @@ func (p *jsonSchemaGenerator) generate(desc protoreflect.MessageDescriptor) {
 	schema := make(map[string]any)
 	schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
 	schema["$id"] = p.getID(desc)
-	schema["title"] = generateTitle(desc.Name())
+	schema["title"] = nameToTitle(desc.Name())
 	p.schema[desc.FullName()] = schema
 	if custom, ok := p.custom[desc.FullName()]; ok { // Custom generator.
 		custom(desc, nil, schema)
@@ -209,6 +209,7 @@ func (p *jsonSchemaGenerator) generateFieldValidation(field protoreflect.FieldDe
 		schema["items"] = items
 		schema = items
 		constraints = constraints.GetRepeated().GetItems()
+		hasImplicitPresence = true
 	}
 	switch field.Kind() {
 	case protoreflect.BoolKind:
@@ -255,8 +256,16 @@ func (p *jsonSchemaGenerator) getFieldConstraints(field protoreflect.FieldDescri
 	return constraints
 }
 
-func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescriptor, hasPresence bool, constraints *validate.FieldConstraints) bool {
-	if field.HasPresence() || hasPresence || field.IsList() {
+// hasImplicitDefault checks if the field has an implicit default value.
+//
+// A field has an implicit default value if:
+// 1. It does not have presence tracking. This is only true for non-optional proto3 scalar fields.
+// 2. It does not have implicit presence tracking. This is true for repeated fields and map key/value fields.
+// 3. It is not required.
+//
+// If all these conditions are met, if the field is absent, protobuf will interpret it as having the default value.
+func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints) bool {
+	if field.HasPresence() || hasImplicitPresence {
 		return false // Default values is absence.
 	}
 	if field.Cardinality() == protoreflect.Required || (constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED) {
@@ -266,6 +275,7 @@ func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescrip
 	return true
 }
 
+// generateDefault sets the 'default' value in the JSON schema, if applicable.
 func (p *jsonSchemaGenerator) generateDefault(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	if p.hasImplicitDefault(field, hasImplicitPresence, constraints) {
 		// Explicitly define the implicit protobuf default value in the JSON schema.
@@ -273,7 +283,7 @@ func (p *jsonSchemaGenerator) generateDefault(field protoreflect.FieldDescriptor
 	}
 }
 
-func generateTitle(name protoreflect.Name) string {
+func nameToTitle(name protoreflect.Name) string {
 	// Convert camel case to space separated words.
 	var result strings.Builder
 	for i, chr := range name {
@@ -373,7 +383,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		stringValues = append(stringValues, string(field.Enum().Values().Get(index).Name()))
 	}
 
-	validStrings := map[string]any{"type": jsString, "enum": stringValues, "title": generateTitle(field.Enum().Name())}
+	validStrings := map[string]any{"type": jsString, "enum": stringValues, "title": nameToTitle(field.Enum().Name())}
 
 	schema["anyOf"] = []map[string]any{validStrings, validIntegers}
 	p.generateDefault(field, hasImplicitPresence, constraints, schema)

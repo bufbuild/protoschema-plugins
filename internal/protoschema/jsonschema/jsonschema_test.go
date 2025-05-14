@@ -51,14 +51,14 @@ func TestJSONSchemaGolden(t *testing.T) {
 
 func TestTitle(t *testing.T) {
 	t.Parallel()
-	require.Equal(t, "Foo", generateTitle("Foo"))
-	require.Equal(t, "Foo Bar", generateTitle("FooBar"))
-	require.Equal(t, "foo Bar", generateTitle("fooBar"))
-	require.Equal(t, "Foo Bar Baz", generateTitle("FooBarBaz"))
-	require.Equal(t, "FOO Bar", generateTitle("FOOBar"))
-	require.Equal(t, "U Int64 Value", generateTitle("UInt64Value"))
-	require.Equal(t, "Uint64 Value", generateTitle("Uint64Value"))
-	require.Equal(t, "FOO", generateTitle("FOO"))
+	require.Equal(t, "Foo", nameToTitle("Foo"))
+	require.Equal(t, "Foo Bar", nameToTitle("FooBar"))
+	require.Equal(t, "foo Bar", nameToTitle("fooBar"))
+	require.Equal(t, "Foo Bar Baz", nameToTitle("FooBarBaz"))
+	require.Equal(t, "FOO Bar", nameToTitle("FOOBar"))
+	require.Equal(t, "U Int64 Value", nameToTitle("UInt64Value"))
+	require.Equal(t, "Uint64 Value", nameToTitle("Uint64Value"))
+	require.Equal(t, "FOO", nameToTitle("FOO"))
 }
 
 func TestConstraints(t *testing.T) {
