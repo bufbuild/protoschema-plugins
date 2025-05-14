@@ -149,7 +149,7 @@ Results in the following JSON Schema files:
       "description": "The location of the product."
     }
   },
-  "required": ["product_id", "product_name", "location"]
+  "required": ["product_id", "product_name", "location"],
   "patternProperties": {
     "^(productId)$": {
       "description": "The unique identifier for the product.",
@@ -161,7 +161,7 @@ Results in the following JSON Schema files:
       "description": "The name of the product.",
       "type": "string"
     }
-  },
+  }
 }
 ```
 
