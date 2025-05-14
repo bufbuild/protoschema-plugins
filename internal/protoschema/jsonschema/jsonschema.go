@@ -383,8 +383,8 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		stringValues = append(stringValues, string(field.Enum().Values().Get(index).Name()))
 	}
 
-	validStrings := map[string]any{"type": jsString, "enum": stringValues, "title": nameToTitle(field.Enum().Name())}
-
+	validStrings := map[string]any{"type": jsString, "enum": stringValues}
+	schema["title"] = nameToTitle(field.Enum().Name())
 	schema["anyOf"] = []map[string]any{validStrings, validIntegers}
 	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
