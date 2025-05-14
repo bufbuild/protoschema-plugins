@@ -255,16 +255,6 @@ func (p *jsonSchemaGenerator) getFieldConstraints(field protoreflect.FieldDescri
 	return constraints
 }
 
-func (p *jsonSchemaGenerator) generateBoolValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
-	schema["type"] = jsBoolean
-	if !field.HasPresence() && constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
-		// False is not allowed.
-		schema["enum"] = []bool{true}
-	} else if constraints.GetBool() != nil && constraints.GetBool().Const != nil {
-		schema["enum"] = []bool{constraints.GetBool().GetConst()}
-	}
-}
-
 func generateTitle(name protoreflect.Name) string {
 	// Convert camel case to space separated words.
 	var result strings.Builder
@@ -277,6 +267,16 @@ func generateTitle(name protoreflect.Name) string {
 		result.WriteRune(chr)
 	}
 	return result.String()
+}
+
+func (p *jsonSchemaGenerator) generateBoolValidation(field protoreflect.FieldDescriptor, constraints *validate.FieldConstraints, schema map[string]any) {
+	schema["type"] = jsBoolean
+	if !field.HasPresence() && constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
+		// False is not allowed.
+		schema["enum"] = []bool{true}
+	} else if constraints.GetBool() != nil && constraints.GetBool().Const != nil {
+		schema["enum"] = []bool{constraints.GetBool().GetConst()}
+	}
 }
 
 type enumFieldSelector struct {
@@ -352,8 +352,8 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		stringValues = append(stringValues, string(field.Enum().Values().Get(index).Name()))
 	}
 
-	validStrings := map[string]any{"type": jsString, "enum": stringValues, "title": generateTitle(field.Enum().Name())}
-
+	validStrings := map[string]any{"type": jsString, "enum": stringValues}
+	schema["title"] = generateTitle(field.Enum().Name())
 	schema["anyOf"] = []map[string]any{validStrings, validIntegers}
 }
 

@@ -104,7 +104,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -112,7 +111,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "type": "boolean"
@@ -227,7 +227,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -235,7 +234,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "type": "boolean"
@@ -448,7 +448,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -456,7 +455,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "maximum": 2147483647,
@@ -589,7 +589,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -597,7 +596,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "maximum": 2147483647,
@@ -894,7 +894,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -902,7 +901,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "anyOf": [
@@ -1127,7 +1127,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -1135,7 +1134,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "anyOf": [
@@ -1432,7 +1432,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -1440,7 +1439,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "type": "string"
@@ -1555,7 +1555,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -1563,7 +1562,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "type": "string"
@@ -1776,7 +1776,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -1784,7 +1783,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "maximum": 4294967295,
@@ -1917,7 +1917,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -1925,7 +1924,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "maximum": 4294967295,
@@ -2222,7 +2222,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -2230,7 +2229,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "anyOf": [
@@ -2435,7 +2435,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -2443,7 +2442,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "anyOf": [
@@ -2649,7 +2649,6 @@
           "enum": [
             "NULL_VALUE"
           ],
-          "title": "Null Value",
           "type": "string"
         },
         {
@@ -2657,7 +2656,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Null Value"
     },
     "^(optional_null_value)$": {
       "anyOf": [
@@ -2665,7 +2665,6 @@
           "enum": [
             "NULL_VALUE"
           ],
-          "title": "Null Value",
           "type": "string"
         },
         {
@@ -2673,7 +2672,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Null Value"
     },
     "^(repeated_any)$": {
       "description": "Repeated wellknown.",
@@ -2857,7 +2857,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -2865,7 +2864,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "type": "array"
     },
@@ -2883,7 +2883,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -2891,7 +2890,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "type": "array"
     },
@@ -3130,7 +3130,6 @@
             "BAR",
             "BAZ"
           ],
-          "title": "Nested Enum",
           "type": "string"
         },
         {
@@ -3138,7 +3137,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Nested Enum"
     },
     "^(single_nested_message)$": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
@@ -3226,7 +3226,6 @@
             "BAR",
             "BAZ"
           ],
-          "title": "Nested Enum",
           "type": "string"
         },
         {
@@ -3234,7 +3233,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Nested Enum"
     },
     "^(standalone_message)$": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
@@ -3341,7 +3341,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -3349,7 +3348,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "type": "boolean"
@@ -3464,7 +3464,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -3472,7 +3471,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "type": "boolean"
@@ -3685,7 +3685,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -3693,7 +3692,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "maximum": 2147483647,
@@ -3826,7 +3826,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -3834,7 +3833,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "maximum": 2147483647,
@@ -4131,7 +4131,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -4139,7 +4138,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "anyOf": [
@@ -4364,7 +4364,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -4372,7 +4371,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "anyOf": [
@@ -4669,7 +4669,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -4677,7 +4676,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "type": "string"
@@ -4792,7 +4792,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -4800,7 +4799,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "type": "string"
@@ -5013,7 +5013,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -5021,7 +5020,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "maximum": 4294967295,
@@ -5154,7 +5154,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -5162,7 +5161,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "maximum": 4294967295,
@@ -5459,7 +5459,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -5467,7 +5466,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "anyOf": [
@@ -5672,7 +5672,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -5680,7 +5679,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "propertyNames": {
         "anyOf": [
@@ -5886,7 +5886,6 @@
           "enum": [
             "NULL_VALUE"
           ],
-          "title": "Null Value",
           "type": "string"
         },
         {
@@ -5894,7 +5893,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Null Value"
     },
     "optionalNullValue": {
       "anyOf": [
@@ -5902,7 +5902,6 @@
           "enum": [
             "NULL_VALUE"
           ],
-          "title": "Null Value",
           "type": "string"
         },
         {
@@ -5910,7 +5909,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Null Value"
     },
     "repeatedAny": {
       "description": "Repeated wellknown.",
@@ -6094,7 +6094,6 @@
               "BAR",
               "BAZ"
             ],
-            "title": "Nested Enum",
             "type": "string"
           },
           {
@@ -6102,7 +6101,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Nested Enum"
       },
       "type": "array"
     },
@@ -6120,7 +6120,6 @@
             "enum": [
               "NULL_VALUE"
             ],
-            "title": "Null Value",
             "type": "string"
           },
           {
@@ -6128,7 +6127,8 @@
             "minimum": -2147483648,
             "type": "integer"
           }
-        ]
+        ],
+        "title": "Null Value"
       },
       "type": "array"
     },
@@ -6367,7 +6367,6 @@
             "BAR",
             "BAZ"
           ],
-          "title": "Nested Enum",
           "type": "string"
         },
         {
@@ -6375,7 +6374,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Nested Enum"
     },
     "singleNestedMessage": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
@@ -6463,7 +6463,6 @@
             "BAR",
             "BAZ"
           ],
-          "title": "Nested Enum",
           "type": "string"
         },
         {
@@ -6471,7 +6470,8 @@
           "minimum": -2147483648,
           "type": "integer"
         }
-      ]
+      ],
+      "title": "Nested Enum"
     },
     "standaloneMessage": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
