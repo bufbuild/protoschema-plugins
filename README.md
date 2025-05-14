@@ -112,9 +112,15 @@ Results in the following JSON Schema files:
   "description": "A product is a good or service that is offered for sale.",
   "type": "object",
   "properties": {
-    "location": {
-      "$ref": "buf.protoschema.test.v1.Product.Location.schema.json",
-      "description": "The location of the product."
+    "product_id": {
+      "description": "The unique identifier for the product.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "product_name": {
+      "description": "The name of the product.",
+      "type": "string"
     },
     "price": {
       "anyOf": [
@@ -131,22 +137,16 @@ Results in the following JSON Schema files:
       "default": 0,
       "description": "The price of the product."
     },
-    "product_id": {
-      "description": "The unique identifier for the product.",
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
-    },
-    "product_name": {
-      "description": "The name of the product.",
-      "type": "string"
-    },
     "tags": {
       "description": "The tags associated with the product.",
       "items": {
         "type": "string"
       },
       "type": "array"
+    },
+    "location": {
+      "$ref": "buf.protoschema.test.v1.Product.Location.schema.json",
+      "description": "The location of the product."
     }
   },
   "required": ["product_id", "product_name", "location"]
