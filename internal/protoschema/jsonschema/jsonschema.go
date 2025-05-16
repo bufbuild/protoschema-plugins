@@ -49,6 +49,7 @@ const (
 
 var (
 	exclusiveMaxUint64 = big.NewInt(0).Exp(big.NewInt(2), big.NewInt(64), nil)
+	exclusiveMaxInt64  = uint64(1) << 63
 )
 
 type GeneratorOption func(*jsonSchemaGenerator)
@@ -64,6 +65,30 @@ func WithJSONNames() GeneratorOption {
 func WithAdditionalProperties() GeneratorOption {
 	return func(p *jsonSchemaGenerator) {
 		p.additionalProperties = true
+	}
+}
+
+// WithStrict sets the generator to require input be pre-normalized.
+//
+// When a JSON value is converted to protobuf, the converter uses the protobuf
+// schema to normalize and validate it further. The default generated schema
+// takes this into account, allowing for implicit default values, aliases, and
+// other leniencies.
+//
+// When strict is enabled, the generated schema will not allow these leniencies.
+// Specifically, the JSON schema:
+//   - Requires implicit default values be explicitly set.
+//     These fields are automatically populated in protobuf.
+//   - Does not allow aliases for field names.
+//   - Does not allow numbers to be represented as strings.
+//   - Requires Infinity and NaN values to be exactly capitalized.
+//   - Does not allow integers to be represented as strings.
+//
+// The "always emit fields without presence" option must be set for ProtoJSON to
+// output to be valid when strict is enabled. See https://protobuf.dev/programming-guides/json/#json-options
+func WithStrict() GeneratorOption {
+	return func(p *jsonSchemaGenerator) {
+		p.strict = true
 	}
 }
 
@@ -85,6 +110,7 @@ type jsonSchemaGenerator struct {
 	custom               map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldConstraints, map[string]any)
 	useJSONNames         bool
 	additionalProperties bool
+	strict               bool
 }
 
 func (p *jsonSchemaGenerator) getID(desc protoreflect.Descriptor) string {
@@ -130,8 +156,13 @@ func (p *jsonSchemaGenerator) generateMessage(desc protoreflect.MessageDescripto
 			continue
 		}
 		constraints := p.getFieldConstraints(field)
-		if constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED {
-			required = append(required, string(field.Name()))
+		if (constraints.GetRequired() && constraints.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED) || // Required by validate rules.
+			(p.strict && p.hasImplicitDefault(field, field.IsList() || field.IsMap(), constraints)) { // Required by strict mode.
+			if p.useJSONNames {
+				required = append(required, field.JSONName())
+			} else {
+				required = append(required, string(field.Name()))
+			}
 		}
 
 		// Generate the schema.
@@ -160,7 +191,7 @@ func (p *jsonSchemaGenerator) generateMessage(desc protoreflect.MessageDescripto
 			}
 		}
 
-		if len(aliases) > 0 {
+		if !p.strict && len(aliases) > 0 {
 			pattern := "^(" + strings.Join(aliases, "|") + ")$"
 			patternProperties[pattern] = fieldSchema
 		}
@@ -285,7 +316,7 @@ func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescrip
 
 // generateDefault sets the 'default' value in the JSON schema, if applicable.
 func (p *jsonSchemaGenerator) generateDefault(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
-	if p.hasImplicitDefault(field, hasImplicitPresence, constraints) {
+	if !p.strict && p.hasImplicitDefault(field, hasImplicitPresence, constraints) {
 		// Explicitly define the implicit protobuf default value in the JSON schema.
 		schema["default"] = field.Default().Interface()
 	}
@@ -425,6 +456,7 @@ func generateConstInValidation[T comparable](constraints baseRule[T], schema map
 }
 
 func generateIntValidation[T int32 | int64](
+	strict bool,
 	constraints numberRule[T],
 	bits int,
 	schema map[string]any,
@@ -487,12 +519,14 @@ func generateIntValidation[T int32 | int64](
 		anyOf = append(anyOf, orNumberSchema)
 	}
 
-	// Always allow string representation of numbers to match
-	// https://protobuf.dev/programming-guides/json/
-	anyOf = append(anyOf, map[string]any{
-		"type":    jsString,
-		"pattern": "^-?[0-9]+$",
-	})
+	if !strict {
+		// Always allow string representation of numbers to match
+		// https://protobuf.dev/programming-guides/json/
+		anyOf = append(anyOf, map[string]any{
+			"type":    jsString,
+			"pattern": "^-?[0-9]+$",
+		})
+	}
 
 	if len(anyOf) > 1 {
 		schema["anyOf"] = anyOf
@@ -504,15 +538,22 @@ func generateIntValidation[T int32 | int64](
 func (p *jsonSchemaGenerator) generateInt32Validation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
-		schema["type"] = jsInteger
-		schema["minimum"] = math.MinInt32
-		schema["maximum"] = math.MaxInt32
+		if p.strict {
+			schema["type"] = jsInteger
+			schema["minimum"] = math.MinInt32
+			schema["maximum"] = math.MaxInt32
+		} else {
+			schema["anyOf"] = []map[string]any{
+				{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32},
+				{"type": jsString, "pattern": "^-?[0-9]+$"},
+			}
+		}
 	case constraints.GetInt32() != nil:
-		generateIntValidation(constraints.GetInt32(), 32, schema)
+		generateIntValidation(p.strict, constraints.GetInt32(), 32, schema)
 	case constraints.GetSint32() != nil:
-		generateIntValidation(constraints.GetSint32(), 32, schema)
+		generateIntValidation(p.strict, constraints.GetSint32(), 32, schema)
 	case constraints.GetSfixed32() != nil:
-		generateIntValidation(constraints.GetSfixed32(), 32, schema)
+		generateIntValidation(p.strict, constraints.GetSfixed32(), 32, schema)
 	}
 	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
@@ -520,21 +561,28 @@ func (p *jsonSchemaGenerator) generateInt32Validation(field protoreflect.FieldDe
 func (p *jsonSchemaGenerator) generateInt64Validation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
-		schema["anyOf"] = []map[string]any{
-			{"type": jsInteger, "minimum": math.MinInt64, "exclusiveMaximum": uint64(math.MaxInt64) + 1},
-			{"type": jsString, "pattern": "^-?[0-9]+$"},
+		if p.strict {
+			schema["type"] = jsInteger
+			schema["minimum"] = math.MinInt64
+			schema["exclusiveMaximum"] = exclusiveMaxInt64
+		} else {
+			schema["anyOf"] = []map[string]any{
+				{"type": jsInteger, "minimum": math.MinInt64, "exclusiveMaximum": exclusiveMaxInt64},
+				{"type": jsString, "pattern": "^-?[0-9]+$"},
+			}
 		}
 	case constraints.GetInt64() != nil:
-		generateIntValidation(constraints.GetInt64(), 64, schema)
+		generateIntValidation(p.strict, constraints.GetInt64(), 64, schema)
 	case constraints.GetSint64() != nil:
-		generateIntValidation(constraints.GetSint64(), 64, schema)
+		generateIntValidation(p.strict, constraints.GetSint64(), 64, schema)
 	case constraints.GetSfixed64() != nil:
-		generateIntValidation(constraints.GetSfixed64(), 64, schema)
+		generateIntValidation(p.strict, constraints.GetSfixed64(), 64, schema)
 	}
 	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
 
 func generateUintValidation[T uint32 | uint64](
+	strict bool,
 	constraints numberRule[T],
 	bits int,
 	schema map[string]any,
@@ -594,12 +642,14 @@ func generateUintValidation[T uint32 | uint64](
 		anyOf = append(anyOf, orNumberSchema)
 	}
 
-	// Always allow string representation of uints to match
-	// https://protobuf.dev/programming-guides/json/
-	anyOf = append(anyOf, map[string]any{
-		"type":    jsString,
-		"pattern": "^[0-9]+$",
-	})
+	if !strict {
+		// Always allow string representation of uints to match
+		// https://protobuf.dev/programming-guides/json/
+		anyOf = append(anyOf, map[string]any{
+			"type":    jsString,
+			"pattern": "^[0-9]+$",
+		})
+	}
 
 	if len(anyOf) > 1 {
 		schema["anyOf"] = anyOf
@@ -610,13 +660,20 @@ func generateUintValidation[T uint32 | uint64](
 func (p *jsonSchemaGenerator) generateUint32Validation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
-		schema["type"] = jsInteger
-		schema["minimum"] = 0
-		schema["maximum"] = math.MaxUint32
+		if p.strict {
+			schema["type"] = jsInteger
+			schema["minimum"] = 0
+			schema["maximum"] = math.MaxUint32
+		} else {
+			schema["anyOf"] = []map[string]any{
+				{"type": jsInteger, "minimum": 0, "maximum": math.MaxUint32},
+				{"type": jsString, "pattern": "^[0-9]+$"},
+			}
+		}
 	case constraints.GetUint32() != nil:
-		generateUintValidation(constraints.GetUint32(), 32, schema)
+		generateUintValidation(p.strict, constraints.GetUint32(), 32, schema)
 	case constraints.GetFixed32() != nil:
-		generateUintValidation(constraints.GetFixed32(), 32, schema)
+		generateUintValidation(p.strict, constraints.GetFixed32(), 32, schema)
 	}
 	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
@@ -624,14 +681,20 @@ func (p *jsonSchemaGenerator) generateUint32Validation(field protoreflect.FieldD
 func (p *jsonSchemaGenerator) generateUint64Validation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, constraints *validate.FieldConstraints, schema map[string]any) {
 	switch {
 	default:
-		schema["anyOf"] = []map[string]any{
-			{"type": jsInteger, "minimum": 0, "exclusiveMaximum": exclusiveMaxUint64},
-			{"type": jsString, "pattern": "^[0-9]+$"},
+		if p.strict {
+			schema["type"] = jsInteger
+			schema["minimum"] = 0
+			schema["exclusiveMaximum"] = exclusiveMaxUint64
+		} else {
+			schema["anyOf"] = []map[string]any{
+				{"type": jsInteger, "minimum": 0, "exclusiveMaximum": exclusiveMaxUint64},
+				{"type": jsString, "pattern": "^[0-9]+$"},
+			}
 		}
 	case constraints.GetUint64() != nil:
-		generateUintValidation(constraints.GetUint64(), 64, schema)
+		generateUintValidation(p.strict, constraints.GetUint64(), 64, schema)
 	case constraints.GetFixed64() != nil:
-		generateUintValidation(constraints.GetFixed64(), 64, schema)
+		generateUintValidation(p.strict, constraints.GetFixed64(), 64, schema)
 	}
 	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
@@ -864,17 +927,23 @@ func (p *jsonSchemaGenerator) generateFloatValidation(field protoreflect.FieldDe
 		anyOf = append(anyOf, map[string]any{
 			"type": jsString,
 			"enum": extremaEnum,
-		}, map[string]any{
-			"type": jsString, // Allow other form of NaN, -Infinity, and Infinity.
 		})
-	} else {
+		if !p.strict {
+			// Allow other form of NaN, -Infinity, and Infinity.
+			anyOf = append(anyOf, map[string]any{"type": jsString})
+		}
+	} else if !p.strict {
 		anyOf = append(anyOf, map[string]any{
 			"type":    jsString,
 			"pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
 		})
 	}
 
-	schema["anyOf"] = anyOf
+	if len(anyOf) > 1 {
+		schema["anyOf"] = anyOf
+	} else {
+		maps.Copy(schema, numberSchema)
+	}
 	p.generateDefault(field, hasImplicitPresence, constraints, schema)
 }
 

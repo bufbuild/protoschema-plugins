@@ -2,17 +2,6 @@
   "$id": "buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
-  "patternProperties": {
-    "^(bool_value)$": {
-      "enum": [
-        true
-      ],
-      "type": "boolean"
-    },
-    "^(string_value)$": {
-      "type": "string"
-    }
-  },
   "properties": {
     "boolValue": {
       "enum": [
@@ -25,8 +14,8 @@
     }
   },
   "required": [
-    "bool_value",
-    "string_value"
+    "boolValue",
+    "stringValue"
   ],
   "title": "Required Implicit",
   "type": "object"

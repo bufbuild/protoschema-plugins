@@ -4,11 +4,19 @@
   "additionalProperties": false,
   "properties": {
     "bb": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
       "default": 0,
-      "description": "The field name \"b\" fails to compile in proto1 because it conflicts with\n a local variable named \"b\" in one of the generated methods.\n This file needs to compile in proto1 to test backwards-compatibility.",
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
+      "description": "The field name \"b\" fails to compile in proto1 because it conflicts with\n a local variable named \"b\" in one of the generated methods.\n This file needs to compile in proto1 to test backwards-compatibility."
     }
   },
   "title": "Nested Message",

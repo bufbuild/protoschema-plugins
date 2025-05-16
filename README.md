@@ -100,6 +100,8 @@ Results in the following JSON Schema files:
 - `*.schema.json` files are generated with underscore-case fields
 - `*.jsonschema.json` files are generated with camelCase
 
+For example, the above protobuf generates the following `*.schema.json` files:
+
 <details>
 <summary>Product.schema.json</summary>
 
@@ -213,6 +215,83 @@ Results in the following JSON Schema files:
 
 </details>
 
+Or the following `*.jsonschema.json` files, when the `strict` option is set to `true`:
+
+<details>
+<summary>Product.jsonschema.json</summary>
+
+```json
+{
+  "$id": "Product.jsonschema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "title": "A product.",
+  "description": "A product is a good or service that is offered for sale.",
+  "type": "object",
+  "properties": {
+    "productId": {
+      "description": "The unique identifier for the product.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "productName": {
+      "description": "The name of the product.",
+      "type": "string"
+    },
+    "price": {
+      "description": "The price of the product.",
+      "maximum": 3.4028234663852886e38,
+      "minimum": 0,
+      "type": "number"
+    },
+    "tags": {
+      "description": "The tags associated with the product.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "location": {
+      "$ref": "Product.Location.jsonschema.json",
+      "description": "The location of the product."
+    }
+  },
+  "required": ["productId", "productName", "price", "location"]
+}
+```
+
+</details>
+
+<details>
+<summary>Product.Location.jsonschema.json</summary>
+
+```json
+{
+  "$id": "buf.protoschema.test.v1.Product.Location.jsonschema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "title": "Location",
+  "description": "A point on the earth's surface.",
+  "type": "object",
+  "properties": {
+    "lat": {
+      "maximum": 90,
+      "minimum": -90,
+      "type": "number"
+    },
+    "long": {
+      "maximum": 180,
+      "minimum": -180,
+      "type": "number"
+    }
+  },
+  "required": ["lat", "long"]
+}
+```
+
+</details>
+
 ### Options
 
 The JSON Schema plugin supports the following options:
@@ -221,6 +300,10 @@ The JSON Schema plugin supports the following options:
   `true`, causing unknown fields to be ignored instead of erroring. Defaults to `false`. Useful when a
   client/sender may have a newer schema (which may include new fields) than the server/receiver. Similar
   to the "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
+- `strict` - If `true`, the generated schema will not allow aliases, string numbers, or any other
+  non-normalized representation. Defaults to `false`. Useful if the JSON being validated is used directly
+  instead of being converted to a Protobuf message. Requires the "always emit fields without presence"
+  option when using [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
 
 ## Community
 

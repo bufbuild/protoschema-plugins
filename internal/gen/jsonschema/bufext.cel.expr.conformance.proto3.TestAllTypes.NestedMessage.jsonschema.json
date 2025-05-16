@@ -10,6 +10,9 @@
       "type": "integer"
     }
   },
+  "required": [
+    "bb"
+  ],
   "title": "Nested Message",
   "type": "object"
 }

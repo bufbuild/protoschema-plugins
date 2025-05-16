@@ -117,16 +117,31 @@ func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
 		value := strings.TrimSpace(param[pos+1:])
 		switch key {
 		case "additional_properties":
-			switch value {
-			case "true":
+			if value, err := parseBoolean(value); err != nil {
+				return nil, err
+			} else if value {
 				options = append(options, jsonschema.WithAdditionalProperties())
-			case "false":
-			default:
-				return nil, fmt.Errorf("invalid value %q for parameter %q, expected true or false", value, key)
+			}
+		case "strict":
+			if value, err := parseBoolean(value); err != nil {
+				return nil, err
+			} else if value {
+				options = append(options, jsonschema.WithStrict())
 			}
 		default:
 			return nil, fmt.Errorf("unknown parameter %q", param)
 		}
 	}
 	return options, nil
+}
+
+func parseBoolean(value string) (bool, error) {
+	switch value {
+	case "true":
+		return true, nil
+	case "false":
+		return false, nil
+	default:
+		return false, fmt.Errorf("invalid boolean value %q, expected true or false", value)
+	}
 }
