@@ -378,13 +378,13 @@ type enumValueSelector struct {
 }
 
 func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, rules *validate.FieldRules, schema map[string]any) {
-	allowsZero := true
+	allowZero := true
 	hideZero := false
 	if !field.HasPresence() && !hasImplicitPresence {
-		// The field is a non-optional proto3 enum field.
+		// The field is a non-optional, non-oneof proto3 enum field.
 		if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED {
 			// It is required, so zero is not allowed.
-			allowsZero = false
+			allowZero = false
 		} else if !p.strict {
 			// Zero is allowed, but absence is preferred.
 			hideZero = true
@@ -395,7 +395,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 	for i := range field.Enum().Values().Len() {
 		val := field.Enum().Values().Get(i)
 		enumValues[i] = enumValueSelector{
-			remove: !allowsZero && val.Number() == 0,
+			remove: !allowZero && val.Number() == 0,
 			number: int32(val.Number()),
 			name:   val.Name(),
 		}
@@ -455,7 +455,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 			int32Values = slices.Compact(int32Values)
 			anyOf = append(anyOf, map[string]any{"type": jsInteger, "enum": int32Values})
 		}
-	} else if allowsZero {
+	} else if allowZero {
 		anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32})
 	} else {
 		anyOf = append(anyOf,
