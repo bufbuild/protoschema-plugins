@@ -391,6 +391,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		}
 	}
 
+	// Enumerate the values.
 	enumValues := make([]enumValueSelector, field.Enum().Values().Len())
 	for i := range field.Enum().Values().Len() {
 		val := field.Enum().Values().Get(i)
@@ -401,6 +402,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		}
 	}
 
+	// Apply const.
 	if rules.GetEnum().HasConst() {
 		for i, enumValue := range enumValues {
 			if enumValue.number != rules.GetEnum().GetConst() {
@@ -408,7 +410,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 			}
 		}
 	}
-
+	// Apply In.
 	if len(rules.GetEnum().GetIn()) > 0 {
 		for i, enumValue := range enumValues {
 			if !enumValue.remove && !slices.Contains(rules.GetEnum().GetIn(), enumValue.number) {
@@ -416,7 +418,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 			}
 		}
 	}
-
+	// Apply NotIn.
 	if len(rules.GetEnum().GetNotIn()) > 0 {
 		for i, enumValue := range enumValues {
 			if !enumValue.remove && slices.Contains(rules.GetEnum().GetNotIn(), enumValue.number) {
