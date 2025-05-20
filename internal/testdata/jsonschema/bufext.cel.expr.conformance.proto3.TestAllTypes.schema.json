@@ -3174,9 +3174,7 @@
     "^(nullValue)$": {
       "anyOf": [
         {
-          "enum": [
-            "NULL_VALUE"
-          ],
+          "pattern": "^NULL_VALUE$",
           "type": "string"
         },
         {
@@ -3845,8 +3843,11 @@
     "^(standaloneEnum)$": {
       "anyOf": [
         {
+          "pattern": "^FOO$",
+          "type": "string"
+        },
+        {
           "enum": [
-            "FOO",
             "BAR",
             "BAZ"
           ],
@@ -7036,9 +7037,7 @@
     "null_value": {
       "anyOf": [
         {
-          "enum": [
-            "NULL_VALUE"
-          ],
+          "pattern": "^NULL_VALUE$",
           "type": "string"
         },
         {
@@ -7707,8 +7706,11 @@
     "standalone_enum": {
       "anyOf": [
         {
+          "pattern": "^FOO$",
+          "type": "string"
+        },
+        {
           "enum": [
-            "FOO",
             "BAR",
             "BAZ"
           ],

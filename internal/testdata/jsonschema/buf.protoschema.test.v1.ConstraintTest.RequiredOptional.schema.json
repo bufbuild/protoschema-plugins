@@ -6,6 +6,48 @@
     "^(boolValue)$": {
       "type": "boolean"
     },
+    "^(enumValue)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
+    "^(strictEnumValue)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "enum": [
+            0,
+            1,
+            2,
+            7
+          ],
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
     "^(stringValue)$": {
       "type": "string"
     }
@@ -14,13 +56,57 @@
     "bool_value": {
       "type": "boolean"
     },
+    "enum_value": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
+    "strict_enum_value": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "enum": [
+            0,
+            1,
+            2,
+            7
+          ],
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
     "string_value": {
       "type": "string"
     }
   },
   "required": [
     "bool_value",
-    "string_value"
+    "string_value",
+    "enum_value",
+    "strict_enum_value"
   ],
   "title": "Required Optional",
   "type": "object"

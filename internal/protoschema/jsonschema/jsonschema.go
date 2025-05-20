@@ -329,7 +329,7 @@ func (p *jsonSchemaGenerator) hasImplicitDefault(field protoreflect.FieldDescrip
 	if field.HasPresence() || hasImplicitPresence {
 		return false // Default values is absence.
 	}
-	if field.Cardinality() == protoreflect.Required || (rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED) {
+	if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED {
 		return false // A value is required.
 	}
 	// The value is always present so has an implicit default.
@@ -371,82 +371,105 @@ func (p *jsonSchemaGenerator) generateBoolValidation(field protoreflect.FieldDes
 	}
 }
 
-type enumFieldSelector struct {
-	selected bool
-	index    int
+type enumValueSelector struct {
+	remove bool
+	number int32
+	name   protoreflect.Name
 }
 
 func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, rules *validate.FieldRules, schema map[string]any) {
-	enumFieldSelectors := make(map[int32]enumFieldSelector, field.Enum().Values().Len())
+	allowsZero := true
+	hideZero := false
+	if !field.HasPresence() && !hasImplicitPresence {
+		// The field is a non-optional proto3 enum field.
+		if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED {
+			// It is required, so zero is not allowed.
+			allowsZero = false
+		} else if !p.strict {
+			// Zero is allowed, but absence is preferred.
+			hideZero = true
+		}
+	}
+
+	enumValues := make([]enumValueSelector, field.Enum().Values().Len())
 	for i := range field.Enum().Values().Len() {
 		val := field.Enum().Values().Get(i)
-		enumFieldSelectors[int32(val.Number())] = enumFieldSelector{
-			selected: true,
-			index:    i,
+		enumValues[i] = enumValueSelector{
+			remove: !allowsZero && val.Number() == 0,
+			number: int32(val.Number()),
+			name:   val.Name(),
 		}
 	}
 
-	if rules.GetEnum() != nil && rules.GetEnum().HasConst() {
-		for number := range enumFieldSelectors {
-			if number != rules.GetEnum().GetConst() {
-				enumFieldSelectors[number] = enumFieldSelector{}
+	if rules.GetEnum().HasConst() {
+		for i, enumValue := range enumValues {
+			if enumValue.number != rules.GetEnum().GetConst() {
+				enumValues[i].remove = true
 			}
 		}
 	}
 
-	if rules.GetEnum() != nil && len(rules.GetEnum().GetIn()) > 0 {
-		inMap := make(map[int32]struct{}, len(rules.GetEnum().GetIn()))
-		for _, value := range rules.GetEnum().GetIn() {
-			inMap[value] = struct{}{}
-		}
-
-		for number := range enumFieldSelectors {
-			if _, ok := inMap[number]; !ok {
-				enumFieldSelectors[number] = enumFieldSelector{}
+	if len(rules.GetEnum().GetIn()) > 0 {
+		for i, enumValue := range enumValues {
+			if !slices.Contains(rules.GetEnum().GetIn(), enumValue.number) {
+				enumValues[i].remove = true
 			}
 		}
 	}
 
-	if rules.GetEnum() != nil && len(rules.GetEnum().GetNotIn()) > 0 {
-		for _, value := range rules.GetEnum().GetNotIn() {
-			enumFieldSelectors[value] = enumFieldSelector{}
-		}
-	}
-
-	onlySelectIntValues := rules.GetEnum() != nil &&
-		(rules.GetEnum().GetDefinedOnly() ||
-			rules.GetEnum().HasConst() ||
-			rules.GetEnum().GetIn() != nil)
-
-	validIntegers := map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32}
-	if onlySelectIntValues {
-		var integerValues = make([]int32, 0)
-		for number, val := range enumFieldSelectors {
-			if val.selected {
-				integerValues = append(integerValues, number)
+	if len(rules.GetEnum().GetNotIn()) > 0 {
+		for i, enumValue := range enumValues {
+			if slices.Contains(rules.GetEnum().GetNotIn(), enumValue.number) {
+				enumValues[i].remove = true
 			}
 		}
-		slices.Sort(integerValues)
-
-		validIntegers = map[string]any{"type": jsInteger, "enum": integerValues}
 	}
 
-	validIndexes := make([]int, 0, len(enumFieldSelectors))
-	for _, val := range enumFieldSelectors {
-		if val.selected {
-			validIndexes = append(validIndexes, val.index)
+	anyOf := []map[string]any{}
+
+	// Add the selected enum names to the schema, in order of declaration.
+	int32Values := make([]int32, 0, len(enumValues))
+	stringValues := make([]string, 0, len(enumValues))
+	for _, enumValue := range enumValues {
+		if enumValue.remove {
+			continue
+		}
+		int32Values = append(int32Values, enumValue.number)
+		if hideZero && enumValue.number == 0 {
+			// Use a pattern so IDEs don't suggest the zero value, but it is considered valid when explicitly specified.
+			anyOf = append(anyOf, map[string]any{"type": jsString, "pattern": "^" + string(enumValue.name) + "$"})
+		} else {
+			stringValues = append(stringValues, string(enumValue.name))
 		}
 	}
-	slices.Sort(validIndexes)
-
-	var stringValues = make([]string, 0)
-	for _, index := range validIndexes {
-		stringValues = append(stringValues, string(field.Enum().Values().Get(index).Name()))
+	if len(stringValues) > 0 {
+		anyOf = append(anyOf, map[string]any{"type": jsString, "enum": stringValues})
 	}
 
-	validStrings := map[string]any{"type": jsString, "enum": stringValues}
+	// Add the integer values to the schema, in order of value.
+	if rules.GetEnum().GetDefinedOnly() ||
+		rules.GetEnum().HasConst() ||
+		len(rules.GetEnum().GetIn()) > 0 {
+		if len(int32Values) > 0 {
+			slices.Sort(int32Values)
+			int32Values = slices.Compact(int32Values)
+			anyOf = append(anyOf, map[string]any{"type": jsInteger, "enum": int32Values})
+		}
+	} else if allowsZero {
+		anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32})
+	} else {
+		anyOf = append(anyOf,
+			map[string]any{"type": jsInteger, "minimum": math.MinInt32, "exclusiveMaximum": 0},
+			map[string]any{"type": jsInteger, "exclusiveMinimum": 0, "maximum": math.MaxInt32})
+	}
+
+	if len(anyOf) == 1 {
+		maps.Copy(schema, anyOf[0])
+	} else {
+		schema["anyOf"] = anyOf
+	}
+
 	schema["title"] = nameToTitle(field.Enum().Name())
-	schema["anyOf"] = []map[string]any{validStrings, validIntegers}
 	p.generateDefault(field, hasImplicitPresence, rules, schema)
 }
 

@@ -9,13 +9,59 @@
       ],
       "type": "boolean"
     },
+    "enumValue": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "exclusiveMaximum": 0,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 2147483647,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
+    "strictEnumValue": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "enum": [
+            1,
+            2,
+            7
+          ],
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
     "stringValue": {
       "type": "string"
     }
   },
   "required": [
     "boolValue",
-    "stringValue"
+    "stringValue",
+    "enumValue",
+    "strictEnumValue"
   ],
   "title": "Required Implicit",
   "type": "object"
