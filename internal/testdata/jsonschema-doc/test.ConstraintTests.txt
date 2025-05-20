@@ -1,6 +1,11 @@
-- at '/test_cases/1/required_implicit': missing properties 'bool_value', 'string_value'
-- at '/test_cases/2/required_implicit/bool_value': value must be true
-- at '/test_cases/4/required_optional': missing properties 'bool_value', 'string_value'
+- at '/test_cases/0/required_implicit': missing properties 'enum_value', 'strict_enum_value'
+- at '/test_cases/1/required_implicit': missing properties 'bool_value', 'string_value', 'enum_value', 'strict_enum_value'
+- at '/test_cases/2/required_implicit': validation failed
+  - at '/test_cases/2/required_implicit': missing properties 'enum_value', 'strict_enum_value'
+  - at '/test_cases/2/required_implicit/bool_value': value must be true
+- at '/test_cases/3/required_optional': missing properties 'enum_value', 'strict_enum_value'
+- at '/test_cases/4/required_optional': missing properties 'bool_value', 'string_value', 'enum_value', 'strict_enum_value'
+- at '/test_cases/5/required_optional': missing properties 'enum_value', 'strict_enum_value'
 - at '/test_cases/7/const_bool': value must be false
 - at '/test_cases/9/const_string': value must be 'const'
 - at '/test_cases/11/len_string': minLength: got 3, want 5
