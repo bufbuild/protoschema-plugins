@@ -449,17 +449,18 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 	}
 
 	// Add the integer values to the schema, in order of value.
-	if rules.GetEnum().GetDefinedOnly() ||
-		rules.GetEnum().HasConst() ||
-		len(rules.GetEnum().GetIn()) > 0 {
+	switch {
+	case rules.GetEnum().GetDefinedOnly(),
+		rules.GetEnum().HasConst(),
+		len(rules.GetEnum().GetIn()) > 0:
 		if len(int32Values) > 0 {
 			slices.Sort(int32Values)
 			int32Values = slices.Compact(int32Values)
 			anyOf = append(anyOf, map[string]any{"type": jsInteger, "enum": int32Values})
 		}
-	} else if allowZero {
+	case allowZero:
 		anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32})
-	} else {
+	default:
 		anyOf = append(anyOf,
 			map[string]any{"type": jsInteger, "minimum": math.MinInt32, "exclusiveMaximum": 0},
 			map[string]any{"type": jsInteger, "exclusiveMinimum": 0, "maximum": math.MaxInt32})
