@@ -411,7 +411,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 
 	if len(rules.GetEnum().GetIn()) > 0 {
 		for i, enumValue := range enumValues {
-			if !slices.Contains(rules.GetEnum().GetIn(), enumValue.number) {
+			if !enumValue.remove && !slices.Contains(rules.GetEnum().GetIn(), enumValue.number) {
 				enumValues[i].remove = true
 			}
 		}
@@ -419,7 +419,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 
 	if len(rules.GetEnum().GetNotIn()) > 0 {
 		for i, enumValue := range enumValues {
-			if slices.Contains(rules.GetEnum().GetNotIn(), enumValue.number) {
+			if !enumValue.remove && slices.Contains(rules.GetEnum().GetNotIn(), enumValue.number) {
 				enumValues[i].remove = true
 			}
 		}
