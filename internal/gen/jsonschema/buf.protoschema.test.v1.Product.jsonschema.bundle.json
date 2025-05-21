@@ -1,0 +1,72 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.Product.Location.jsonschema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "A point on the earth's surface.",
+      "properties": {
+        "lat": {
+          "maximum": 90,
+          "minimum": -90,
+          "type": "number"
+        },
+        "long": {
+          "maximum": 180,
+          "minimum": -180,
+          "type": "number"
+        }
+      },
+      "required": [
+        "lat",
+        "long"
+      ],
+      "title": "Location",
+      "type": "object"
+    },
+    "buf.protoschema.test.v1.Product.jsonschema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "A product is a good or service that is offered for sale.",
+      "properties": {
+        "location": {
+          "$ref": "#/defs/#/defs/buf.protoschema.test.v1.Product.Location.jsonschema.json",
+          "description": "The location of the product."
+        },
+        "price": {
+          "description": "The price of the product.",
+          "maximum": 3.4028234663852886e+38,
+          "minimum": 0,
+          "type": "number"
+        },
+        "productId": {
+          "description": "The unique identifier for the product.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "productName": {
+          "description": "The name of the product.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "The tags associated with the product.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "productId",
+        "productName",
+        "price",
+        "location"
+      ],
+      "title": "A product.",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.Product.jsonschema.bundle.json",
+  "$ref": null,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

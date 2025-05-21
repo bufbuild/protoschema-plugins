@@ -16,3 +16,4 @@ plugins:
     opt:
      - additional_properties=true
      - strict=true
+     - bundle=true

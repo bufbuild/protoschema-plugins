@@ -32,22 +32,26 @@ func TestJSONSchemaGolden(t *testing.T) {
 	dirPath := filepath.FromSlash("../../testdata/jsonschema")
 	testDescs, err := golden.GetTestDescriptors("../../testdata")
 	require.NoError(t, err)
+	generator := NewGenerator()
 	for _, testDesc := range testDescs {
-		schemas, err := Generate(testDesc)
+		err = generator.Add(testDesc)
 		require.NoError(t, err)
-		for _, jsonSchema := range schemas {
-			// Serialize the JSON
-			data, err := json.MarshalIndent(jsonSchema, "", "  ")
-			require.NoError(t, err)
+	}
 
-			identifier, ok := jsonSchema["$id"].(string)
-			require.True(t, ok)
-			require.NotEmpty(t, identifier)
+	schemas := generator.Generate()
+	require.NoError(t, err)
+	for _, jsonSchema := range schemas {
+		// Serialize the JSON
+		data, err := json.MarshalIndent(jsonSchema, "", "  ")
+		require.NoError(t, err)
 
-			filePath := filepath.Join(dirPath, identifier)
-			err = golden.CheckGolden(filePath, string(data)+"\n")
-			require.NoError(t, err)
-		}
+		identifier, ok := jsonSchema["$id"].(string)
+		require.True(t, ok)
+		require.NotEmpty(t, identifier)
+
+		filePath := filepath.Join(dirPath, identifier)
+		err = golden.CheckGolden(filePath, string(data)+"\n")
+		require.NoError(t, err)
 	}
 }
 
@@ -66,21 +70,29 @@ func TestTitle(t *testing.T) {
 func TestConstraints(t *testing.T) {
 	t.Parallel()
 	schemaPath := filepath.FromSlash("../../testdata/jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.json")
+	bundledSchemaPath := filepath.FromSlash("../../gen/jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.bundle.json")
 	testPath := filepath.FromSlash("../../testdata/jsonschema-doc/test.ConstraintTests.yaml")
 	expectedPath := filepath.FromSlash("../../testdata/jsonschema-doc/test.ConstraintTests.txt")
+	expectedBundledPath := filepath.FromSlash("../../testdata/jsonschema-doc/test.ConstraintTests.bundled.txt")
 	compiler := jsonschema.NewCompiler()
 	schema, err := compiler.Compile(schemaPath)
+	require.NoError(t, err)
+	bundledSchema, err := compiler.Compile(bundledSchemaPath)
 	require.NoError(t, err)
 
 	yamlData, err := os.ReadFile(testPath)
 	require.NoError(t, err)
-	expectedData, err := os.ReadFile(expectedPath)
-	require.NoError(t, err)
-
 	var jsonData map[string]any
 	err = yaml.Unmarshal(yamlData, &jsonData)
 	require.NoError(t, err)
 
+	assertValidation(t, schema, jsonData, expectedPath)
+	assertValidation(t, bundledSchema, jsonData, expectedBundledPath)
+}
+
+func assertValidation(t *testing.T, schema *jsonschema.Schema, jsonData map[string]any, expectedPath string) {
+	expectedData, err := os.ReadFile(expectedPath)
+	require.NoError(t, err)
 	err = schema.Validate(jsonData)
 	require.Error(t, err)
 	errStr := err.Error()

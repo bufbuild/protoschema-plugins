@@ -17,6 +17,7 @@ package pluginjsonschema
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"strings"
 
@@ -47,28 +48,27 @@ func Handle(
 	// Also create options with protobuf names.
 	options := optionsWithJSONNames[:len(optionsWithJSONNames)-1]
 
+	protoNameGenerator := jsonschema.NewGenerator(options...)
+	jsonNameGenerator := jsonschema.NewGenerator(optionsWithJSONNames...)
+
 	// Generate the JSON schema for each message descriptor.
-	seenIdentifiers := make(map[string]bool)
 	for _, fileDescriptor := range fileDescriptors {
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
-			// Generate the proto name schema.
-			protoNameSchema, err := jsonschema.Generate(messageDescriptor, options...)
-			if err != nil {
+			if err := protoNameGenerator.Add(messageDescriptor); err != nil {
 				return err
 			}
-			if err := writeFiles(responseWriter, messageDescriptor, protoNameSchema, seenIdentifiers); err != nil {
-				return err
-			}
-			// Generate the JSON name schema.
-			jsonNameSchema, err := jsonschema.Generate(messageDescriptor, optionsWithJSONNames...)
-			if err != nil {
-				return err
-			}
-			if err := writeFiles(responseWriter, messageDescriptor, jsonNameSchema, seenIdentifiers); err != nil {
+			if err := jsonNameGenerator.Add(messageDescriptor); err != nil {
 				return err
 			}
 		}
+	}
+
+	if err := writeFiles(responseWriter, protoNameGenerator.Generate()); err != nil {
+		return err
+	}
+	if err := writeFiles(responseWriter, jsonNameGenerator.Generate()); err != nil {
+		return err
 	}
 
 	responseWriter.SetFeatureProto3Optional()
@@ -78,9 +78,7 @@ func Handle(
 
 func writeFiles(
 	responseWriter protoplugin.ResponseWriter,
-	messageDescriptor protoreflect.MessageDescriptor,
 	schema map[protoreflect.FullName]map[string]any,
-	seenIdentifiers map[string]bool,
 ) error {
 	for _, entry := range schema {
 		data, err := json.MarshalIndent(entry, "", "  ")
@@ -89,19 +87,15 @@ func writeFiles(
 		}
 		identifier, ok := entry["$id"].(string)
 		if !ok {
-			return fmt.Errorf("expected unique id for message %q to be a string, got type %T", messageDescriptor.FullName(), entry["$id"])
+			return fmt.Errorf("expected unique id to be a string, got type %T", entry["$id"])
 		}
 		if identifier == "" {
-			return fmt.Errorf("expected unique id for message %q to be a non-empty string", messageDescriptor.FullName())
-		}
-		if seenIdentifiers[identifier] {
-			continue
+			return errors.New("expected unique id to be a non-empty string")
 		}
 		responseWriter.AddFile(
 			identifier,
 			string(data)+"\n",
 		)
-		seenIdentifiers[identifier] = true
 	}
 	return nil
 }
@@ -133,6 +127,12 @@ func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
 				return nil, err
 			} else if value {
 				options = append(options, jsonschema.WithStrict())
+			}
+		case "bundle":
+			if value, err := parseBoolean(value); err != nil {
+				return nil, err
+			} else if value {
+				options = append(options, jsonschema.WithBundle())
 			}
 		default:
 			return nil, fmt.Errorf("unknown parameter %q", param)
