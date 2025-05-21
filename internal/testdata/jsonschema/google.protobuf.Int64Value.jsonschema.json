@@ -3,8 +3,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "anyOf": [
     {
-      "exclusiveMaximum": 9223372036854775808,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     {
