@@ -43,11 +43,18 @@
           "type": "string"
         },
         {
-          "enum": [
-            1,
-            2,
-            7
-          ],
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
           "type": "integer"
         }
       ],
@@ -98,11 +105,18 @@
           "type": "string"
         },
         {
-          "enum": [
-            1,
-            2,
-            7
-          ],
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
           "type": "integer"
         }
       ],

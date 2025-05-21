@@ -7,46 +7,24 @@
       "type": "boolean"
     },
     "enumValue": {
-      "anyOf": [
-        {
-          "enum": [
-            "ENUM_UNSPECIFIED",
-            "ENUM_VAL1",
-            "ENUM_VAL2",
-            "ENUM_VAL7"
-          ],
-          "type": "string"
-        },
-        {
-          "maximum": 2147483647,
-          "minimum": -2147483648,
-          "type": "integer"
-        }
+      "enum": [
+        "ENUM_UNSPECIFIED",
+        "ENUM_VAL1",
+        "ENUM_VAL2",
+        "ENUM_VAL7"
       ],
-      "title": "Enum"
+      "title": "Enum",
+      "type": "string"
     },
     "strictEnumValue": {
-      "anyOf": [
-        {
-          "enum": [
-            "ENUM_UNSPECIFIED",
-            "ENUM_VAL1",
-            "ENUM_VAL2",
-            "ENUM_VAL7"
-          ],
-          "type": "string"
-        },
-        {
-          "enum": [
-            0,
-            1,
-            2,
-            7
-          ],
-          "type": "integer"
-        }
+      "enum": [
+        "ENUM_UNSPECIFIED",
+        "ENUM_VAL1",
+        "ENUM_VAL2",
+        "ENUM_VAL7"
       ],
-      "title": "Enum"
+      "title": "Enum",
+      "type": "string"
     },
     "stringValue": {
       "type": "string"

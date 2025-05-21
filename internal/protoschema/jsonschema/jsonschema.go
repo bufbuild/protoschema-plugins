@@ -448,22 +448,27 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		anyOf = append(anyOf, map[string]any{"type": jsString, "enum": stringValues})
 	}
 
-	// Add the integer values to the schema, in order of value.
-	switch {
-	case rules.GetEnum().GetDefinedOnly(),
-		rules.GetEnum().HasConst(),
-		len(rules.GetEnum().GetIn()) > 0:
-		if len(int32Values) > 0 {
-			slices.Sort(int32Values)
-			int32Values = slices.Compact(int32Values)
-			anyOf = append(anyOf, map[string]any{"type": jsInteger, "enum": int32Values})
+	if !p.strict {
+		// Add the integer values to the schema, in order of value.
+		switch {
+		case rules.GetEnum().GetDefinedOnly(),
+			rules.GetEnum().HasConst(),
+			len(rules.GetEnum().GetIn()) > 0:
+			if len(int32Values) > 0 {
+				slices.Sort(int32Values)
+				int32Values = slices.Compact(int32Values)
+				// Avoid using an enum, IDEs only suggest names, not numbers.
+				for _, intVal := range int32Values {
+					anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": intVal, "maximum": intVal})
+				}
+			}
+		case allowZero:
+			anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32})
+		default:
+			anyOf = append(anyOf,
+				map[string]any{"type": jsInteger, "minimum": math.MinInt32, "exclusiveMaximum": 0},
+				map[string]any{"type": jsInteger, "exclusiveMinimum": 0, "maximum": math.MaxInt32})
 		}
-	case allowZero:
-		anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32})
-	default:
-		anyOf = append(anyOf,
-			map[string]any{"type": jsInteger, "minimum": math.MinInt32, "exclusiveMaximum": 0},
-			map[string]any{"type": jsInteger, "exclusiveMinimum": 0, "maximum": math.MaxInt32})
 	}
 
 	if len(anyOf) == 1 {

@@ -37,9 +37,8 @@
           "type": "string"
         },
         {
-          "enum": [
-            2
-          ],
+          "maximum": 2,
+          "minimum": 2,
           "type": "integer"
         }
       ],
@@ -246,12 +245,23 @@
           "type": "string"
         },
         {
-          "enum": [
-            0,
-            1,
-            2,
-            7
-          ],
+          "maximum": 0,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
           "type": "integer"
         }
       ],
@@ -268,11 +278,18 @@
           "type": "string"
         },
         {
-          "enum": [
-            1,
-            2,
-            7
-          ],
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
           "type": "integer"
         }
       ],
@@ -667,9 +684,8 @@
           "type": "string"
         },
         {
-          "enum": [
-            1
-          ],
+          "maximum": 1,
+          "minimum": 1,
           "type": "integer"
         }
       ],
@@ -701,10 +717,13 @@
           "type": "string"
         },
         {
-          "enum": [
-            1,
-            2
-          ],
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
           "type": "integer"
         }
       ],
@@ -1551,9 +1570,8 @@
           "type": "string"
         },
         {
-          "enum": [
-            2
-          ],
+          "maximum": 2,
+          "minimum": 2,
           "type": "integer"
         }
       ],
@@ -1760,12 +1778,23 @@
           "type": "string"
         },
         {
-          "enum": [
-            0,
-            1,
-            2,
-            7
-          ],
+          "maximum": 0,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
           "type": "integer"
         }
       ],
@@ -1782,11 +1811,18 @@
           "type": "string"
         },
         {
-          "enum": [
-            1,
-            2,
-            7
-          ],
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
           "type": "integer"
         }
       ],
@@ -2181,9 +2217,8 @@
           "type": "string"
         },
         {
-          "enum": [
-            1
-          ],
+          "maximum": 1,
+          "minimum": 1,
           "type": "integer"
         }
       ],
@@ -2215,10 +2250,13 @@
           "type": "string"
         },
         {
-          "enum": [
-            1,
-            2
-          ],
+          "maximum": 1,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
           "type": "integer"
         }
       ],
