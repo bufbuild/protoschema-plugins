@@ -129,10 +129,14 @@ message ConstraintTest {
   message RequiredImplicit {
     optional bool bool_value = 1;
     optional string string_value = 2;
+    optional int32 enum_value = 3;
+    optional int32 strict_enum_value = 4;
   }
   message RequiredOptional {
     optional bool bool_value = 1;
     optional string string_value = 2;
+    optional int32 enum_value = 3;
+    optional int32 strict_enum_value = 4;
   }
   enum Enum {
     ENUM_UNSPECIFIED = 0;

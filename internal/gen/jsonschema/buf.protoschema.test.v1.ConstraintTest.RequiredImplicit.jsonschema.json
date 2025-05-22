@@ -9,13 +9,33 @@
       ],
       "type": "boolean"
     },
+    "enumValue": {
+      "enum": [
+        "ENUM_VAL1",
+        "ENUM_VAL2",
+        "ENUM_VAL7"
+      ],
+      "title": "Enum",
+      "type": "string"
+    },
+    "strictEnumValue": {
+      "enum": [
+        "ENUM_VAL1",
+        "ENUM_VAL2",
+        "ENUM_VAL7"
+      ],
+      "title": "Enum",
+      "type": "string"
+    },
     "stringValue": {
       "type": "string"
     }
   },
   "required": [
     "boolValue",
-    "stringValue"
+    "stringValue",
+    "enumValue",
+    "strictEnumValue"
   ],
   "title": "Required Implicit",
   "type": "object"
