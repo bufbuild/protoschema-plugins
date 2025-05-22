@@ -16,3 +16,5 @@ plugins:
     opt:
      - additional_properties=true
      - strict=true
+     - names=json
+     - bundle=true

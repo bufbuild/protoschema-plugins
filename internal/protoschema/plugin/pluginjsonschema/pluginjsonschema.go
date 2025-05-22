@@ -41,21 +41,9 @@ func Handle(
 	}
 
 	// Parse the parameters from the request.
-	protoNameOpts, err := parseOptions(request.Parameter())
+	opts, err := parseOptions(request.Parameter())
 	if err != nil {
 		return err
-	}
-	protoNameBundleOpts := slices.Clone(protoNameOpts)
-	protoNameBundleOpts = append(protoNameBundleOpts, jsonschema.WithBundle())
-	jsonNameOpts := slices.Clone(protoNameOpts)
-	jsonNameOpts = append(jsonNameOpts, jsonschema.WithJSONNames())
-	jsonNameBundleOpts := slices.Clone(jsonNameOpts)
-	jsonNameBundleOpts = append(jsonNameBundleOpts, jsonschema.WithBundle())
-	opts := [][]jsonschema.GeneratorOption{
-		protoNameOpts,
-		protoNameBundleOpts,
-		jsonNameOpts,
-		jsonNameBundleOpts,
 	}
 
 	gens := make([]*jsonschema.Generator, len(opts))
@@ -110,39 +98,82 @@ func writeFiles(
 	return nil
 }
 
-func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
+func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 	var options []jsonschema.GeneratorOption
-	if param == "" {
-		return options, nil
-	}
-	// Params are in the form of "key1=value1,key2=value2"
-	params := strings.Split(param, ",")
-	for _, param := range params {
-		// Split the param into key and value.
-		pos := strings.Index(param, "=")
-		if pos == -1 {
-			return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
-		}
-		key := strings.TrimSpace(param[:pos])
-		value := strings.TrimSpace(param[pos+1:])
-		switch key {
-		case "additional_properties":
-			if value, err := parseBoolean(value); err != nil {
-				return nil, err
-			} else if value {
-				options = append(options, jsonschema.WithAdditionalProperties())
+	var skip_bundle, skip_non_bundle, skip_json, skip_proto bool
+	if param != "" {
+		// Params are in the form of "key1=value1,key2=value2"
+		params := strings.Split(param, ",")
+		for _, param := range params {
+			// Split the param into key and value.
+			pos := strings.Index(param, "=")
+			if pos == -1 {
+				return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
 			}
-		case "strict":
-			if value, err := parseBoolean(value); err != nil {
-				return nil, err
-			} else if value {
-				options = append(options, jsonschema.WithStrict())
+			key := strings.TrimSpace(param[:pos])
+			value := strings.TrimSpace(param[pos+1:])
+			switch key {
+			case "additional_properties":
+				if value, err := parseBoolean(value); err != nil {
+					return nil, err
+				} else if value {
+					options = append(options, jsonschema.WithAdditionalProperties())
+				}
+			case "strict":
+				if value, err := parseBoolean(value); err != nil {
+					return nil, err
+				} else if value {
+					options = append(options, jsonschema.WithStrict())
+				}
+			case "names":
+				switch strings.ToLower(value) {
+				case "json":
+					skip_proto = true
+				case "proto":
+					skip_json = true
+				case "both":
+				default:
+					return nil, fmt.Errorf("invalid value %q for names, expected json, proto, or both", value)
+				}
+			case "bundle":
+				switch strings.ToLower(value) {
+				case "true":
+					skip_non_bundle = true
+				case "false":
+					skip_bundle = true
+				case "both":
+				default:
+					return nil, fmt.Errorf("invalid value %q for bundle, expected true, false, or both", value)
+				}
+			default:
+				return nil, fmt.Errorf("unknown parameter %q", param)
 			}
-		default:
-			return nil, fmt.Errorf("unknown parameter %q", param)
 		}
 	}
-	return options, nil
+
+	var result [][]jsonschema.GeneratorOption
+	if !skip_proto {
+		if !skip_non_bundle {
+			result = append(result, options)
+		}
+		if !skip_bundle {
+			protoNameBundleOpts := slices.Clone(options)
+			protoNameBundleOpts = append(protoNameBundleOpts, jsonschema.WithBundle())
+			result = append(result, protoNameBundleOpts)
+		}
+	}
+	if !skip_json {
+		jsonNameBundleOpts := slices.Clone(options)
+		jsonNameBundleOpts = append(jsonNameBundleOpts, jsonschema.WithJSONNames(), jsonschema.WithBundle())
+		jsonNameOpts := jsonNameBundleOpts[:len(jsonNameBundleOpts)-1]
+		if !skip_non_bundle {
+			result = append(result, jsonNameOpts)
+		}
+		if !skip_bundle {
+			result = append(result, jsonNameBundleOpts)
+		}
+	}
+	return result, nil
 }
 
 func parseBoolean(value string) (bool, error) {
