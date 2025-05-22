@@ -100,8 +100,8 @@ func writeFiles(
 
 func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 	var options []jsonschema.GeneratorOption
-	var skip_bundle, skip_non_bundle, skip_json, skip_proto bool
-	if param != "" {
+	var skipBundle, skipNonBundle, skipJSON, skipProto bool
+	if param != "" { // nolint:nestif
 		// Params are in the form of "key1=value1,key2=value2"
 		params := strings.Split(param, ",")
 		for _, param := range params {
@@ -128,9 +128,9 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 			case "names":
 				switch strings.ToLower(value) {
 				case "json":
-					skip_proto = true
+					skipProto = true
 				case "proto":
-					skip_json = true
+					skipJSON = true
 				case "all":
 				default:
 					return nil, fmt.Errorf("invalid value %q for names, expected json, proto, or all", value)
@@ -138,9 +138,9 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 			case "bundle":
 				switch strings.ToLower(value) {
 				case "true":
-					skip_non_bundle = true
+					skipNonBundle = true
 				case "false":
-					skip_bundle = true
+					skipBundle = true
 				case "all":
 				default:
 					return nil, fmt.Errorf("invalid value %q for bundle, expected true, false, or all", value)
@@ -152,24 +152,24 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 	}
 
 	var result [][]jsonschema.GeneratorOption
-	if !skip_proto {
-		if !skip_non_bundle {
+	if !skipProto {
+		if !skipNonBundle {
 			result = append(result, options)
 		}
-		if !skip_bundle {
+		if !skipBundle {
 			protoNameBundleOpts := slices.Clone(options)
 			protoNameBundleOpts = append(protoNameBundleOpts, jsonschema.WithBundle())
 			result = append(result, protoNameBundleOpts)
 		}
 	}
-	if !skip_json {
+	if !skipJSON {
 		jsonNameBundleOpts := slices.Clone(options)
 		jsonNameBundleOpts = append(jsonNameBundleOpts, jsonschema.WithJSONNames(), jsonschema.WithBundle())
 		jsonNameOpts := jsonNameBundleOpts[:len(jsonNameBundleOpts)-1]
-		if !skip_non_bundle {
+		if !skipNonBundle {
 			result = append(result, jsonNameOpts)
 		}
-		if !skip_bundle {
+		if !skipBundle {
 			result = append(result, jsonNameBundleOpts)
 		}
 	}
