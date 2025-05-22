@@ -70,10 +70,10 @@ func TestTitle(t *testing.T) {
 func TestConstraints(t *testing.T) {
 	t.Parallel()
 	schemaPath := filepath.FromSlash("../../testdata/jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.json")
-	bundledSchemaPath := filepath.FromSlash("../../gen/jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.bundle.json")
+	bundledSchemaPath := filepath.FromSlash("../../testdata/jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.bundle.json")
 	testPath := filepath.FromSlash("../../testdata/jsonschema-doc/test.ConstraintTests.yaml")
 	expectedPath := filepath.FromSlash("../../testdata/jsonschema-doc/test.ConstraintTests.txt")
-	expectedBundledPath := filepath.FromSlash("../../testdata/jsonschema-doc/test.ConstraintTests.bundled.txt")
+	expectedBundledPath := filepath.FromSlash("../../testdata/jsonschema-doc/test.ConstraintTests.bundle.txt")
 	compiler := jsonschema.NewCompiler()
 	schema, err := compiler.Compile(schemaPath)
 	require.NoError(t, err)

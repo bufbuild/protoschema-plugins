@@ -1,0 +1,73 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.IgnoreField.jsonschema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(bool_field)$": {
+          "default": false,
+          "type": "boolean"
+        },
+        "^(bytes_field|bytesField)$": {
+          "default": null,
+          "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+          "type": "string"
+        },
+        "^(nested_reference|nestedReference)$": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.NestedReference.jsonschema.json",
+          "description": "jsonschema:hide"
+        }
+      },
+      "properties": {
+        "boolField": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "title": "Ignore Field",
+      "type": "object"
+    },
+    "buf.protoschema.test.v1.NestedReference.jsonschema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(nested_message)$": {
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
+        }
+      },
+      "properties": {
+        "nestedMessage": {
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
+        }
+      },
+      "title": "Nested Reference",
+      "type": "object"
+    },
+    "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "bb": {
+          "anyOf": [
+            {
+              "maximum": 2147483647,
+              "minimum": -2147483648,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?[0-9]+$",
+              "type": "string"
+            }
+          ],
+          "default": 0,
+          "description": "The field name \"b\" fails to compile in proto1 because it conflicts with\n a local variable named \"b\" in one of the generated methods.\n This file needs to compile in proto1 to test backwards-compatibility."
+        }
+      },
+      "title": "Nested Message",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.IgnoreField.jsonschema.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.IgnoreField.jsonschema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

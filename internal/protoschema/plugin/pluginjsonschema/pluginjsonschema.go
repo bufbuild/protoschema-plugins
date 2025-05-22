@@ -19,6 +19,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/bufbuild/protoplugin"
@@ -40,35 +41,44 @@ func Handle(
 	}
 
 	// Parse the parameters from the request.
-	optionsWithJSONNames, err := parseOptions(request.Parameter())
+	protoNameOpts, err := parseOptions(request.Parameter())
 	if err != nil {
 		return err
 	}
-	optionsWithJSONNames = append(optionsWithJSONNames, jsonschema.WithJSONNames())
-	// Also create options with protobuf names.
-	options := optionsWithJSONNames[:len(optionsWithJSONNames)-1]
+	protoNameBundleOpts := slices.Clone(protoNameOpts)
+	protoNameBundleOpts = append(protoNameBundleOpts, jsonschema.WithBundle())
+	jsonNameOpts := slices.Clone(protoNameOpts)
+	jsonNameOpts = append(jsonNameOpts, jsonschema.WithJSONNames())
+	jsonNameBundleOpts := slices.Clone(jsonNameOpts)
+	jsonNameBundleOpts = append(jsonNameBundleOpts, jsonschema.WithBundle())
+	opts := [][]jsonschema.GeneratorOption{
+		protoNameOpts,
+		protoNameBundleOpts,
+		jsonNameOpts,
+		jsonNameBundleOpts,
+	}
 
-	protoNameGenerator := jsonschema.NewGenerator(options...)
-	jsonNameGenerator := jsonschema.NewGenerator(optionsWithJSONNames...)
+	gens := make([]*jsonschema.Generator, len(opts))
+	for i, opt := range opts {
+		gens[i] = jsonschema.NewGenerator(opt...)
+	}
 
 	// Generate the JSON schema for each message descriptor.
 	for _, fileDescriptor := range fileDescriptors {
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
-			if err := protoNameGenerator.Add(messageDescriptor); err != nil {
-				return err
-			}
-			if err := jsonNameGenerator.Add(messageDescriptor); err != nil {
-				return err
+			for _, gen := range gens {
+				if err := gen.Add(messageDescriptor); err != nil {
+					return err
+				}
 			}
 		}
 	}
 
-	if err := writeFiles(responseWriter, protoNameGenerator.Generate()); err != nil {
-		return err
-	}
-	if err := writeFiles(responseWriter, jsonNameGenerator.Generate()); err != nil {
-		return err
+	for _, gen := range gens {
+		if err := writeFiles(responseWriter, gen.Generate()); err != nil {
+			return err
+		}
 	}
 
 	responseWriter.SetFeatureProto3Optional()
@@ -127,12 +137,6 @@ func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
 				return nil, err
 			} else if value {
 				options = append(options, jsonschema.WithStrict())
-			}
-		case "bundle":
-			if value, err := parseBoolean(value); err != nil {
-				return nil, err
-			} else if value {
-				options = append(options, jsonschema.WithBundle())
 			}
 		default:
 			return nil, fmt.Errorf("unknown parameter %q", param)
