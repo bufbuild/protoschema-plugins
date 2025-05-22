@@ -97,8 +97,10 @@ message Product {
 
 Results in the following JSON Schema files:
 
-- `*.schema.json` files are generated with underscore-case fields
-- `*.jsonschema.json` files are generated with camelCase
+- `*.schema.json` files are generated with the protobuf field name (e.g. `product_id`, `product_name`)
+- `*.schema.bundle.json` files include all dependencies in a single file with the protobuf field name.
+- `*.jsonschema.json` files are generated with the json field name (e.g. `productId`, `productName`)
+- `*.jsonschema.bundle.json` files include all dependencies in a single file with the json field name.
 
 For example, the above protobuf generates the following `*.schema.json` files:
 
