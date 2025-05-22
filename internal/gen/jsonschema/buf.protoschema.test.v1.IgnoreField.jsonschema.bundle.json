@@ -20,7 +20,7 @@
       "additionalProperties": true,
       "properties": {
         "nestedMessage": {
-          "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
         }
       },
       "title": "Nested Reference",
@@ -45,6 +45,6 @@
     }
   },
   "$id": "buf.protoschema.test.v1.IgnoreField.jsonschema.bundle.json",
-  "$ref": null,
+  "$ref": "#/$defs/buf.protoschema.test.v1.IgnoreField.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

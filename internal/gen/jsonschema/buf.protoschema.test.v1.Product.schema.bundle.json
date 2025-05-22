@@ -29,7 +29,7 @@
       "description": "A product is a good or service that is offered for sale.",
       "properties": {
         "location": {
-          "$ref": "#/defs/#/defs/buf.protoschema.test.v1.Product.Location.schema.json",
+          "$ref": "#/$defs/buf.protoschema.test.v1.Product.Location.schema.json",
           "description": "The location of the product."
         },
         "price": {
@@ -67,6 +67,6 @@
     }
   },
   "$id": "buf.protoschema.test.v1.Product.schema.bundle.json",
-  "$ref": null,
+  "$ref": "#/$defs/buf.protoschema.test.v1.Product.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

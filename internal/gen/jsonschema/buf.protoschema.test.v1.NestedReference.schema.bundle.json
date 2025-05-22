@@ -5,7 +5,7 @@
       "additionalProperties": true,
       "properties": {
         "nested_message": {
-          "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
         }
       },
       "title": "Nested Reference",
@@ -30,6 +30,6 @@
     }
   },
   "$id": "buf.protoschema.test.v1.NestedReference.schema.bundle.json",
-  "$ref": null,
+  "$ref": "#/$defs/buf.protoschema.test.v1.NestedReference.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

@@ -928,10 +928,10 @@
           "type": "string"
         },
         "requiredImplicit": {
-          "$ref": "#/defs/#/defs/buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.jsonschema.json"
+          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.jsonschema.json"
         },
         "requiredOptional": {
-          "$ref": "#/defs/#/defs/buf.protoschema.test.v1.ConstraintTest.RequiredOptional.jsonschema.json"
+          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.RequiredOptional.jsonschema.json"
         },
         "suffixString": {
           "pattern": ".*_suffix$",
@@ -993,7 +993,7 @@
       "properties": {
         "testCases": {
           "items": {
-            "$ref": "#/defs/#/defs/buf.protoschema.test.v1.ConstraintTest.jsonschema.json"
+            "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.jsonschema.json"
           },
           "type": "array"
         }
@@ -1003,6 +1003,6 @@
     }
   },
   "$id": "buf.protoschema.test.v1.ConstraintTests.jsonschema.bundle.json",
-  "$ref": null,
+  "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTests.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

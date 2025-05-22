@@ -24,6 +24,6 @@
     }
   },
   "$id": "buf.protoschema.test.v1.CustomOptions.jsonschema.bundle.json",
-  "$ref": null,
+  "$ref": "#/$defs/buf.protoschema.test.v1.CustomOptions.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

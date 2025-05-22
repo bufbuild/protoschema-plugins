@@ -6,10 +6,10 @@
       "description": "This proto includes a recursively nested message.",
       "properties": {
         "child": {
-          "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.NestedTestAllTypes.schema.json"
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.NestedTestAllTypes.schema.json"
         },
         "payload": {
-          "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.schema.json"
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.schema.json"
         }
       },
       "title": "Nested Test All Types",
@@ -38,11 +38,11 @@
       "description": "This proto includes every type of field in both singular and repeated\n forms.",
       "properties": {
         "list_value": {
-          "$ref": "#/defs/#/defs/google.protobuf.ListValue.schema.json"
+          "$ref": "#/$defs/google.protobuf.ListValue.schema.json"
         },
         "map_bool_any": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Any.schema.json"
+            "$ref": "#/$defs/google.protobuf.Any.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -60,7 +60,7 @@
         },
         "map_bool_bool_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BoolValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BoolValue.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -79,7 +79,7 @@
         },
         "map_bool_bytes_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BytesValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BytesValue.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -109,7 +109,7 @@
         },
         "map_bool_double_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.DoubleValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.DoubleValue.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -118,7 +118,7 @@
         },
         "map_bool_duration": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Duration.schema.json"
+            "$ref": "#/$defs/google.protobuf.Duration.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -174,7 +174,7 @@
         },
         "map_bool_float_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.FloatValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.FloatValue.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -194,7 +194,7 @@
         },
         "map_bool_int32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int32Value.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -214,7 +214,7 @@
         },
         "map_bool_int64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int64Value.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -223,7 +223,7 @@
         },
         "map_bool_list_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.ListValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.ListValue.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -232,7 +232,7 @@
         },
         "map_bool_message": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -272,7 +272,7 @@
         },
         "map_bool_string_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.StringValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.StringValue.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -281,7 +281,7 @@
         },
         "map_bool_struct": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Struct.schema.json"
+            "$ref": "#/$defs/google.protobuf.Struct.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -290,7 +290,7 @@
         },
         "map_bool_timestamp": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Timestamp.schema.json"
+            "$ref": "#/$defs/google.protobuf.Timestamp.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -310,7 +310,7 @@
         },
         "map_bool_uint32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt32Value.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -330,7 +330,7 @@
         },
         "map_bool_uint64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt64Value.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -339,7 +339,7 @@
         },
         "map_bool_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Value.schema.json"
           },
           "propertyNames": {
             "type": "boolean"
@@ -348,7 +348,7 @@
         },
         "map_int32_any": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Any.schema.json"
+            "$ref": "#/$defs/google.protobuf.Any.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -370,7 +370,7 @@
         },
         "map_int32_bool_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BoolValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BoolValue.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -393,7 +393,7 @@
         },
         "map_int32_bytes_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BytesValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BytesValue.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -427,7 +427,7 @@
         },
         "map_int32_double_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.DoubleValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.DoubleValue.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -438,7 +438,7 @@
         },
         "map_int32_duration": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Duration.schema.json"
+            "$ref": "#/$defs/google.protobuf.Duration.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -500,7 +500,7 @@
         },
         "map_int32_float_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.FloatValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.FloatValue.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -524,7 +524,7 @@
         },
         "map_int32_int32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int32Value.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -548,7 +548,7 @@
         },
         "map_int32_int64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int64Value.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -559,7 +559,7 @@
         },
         "map_int32_list_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.ListValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.ListValue.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -570,7 +570,7 @@
         },
         "map_int32_message": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -616,7 +616,7 @@
         },
         "map_int32_string_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.StringValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.StringValue.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -627,7 +627,7 @@
         },
         "map_int32_struct": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Struct.schema.json"
+            "$ref": "#/$defs/google.protobuf.Struct.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -638,7 +638,7 @@
         },
         "map_int32_timestamp": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Timestamp.schema.json"
+            "$ref": "#/$defs/google.protobuf.Timestamp.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -662,7 +662,7 @@
         },
         "map_int32_uint32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt32Value.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -686,7 +686,7 @@
         },
         "map_int32_uint64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt64Value.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -697,7 +697,7 @@
         },
         "map_int32_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Value.schema.json"
           },
           "propertyNames": {
             "maximum": 2147483647,
@@ -708,7 +708,7 @@
         },
         "map_int64_any": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Any.schema.json"
+            "$ref": "#/$defs/google.protobuf.Any.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -730,7 +730,7 @@
         },
         "map_int64_bool_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BoolValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BoolValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -753,7 +753,7 @@
         },
         "map_int64_bytes_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BytesValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BytesValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -787,7 +787,7 @@
         },
         "map_int64_double_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.DoubleValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.DoubleValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -798,7 +798,7 @@
         },
         "map_int64_duration": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Duration.schema.json"
+            "$ref": "#/$defs/google.protobuf.Duration.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -860,7 +860,7 @@
         },
         "map_int64_float_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.FloatValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.FloatValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -884,7 +884,7 @@
         },
         "map_int64_int32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int32Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -908,7 +908,7 @@
         },
         "map_int64_int64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int64Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -919,7 +919,7 @@
         },
         "map_int64_list_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.ListValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.ListValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -930,7 +930,7 @@
         },
         "map_int64_message": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -941,7 +941,7 @@
         },
         "map_int64_nested_type": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.NestedTestAllTypes.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.NestedTestAllTypes.schema.json"
           },
           "description": "Map",
           "propertyNames": {
@@ -988,7 +988,7 @@
         },
         "map_int64_string_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.StringValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.StringValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -999,7 +999,7 @@
         },
         "map_int64_struct": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Struct.schema.json"
+            "$ref": "#/$defs/google.protobuf.Struct.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -1010,7 +1010,7 @@
         },
         "map_int64_timestamp": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Timestamp.schema.json"
+            "$ref": "#/$defs/google.protobuf.Timestamp.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -1034,7 +1034,7 @@
         },
         "map_int64_uint32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt32Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -1058,7 +1058,7 @@
         },
         "map_int64_uint64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt64Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -1069,7 +1069,7 @@
         },
         "map_int64_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 9223372036854775808,
@@ -1080,7 +1080,7 @@
         },
         "map_string_any": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Any.schema.json"
+            "$ref": "#/$defs/google.protobuf.Any.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1098,7 +1098,7 @@
         },
         "map_string_bool_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BoolValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BoolValue.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1117,7 +1117,7 @@
         },
         "map_string_bytes_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BytesValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BytesValue.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1147,7 +1147,7 @@
         },
         "map_string_double_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.DoubleValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.DoubleValue.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1156,7 +1156,7 @@
         },
         "map_string_duration": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Duration.schema.json"
+            "$ref": "#/$defs/google.protobuf.Duration.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1212,7 +1212,7 @@
         },
         "map_string_float_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.FloatValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.FloatValue.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1232,7 +1232,7 @@
         },
         "map_string_int32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int32Value.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1252,7 +1252,7 @@
         },
         "map_string_int64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int64Value.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1261,7 +1261,7 @@
         },
         "map_string_list_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.ListValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.ListValue.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1270,7 +1270,7 @@
         },
         "map_string_message": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1310,7 +1310,7 @@
         },
         "map_string_string_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.StringValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.StringValue.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1319,7 +1319,7 @@
         },
         "map_string_struct": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Struct.schema.json"
+            "$ref": "#/$defs/google.protobuf.Struct.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1328,7 +1328,7 @@
         },
         "map_string_timestamp": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Timestamp.schema.json"
+            "$ref": "#/$defs/google.protobuf.Timestamp.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1348,7 +1348,7 @@
         },
         "map_string_uint32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt32Value.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1368,7 +1368,7 @@
         },
         "map_string_uint64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt64Value.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1377,7 +1377,7 @@
         },
         "map_string_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Value.schema.json"
           },
           "propertyNames": {
             "type": "string"
@@ -1386,7 +1386,7 @@
         },
         "map_uint32_any": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Any.schema.json"
+            "$ref": "#/$defs/google.protobuf.Any.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1408,7 +1408,7 @@
         },
         "map_uint32_bool_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BoolValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BoolValue.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1431,7 +1431,7 @@
         },
         "map_uint32_bytes_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BytesValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BytesValue.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1465,7 +1465,7 @@
         },
         "map_uint32_double_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.DoubleValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.DoubleValue.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1476,7 +1476,7 @@
         },
         "map_uint32_duration": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Duration.schema.json"
+            "$ref": "#/$defs/google.protobuf.Duration.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1538,7 +1538,7 @@
         },
         "map_uint32_float_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.FloatValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.FloatValue.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1562,7 +1562,7 @@
         },
         "map_uint32_int32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int32Value.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1586,7 +1586,7 @@
         },
         "map_uint32_int64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int64Value.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1597,7 +1597,7 @@
         },
         "map_uint32_list_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.ListValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.ListValue.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1608,7 +1608,7 @@
         },
         "map_uint32_message": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1654,7 +1654,7 @@
         },
         "map_uint32_string_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.StringValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.StringValue.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1665,7 +1665,7 @@
         },
         "map_uint32_struct": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Struct.schema.json"
+            "$ref": "#/$defs/google.protobuf.Struct.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1676,7 +1676,7 @@
         },
         "map_uint32_timestamp": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Timestamp.schema.json"
+            "$ref": "#/$defs/google.protobuf.Timestamp.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1700,7 +1700,7 @@
         },
         "map_uint32_uint32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt32Value.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1724,7 +1724,7 @@
         },
         "map_uint32_uint64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt64Value.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1735,7 +1735,7 @@
         },
         "map_uint32_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Value.schema.json"
           },
           "propertyNames": {
             "maximum": 4294967295,
@@ -1746,7 +1746,7 @@
         },
         "map_uint64_any": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Any.schema.json"
+            "$ref": "#/$defs/google.protobuf.Any.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1768,7 +1768,7 @@
         },
         "map_uint64_bool_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BoolValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BoolValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1791,7 +1791,7 @@
         },
         "map_uint64_bytes_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.BytesValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BytesValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1825,7 +1825,7 @@
         },
         "map_uint64_double_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.DoubleValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.DoubleValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1836,7 +1836,7 @@
         },
         "map_uint64_duration": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Duration.schema.json"
+            "$ref": "#/$defs/google.protobuf.Duration.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1898,7 +1898,7 @@
         },
         "map_uint64_float_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.FloatValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.FloatValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1922,7 +1922,7 @@
         },
         "map_uint64_int32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int32Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1946,7 +1946,7 @@
         },
         "map_uint64_int64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int64Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1957,7 +1957,7 @@
         },
         "map_uint64_list_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.ListValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.ListValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -1968,7 +1968,7 @@
         },
         "map_uint64_message": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -2014,7 +2014,7 @@
         },
         "map_uint64_string_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.StringValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.StringValue.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -2025,7 +2025,7 @@
         },
         "map_uint64_struct": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Struct.schema.json"
+            "$ref": "#/$defs/google.protobuf.Struct.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -2036,7 +2036,7 @@
         },
         "map_uint64_timestamp": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Timestamp.schema.json"
+            "$ref": "#/$defs/google.protobuf.Timestamp.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -2060,7 +2060,7 @@
         },
         "map_uint64_uint32_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt32Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -2084,7 +2084,7 @@
         },
         "map_uint64_uint64_wrapper": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt64Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -2095,7 +2095,7 @@
         },
         "map_uint64_value": {
           "additionalProperties": {
-            "$ref": "#/defs/#/defs/google.protobuf.Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Value.schema.json"
           },
           "propertyNames": {
             "exclusiveMaximum": 18446744073709551616,
@@ -2139,7 +2139,7 @@
         "repeated_any": {
           "description": "Repeated wellknown.",
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.Any.schema.json"
+            "$ref": "#/$defs/google.protobuf.Any.schema.json"
           },
           "type": "array"
         },
@@ -2151,7 +2151,7 @@
         },
         "repeated_bool_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.BoolValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BoolValue.schema.json"
           },
           "type": "array"
         },
@@ -2164,7 +2164,7 @@
         },
         "repeated_bytes_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.BytesValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.BytesValue.schema.json"
           },
           "type": "array"
         },
@@ -2194,13 +2194,13 @@
         },
         "repeated_double_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.DoubleValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.DoubleValue.schema.json"
           },
           "type": "array"
         },
         "repeated_duration": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.Duration.schema.json"
+            "$ref": "#/$defs/google.protobuf.Duration.schema.json"
           },
           "type": "array"
         },
@@ -2242,7 +2242,7 @@
         },
         "repeated_float_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.FloatValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.FloatValue.schema.json"
           },
           "type": "array"
         },
@@ -2257,7 +2257,7 @@
         },
         "repeated_int32_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int32Value.schema.json"
           },
           "type": "array"
         },
@@ -2271,19 +2271,19 @@
         },
         "repeated_int64_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.Int64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Int64Value.schema.json"
           },
           "type": "array"
         },
         "repeated_lazy_message": {
           "items": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
           },
           "type": "array"
         },
         "repeated_list_value": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.ListValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.ListValue.schema.json"
           },
           "type": "array"
         },
@@ -2311,7 +2311,7 @@
         "repeated_nested_message": {
           "description": "Repeated and nested",
           "items": {
-            "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+            "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
           },
           "type": "array"
         },
@@ -2380,19 +2380,19 @@
         },
         "repeated_string_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.StringValue.schema.json"
+            "$ref": "#/$defs/google.protobuf.StringValue.schema.json"
           },
           "type": "array"
         },
         "repeated_struct": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.Struct.schema.json"
+            "$ref": "#/$defs/google.protobuf.Struct.schema.json"
           },
           "type": "array"
         },
         "repeated_timestamp": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.Timestamp.schema.json"
+            "$ref": "#/$defs/google.protobuf.Timestamp.schema.json"
           },
           "type": "array"
         },
@@ -2406,7 +2406,7 @@
         },
         "repeated_uint32_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt32Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt32Value.schema.json"
           },
           "type": "array"
         },
@@ -2420,32 +2420,32 @@
         },
         "repeated_uint64_wrapper": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.UInt64Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.UInt64Value.schema.json"
           },
           "type": "array"
         },
         "repeated_value": {
           "items": {
-            "$ref": "#/defs/#/defs/google.protobuf.Value.schema.json"
+            "$ref": "#/$defs/google.protobuf.Value.schema.json"
           },
           "type": "array"
         },
         "single_any": {
-          "$ref": "#/defs/#/defs/google.protobuf.Any.schema.json",
+          "$ref": "#/$defs/google.protobuf.Any.schema.json",
           "description": "Wellknown."
         },
         "single_bool": {
           "type": "boolean"
         },
         "single_bool_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.BoolValue.schema.json"
+          "$ref": "#/$defs/google.protobuf.BoolValue.schema.json"
         },
         "single_bytes": {
           "pattern": "^[A-Za-z0-9+/]*={0,2}$",
           "type": "string"
         },
         "single_bytes_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.BytesValue.schema.json"
+          "$ref": "#/$defs/google.protobuf.BytesValue.schema.json"
         },
         "single_double": {
           "anyOf": [
@@ -2463,10 +2463,10 @@
           ]
         },
         "single_double_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.DoubleValue.schema.json"
+          "$ref": "#/$defs/google.protobuf.DoubleValue.schema.json"
         },
         "single_duration": {
-          "$ref": "#/defs/#/defs/google.protobuf.Duration.schema.json"
+          "$ref": "#/$defs/google.protobuf.Duration.schema.json"
         },
         "single_fixed32": {
           "maximum": 4294967295,
@@ -2496,7 +2496,7 @@
           ]
         },
         "single_float_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.FloatValue.schema.json"
+          "$ref": "#/$defs/google.protobuf.FloatValue.schema.json"
         },
         "single_int32": {
           "description": "Singular",
@@ -2505,7 +2505,7 @@
           "type": "integer"
         },
         "single_int32_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.Int32Value.schema.json"
+          "$ref": "#/$defs/google.protobuf.Int32Value.schema.json"
         },
         "single_int64": {
           "exclusiveMaximum": 9223372036854775808,
@@ -2513,7 +2513,7 @@
           "type": "integer"
         },
         "single_int64_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.Int64Value.schema.json"
+          "$ref": "#/$defs/google.protobuf.Int64Value.schema.json"
         },
         "single_nested_enum": {
           "anyOf": [
@@ -2534,7 +2534,7 @@
           "title": "Nested Enum"
         },
         "single_nested_message": {
-          "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
         },
         "single_sfixed32": {
           "maximum": 2147483647,
@@ -2560,13 +2560,13 @@
           "type": "string"
         },
         "single_string_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.StringValue.schema.json"
+          "$ref": "#/$defs/google.protobuf.StringValue.schema.json"
         },
         "single_struct": {
-          "$ref": "#/defs/#/defs/google.protobuf.Struct.schema.json"
+          "$ref": "#/$defs/google.protobuf.Struct.schema.json"
         },
         "single_timestamp": {
-          "$ref": "#/defs/#/defs/google.protobuf.Timestamp.schema.json"
+          "$ref": "#/$defs/google.protobuf.Timestamp.schema.json"
         },
         "single_uint32": {
           "maximum": 4294967295,
@@ -2574,7 +2574,7 @@
           "type": "integer"
         },
         "single_uint32_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.UInt32Value.schema.json"
+          "$ref": "#/$defs/google.protobuf.UInt32Value.schema.json"
         },
         "single_uint64": {
           "exclusiveMaximum": 18446744073709551616,
@@ -2582,10 +2582,10 @@
           "type": "integer"
         },
         "single_uint64_wrapper": {
-          "$ref": "#/defs/#/defs/google.protobuf.UInt64Value.schema.json"
+          "$ref": "#/$defs/google.protobuf.UInt64Value.schema.json"
         },
         "single_value": {
-          "$ref": "#/defs/#/defs/google.protobuf.Value.schema.json"
+          "$ref": "#/$defs/google.protobuf.Value.schema.json"
         },
         "standalone_enum": {
           "anyOf": [
@@ -2606,7 +2606,7 @@
           "title": "Nested Enum"
         },
         "standalone_message": {
-          "$ref": "#/defs/#/defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
         }
       },
       "required": [
@@ -2758,6 +2758,6 @@
     }
   },
   "$id": "bufext.cel.expr.conformance.proto3.TestAllTypes.schema.bundle.json",
-  "$ref": null,
+  "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

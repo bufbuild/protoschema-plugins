@@ -928,10 +928,10 @@
           "type": "string"
         },
         "required_implicit": {
-          "$ref": "#/defs/#/defs/buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.schema.json"
+          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.schema.json"
         },
         "required_optional": {
-          "$ref": "#/defs/#/defs/buf.protoschema.test.v1.ConstraintTest.RequiredOptional.schema.json"
+          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.RequiredOptional.schema.json"
         },
         "suffix_string": {
           "pattern": ".*_suffix$",
@@ -989,6 +989,6 @@
     }
   },
   "$id": "buf.protoschema.test.v1.ConstraintTest.schema.bundle.json",
-  "$ref": null,
+  "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

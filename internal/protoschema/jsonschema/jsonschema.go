@@ -38,7 +38,7 @@ const (
 	jsObject  = "object"
 	jsString  = "string"
 
-	defsPrefix = "#/defs/"
+	defsPrefix = "#/$defs/"
 )
 
 type FieldVisibility int
@@ -161,7 +161,7 @@ func (p *Generator) bundleSchema(entry *msgSchema) map[string]any {
 	return map[string]any{
 		"$schema": "https://json-schema.org/draft/2020-12/schema",
 		"$id":     p.getBundleID(entry.desc),
-		"$ref":    entry.schema["$id"],
+		"$ref":    p.getID(entry.desc),
 		"$defs":   defs,
 	}
 }
@@ -210,14 +210,10 @@ func (p *Generator) getBundleID(desc protoreflect.Descriptor) string {
 }
 
 func (p *Generator) getRef(fdesc protoreflect.FieldDescriptor) string {
-	switch {
-	case p.bundle:
-		return defsPrefix + p.getID(fdesc.Message())
-	case fdesc.Parent() == fdesc.Message():
+	if !p.bundle && fdesc.Parent() == fdesc.Message() {
 		return "#"
-	default:
-		return p.getID(fdesc.Message())
 	}
+	return p.getID(fdesc.Message())
 }
 
 func (p *Generator) generate(desc protoreflect.MessageDescriptor) (*msgSchema, error) {
