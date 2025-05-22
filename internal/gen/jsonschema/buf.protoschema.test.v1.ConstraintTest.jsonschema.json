@@ -38,7 +38,6 @@
       "enum": [
         5
       ],
-      "exclusiveMaximum": 18446744073709552000,
       "minimum": 0,
       "type": "integer"
     },
@@ -62,8 +61,6 @@
       "enum": [
         5
       ],
-      "exclusiveMaximum": 9223372036854775808,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "constSfixed32": {
@@ -78,8 +75,6 @@
       "enum": [
         5
       ],
-      "exclusiveMaximum": 9223372036854775808,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "constSint32": {
@@ -94,8 +89,6 @@
       "enum": [
         5
       ],
-      "exclusiveMaximum": 9223372036854775808,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "constString": {
@@ -116,7 +109,6 @@
       "enum": [
         5
       ],
-      "exclusiveMaximum": 18446744073709552000,
       "minimum": 0,
       "type": "integer"
     },
@@ -175,7 +167,6 @@
       "type": "integer"
     },
     "gtFixed64": {
-      "exclusiveMaximum": 18446744073709552000,
       "exclusiveMinimum": 5,
       "type": "integer"
     },
@@ -200,7 +191,6 @@
       "type": "integer"
     },
     "gtInt64": {
-      "exclusiveMaximum": 9223372036854775808,
       "exclusiveMinimum": 5,
       "type": "integer"
     },
@@ -210,7 +200,6 @@
       "type": "integer"
     },
     "gtSfixed64": {
-      "exclusiveMaximum": 9223372036854775808,
       "exclusiveMinimum": 5,
       "type": "integer"
     },
@@ -220,7 +209,6 @@
       "type": "integer"
     },
     "gtSint64": {
-      "exclusiveMaximum": 9223372036854775808,
       "exclusiveMinimum": 5,
       "type": "integer"
     },
@@ -230,7 +218,6 @@
       "type": "integer"
     },
     "gtUint64": {
-      "exclusiveMaximum": 18446744073709552000,
       "exclusiveMinimum": 5,
       "type": "integer"
     },
@@ -254,7 +241,6 @@
       "type": "integer"
     },
     "gteFixed64": {
-      "exclusiveMaximum": 18446744073709552000,
       "minimum": 5,
       "type": "integer"
     },
@@ -279,7 +265,6 @@
       "type": "integer"
     },
     "gteInt64": {
-      "exclusiveMaximum": 9223372036854775808,
       "minimum": 5,
       "type": "integer"
     },
@@ -289,7 +274,6 @@
       "type": "integer"
     },
     "gteSfixed64": {
-      "exclusiveMaximum": 9223372036854775808,
       "minimum": 5,
       "type": "integer"
     },
@@ -299,7 +283,6 @@
       "type": "integer"
     },
     "gteSint64": {
-      "exclusiveMaximum": 9223372036854775808,
       "minimum": 5,
       "type": "integer"
     },
@@ -309,7 +292,6 @@
       "type": "integer"
     },
     "gteUint64": {
-      "exclusiveMaximum": 18446744073709552000,
       "minimum": 5,
       "type": "integer"
     },
@@ -361,7 +343,6 @@
         1,
         2
       ],
-      "exclusiveMaximum": 18446744073709552000,
       "minimum": 0,
       "type": "integer"
     },
@@ -388,8 +369,6 @@
         1,
         2
       ],
-      "exclusiveMaximum": 9223372036854775808,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "inMap": {
@@ -423,8 +402,6 @@
         1,
         2
       ],
-      "exclusiveMaximum": 9223372036854775808,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "inSint32": {
@@ -441,8 +418,6 @@
         1,
         2
       ],
-      "exclusiveMaximum": 9223372036854775808,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "inString": {
@@ -466,7 +441,6 @@
         1,
         2
       ],
-      "exclusiveMaximum": 18446744073709552000,
       "minimum": 0,
       "type": "integer"
     },
@@ -612,11 +586,9 @@
       "anyOf": [
         {
           "exclusiveMaximum": 1,
-          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
-          "exclusiveMaximum": 9223372036854775808,
           "exclusiveMinimum": 5,
           "type": "integer"
         }
@@ -644,7 +616,6 @@
           "type": "integer"
         },
         {
-          "exclusiveMaximum": 18446744073709552000,
           "exclusiveMinimum": 5,
           "type": "integer"
         }
@@ -657,7 +628,6 @@
     },
     "ltInt64": {
       "exclusiveMaximum": 5,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "ltSfixed32": {
@@ -667,7 +637,6 @@
     },
     "ltSfixed64": {
       "exclusiveMaximum": 5,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "ltSint32": {
@@ -677,7 +646,6 @@
     },
     "ltSint64": {
       "exclusiveMaximum": 5,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "ltUint32": {
@@ -736,7 +704,6 @@
     },
     "lteInt64": {
       "maximum": 5,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "lteSfixed32": {
@@ -746,7 +713,6 @@
     },
     "lteSfixed64": {
       "maximum": 5,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "lteSint32": {
@@ -756,7 +722,6 @@
     },
     "lteSint64": {
       "maximum": 5,
-      "minimum": -9223372036854775808,
       "type": "integer"
     },
     "lteUint32": {

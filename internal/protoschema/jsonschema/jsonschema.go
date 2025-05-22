@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"maps"
 	"math"
-	"math/big"
 	"slices"
 	"strings"
 	"unicode"
@@ -37,6 +36,12 @@ const (
 	jsNumber  = "number"
 	jsObject  = "object"
 	jsString  = "string"
+
+	// Any integers greater or less than these extrema cannot be safely represented
+	// according to RFC8259.
+	jsMaxInt  = 1<<53 - 1
+	jsMinInt  = -jsMaxInt
+	jsMaxUint = uint64(jsMaxInt)
 )
 
 type FieldVisibility int
@@ -45,11 +50,6 @@ const (
 	FieldVisible FieldVisibility = iota
 	FieldHide
 	FieldIgnore
-)
-
-var (
-	exclusiveMaxUint64 = big.NewInt(0).Exp(big.NewInt(2), big.NewInt(64), nil)
-	exclusiveMaxInt64  = uint64(1) << 63
 )
 
 type GeneratorOption func(*jsonSchemaGenerator)
@@ -514,6 +514,8 @@ func generateIntValidation[T int32 | int64](
 	bits int,
 	schema map[string]any,
 ) {
+	// TODO: Consider suppressing the number output if all valid values
+	// are out of the range [jsMinInt, jsMaxInt].
 	numberSchema := map[string]any{
 		"type": jsInteger,
 	}
@@ -532,8 +534,11 @@ func generateIntValidation[T int32 | int64](
 			isOr = rules.GetLte() <= rules.GetGt()
 		}
 		if isOr {
-			orNumberSchema = map[string]any{"exclusiveMinimum": rules.GetGt()}
-		} else {
+			orNumberSchema = make(map[string]any)
+			if int64(rules.GetGt()) >= jsMinInt {
+				orNumberSchema["exclusiveMinimum"] = rules.GetGt()
+			}
+		} else if int64(rules.GetGt()) >= jsMinInt {
 			numberSchema["exclusiveMinimum"] = rules.GetGt()
 		}
 	case rules.HasGte():
@@ -545,20 +550,31 @@ func generateIntValidation[T int32 | int64](
 			isOr = rules.GetLte() < rules.GetGte()
 		}
 		if isOr {
-			orNumberSchema = map[string]any{"minimum": rules.GetGte()}
-		} else {
+			orNumberSchema = make(map[string]any)
+			if int64(rules.GetGte()) > jsMinInt {
+				orNumberSchema["minimum"] = rules.GetGte()
+			}
+		} else if int64(rules.GetGte()) > jsMinInt {
 			numberSchema["minimum"] = rules.GetGte()
 		}
 	default:
-		numberSchema["minimum"] = minVal
+		if bits <= 53 {
+			numberSchema["minimum"] = minVal
+		}
 	}
 	switch {
 	case rules.HasLt():
-		numberSchema["exclusiveMaximum"] = rules.GetLt()
+		if int64(rules.GetLt()) <= jsMaxInt {
+			numberSchema["exclusiveMaximum"] = rules.GetLt()
+		}
 	case rules.HasLte():
-		numberSchema["maximum"] = rules.GetLte()
+		if int64(rules.GetLte()) < jsMaxInt {
+			numberSchema["maximum"] = rules.GetLte()
+		}
 	default:
-		numberSchema["exclusiveMaximum"] = maxExclVal
+		if bits < 53 {
+			numberSchema["exclusiveMaximum"] = maxExclVal
+		}
 	}
 
 	anyOf := []map[string]any{
@@ -566,8 +582,10 @@ func generateIntValidation[T int32 | int64](
 	}
 
 	if orNumberSchema != nil {
-		numberSchema["minimum"] = minVal
-		orNumberSchema["exclusiveMaximum"] = maxExclVal
+		if bits < 53 {
+			numberSchema["minimum"] = minVal
+			orNumberSchema["exclusiveMaximum"] = maxExclVal
+		}
 		orNumberSchema["type"] = jsInteger
 		anyOf = append(anyOf, orNumberSchema)
 	}
@@ -616,11 +634,9 @@ func (p *jsonSchemaGenerator) generateInt64Validation(field protoreflect.FieldDe
 	default:
 		if p.strict {
 			schema["type"] = jsInteger
-			schema["minimum"] = math.MinInt64
-			schema["exclusiveMaximum"] = exclusiveMaxInt64
 		} else {
 			schema["anyOf"] = []map[string]any{
-				{"type": jsInteger, "minimum": math.MinInt64, "exclusiveMaximum": exclusiveMaxInt64},
+				{"type": jsInteger},
 				{"type": jsString, "pattern": "^-?[0-9]+$"},
 			}
 		}
@@ -640,6 +656,8 @@ func generateUintValidation[T uint32 | uint64](
 	bits int,
 	schema map[string]any,
 ) {
+	// TODO: Consider suppressing the number output if all valid values
+	// are out of the range [0, jsMaxUint].
 	numberSchema := map[string]any{
 		"type": jsInteger,
 	}
@@ -656,7 +674,10 @@ func generateUintValidation[T uint32 | uint64](
 			isOr = rules.GetLte() <= rules.GetGt()
 		}
 		if isOr {
-			orNumberSchema = map[string]any{"exclusiveMinimum": rules.GetGt()}
+			orNumberSchema = make(map[string]any)
+			if uint64(rules.GetGt()) <= jsMaxUint {
+				orNumberSchema["exclusiveMinimum"] = rules.GetGt()
+			}
 		} else {
 			numberSchema["exclusiveMinimum"] = rules.GetGt()
 		}
@@ -678,10 +699,14 @@ func generateUintValidation[T uint32 | uint64](
 	}
 	switch {
 	case rules.HasLt():
-		numberSchema["exclusiveMaximum"] = rules.GetLt()
+		if uint64(rules.GetLt()) <= jsMaxUint {
+			numberSchema["exclusiveMaximum"] = rules.GetLt()
+		}
 	case rules.HasLte():
-		numberSchema["maximum"] = rules.GetLte()
-	default:
+		if uint64(rules.GetLte()) < jsMaxUint {
+			numberSchema["maximum"] = rules.GetLte()
+		}
+	case bits < 53:
 		numberSchema["exclusiveMaximum"] = maxExclVal
 	}
 
@@ -690,7 +715,9 @@ func generateUintValidation[T uint32 | uint64](
 	}
 	if orNumberSchema != nil {
 		numberSchema["minimum"] = 0
-		orNumberSchema["exclusiveMaximum"] = maxExclVal
+		if bits < 53 {
+			orNumberSchema["exclusiveMaximum"] = maxExclVal
+		}
 		orNumberSchema["type"] = jsInteger
 		anyOf = append(anyOf, orNumberSchema)
 	}
@@ -737,10 +764,9 @@ func (p *jsonSchemaGenerator) generateUint64Validation(field protoreflect.FieldD
 		if p.strict {
 			schema["type"] = jsInteger
 			schema["minimum"] = 0
-			schema["exclusiveMaximum"] = exclusiveMaxUint64
 		} else {
 			schema["anyOf"] = []map[string]any{
-				{"type": jsInteger, "minimum": 0, "exclusiveMaximum": exclusiveMaxUint64},
+				{"type": jsInteger, "minimum": 0},
 				{"type": jsString, "pattern": "^[0-9]+$"},
 			}
 		}

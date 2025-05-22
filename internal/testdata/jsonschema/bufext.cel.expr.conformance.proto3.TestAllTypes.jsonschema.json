@@ -186,8 +186,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -318,7 +316,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -660,8 +657,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -902,7 +897,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -972,8 +966,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -991,8 +983,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1010,8 +1000,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1030,8 +1018,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1049,8 +1035,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1083,8 +1067,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1102,8 +1084,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1121,8 +1101,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1155,8 +1133,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1191,8 +1167,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1210,8 +1184,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1239,8 +1211,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1258,8 +1228,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1274,8 +1242,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1287,8 +1253,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1306,8 +1270,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1325,8 +1287,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1344,8 +1304,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1364,8 +1322,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1396,8 +1352,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1415,8 +1369,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1434,8 +1386,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1453,8 +1403,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1472,8 +1420,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1501,8 +1447,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1520,8 +1464,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1536,7 +1478,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -1549,8 +1490,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1568,8 +1507,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1587,8 +1524,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1778,8 +1713,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -1910,7 +1843,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2252,8 +2184,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -2494,7 +2424,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2564,7 +2493,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2583,7 +2511,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2602,7 +2529,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2622,7 +2548,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2641,7 +2566,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2675,7 +2599,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2694,7 +2617,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2713,7 +2635,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2747,7 +2668,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2783,7 +2703,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2802,7 +2721,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2831,7 +2749,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2850,7 +2767,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2866,8 +2782,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -2879,7 +2793,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2898,7 +2811,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2917,7 +2829,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2936,7 +2847,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2968,7 +2878,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -2987,7 +2896,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3006,7 +2914,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3025,7 +2932,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3044,7 +2950,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3073,7 +2978,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3092,7 +2996,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3108,7 +3011,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3121,7 +3023,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3140,7 +3041,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3159,7 +3059,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3293,7 +3192,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3361,8 +3259,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -3458,8 +3354,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -3490,8 +3384,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -3558,7 +3450,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -3643,7 +3534,6 @@
     "^(single_fixed64)$": {
       "anyOf": [
         {
-          "exclusiveMaximum": 18446744073709551616,
           "minimum": 0,
           "type": "integer"
         },
@@ -3699,8 +3589,6 @@
     "^(single_int64)$": {
       "anyOf": [
         {
-          "exclusiveMaximum": 9223372036854775808,
-          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
@@ -3751,8 +3639,6 @@
     "^(single_sfixed64)$": {
       "anyOf": [
         {
-          "exclusiveMaximum": 9223372036854775808,
-          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
@@ -3779,8 +3665,6 @@
     "^(single_sint64)$": {
       "anyOf": [
         {
-          "exclusiveMaximum": 9223372036854775808,
-          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
@@ -3823,7 +3707,6 @@
     "^(single_uint64)$": {
       "anyOf": [
         {
-          "exclusiveMaximum": 18446744073709551616,
           "minimum": 0,
           "type": "integer"
         },
@@ -4049,8 +3932,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4181,7 +4062,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -4523,8 +4403,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4765,7 +4643,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -4835,8 +4712,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4854,8 +4729,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4873,8 +4746,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4893,8 +4764,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4912,8 +4781,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4946,8 +4813,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4965,8 +4830,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -4984,8 +4847,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5018,8 +4879,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5054,8 +4913,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5073,8 +4930,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5102,8 +4957,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5121,8 +4974,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5137,8 +4988,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5150,8 +4999,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5169,8 +5016,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5188,8 +5033,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5207,8 +5050,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5227,8 +5068,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5259,8 +5098,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5278,8 +5115,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5297,8 +5132,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5316,8 +5149,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5335,8 +5166,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5364,8 +5193,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5383,8 +5210,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5399,7 +5224,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -5412,8 +5236,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5431,8 +5253,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5450,8 +5270,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5641,8 +5459,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -5773,7 +5589,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6115,8 +5930,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -6357,7 +6170,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6427,7 +6239,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6446,7 +6257,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6465,7 +6275,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6485,7 +6294,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6504,7 +6312,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6538,7 +6345,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6557,7 +6363,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6576,7 +6381,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6610,7 +6414,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6646,7 +6449,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6665,7 +6467,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6694,7 +6495,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6713,7 +6513,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6729,8 +6528,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -6742,7 +6539,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6761,7 +6557,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6780,7 +6575,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6799,7 +6593,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6831,7 +6624,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6850,7 +6642,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6869,7 +6660,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6888,7 +6678,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6907,7 +6696,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6936,7 +6724,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6955,7 +6742,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6971,7 +6757,6 @@
       "additionalProperties": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -6984,7 +6769,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -7003,7 +6787,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -7022,7 +6805,6 @@
       "propertyNames": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -7156,7 +6938,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -7224,8 +7005,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -7321,8 +7100,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -7353,8 +7130,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 9223372036854775808,
-            "minimum": -9223372036854775808,
             "type": "integer"
           },
           {
@@ -7421,7 +7196,6 @@
       "items": {
         "anyOf": [
           {
-            "exclusiveMaximum": 18446744073709551616,
             "minimum": 0,
             "type": "integer"
           },
@@ -7506,7 +7280,6 @@
     "singleFixed64": {
       "anyOf": [
         {
-          "exclusiveMaximum": 18446744073709551616,
           "minimum": 0,
           "type": "integer"
         },
@@ -7562,8 +7335,6 @@
     "singleInt64": {
       "anyOf": [
         {
-          "exclusiveMaximum": 9223372036854775808,
-          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
@@ -7614,8 +7385,6 @@
     "singleSfixed64": {
       "anyOf": [
         {
-          "exclusiveMaximum": 9223372036854775808,
-          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
@@ -7642,8 +7411,6 @@
     "singleSint64": {
       "anyOf": [
         {
-          "exclusiveMaximum": 9223372036854775808,
-          "minimum": -9223372036854775808,
           "type": "integer"
         },
         {
@@ -7686,7 +7453,6 @@
     "singleUint64": {
       "anyOf": [
         {
-          "exclusiveMaximum": 18446744073709551616,
           "minimum": 0,
           "type": "integer"
         },
