@@ -483,6 +483,8 @@ func generateIntValidation[T int32 | int64](
 	bits int,
 	schema map[string]any,
 ) {
+	// TODO: Consider suppressing the number output if all valid values
+	// are out of the range [jsMinInt, jsMaxInt].
 	numberSchema := map[string]any{
 		"type": jsInteger,
 	}
@@ -623,6 +625,8 @@ func generateUintValidation[T uint32 | uint64](
 	bits int,
 	schema map[string]any,
 ) {
+	// TODO: Consider suppressing the number output if all valid values
+	// are out of the range [0, jsMaxUint].
 	numberSchema := map[string]any{
 		"type": jsInteger,
 	}
