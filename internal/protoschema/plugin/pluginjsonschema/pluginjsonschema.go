@@ -131,9 +131,9 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 					skip_proto = true
 				case "proto":
 					skip_json = true
-				case "both":
+				case "all":
 				default:
-					return nil, fmt.Errorf("invalid value %q for names, expected json, proto, or both", value)
+					return nil, fmt.Errorf("invalid value %q for names, expected json, proto, or all", value)
 				}
 			case "bundle":
 				switch strings.ToLower(value) {
@@ -141,9 +141,9 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 					skip_non_bundle = true
 				case "false":
 					skip_bundle = true
-				case "both":
+				case "all":
 				default:
-					return nil, fmt.Errorf("invalid value %q for bundle, expected true, false, or both", value)
+					return nil, fmt.Errorf("invalid value %q for bundle, expected true, false, or all", value)
 				}
 			default:
 				return nil, fmt.Errorf("unknown parameter %q", param)
