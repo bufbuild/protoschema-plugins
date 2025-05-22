@@ -127,7 +127,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 0,
               "type": "integer"
             },
@@ -177,8 +176,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -209,8 +206,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -241,8 +236,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -279,7 +272,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 0,
               "type": "integer"
             },
@@ -402,7 +394,6 @@
         "^(gtFixed64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 18446744073709552000,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -448,7 +439,6 @@
         "^(gtInt64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -474,7 +464,6 @@
         "^(gtSfixed64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -500,7 +489,6 @@
         "^(gtSint64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -526,7 +514,6 @@
         "^(gtUint64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 18446744073709552000,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -571,7 +558,6 @@
         "^(gteFixed64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 5,
               "type": "integer"
             },
@@ -617,7 +603,6 @@
         "^(gteInt64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "minimum": 5,
               "type": "integer"
             },
@@ -643,7 +628,6 @@
         "^(gteSfixed64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "minimum": 5,
               "type": "integer"
             },
@@ -669,7 +653,6 @@
         "^(gteSint64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "minimum": 5,
               "type": "integer"
             },
@@ -695,7 +678,6 @@
         "^(gteUint64)$": {
           "anyOf": [
             {
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 5,
               "type": "integer"
             },
@@ -794,7 +776,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 0,
               "type": "integer"
             },
@@ -847,8 +828,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -898,8 +877,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -932,8 +909,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -973,7 +948,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 0,
               "type": "integer"
             },
@@ -1163,11 +1137,9 @@
           "anyOf": [
             {
               "exclusiveMaximum": 1,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
-              "exclusiveMaximum": 9223372036854775808,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -1203,7 +1175,6 @@
               "type": "integer"
             },
             {
-              "exclusiveMaximum": 18446744073709552000,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -1230,7 +1201,6 @@
           "anyOf": [
             {
               "exclusiveMaximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1256,7 +1226,6 @@
           "anyOf": [
             {
               "exclusiveMaximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1282,7 +1251,6 @@
           "anyOf": [
             {
               "exclusiveMaximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1399,7 +1367,6 @@
           "anyOf": [
             {
               "maximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1425,7 +1392,6 @@
           "anyOf": [
             {
               "maximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1451,7 +1417,6 @@
           "anyOf": [
             {
               "maximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1641,7 +1606,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 0,
               "type": "integer"
             },
@@ -1691,8 +1655,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1723,8 +1685,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1755,8 +1715,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -1793,7 +1751,6 @@
               "enum": [
                 5
               ],
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 0,
               "type": "integer"
             },
@@ -1916,7 +1873,6 @@
         "gt_fixed64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 18446744073709552000,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -1962,7 +1918,6 @@
         "gt_int64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -1988,7 +1943,6 @@
         "gt_sfixed64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -2014,7 +1968,6 @@
         "gt_sint64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -2040,7 +1993,6 @@
         "gt_uint64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 18446744073709552000,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -2085,7 +2037,6 @@
         "gte_fixed64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 5,
               "type": "integer"
             },
@@ -2131,7 +2082,6 @@
         "gte_int64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "minimum": 5,
               "type": "integer"
             },
@@ -2157,7 +2107,6 @@
         "gte_sfixed64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "minimum": 5,
               "type": "integer"
             },
@@ -2183,7 +2132,6 @@
         "gte_sint64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 9223372036854775808,
               "minimum": 5,
               "type": "integer"
             },
@@ -2209,7 +2157,6 @@
         "gte_uint64": {
           "anyOf": [
             {
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 5,
               "type": "integer"
             },
@@ -2308,7 +2255,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 0,
               "type": "integer"
             },
@@ -2361,8 +2307,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -2412,8 +2356,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -2446,8 +2388,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 9223372036854775808,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -2487,7 +2427,6 @@
                 1,
                 2
               ],
-              "exclusiveMaximum": 18446744073709552000,
               "minimum": 0,
               "type": "integer"
             },
@@ -2677,11 +2616,9 @@
           "anyOf": [
             {
               "exclusiveMaximum": 1,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
-              "exclusiveMaximum": 9223372036854775808,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -2717,7 +2654,6 @@
               "type": "integer"
             },
             {
-              "exclusiveMaximum": 18446744073709552000,
               "exclusiveMinimum": 5,
               "type": "integer"
             },
@@ -2744,7 +2680,6 @@
           "anyOf": [
             {
               "exclusiveMaximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -2770,7 +2705,6 @@
           "anyOf": [
             {
               "exclusiveMaximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -2796,7 +2730,6 @@
           "anyOf": [
             {
               "exclusiveMaximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -2913,7 +2846,6 @@
           "anyOf": [
             {
               "maximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -2939,7 +2871,6 @@
           "anyOf": [
             {
               "maximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
@@ -2965,7 +2896,6 @@
           "anyOf": [
             {
               "maximum": 5,
-              "minimum": -9223372036854775808,
               "type": "integer"
             },
             {
