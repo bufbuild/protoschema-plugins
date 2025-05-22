@@ -91,6 +91,7 @@ func TestConstraints(t *testing.T) {
 }
 
 func assertValidation(t *testing.T, schema *jsonschema.Schema, jsonData map[string]any, expectedPath string) {
+	t.Helper()
 	expectedData, err := os.ReadFile(expectedPath)
 	require.NoError(t, err)
 	err = schema.Validate(jsonData)
