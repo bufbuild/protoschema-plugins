@@ -1,6 +1,6 @@
 {
   "$defs": {
-    "buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.jsonschema.json": {
+    "buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.jsonschema.strict.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": true,
       "properties": {
@@ -21,7 +21,7 @@
       "title": "Required Implicit",
       "type": "object"
     },
-    "buf.protoschema.test.v1.ConstraintTest.RequiredOptional.jsonschema.json": {
+    "buf.protoschema.test.v1.ConstraintTest.RequiredOptional.jsonschema.strict.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": true,
       "properties": {
@@ -39,7 +39,7 @@
       "title": "Required Optional",
       "type": "object"
     },
-    "buf.protoschema.test.v1.ConstraintTest.jsonschema.json": {
+    "buf.protoschema.test.v1.ConstraintTest.jsonschema.strict.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": true,
       "properties": {
@@ -893,10 +893,10 @@
           "type": "string"
         },
         "requiredImplicit": {
-          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.jsonschema.json"
+          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.jsonschema.strict.json"
         },
         "requiredOptional": {
-          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.RequiredOptional.jsonschema.json"
+          "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.RequiredOptional.jsonschema.strict.json"
         },
         "suffixString": {
           "pattern": ".*_suffix$",
@@ -951,9 +951,23 @@
       ],
       "title": "Constraint Test",
       "type": "object"
+    },
+    "buf.protoschema.test.v1.ConstraintTests.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "testCases": {
+          "items": {
+            "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Constraint Tests",
+      "type": "object"
     }
   },
-  "$id": "buf.protoschema.test.v1.ConstraintTest.jsonschema.bundle.json",
-  "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTest.jsonschema.json",
+  "$id": "buf.protoschema.test.v1.ConstraintTests.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.ConstraintTests.jsonschema.strict.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

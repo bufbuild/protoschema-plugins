@@ -1,17 +1,17 @@
 {
   "$defs": {
-    "buf.protoschema.test.v1.NestedReference.jsonschema.json": {
+    "buf.protoschema.test.v1.NestedReference.jsonschema.strict.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": true,
       "properties": {
         "nestedMessage": {
-          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json"
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
         }
       },
       "title": "Nested Reference",
       "type": "object"
     },
-    "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.json": {
+    "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": true,
       "properties": {
@@ -29,7 +29,7 @@
       "type": "object"
     }
   },
-  "$id": "buf.protoschema.test.v1.NestedReference.jsonschema.bundle.json",
-  "$ref": "#/$defs/buf.protoschema.test.v1.NestedReference.jsonschema.json",
+  "$id": "buf.protoschema.test.v1.NestedReference.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.NestedReference.jsonschema.strict.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

@@ -1,6 +1,6 @@
 {
   "$defs": {
-    "buf.protoschema.test.v1.CustomOptions.jsonschema.json": {
+    "buf.protoschema.test.v1.CustomOptions.jsonschema.strict.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": true,
       "description": "This is a test case for the custom options in the buf.validate package... and\n comment parsing.",
@@ -23,7 +23,7 @@
       "type": "object"
     }
   },
-  "$id": "buf.protoschema.test.v1.CustomOptions.jsonschema.bundle.json",
-  "$ref": "#/$defs/buf.protoschema.test.v1.CustomOptions.jsonschema.json",
+  "$id": "buf.protoschema.test.v1.CustomOptions.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.CustomOptions.jsonschema.strict.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema"
 }

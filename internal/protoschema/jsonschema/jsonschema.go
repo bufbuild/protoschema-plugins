@@ -169,8 +169,8 @@ func (p *Generator) bundleSchema(entry *msgSchema) map[string]any {
 	}
 	return map[string]any{
 		"$schema": "https://json-schema.org/draft/2020-12/schema",
-		"$id":     p.getBundleID(entry.desc),
-		"$ref":    p.getID(entry.desc),
+		"$id":     p.getID(entry.desc, true),
+		"$ref":    p.getID(entry.desc, false),
 		"$defs":   defs,
 	}
 }
@@ -198,31 +198,33 @@ type msgSchema struct {
 	added  bool
 }
 
-func (p *Generator) getID(desc protoreflect.Descriptor) string {
+// getID returns the ID for the given descriptor.
+//
+// If bundleID is true, the ID for the bundle is returned.
+func (p *Generator) getID(desc protoreflect.Descriptor, bundleID bool) string {
 	var result string
-	if p.bundle {
+	if !bundleID && p.bundle {
 		result = defsPrefix
 	}
 	if p.useJSONNames {
-		result += string(desc.FullName()) + ".jsonschema.json"
+		result += string(desc.FullName()) + ".jsonschema"
 	} else {
-		result += string(desc.FullName()) + ".schema.json"
+		result += string(desc.FullName()) + ".schema"
 	}
-	return result
-}
-
-func (p *Generator) getBundleID(desc protoreflect.Descriptor) string {
-	if p.useJSONNames {
-		return string(desc.FullName()) + ".jsonschema.bundle.json"
+	if p.strict {
+		result += ".strict"
 	}
-	return string(desc.FullName()) + ".schema.bundle.json"
+	if bundleID {
+		result += ".bundle"
+	}
+	return result + ".json"
 }
 
 func (p *Generator) getRef(fdesc protoreflect.FieldDescriptor) string {
 	if !p.bundle && fdesc.Parent() == fdesc.Message() {
 		return "#"
 	}
-	return p.getID(fdesc.Message())
+	return p.getID(fdesc.Message(), false)
 }
 
 func (p *Generator) generate(desc protoreflect.MessageDescriptor) (*msgSchema, error) {
@@ -234,7 +236,7 @@ func (p *Generator) generate(desc protoreflect.MessageDescriptor) (*msgSchema, e
 	entry := &msgSchema{
 		desc:   desc,
 		schema: make(map[string]any),
-		id:     p.getID(desc),
+		id:     p.getID(desc, false),
 	}
 	entry.schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
 	if !p.bundle {

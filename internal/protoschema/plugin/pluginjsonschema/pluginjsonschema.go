@@ -127,16 +127,19 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 				}
 			case "names":
 				switch strings.ToLower(value) {
-				case "json-only":
+				case "json-strict":
 					options = append(options, jsonschema.WithStrictNames())
 					fallthrough
 				case "json":
 					skipProto = true
-				case "proto-only":
+				case "proto-strict":
 					options = append(options, jsonschema.WithStrictNames())
 					fallthrough
 				case "proto":
 					skipJSON = true
+				case "all-strict":
+					options = append(options, jsonschema.WithStrictNames())
+					fallthrough
 				case "all":
 				default:
 					return nil, fmt.Errorf("invalid value %q for names, expected json, proto, or all", value)
