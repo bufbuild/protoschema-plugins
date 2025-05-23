@@ -300,8 +300,8 @@ The JSON Schema plugin supports the following options:
 
 - `additional_properties` - If `true`, the generated schema will set `additionalProperties` to
   `true`, causing unknown fields to be ignored instead of erroring. Defaults to `false`. Useful when a
-  client/sender may have a newer schema (which may include new fields) than the server/receiver. Similar
-  to the "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
+  client/sender may have a different version the schema (which may have different fields) than
+  the server/receiver. Similar to the "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
 - `strict` - If `true`, the generated schema will not allow aliases, string numbers, or any other
   non-normalized representation. Defaults to `false`. Useful if the JSON being validated is used directly
   instead of being converted to a Protobuf message. Requires the "always emit fields without presence"
