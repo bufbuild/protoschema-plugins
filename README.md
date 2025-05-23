@@ -306,9 +306,13 @@ The JSON Schema plugin supports the following options:
   non-normalized representation. Defaults to `false`. Useful if the JSON being validated is used directly
   instead of being converted to a Protobuf message. Requires the "always emit fields without presence"
   option when using [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
-- `names` - One of `json`, `proto`, or `all`. Defaults to `all`. If `json`, only the JSON field name
-  schema will be generated (e.g. `productId`, `productName`). If `proto`, only the Protobuf field name
-  schema will be generated (e.g. `product_id`, `product_name`). If `all`, both schemas will be generated.
+- `names` - One of `json`, `proto`, or `all`, optionally suffixed with `-strict`. Defaults to `all`.
+  If `json`, the JSON field name schema will be generated (e.g. `productId`, `productName`).
+  If `proto`,the Protobuf field name schema will be generated (e.g. `product_id`, `product_name`).
+  If `all`, both schemas will be generated.
+  If suffixed with `-strict`, the generated schema will not allow mixing of JSON and Protobuf field
+  names.
+
 - `bundle` - One of `true`, `false`, or `all`. Defaults to `all`. If `true`, only the bundle
   schema will be generated. If `false`, only the non-bundle schema will be generated. If `all`, both
   schemas will be generated. The bundle schema includes all dependencies in a single file, while the
