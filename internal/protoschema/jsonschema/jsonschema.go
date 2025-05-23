@@ -94,6 +94,14 @@ func WithStrict() GeneratorOption {
 	}
 }
 
+// WithStrictNames sets the generator to produces schemas that do not allow
+// mixing JSON and proto field names.
+func WithStrictNames() GeneratorOption {
+	return func(p *Generator) {
+		p.strictNames = true
+	}
+}
+
 // WithBundle sets the generator to bundle all schemas references into the
 // same file.
 func WithBundle() GeneratorOption {
@@ -109,6 +117,7 @@ type Generator struct {
 	useJSONNames         bool
 	additionalProperties bool
 	strict               bool
+	strictNames          bool
 	bundle               bool
 }
 
@@ -273,30 +282,9 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		if err != nil {
 			return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
 		}
-
-		// TODO: Add an option to include custom alias.
-		aliases := make([]string, 0, 1)
-
-		switch {
-		case visibility == FieldHide:
-			aliases = append(aliases, string(field.Name()))
-			if field.JSONName() != string(field.Name()) {
-				aliases = append(aliases, field.JSONName())
-			}
-		case p.useJSONNames:
-			// Use the JSON name as the primary name.
-			properties[field.JSONName()] = fieldSchema
-			if field.JSONName() != string(field.Name()) {
-				aliases = append(aliases, string(field.Name()))
-			}
-		default:
-			// Use the proto name as the primary name.
-			properties[string(field.Name())] = fieldSchema
-			if field.JSONName() != string(field.Name()) {
-				aliases = append(aliases, field.JSONName())
-			}
-		}
-
+		// Add the field schema to the properties.
+		aliases := p.addFieldProperties(field, visibility == FieldHide, fieldSchema, properties)
+		// Add any aliases to the pattern properties.
 		if !p.strict && len(aliases) > 0 {
 			pattern := "^(" + strings.Join(aliases, "|") + ")$"
 			patternProperties[pattern] = fieldSchema
@@ -311,6 +299,40 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		entry.schema["required"] = required
 	}
 	return nil
+}
+
+func (p *Generator) addFieldProperties(
+	field protoreflect.FieldDescriptor,
+	hide bool,
+	fieldSchema map[string]any,
+	properties map[string]any) []string {
+	// TODO: Add an option to include custom alias.
+	aliases := make([]string, 0, 1)
+	if p.useJSONNames {
+		// Add the JSON name as the primary name.
+		if hide {
+			aliases = append(aliases, field.JSONName())
+		} else {
+			properties[field.JSONName()] = fieldSchema
+		}
+		// Add the proto name as an alias.
+		if !p.strictNames && field.JSONName() != string(field.Name()) {
+			aliases = append(aliases, string(field.Name()))
+		}
+		return aliases
+	}
+
+	// Add the proto name as the primary name.
+	if hide {
+		aliases = append(aliases, string(field.Name()))
+	} else {
+		properties[string(field.Name())] = fieldSchema
+	}
+	// Add the JSON name as an alias.
+	if !p.strictNames && field.JSONName() != string(field.Name()) {
+		aliases = append(aliases, field.JSONName())
+	}
+	return aliases
 }
 
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {

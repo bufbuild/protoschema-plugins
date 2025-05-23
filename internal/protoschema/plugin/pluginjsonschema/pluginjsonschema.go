@@ -127,8 +127,14 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 				}
 			case "names":
 				switch strings.ToLower(value) {
+				case "json-only":
+					options = append(options, jsonschema.WithStrictNames())
+					fallthrough
 				case "json":
 					skipProto = true
+				case "proto-only":
+					options = append(options, jsonschema.WithStrictNames())
+					fallthrough
 				case "proto":
 					skipJSON = true
 				case "all":
