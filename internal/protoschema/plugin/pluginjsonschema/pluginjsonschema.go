@@ -17,7 +17,9 @@ package pluginjsonschema
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/bufbuild/protoplugin"
@@ -39,35 +41,31 @@ func Handle(
 	}
 
 	// Parse the parameters from the request.
-	optionsWithJSONNames, err := parseOptions(request.Parameter())
+	opts, err := parseOptions(request.Parameter())
 	if err != nil {
 		return err
 	}
-	optionsWithJSONNames = append(optionsWithJSONNames, jsonschema.WithJSONNames())
-	// Also create options with protobuf names.
-	options := optionsWithJSONNames[:len(optionsWithJSONNames)-1]
+
+	gens := make([]*jsonschema.Generator, len(opts))
+	for i, opt := range opts {
+		gens[i] = jsonschema.NewGenerator(opt...)
+	}
 
 	// Generate the JSON schema for each message descriptor.
-	seenIdentifiers := make(map[string]bool)
 	for _, fileDescriptor := range fileDescriptors {
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
-			// Generate the proto name schema.
-			protoNameSchema, err := jsonschema.Generate(messageDescriptor, options...)
-			if err != nil {
-				return err
+			for _, gen := range gens {
+				if err := gen.Add(messageDescriptor); err != nil {
+					return err
+				}
 			}
-			if err := writeFiles(responseWriter, messageDescriptor, protoNameSchema, seenIdentifiers); err != nil {
-				return err
-			}
-			// Generate the JSON name schema.
-			jsonNameSchema, err := jsonschema.Generate(messageDescriptor, optionsWithJSONNames...)
-			if err != nil {
-				return err
-			}
-			if err := writeFiles(responseWriter, messageDescriptor, jsonNameSchema, seenIdentifiers); err != nil {
-				return err
-			}
+		}
+	}
+
+	for _, gen := range gens {
+		if err := writeFiles(responseWriter, gen.Generate()); err != nil {
+			return err
 		}
 	}
 
@@ -78,9 +76,7 @@ func Handle(
 
 func writeFiles(
 	responseWriter protoplugin.ResponseWriter,
-	messageDescriptor protoreflect.MessageDescriptor,
 	schema map[protoreflect.FullName]map[string]any,
-	seenIdentifiers map[string]bool,
 ) error {
 	for _, entry := range schema {
 		data, err := json.MarshalIndent(entry, "", "  ")
@@ -89,56 +85,104 @@ func writeFiles(
 		}
 		identifier, ok := entry["$id"].(string)
 		if !ok {
-			return fmt.Errorf("expected unique id for message %q to be a string, got type %T", messageDescriptor.FullName(), entry["$id"])
+			return fmt.Errorf("expected unique id to be a string, got type %T", entry["$id"])
 		}
 		if identifier == "" {
-			return fmt.Errorf("expected unique id for message %q to be a non-empty string", messageDescriptor.FullName())
-		}
-		if seenIdentifiers[identifier] {
-			continue
+			return errors.New("expected unique id to be a non-empty string")
 		}
 		responseWriter.AddFile(
 			identifier,
 			string(data)+"\n",
 		)
-		seenIdentifiers[identifier] = true
 	}
 	return nil
 }
 
-func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
+func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 	var options []jsonschema.GeneratorOption
-	if param == "" {
-		return options, nil
-	}
-	// Params are in the form of "key1=value1,key2=value2"
-	params := strings.Split(param, ",")
-	for _, param := range params {
-		// Split the param into key and value.
-		pos := strings.Index(param, "=")
-		if pos == -1 {
-			return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
-		}
-		key := strings.TrimSpace(param[:pos])
-		value := strings.TrimSpace(param[pos+1:])
-		switch key {
-		case "additional_properties":
-			if value, err := parseBoolean(value); err != nil {
-				return nil, err
-			} else if value {
-				options = append(options, jsonschema.WithAdditionalProperties())
+	var skipBundle, skipNonBundle, skipJSON, skipProto bool
+	if param != "" { // nolint:nestif
+		// Params are in the form of "key1=value1,key2=value2"
+		params := strings.Split(param, ",")
+		for _, param := range params {
+			// Split the param into key and value.
+			pos := strings.Index(param, "=")
+			if pos == -1 {
+				return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
 			}
-		case "strict":
-			if value, err := parseBoolean(value); err != nil {
-				return nil, err
-			} else if value {
-				options = append(options, jsonschema.WithStrict())
+			key := strings.TrimSpace(param[:pos])
+			value := strings.TrimSpace(param[pos+1:])
+			switch key {
+			case "additional_properties":
+				if value, err := parseBoolean(value); err != nil {
+					return nil, err
+				} else if value {
+					options = append(options, jsonschema.WithAdditionalProperties())
+				}
+			case "strict":
+				if value, err := parseBoolean(value); err != nil {
+					return nil, err
+				} else if value {
+					options = append(options, jsonschema.WithStrict())
+				}
+			case "names":
+				switch strings.ToLower(value) {
+				case "json-strict":
+					options = append(options, jsonschema.WithStrictNames())
+					fallthrough
+				case "json":
+					skipProto = true
+				case "proto-strict":
+					options = append(options, jsonschema.WithStrictNames())
+					fallthrough
+				case "proto":
+					skipJSON = true
+				case "all-strict":
+					options = append(options, jsonschema.WithStrictNames())
+					fallthrough
+				case "all":
+				default:
+					return nil, fmt.Errorf("invalid value %q for names, expected json, proto, or all", value)
+				}
+			case "bundle":
+				switch strings.ToLower(value) {
+				case "true":
+					skipNonBundle = true
+				case "false":
+					skipBundle = true
+				case "all":
+				default:
+					return nil, fmt.Errorf("invalid value %q for bundle, expected true, false, or all", value)
+				}
+			default:
+				return nil, fmt.Errorf("unknown parameter %q", param)
 			}
-		default:
-			return nil, fmt.Errorf("unknown parameter %q", param)
 		}
 	}
-	return options, nil
+
+	var result [][]jsonschema.GeneratorOption
+	if !skipProto {
+		if !skipNonBundle {
+			result = append(result, options)
+		}
+		if !skipBundle {
+			protoNameBundleOpts := slices.Clone(options)
+			protoNameBundleOpts = append(protoNameBundleOpts, jsonschema.WithBundle())
+			result = append(result, protoNameBundleOpts)
+		}
+	}
+	if !skipJSON {
+		jsonNameBundleOpts := slices.Clone(options)
+		jsonNameBundleOpts = append(jsonNameBundleOpts, jsonschema.WithJSONNames(), jsonschema.WithBundle())
+		jsonNameOpts := jsonNameBundleOpts[:len(jsonNameBundleOpts)-1]
+		if !skipNonBundle {
+			result = append(result, jsonNameOpts)
+		}
+		if !skipBundle {
+			result = append(result, jsonNameBundleOpts)
+		}
+	}
+	return result, nil
 }
 
 func parseBoolean(value string) (bool, error) {

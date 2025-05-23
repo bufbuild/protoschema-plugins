@@ -97,8 +97,10 @@ message Product {
 
 Results in the following JSON Schema files:
 
-- `*.schema.json` files are generated with underscore-case fields
-- `*.jsonschema.json` files are generated with camelCase
+- `*.schema.json` files are generated with the protobuf field name (e.g. `product_id`, `product_name`)
+- `*.schema.bundle.json` files include all dependencies in a single file with the protobuf field name.
+- `*.jsonschema.json` files are generated with the json field name (e.g. `productId`, `productName`)
+- `*.jsonschema.bundle.json` files include all dependencies in a single file with the json field name.
 
 For example, the above protobuf generates the following `*.schema.json` files:
 
@@ -296,14 +298,25 @@ Or the following `*.jsonschema.json` files, when the `strict` option is set to `
 
 The JSON Schema plugin supports the following options:
 
+- `bundle` - One of `true`, `false`, or `all`. Defaults to `all`. If `true`, only the bundle
+  schema will be generated. If `false`, only the non-bundle schema will be generated. If `all`, both
+  schemas will be generated. The bundle schema includes all dependencies in a single file, while the
+  non-bundle schema includes each dependency in its own file.
+- `names` - One of `json`, `proto`, or `all`, optionally suffixed with `-strict`. Defaults to `all`.
+  If `json`, the JSON field name schema will be generated (e.g. `productId`, `productName`).
+  If `proto`,the Protobuf field name schema will be generated (e.g. `product_id`, `product_name`).
+  If `all`, both schemas will be generated.
+  If suffixed with `-strict`, the generated schema will not allow mixing of JSON and Protobuf field
+  names.
 - `additional_properties` - If `true`, the generated schema will set `additionalProperties` to
   `true`, causing unknown fields to be ignored instead of erroring. Defaults to `false`. Useful when a
-  client/sender may have a newer schema (which may include new fields) than the server/receiver. Similar
-  to the "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
+  client/sender may have a different version the schema than the server/receiver. Similar to the
+  "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
 - `strict` - If `true`, the generated schema will not allow aliases, string numbers, or any other
-  non-normalized representation. Defaults to `false`. Useful if the JSON being validated is used directly
+  non-normalized representation. Defaults to `false`. Useful if the validated JSON is used directly
   instead of being converted to a Protobuf message. Requires the "always emit fields without presence"
   option when using [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
+  Strict schemas include `.strict` in the filename (e.g. `Product.jsonschema.strict.json`).
 
 ## Community
 

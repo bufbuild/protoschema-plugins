@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.json
+# yaml-language-server: $schema=../jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.bundle.json
 test_cases:
   - required_implicit:
       bool_value: true

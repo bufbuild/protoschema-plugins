@@ -50,24 +50,41 @@ func run() error {
 	if err != nil {
 		return err
 	}
+	protoNameGenerator := jsonschema.NewGenerator()
+	protoNameBundleGenerator := jsonschema.NewGenerator(jsonschema.WithBundle())
+	jsonNameGenerator := jsonschema.NewGenerator(jsonschema.WithJSONNames())
+	jsonNameBundleGenerator := jsonschema.NewGenerator(jsonschema.WithJSONNames(), jsonschema.WithBundle())
 	for _, testDesc := range testDescs {
-		// Generate the JSON schema with proto names.
-		schema, err := jsonschema.Generate(testDesc)
-		if err != nil {
+		if err := protoNameGenerator.Add(testDesc); err != nil {
 			return err
 		}
-		if err := writeJSONSchema(outputDir, schema); err != nil {
+		if err := protoNameBundleGenerator.Add(testDesc); err != nil {
 			return err
 		}
-		// Generate the JSON schema with JSON names.
-		schema, err = jsonschema.Generate(testDesc, jsonschema.WithJSONNames())
-		if err != nil {
+		if err := jsonNameGenerator.Add(testDesc); err != nil {
 			return err
 		}
-		if err := writeJSONSchema(outputDir, schema); err != nil {
+		if err := jsonNameBundleGenerator.Add(testDesc); err != nil {
 			return err
 		}
 	}
+	// Generate the JSON schema with proto names.
+	if err := writeJSONSchema(outputDir, protoNameGenerator.Generate()); err != nil {
+		return err
+	}
+	// Generate the JSON schema with proto names and bundle.
+	if err := writeJSONSchema(outputDir, protoNameBundleGenerator.Generate()); err != nil {
+		return err
+	}
+	// Generate the JSON schema with JSON names.
+	if err := writeJSONSchema(outputDir, jsonNameGenerator.Generate()); err != nil {
+		return err
+	}
+	// Generate the JSON schema with JSON names and bundle.
+	if err := writeJSONSchema(outputDir, jsonNameBundleGenerator.Generate()); err != nil {
+		return err
+	}
+
 	return nil
 }
 

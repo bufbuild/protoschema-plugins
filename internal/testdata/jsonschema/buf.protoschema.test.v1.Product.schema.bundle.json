@@ -1,0 +1,122 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.Product.Location.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "description": "A point on the earth's surface.",
+      "properties": {
+        "lat": {
+          "anyOf": [
+            {
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            },
+            {
+              "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            }
+          ],
+          "default": 0
+        },
+        "long": {
+          "anyOf": [
+            {
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            },
+            {
+              "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            }
+          ],
+          "default": 0
+        }
+      },
+      "title": "Location",
+      "type": "object"
+    },
+    "buf.protoschema.test.v1.Product.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "description": "A product is a good or service that is offered for sale.",
+      "patternProperties": {
+        "^(productId)$": {
+          "anyOf": [
+            {
+              "maximum": 2147483647,
+              "minimum": -2147483648,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?[0-9]+$",
+              "type": "string"
+            }
+          ],
+          "description": "The unique identifier for the product."
+        },
+        "^(productName)$": {
+          "description": "The name of the product.",
+          "type": "string"
+        }
+      },
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.Product.Location.schema.json",
+          "description": "The location of the product."
+        },
+        "price": {
+          "anyOf": [
+            {
+              "maximum": 3.4028234663852886e+38,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            }
+          ],
+          "default": 0,
+          "description": "The price of the product."
+        },
+        "product_id": {
+          "anyOf": [
+            {
+              "maximum": 2147483647,
+              "minimum": -2147483648,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?[0-9]+$",
+              "type": "string"
+            }
+          ],
+          "description": "The unique identifier for the product."
+        },
+        "product_name": {
+          "description": "The name of the product.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "The tags associated with the product.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "product_id",
+        "product_name",
+        "location"
+      ],
+      "title": "A product.",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.Product.schema.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.Product.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
