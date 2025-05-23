@@ -316,6 +316,7 @@ The JSON Schema plugin supports the following options:
   non-normalized representation. Defaults to `false`. Useful if the validated JSON is used directly
   instead of being converted to a Protobuf message. Requires the "always emit fields without presence"
   option when using [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
+  Strict schemas include `.strict` in the filename (e.g. `Product.jsonschema.strict.json`).
 
 ## Community
 
