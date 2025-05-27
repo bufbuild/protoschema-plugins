@@ -301,7 +301,7 @@ The JSON Schema plugin supports the following options:
 - `bundle` - One of `true`, `false`, or `all`. Defaults to `all`. If `true`, only the bundle
   schema will be generated. If `false`, only the non-bundle schema will be generated. If `all`, both
   schemas will be generated. The bundle schema includes all dependencies in a single file, while the
-  non-bundle schema includes each dependency in its own file.
+  non-bundle schema references the dependencies in separate files.
 - `names` - One of `json`, `proto`, or `all`, optionally suffixed with `-strict`. Defaults to `all`.
   If `json`, the JSON field name schema will be generated (e.g. `productId`, `productName`).
   If `proto`,the Protobuf field name schema will be generated (e.g. `product_id`, `product_name`).
