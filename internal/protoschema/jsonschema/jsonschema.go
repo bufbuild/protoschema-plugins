@@ -454,21 +454,7 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 		case rules.GetEnum().GetDefinedOnly(),
 			rules.GetEnum().HasConst(),
 			len(rules.GetEnum().GetIn()) > 0:
-			if len(int32Values) > 0 {
-				slices.Sort(int32Values)
-				int32Values = slices.Compact(int32Values)
-				// Avoid using an enum, IDEs only suggest names, not numbers.
-				start := int32Values[0]
-				last := start
-				for _, intVal := range int32Values[1:] {
-					if intVal != last+1 {
-						anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": start, "maximum": last})
-						start = intVal
-					}
-					last = intVal
-				}
-				anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": start, "maximum": last})
-			}
+			anyOf = p.generateEnumInt32Validation(int32Values, anyOf)
 		case allowZero:
 			anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32})
 		default:
@@ -486,6 +472,26 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 
 	schema["title"] = nameToTitle(field.Enum().Name())
 	p.generateDefault(field, hasImplicitPresence, rules, schema)
+}
+
+func (p *jsonSchemaGenerator) generateEnumInt32Validation(int32Values []int32, anyOf []map[string]any) []map[string]any {
+	if len(int32Values) == 0 {
+		return anyOf
+	}
+	// Use ranges instead of an enum so IDEs only suggest names, not numbers.
+	slices.Sort(int32Values)
+	int32Values = slices.Compact(int32Values)
+	start := int32Values[0]
+	last := start
+	for _, intVal := range int32Values[1:] {
+		if intVal != last+1 {
+			anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": start, "maximum": last})
+			start = intVal
+		}
+		last = intVal
+	}
+	anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": start, "maximum": last})
+	return anyOf
 }
 
 type baseRule[T comparable] interface {
