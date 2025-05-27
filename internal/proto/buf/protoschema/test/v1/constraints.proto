@@ -22,11 +22,21 @@ message ConstraintTest {
   message RequiredImplicit {
     bool bool_value = 1 [(buf.validate.field).required = true];
     string string_value = 2 [(buf.validate.field).required = true];
+    Enum enum_value = 3 [(buf.validate.field).required = true];
+    Enum strict_enum_value = 4 [
+      (buf.validate.field).required = true,
+      (buf.validate.field).enum.defined_only = true
+    ];
   }
 
   message RequiredOptional {
     optional bool bool_value = 1 [(buf.validate.field).required = true];
     optional string string_value = 2 [(buf.validate.field).required = true];
+    optional Enum enum_value = 3 [(buf.validate.field).required = true];
+    optional Enum strict_enum_value = 4 [
+      (buf.validate.field).required = true,
+      (buf.validate.field).enum.defined_only = true
+    ];
   }
 
   enum Enum {

@@ -1935,11 +1935,13 @@ func (x *ConstraintTests) GetTestCases() []*ConstraintTest {
 }
 
 type ConstraintTest_RequiredImplicit struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	BoolValue     bool                   `protobuf:"varint,1,opt,name=bool_value,json=boolValue,proto3" json:"bool_value,omitempty"`
-	StringValue   string                 `protobuf:"bytes,2,opt,name=string_value,json=stringValue,proto3" json:"string_value,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	BoolValue       bool                   `protobuf:"varint,1,opt,name=bool_value,json=boolValue,proto3" json:"bool_value,omitempty"`
+	StringValue     string                 `protobuf:"bytes,2,opt,name=string_value,json=stringValue,proto3" json:"string_value,omitempty"`
+	EnumValue       ConstraintTest_Enum    `protobuf:"varint,3,opt,name=enum_value,json=enumValue,proto3,enum=buf.protoschema.test.v1.ConstraintTest_Enum" json:"enum_value,omitempty"`
+	StrictEnumValue ConstraintTest_Enum    `protobuf:"varint,4,opt,name=strict_enum_value,json=strictEnumValue,proto3,enum=buf.protoschema.test.v1.ConstraintTest_Enum" json:"strict_enum_value,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ConstraintTest_RequiredImplicit) Reset() {
@@ -1986,12 +1988,28 @@ func (x *ConstraintTest_RequiredImplicit) GetStringValue() string {
 	return ""
 }
 
+func (x *ConstraintTest_RequiredImplicit) GetEnumValue() ConstraintTest_Enum {
+	if x != nil {
+		return x.EnumValue
+	}
+	return ConstraintTest_ENUM_UNSPECIFIED
+}
+
+func (x *ConstraintTest_RequiredImplicit) GetStrictEnumValue() ConstraintTest_Enum {
+	if x != nil {
+		return x.StrictEnumValue
+	}
+	return ConstraintTest_ENUM_UNSPECIFIED
+}
+
 type ConstraintTest_RequiredOptional struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	BoolValue     *bool                  `protobuf:"varint,1,opt,name=bool_value,json=boolValue,proto3,oneof" json:"bool_value,omitempty"`
-	StringValue   *string                `protobuf:"bytes,2,opt,name=string_value,json=stringValue,proto3,oneof" json:"string_value,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	BoolValue       *bool                  `protobuf:"varint,1,opt,name=bool_value,json=boolValue,proto3,oneof" json:"bool_value,omitempty"`
+	StringValue     *string                `protobuf:"bytes,2,opt,name=string_value,json=stringValue,proto3,oneof" json:"string_value,omitempty"`
+	EnumValue       *ConstraintTest_Enum   `protobuf:"varint,3,opt,name=enum_value,json=enumValue,proto3,enum=buf.protoschema.test.v1.ConstraintTest_Enum,oneof" json:"enum_value,omitempty"`
+	StrictEnumValue *ConstraintTest_Enum   `protobuf:"varint,4,opt,name=strict_enum_value,json=strictEnumValue,proto3,enum=buf.protoschema.test.v1.ConstraintTest_Enum,oneof" json:"strict_enum_value,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ConstraintTest_RequiredOptional) Reset() {
@@ -2038,11 +2056,25 @@ func (x *ConstraintTest_RequiredOptional) GetStringValue() string {
 	return ""
 }
 
+func (x *ConstraintTest_RequiredOptional) GetEnumValue() ConstraintTest_Enum {
+	if x != nil && x.EnumValue != nil {
+		return *x.EnumValue
+	}
+	return ConstraintTest_ENUM_UNSPECIFIED
+}
+
+func (x *ConstraintTest_RequiredOptional) GetStrictEnumValue() ConstraintTest_Enum {
+	if x != nil && x.StrictEnumValue != nil {
+		return *x.StrictEnumValue
+	}
+	return ConstraintTest_ENUM_UNSPECIFIED
+}
+
 var File_buf_protoschema_test_v1_constraints_proto protoreflect.FileDescriptor
 
 const file_buf_protoschema_test_v1_constraints_proto_rawDesc = "" +
 	"\n" +
-	")buf/protoschema/test/v1/constraints.proto\x12\x17buf.protoschema.test.v1\x1a\x1bbuf/validate/validate.proto\"\xd45\n" +
+	")buf/protoschema/test/v1/constraints.proto\x12\x17buf.protoschema.test.v1\x1a\x1bbuf/validate/validate.proto\"\xfc8\n" +
 	"\x0eConstraintTest\x12g\n" +
 	"\x11required_implicit\x18\x01 \x01(\v28.buf.protoschema.test.v1.ConstraintTest.RequiredImplicitH\x00R\x10requiredImplicit\x12g\n" +
 	"\x11required_optional\x18\x02 \x01(\v28.buf.protoschema.test.v1.ConstraintTest.RequiredOptionalH\x00R\x10requiredOptional\x12(\n" +
@@ -2252,17 +2284,25 @@ const file_buf_protoschema_test_v1_constraints_proto_rawDesc = "" +
 	"\vlt_gt_float\x18q \x01(\x02B\x0f\xbaH\f\n" +
 	"\n" +
 	"\x15\x00\x00\x80?%\x00\x00\xa0@R\tltGtFloat\x12u\n" +
-	"\x06in_map\x18v \x03(\v22.buf.protoschema.test.v1.ConstraintTest.InMapEntryB*\xbaH'\x9a\x01$\"\x0er\fR\x04key1R\x04key2*\x12r\x10R\x06value1R\x06value2R\x05inMap\x1ad\n" +
+	"\x06in_map\x18v \x03(\v22.buf.protoschema.test.v1.ConstraintTest.InMapEntryB*\xbaH'\x9a\x01$\"\x0er\fR\x04key1R\x04key2*\x12r\x10R\x06value1R\x06value2R\x05inMap\x1a\xa0\x02\n" +
 	"\x10RequiredImplicit\x12%\n" +
 	"\n" +
 	"bool_value\x18\x01 \x01(\bB\x06\xbaH\x03\xc8\x01\x01R\tboolValue\x12)\n" +
-	"\fstring_value\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vstringValue\x1a\x8e\x01\n" +
+	"\fstring_value\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vstringValue\x12S\n" +
+	"\n" +
+	"enum_value\x18\x03 \x01(\x0e2,.buf.protoschema.test.v1.ConstraintTest.EnumB\x06\xbaH\x03\xc8\x01\x01R\tenumValue\x12e\n" +
+	"\x11strict_enum_value\x18\x04 \x01(\x0e2,.buf.protoschema.test.v1.ConstraintTest.EnumB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\x0fstrictEnumValue\x1a\xf9\x02\n" +
 	"\x10RequiredOptional\x12*\n" +
 	"\n" +
 	"bool_value\x18\x01 \x01(\bB\x06\xbaH\x03\xc8\x01\x01H\x00R\tboolValue\x88\x01\x01\x12.\n" +
-	"\fstring_value\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01H\x01R\vstringValue\x88\x01\x01B\r\n" +
+	"\fstring_value\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01H\x01R\vstringValue\x88\x01\x01\x12X\n" +
+	"\n" +
+	"enum_value\x18\x03 \x01(\x0e2,.buf.protoschema.test.v1.ConstraintTest.EnumB\x06\xbaH\x03\xc8\x01\x01H\x02R\tenumValue\x88\x01\x01\x12j\n" +
+	"\x11strict_enum_value\x18\x04 \x01(\x0e2,.buf.protoschema.test.v1.ConstraintTest.EnumB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01H\x03R\x0fstrictEnumValue\x88\x01\x01B\r\n" +
 	"\v_bool_valueB\x0f\n" +
-	"\r_string_value\x1a8\n" +
+	"\r_string_valueB\r\n" +
+	"\v_enum_valueB\x14\n" +
+	"\x12_strict_enum_value\x1a8\n" +
 	"\n" +
 	"InMapEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
@@ -2311,11 +2351,15 @@ var file_buf_protoschema_test_v1_constraints_proto_depIdxs = []int32{
 	0,  // 7: buf.protoschema.test.v1.ConstraintTest.in_and_not_in_enum:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
 	5,  // 8: buf.protoschema.test.v1.ConstraintTest.in_map:type_name -> buf.protoschema.test.v1.ConstraintTest.InMapEntry
 	1,  // 9: buf.protoschema.test.v1.ConstraintTests.test_cases:type_name -> buf.protoschema.test.v1.ConstraintTest
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	0,  // 10: buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
+	0,  // 11: buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.strict_enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
+	0,  // 12: buf.protoschema.test.v1.ConstraintTest.RequiredOptional.enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
+	0,  // 13: buf.protoschema.test.v1.ConstraintTest.RequiredOptional.strict_enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_buf_protoschema_test_v1_constraints_proto_init() }

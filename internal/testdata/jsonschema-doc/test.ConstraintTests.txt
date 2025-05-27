@@ -1,6 +1,11 @@
-- at '/test_cases/1/required_implicit': missing properties 'bool_value', 'string_value'
-- at '/test_cases/2/required_implicit/bool_value': value must be true
-- at '/test_cases/4/required_optional': missing properties 'bool_value', 'string_value'
+- at '/test_cases/0/required_implicit': missing properties 'enum_value', 'strict_enum_value'
+- at '/test_cases/1/required_implicit': missing properties 'bool_value', 'string_value', 'enum_value', 'strict_enum_value'
+- at '/test_cases/2/required_implicit': validation failed
+  - at '/test_cases/2/required_implicit': missing properties 'enum_value', 'strict_enum_value'
+  - at '/test_cases/2/required_implicit/bool_value': value must be true
+- at '/test_cases/3/required_optional': missing properties 'enum_value', 'strict_enum_value'
+- at '/test_cases/4/required_optional': missing properties 'bool_value', 'string_value', 'enum_value', 'strict_enum_value'
+- at '/test_cases/5/required_optional': missing properties 'enum_value', 'strict_enum_value'
 - at '/test_cases/7/const_bool': value must be false
 - at '/test_cases/9/const_string': value must be 'const'
 - at '/test_cases/11/len_string': minLength: got 3, want 5
@@ -349,13 +354,14 @@
   - at '/test_cases/313/const_enum': got string, want integer
 - at '/test_cases/322/defined_only_enum': anyOf failed
   - at '/test_cases/322/defined_only_enum': got number, want string
-  - at '/test_cases/322/defined_only_enum': value must be one of 0, 1, 2, 7
+  - at '/test_cases/322/defined_only_enum': maximum: got 1,234, want 2
+  - at '/test_cases/322/defined_only_enum': maximum: got 1,234, want 7
 - at '/test_cases/327/in_enum': anyOf failed
   - at '/test_cases/327/in_enum': got number, want string
-  - at '/test_cases/327/in_enum': value must be one of 1, 2
+  - at '/test_cases/327/in_enum': minimum: got 0, want 1
 - at '/test_cases/328/in_enum': anyOf failed
   - at '/test_cases/328/in_enum': got number, want string
-  - at '/test_cases/328/in_enum': value must be one of 1, 2
+  - at '/test_cases/328/in_enum': maximum: got 7, want 2
 - at '/test_cases/329/in_enum': anyOf failed
   - at '/test_cases/329/in_enum': value must be one of 'ENUM_VAL1', 'ENUM_VAL2'
   - at '/test_cases/329/in_enum': got string, want integer
@@ -370,28 +376,31 @@
   - at '/test_cases/338/not_in_enum': got string, want integer
 - at '/test_cases/345/defined_only_not_in_enum': anyOf failed
   - at '/test_cases/345/defined_only_not_in_enum': got number, want string
-  - at '/test_cases/345/defined_only_not_in_enum': value must be one of 1, 2, 7
+  - at '/test_cases/345/defined_only_not_in_enum': minimum: got 0, want 1
+  - at '/test_cases/345/defined_only_not_in_enum': minimum: got 0, want 7
 - at '/test_cases/346/defined_only_not_in_enum': anyOf failed
   - at '/test_cases/346/defined_only_not_in_enum': got number, want string
-  - at '/test_cases/346/defined_only_not_in_enum': value must be one of 1, 2, 7
+  - at '/test_cases/346/defined_only_not_in_enum': maximum: got 1,234, want 2
+  - at '/test_cases/346/defined_only_not_in_enum': maximum: got 1,234, want 7
 - at '/test_cases/347/defined_only_not_in_enum': anyOf failed
   - at '/test_cases/347/defined_only_not_in_enum': value must be one of 'ENUM_VAL1', 'ENUM_VAL2', 'ENUM_VAL7'
   - at '/test_cases/347/defined_only_not_in_enum': got string, want integer
+  - at '/test_cases/347/defined_only_not_in_enum': got string, want integer
 - at '/test_cases/348/in_and_not_in_enum': anyOf failed
   - at '/test_cases/348/in_and_not_in_enum': got number, want string
-  - at '/test_cases/348/in_and_not_in_enum': value must be 1
+  - at '/test_cases/348/in_and_not_in_enum': maximum: got 7, want 1
 - at '/test_cases/349/in_and_not_in_enum': anyOf failed
   - at '/test_cases/349/in_and_not_in_enum': value must be 'ENUM_VAL1'
   - at '/test_cases/349/in_and_not_in_enum': got string, want integer
 - at '/test_cases/350/in_and_not_in_enum': anyOf failed
   - at '/test_cases/350/in_and_not_in_enum': got number, want string
-  - at '/test_cases/350/in_and_not_in_enum': value must be 1
+  - at '/test_cases/350/in_and_not_in_enum': minimum: got 0, want 1
 - at '/test_cases/352/in_and_not_in_enum': anyOf failed
   - at '/test_cases/352/in_and_not_in_enum': got number, want string
-  - at '/test_cases/352/in_and_not_in_enum': value must be 1
+  - at '/test_cases/352/in_and_not_in_enum': maximum: got 2, want 1
 - at '/test_cases/353/in_and_not_in_enum': anyOf failed
   - at '/test_cases/353/in_and_not_in_enum': got number, want string
-  - at '/test_cases/353/in_and_not_in_enum': value must be 1
+  - at '/test_cases/353/in_and_not_in_enum': maximum: got 1,234, want 1
 - at '/test_cases/354/in_and_not_in_enum': anyOf failed
   - at '/test_cases/354/in_and_not_in_enum': value must be 'ENUM_VAL1'
   - at '/test_cases/354/in_and_not_in_enum': got string, want integer
