@@ -94,22 +94,13 @@
     },
     "map_bool_enum": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "FOO",
-              "BAR",
-              "BAZ"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
         ],
-        "title": "Nested Enum"
+        "title": "Nested Enum",
+        "type": "string"
       },
       "propertyNames": {
         "type": "boolean"
@@ -206,20 +197,11 @@
     },
     "map_bool_null_value": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "NULL_VALUE"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "NULL_VALUE"
         ],
-        "title": "Null Value"
+        "title": "Null Value",
+        "type": "string"
       },
       "propertyNames": {
         "type": "boolean"
@@ -413,22 +395,13 @@
     },
     "map_int32_enum": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "FOO",
-              "BAR",
-              "BAZ"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
         ],
-        "title": "Nested Enum"
+        "title": "Nested Enum",
+        "type": "string"
       },
       "propertyNames": {
         "maximum": 2147483647,
@@ -543,20 +516,11 @@
     },
     "map_int32_null_value": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "NULL_VALUE"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "NULL_VALUE"
         ],
-        "title": "Null Value"
+        "title": "Null Value",
+        "type": "string"
       },
       "propertyNames": {
         "maximum": 2147483647,
@@ -754,22 +718,13 @@
     },
     "map_int64_enum": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "FOO",
-              "BAR",
-              "BAZ"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
         ],
-        "title": "Nested Enum"
+        "title": "Nested Enum",
+        "type": "string"
       },
       "propertyNames": {
         "type": "integer"
@@ -876,20 +831,11 @@
     },
     "map_int64_null_value": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "NULL_VALUE"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "NULL_VALUE"
         ],
-        "title": "Null Value"
+        "title": "Null Value",
+        "type": "string"
       },
       "propertyNames": {
         "type": "integer"
@@ -1067,22 +1013,13 @@
     },
     "map_string_enum": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "FOO",
-              "BAR",
-              "BAZ"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
         ],
-        "title": "Nested Enum"
+        "title": "Nested Enum",
+        "type": "string"
       },
       "propertyNames": {
         "type": "string"
@@ -1179,20 +1116,11 @@
     },
     "map_string_null_value": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "NULL_VALUE"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "NULL_VALUE"
         ],
-        "title": "Null Value"
+        "title": "Null Value",
+        "type": "string"
       },
       "propertyNames": {
         "type": "string"
@@ -1386,22 +1314,13 @@
     },
     "map_uint32_enum": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "FOO",
-              "BAR",
-              "BAZ"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
         ],
-        "title": "Nested Enum"
+        "title": "Nested Enum",
+        "type": "string"
       },
       "propertyNames": {
         "maximum": 4294967295,
@@ -1516,20 +1435,11 @@
     },
     "map_uint32_null_value": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "NULL_VALUE"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "NULL_VALUE"
         ],
-        "title": "Null Value"
+        "title": "Null Value",
+        "type": "string"
       },
       "propertyNames": {
         "maximum": 4294967295,
@@ -1735,22 +1645,13 @@
     },
     "map_uint64_enum": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "FOO",
-              "BAR",
-              "BAZ"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
         ],
-        "title": "Nested Enum"
+        "title": "Nested Enum",
+        "type": "string"
       },
       "propertyNames": {
         "minimum": 0,
@@ -1856,20 +1757,11 @@
     },
     "map_uint64_null_value": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "enum": [
-              "NULL_VALUE"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "NULL_VALUE"
         ],
-        "title": "Null Value"
+        "title": "Null Value",
+        "type": "string"
       },
       "propertyNames": {
         "minimum": 0,
@@ -1971,36 +1863,18 @@
       "type": "object"
     },
     "null_value": {
-      "anyOf": [
-        {
-          "enum": [
-            "NULL_VALUE"
-          ],
-          "type": "string"
-        },
-        {
-          "maximum": 2147483647,
-          "minimum": -2147483648,
-          "type": "integer"
-        }
+      "enum": [
+        "NULL_VALUE"
       ],
-      "title": "Null Value"
+      "title": "Null Value",
+      "type": "string"
     },
     "optional_null_value": {
-      "anyOf": [
-        {
-          "enum": [
-            "NULL_VALUE"
-          ],
-          "type": "string"
-        },
-        {
-          "maximum": 2147483647,
-          "minimum": -2147483648,
-          "type": "integer"
-        }
+      "enum": [
+        "NULL_VALUE"
       ],
-      "title": "Null Value"
+      "title": "Null Value",
+      "type": "string"
     },
     "repeated_any": {
       "description": "Repeated wellknown.",
@@ -2152,22 +2026,13 @@
     },
     "repeated_nested_enum": {
       "items": {
-        "anyOf": [
-          {
-            "enum": [
-              "FOO",
-              "BAR",
-              "BAZ"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
         ],
-        "title": "Nested Enum"
+        "title": "Nested Enum",
+        "type": "string"
       },
       "type": "array"
     },
@@ -2180,20 +2045,11 @@
     },
     "repeated_null_value": {
       "items": {
-        "anyOf": [
-          {
-            "enum": [
-              "NULL_VALUE"
-            ],
-            "type": "string"
-          },
-          {
-            "maximum": 2147483647,
-            "minimum": -2147483648,
-            "type": "integer"
-          }
+        "enum": [
+          "NULL_VALUE"
         ],
-        "title": "Null Value"
+        "title": "Null Value",
+        "type": "string"
       },
       "type": "array"
     },
@@ -2371,22 +2227,13 @@
       "$ref": "google.protobuf.Int64Value.schema.json"
     },
     "single_nested_enum": {
-      "anyOf": [
-        {
-          "enum": [
-            "FOO",
-            "BAR",
-            "BAZ"
-          ],
-          "type": "string"
-        },
-        {
-          "maximum": 2147483647,
-          "minimum": -2147483648,
-          "type": "integer"
-        }
+      "enum": [
+        "FOO",
+        "BAR",
+        "BAZ"
       ],
-      "title": "Nested Enum"
+      "title": "Nested Enum",
+      "type": "string"
     },
     "single_nested_message": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
@@ -2438,22 +2285,13 @@
       "$ref": "google.protobuf.Value.schema.json"
     },
     "standalone_enum": {
-      "anyOf": [
-        {
-          "enum": [
-            "FOO",
-            "BAR",
-            "BAZ"
-          ],
-          "type": "string"
-        },
-        {
-          "maximum": 2147483647,
-          "minimum": -2147483648,
-          "type": "integer"
-        }
+      "enum": [
+        "FOO",
+        "BAR",
+        "BAZ"
       ],
-      "title": "Nested Enum"
+      "title": "Nested Enum",
+      "type": "string"
     },
     "standalone_message": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
