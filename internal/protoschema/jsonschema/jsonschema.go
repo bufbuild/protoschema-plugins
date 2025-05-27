@@ -143,16 +143,18 @@ func (p *Generator) Add(desc protoreflect.MessageDescriptor) error {
 	return nil
 }
 
-// Generate returns the generated JSON schema.
+// Generate returns the generated JSON schema for all added message descriptors (and their dependencies if not bundling).
 func (p *Generator) Generate() map[protoreflect.FullName]map[string]any {
 	result := make(map[protoreflect.FullName]map[string]any, len(p.schema))
 	if !p.bundle {
+		// Not bundling, so return each schema separately.
 		for name, entry := range p.schema {
 			result[name] = entry.schema
 		}
 		return result
 	}
 
+	// Bundling so only return the bundled schemas of types that were explicitly added.
 	for name, entry := range p.schema {
 		if entry.added {
 			result[name] = p.bundleSchema(entry)
@@ -161,11 +163,13 @@ func (p *Generator) Generate() map[protoreflect.FullName]map[string]any {
 	return result
 }
 
+// bundleSchema creates a bundled schema for the given entry.
 func (p *Generator) bundleSchema(entry *msgSchema) map[string]any {
 	defs := make(map[string]any, len(entry.refs)+1)
 	defs[strings.TrimPrefix(entry.id, defsPrefix)] = entry.schema
+	// Collect all referenced schemas.
 	for ref := range entry.refs {
-		p.addRef(ref, defs)
+		p.bundleReferences(ref, defs)
 	}
 	return map[string]any{
 		"$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -175,27 +179,35 @@ func (p *Generator) bundleSchema(entry *msgSchema) map[string]any {
 	}
 }
 
-func (p *Generator) addRef(name protoreflect.FullName, defs map[string]any) {
+// bundleReferences recursively collects all referenced schemas and adds them to the defs map.
+func (p *Generator) bundleReferences(name protoreflect.FullName, defs map[string]any) {
 	entry, ok := p.schema[name]
 	if !ok {
 		return // Not found.
 	}
+	// Add the reference.
 	defID := strings.TrimPrefix(entry.id, defsPrefix)
 	if _, ok := defs[defID]; ok {
 		return // Already added.
 	}
 	defs[defID] = entry.schema
+
+	// Add transitive references.
 	for ref := range entry.refs {
-		p.addRef(ref, defs)
+		p.bundleReferences(ref, defs)
 	}
 }
 
+// msgSchema is the internal representation of a protobuf message's schema.
 type msgSchema struct {
+	// id is the unique identifier in the JSON schema for this message.
 	id     string
 	desc   protoreflect.MessageDescriptor
 	schema map[string]any
-	refs   map[protoreflect.FullName]struct{}
-	added  bool
+	// refs is a map of all referenced message schemas.
+	refs map[protoreflect.FullName]struct{}
+	// added is true if this schema was explicitly added and false if it is a dependency.
+	added bool
 }
 
 // getID returns the ID for the given descriptor.
@@ -220,6 +232,7 @@ func (p *Generator) getID(desc protoreflect.Descriptor, bundleID bool) string {
 	return result + ".json"
 }
 
+// getRef returns the reference ID for the given field descriptor.
 func (p *Generator) getRef(fdesc protoreflect.FieldDescriptor) string {
 	if !p.bundle && fdesc.Parent() == fdesc.Message() {
 		return "#"
@@ -227,6 +240,7 @@ func (p *Generator) getRef(fdesc protoreflect.FieldDescriptor) string {
 	return p.getID(fdesc.Message(), false)
 }
 
+// generate is the entry point point for (recursively) generating the schema for a message descriptor.
 func (p *Generator) generate(desc protoreflect.MessageDescriptor) (*msgSchema, error) {
 	if entry, ok := p.schema[desc.FullName()]; ok {
 		return entry, nil // Already generated.
