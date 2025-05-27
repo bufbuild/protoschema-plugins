@@ -43,13 +43,8 @@
           "type": "string"
         },
         {
-          "maximum": 1,
-          "minimum": 1,
-          "type": "integer"
-        },
-        {
           "maximum": 2,
-          "minimum": 2,
+          "minimum": 1,
           "type": "integer"
         },
         {
@@ -105,13 +100,8 @@
           "type": "string"
         },
         {
-          "maximum": 1,
-          "minimum": 1,
-          "type": "integer"
-        },
-        {
           "maximum": 2,
-          "minimum": 2,
+          "minimum": 1,
           "type": "integer"
         },
         {

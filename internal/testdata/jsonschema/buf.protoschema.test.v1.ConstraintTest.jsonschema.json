@@ -237,18 +237,8 @@
           "type": "string"
         },
         {
-          "maximum": 0,
-          "minimum": 0,
-          "type": "integer"
-        },
-        {
-          "maximum": 1,
-          "minimum": 1,
-          "type": "integer"
-        },
-        {
           "maximum": 2,
-          "minimum": 2,
+          "minimum": 0,
           "type": "integer"
         },
         {
@@ -270,13 +260,8 @@
           "type": "string"
         },
         {
-          "maximum": 1,
-          "minimum": 1,
-          "type": "integer"
-        },
-        {
           "maximum": 2,
-          "minimum": 2,
+          "minimum": 1,
           "type": "integer"
         },
         {
@@ -699,13 +684,8 @@
           "type": "string"
         },
         {
-          "maximum": 1,
-          "minimum": 1,
-          "type": "integer"
-        },
-        {
           "maximum": 2,
-          "minimum": 2,
+          "minimum": 1,
           "type": "integer"
         }
       ],
@@ -1735,18 +1715,8 @@
           "type": "string"
         },
         {
-          "maximum": 0,
-          "minimum": 0,
-          "type": "integer"
-        },
-        {
-          "maximum": 1,
-          "minimum": 1,
-          "type": "integer"
-        },
-        {
           "maximum": 2,
-          "minimum": 2,
+          "minimum": 0,
           "type": "integer"
         },
         {
@@ -1768,13 +1738,8 @@
           "type": "string"
         },
         {
-          "maximum": 1,
-          "minimum": 1,
-          "type": "integer"
-        },
-        {
           "maximum": 2,
-          "minimum": 2,
+          "minimum": 1,
           "type": "integer"
         },
         {
@@ -2197,13 +2162,8 @@
           "type": "string"
         },
         {
-          "maximum": 1,
-          "minimum": 1,
-          "type": "integer"
-        },
-        {
           "maximum": 2,
-          "minimum": 2,
+          "minimum": 1,
           "type": "integer"
         }
       ],

@@ -458,9 +458,16 @@ func (p *jsonSchemaGenerator) generateEnumValidation(field protoreflect.FieldDes
 				slices.Sort(int32Values)
 				int32Values = slices.Compact(int32Values)
 				// Avoid using an enum, IDEs only suggest names, not numbers.
-				for _, intVal := range int32Values {
-					anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": intVal, "maximum": intVal})
+				start := int32Values[0]
+				last := start
+				for _, intVal := range int32Values[1:] {
+					if intVal != last+1 {
+						anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": start, "maximum": last})
+						start = intVal
+					}
+					last = intVal
 				}
+				anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": start, "maximum": last})
 			}
 		case allowZero:
 			anyOf = append(anyOf, map[string]any{"type": jsInteger, "minimum": math.MinInt32, "maximum": math.MaxInt32})
