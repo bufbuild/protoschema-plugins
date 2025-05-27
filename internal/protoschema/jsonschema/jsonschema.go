@@ -240,7 +240,7 @@ func (p *Generator) getRef(fdesc protoreflect.FieldDescriptor) string {
 	return p.getID(fdesc.Message(), false)
 }
 
-// generate is the entry point point for (recursively) generating the schema for a message descriptor.
+// generate is the entry point for (recursively) generating the schema for a message descriptor.
 func (p *Generator) generate(desc protoreflect.MessageDescriptor) (*msgSchema, error) {
 	if entry, ok := p.schema[desc.FullName()]; ok {
 		return entry, nil // Already generated.
