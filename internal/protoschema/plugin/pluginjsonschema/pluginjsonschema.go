@@ -120,12 +120,6 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 				} else if value {
 					baseOpts = append(baseOpts, jsonschema.WithAdditionalProperties())
 				}
-			case "strict-names":
-				if value, err := parseBoolean(value); err != nil {
-					return nil, err
-				} else if value {
-					baseOpts = append(baseOpts, jsonschema.WithStrict())
-				}
 			case "target":
 				// Targets are delimited by '+', e.g. "proto+json".
 				targetsList := strings.Split(value, "+")
