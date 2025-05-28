@@ -1,0 +1,29 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.CustomOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "This is a test case for the custom options in the buf.validate package... and\n comment parsing.",
+      "properties": {
+        "int32Field": {
+          "description": "This field has a title!",
+          "items": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "title": "A field with a title.",
+          "type": "array"
+        },
+        "stringField": {
+          "type": "string"
+        }
+      },
+      "title": "The title for CustomOptions. On\n multiple lines.",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.CustomOptions.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.CustomOptions.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,2321 @@
+{
+  "$id": "bufext.cel.expr.conformance.proto3.TestAllTypes.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "This proto includes every type of field in both singular and repeated\n forms.",
+  "properties": {
+    "listValue": {
+      "$ref": "google.protobuf.ListValue.jsonschema.strict.json"
+    },
+    "mapBoolAny": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolBool": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolBoolWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolBytes": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolBytesWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolDouble": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolDoubleWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolDuration": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolEnum": {
+      "additionalProperties": {
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
+        ],
+        "title": "Nested Enum",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolFloat": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolFloatWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolInt32": {
+      "additionalProperties": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolInt32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolInt64": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolInt64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolListValue": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolMessage": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolNullValue": {
+      "additionalProperties": {
+        "enum": [
+          "NULL_VALUE"
+        ],
+        "title": "Null Value",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolString": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolStringWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolStruct": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolTimestamp": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolUint32": {
+      "additionalProperties": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolUint32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolUint64": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolUint64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapBoolValue": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "mapInt32Any": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Bool": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32BoolWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Bytes": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32BytesWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Double": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32DoubleWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Duration": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Enum": {
+      "additionalProperties": {
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
+        ],
+        "title": "Nested Enum",
+        "type": "string"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Float": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32FloatWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Int32": {
+      "additionalProperties": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Int32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Int64": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Int64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32ListValue": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Message": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32NullValue": {
+      "additionalProperties": {
+        "enum": [
+          "NULL_VALUE"
+        ],
+        "title": "Null Value",
+        "type": "string"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32String": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32StringWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Struct": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Timestamp": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Uint32": {
+      "additionalProperties": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Uint32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Uint64": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Uint64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt32Value": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Any": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Bool": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64BoolWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Bytes": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64BytesWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Double": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64DoubleWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Duration": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Enum": {
+      "additionalProperties": {
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
+        ],
+        "title": "Nested Enum",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Float": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64FloatWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Int32": {
+      "additionalProperties": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Int32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Int64": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Int64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64ListValue": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Message": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64NestedType": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.NestedTestAllTypes.jsonschema.strict.json"
+      },
+      "description": "Map",
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64NullValue": {
+      "additionalProperties": {
+        "enum": [
+          "NULL_VALUE"
+        ],
+        "title": "Null Value",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64String": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64StringWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Struct": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Timestamp": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Uint32": {
+      "additionalProperties": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Uint32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Uint64": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Uint64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapInt64Value": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapStringAny": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringBool": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringBoolWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringBytes": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringBytesWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringDouble": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringDoubleWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringDuration": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringEnum": {
+      "additionalProperties": {
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
+        ],
+        "title": "Nested Enum",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringFloat": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringFloatWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringInt32": {
+      "additionalProperties": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringInt32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringInt64": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringInt64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringListValue": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringMessage": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringNullValue": {
+      "additionalProperties": {
+        "enum": [
+          "NULL_VALUE"
+        ],
+        "title": "Null Value",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringString": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringStringWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringStruct": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringTimestamp": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringUint32": {
+      "additionalProperties": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringUint32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringUint64": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringUint64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapStringValue": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "mapUint32Any": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Bool": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32BoolWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Bytes": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32BytesWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Double": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32DoubleWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Duration": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Enum": {
+      "additionalProperties": {
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
+        ],
+        "title": "Nested Enum",
+        "type": "string"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Float": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32FloatWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Int32": {
+      "additionalProperties": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Int32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Int64": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Int64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32ListValue": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Message": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32NullValue": {
+      "additionalProperties": {
+        "enum": [
+          "NULL_VALUE"
+        ],
+        "title": "Null Value",
+        "type": "string"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32String": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32StringWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Struct": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Timestamp": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Uint32": {
+      "additionalProperties": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Uint32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Uint64": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Uint64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint32Value": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Any": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Bool": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64BoolWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Bytes": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64BytesWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Double": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64DoubleWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Duration": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Enum": {
+      "additionalProperties": {
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
+        ],
+        "title": "Nested Enum",
+        "type": "string"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Float": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64FloatWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Int32": {
+      "additionalProperties": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Int32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Int64": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Int64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64ListValue": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Message": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64NullValue": {
+      "additionalProperties": {
+        "enum": [
+          "NULL_VALUE"
+        ],
+        "title": "Null Value",
+        "type": "string"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64String": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64StringWrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Struct": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Timestamp": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Uint32": {
+      "additionalProperties": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Uint32Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Uint64": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Uint64Wrapper": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "mapUint64Value": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.jsonschema.strict.json"
+      },
+      "propertyNames": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "nullValue": {
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "title": "Null Value",
+      "type": "string"
+    },
+    "optionalNullValue": {
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "title": "Null Value",
+      "type": "string"
+    },
+    "repeatedAny": {
+      "description": "Repeated wellknown.",
+      "items": {
+        "$ref": "google.protobuf.Any.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedBool": {
+      "items": {
+        "type": "boolean"
+      },
+      "type": "array"
+    },
+    "repeatedBoolWrapper": {
+      "items": {
+        "$ref": "google.protobuf.BoolValue.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedBytes": {
+      "items": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "repeatedBytesWrapper": {
+      "items": {
+        "$ref": "google.protobuf.BytesValue.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedCord": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "repeatedDouble": {
+      "items": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "repeatedDoubleWrapper": {
+      "items": {
+        "$ref": "google.protobuf.DoubleValue.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedDuration": {
+      "items": {
+        "$ref": "google.protobuf.Duration.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedFixed32": {
+      "items": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedFixed64": {
+      "items": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedFloat": {
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "repeatedFloatWrapper": {
+      "items": {
+        "$ref": "google.protobuf.FloatValue.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedInt32": {
+      "description": "Repeated",
+      "items": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedInt32Wrapper": {
+      "items": {
+        "$ref": "google.protobuf.Int32Value.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedInt64": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedInt64Wrapper": {
+      "items": {
+        "$ref": "google.protobuf.Int64Value.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedLazyMessage": {
+      "items": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedListValue": {
+      "items": {
+        "$ref": "google.protobuf.ListValue.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedNestedEnum": {
+      "items": {
+        "enum": [
+          "FOO",
+          "BAR",
+          "BAZ"
+        ],
+        "title": "Nested Enum",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "repeatedNestedMessage": {
+      "description": "Repeated and nested",
+      "items": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedNullValue": {
+      "items": {
+        "enum": [
+          "NULL_VALUE"
+        ],
+        "title": "Null Value",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "repeatedSfixed32": {
+      "items": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedSfixed64": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedSint32": {
+      "items": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedSint64": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedString": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "repeatedStringPiece": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "repeatedStringWrapper": {
+      "items": {
+        "$ref": "google.protobuf.StringValue.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedStruct": {
+      "items": {
+        "$ref": "google.protobuf.Struct.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedTimestamp": {
+      "items": {
+        "$ref": "google.protobuf.Timestamp.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedUint32": {
+      "items": {
+        "maximum": 4294967295,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedUint32Wrapper": {
+      "items": {
+        "$ref": "google.protobuf.UInt32Value.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedUint64": {
+      "items": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "repeatedUint64Wrapper": {
+      "items": {
+        "$ref": "google.protobuf.UInt64Value.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "repeatedValue": {
+      "items": {
+        "$ref": "google.protobuf.Value.jsonschema.strict.json"
+      },
+      "type": "array"
+    },
+    "singleAny": {
+      "$ref": "google.protobuf.Any.jsonschema.strict.json",
+      "description": "Wellknown."
+    },
+    "singleBool": {
+      "type": "boolean"
+    },
+    "singleBoolWrapper": {
+      "$ref": "google.protobuf.BoolValue.jsonschema.strict.json"
+    },
+    "singleBytes": {
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
+    "singleBytesWrapper": {
+      "$ref": "google.protobuf.BytesValue.jsonschema.strict.json"
+    },
+    "singleDouble": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
+          "type": "string"
+        }
+      ]
+    },
+    "singleDoubleWrapper": {
+      "$ref": "google.protobuf.DoubleValue.jsonschema.strict.json"
+    },
+    "singleDuration": {
+      "$ref": "google.protobuf.Duration.jsonschema.strict.json"
+    },
+    "singleFixed32": {
+      "maximum": 4294967295,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "singleFixed64": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "singleFloat": {
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
+          "type": "string"
+        }
+      ]
+    },
+    "singleFloatWrapper": {
+      "$ref": "google.protobuf.FloatValue.jsonschema.strict.json"
+    },
+    "singleInt32": {
+      "description": "Singular",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "singleInt32Wrapper": {
+      "$ref": "google.protobuf.Int32Value.jsonschema.strict.json"
+    },
+    "singleInt64": {
+      "type": "integer"
+    },
+    "singleInt64Wrapper": {
+      "$ref": "google.protobuf.Int64Value.jsonschema.strict.json"
+    },
+    "singleNestedEnum": {
+      "enum": [
+        "FOO",
+        "BAR",
+        "BAZ"
+      ],
+      "title": "Nested Enum",
+      "type": "string"
+    },
+    "singleNestedMessage": {
+      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+    },
+    "singleSfixed32": {
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "singleSfixed64": {
+      "type": "integer"
+    },
+    "singleSint32": {
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "singleSint64": {
+      "type": "integer"
+    },
+    "singleString": {
+      "type": "string"
+    },
+    "singleStringWrapper": {
+      "$ref": "google.protobuf.StringValue.jsonschema.strict.json"
+    },
+    "singleStruct": {
+      "$ref": "google.protobuf.Struct.jsonschema.strict.json"
+    },
+    "singleTimestamp": {
+      "$ref": "google.protobuf.Timestamp.jsonschema.strict.json"
+    },
+    "singleUint32": {
+      "maximum": 4294967295,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "singleUint32Wrapper": {
+      "$ref": "google.protobuf.UInt32Value.jsonschema.strict.json"
+    },
+    "singleUint64": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "singleUint64Wrapper": {
+      "$ref": "google.protobuf.UInt64Value.jsonschema.strict.json"
+    },
+    "singleValue": {
+      "$ref": "google.protobuf.Value.jsonschema.strict.json"
+    },
+    "standaloneEnum": {
+      "enum": [
+        "FOO",
+        "BAR",
+        "BAZ"
+      ],
+      "title": "Nested Enum",
+      "type": "string"
+    },
+    "standaloneMessage": {
+      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+    }
+  },
+  "required": [
+    "singleInt32",
+    "singleInt64",
+    "singleUint32",
+    "singleUint64",
+    "singleSint32",
+    "singleSint64",
+    "singleFixed32",
+    "singleFixed64",
+    "singleSfixed32",
+    "singleSfixed64",
+    "singleFloat",
+    "singleDouble",
+    "singleBool",
+    "singleString",
+    "singleBytes",
+    "nullValue",
+    "standaloneEnum"
+  ],
+  "title": "Test All Types",
+  "type": "object"
+}

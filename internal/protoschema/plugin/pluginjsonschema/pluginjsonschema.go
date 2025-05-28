@@ -17,7 +17,9 @@ package pluginjsonschema
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/bufbuild/protoplugin"
@@ -39,35 +41,31 @@ func Handle(
 	}
 
 	// Parse the parameters from the request.
-	optionsWithJSONNames, err := parseOptions(request.Parameter())
+	opts, err := parseOptions(request.Parameter())
 	if err != nil {
 		return err
 	}
-	optionsWithJSONNames = append(optionsWithJSONNames, jsonschema.WithJSONNames())
-	// Also create options with protobuf names.
-	options := optionsWithJSONNames[:len(optionsWithJSONNames)-1]
+
+	gens := make([]*jsonschema.Generator, len(opts))
+	for i, opt := range opts {
+		gens[i] = jsonschema.NewGenerator(opt...)
+	}
 
 	// Generate the JSON schema for each message descriptor.
-	seenIdentifiers := make(map[string]bool)
 	for _, fileDescriptor := range fileDescriptors {
 		for i := range fileDescriptor.Messages().Len() {
 			messageDescriptor := fileDescriptor.Messages().Get(i)
-			// Generate the proto name schema.
-			protoNameSchema, err := jsonschema.Generate(messageDescriptor, options...)
-			if err != nil {
-				return err
+			for _, gen := range gens {
+				if err := gen.Add(messageDescriptor); err != nil {
+					return err
+				}
 			}
-			if err := writeFiles(responseWriter, messageDescriptor, protoNameSchema, seenIdentifiers); err != nil {
-				return err
-			}
-			// Generate the JSON name schema.
-			jsonNameSchema, err := jsonschema.Generate(messageDescriptor, optionsWithJSONNames...)
-			if err != nil {
-				return err
-			}
-			if err := writeFiles(responseWriter, messageDescriptor, jsonNameSchema, seenIdentifiers); err != nil {
-				return err
-			}
+		}
+	}
+
+	for _, gen := range gens {
+		if err := writeFiles(responseWriter, gen.Generate()); err != nil {
+			return err
 		}
 	}
 
@@ -78,9 +76,7 @@ func Handle(
 
 func writeFiles(
 	responseWriter protoplugin.ResponseWriter,
-	messageDescriptor protoreflect.MessageDescriptor,
 	schema map[protoreflect.FullName]map[string]any,
-	seenIdentifiers map[string]bool,
 ) error {
 	for _, entry := range schema {
 		data, err := json.MarshalIndent(entry, "", "  ")
@@ -89,56 +85,98 @@ func writeFiles(
 		}
 		identifier, ok := entry["$id"].(string)
 		if !ok {
-			return fmt.Errorf("expected unique id for message %q to be a string, got type %T", messageDescriptor.FullName(), entry["$id"])
+			return fmt.Errorf("expected unique id to be a string, got type %T", entry["$id"])
 		}
 		if identifier == "" {
-			return fmt.Errorf("expected unique id for message %q to be a non-empty string", messageDescriptor.FullName())
-		}
-		if seenIdentifiers[identifier] {
-			continue
+			return errors.New("expected unique id to be a non-empty string")
 		}
 		responseWriter.AddFile(
 			identifier,
 			string(data)+"\n",
 		)
-		seenIdentifiers[identifier] = true
 	}
 	return nil
 }
 
-func parseOptions(param string) ([]jsonschema.GeneratorOption, error) {
-	var options []jsonschema.GeneratorOption
-	if param == "" {
-		return options, nil
-	}
-	// Params are in the form of "key1=value1,key2=value2"
-	params := strings.Split(param, ",")
-	for _, param := range params {
-		// Split the param into key and value.
-		pos := strings.Index(param, "=")
-		if pos == -1 {
-			return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
+func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
+	var baseOpts []jsonschema.GeneratorOption
+
+	targets := make(map[string]struct{})
+	if param != "" { // nolint:nestif
+		// Params are in the form of "key1=value1,key2=value2"
+		params := strings.Split(param, ",")
+		for _, param := range params {
+			// Split the param into key and value.
+			pos := strings.Index(param, "=")
+			if pos == -1 {
+				return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
+			}
+			key := strings.TrimSpace(param[:pos])
+			value := strings.TrimSpace(param[pos+1:])
+			switch key {
+			case "additional_properties":
+				if value, err := parseBoolean(value); err != nil {
+					return nil, err
+				} else if value {
+					baseOpts = append(baseOpts, jsonschema.WithAdditionalProperties())
+				}
+			case "target":
+				// Targets are delimited by '+', e.g. "proto+json".
+				targetsList := strings.Split(value, "+")
+				for _, target := range targetsList {
+					targets[strings.ToLower(strings.TrimSpace(target))] = struct{}{}
+				}
+			default:
+				return nil, fmt.Errorf("unknown parameter %q", param)
+			}
 		}
-		key := strings.TrimSpace(param[:pos])
-		value := strings.TrimSpace(param[pos+1:])
-		switch key {
-		case "additional_properties":
-			if value, err := parseBoolean(value); err != nil {
-				return nil, err
-			} else if value {
-				options = append(options, jsonschema.WithAdditionalProperties())
-			}
-		case "strict":
-			if value, err := parseBoolean(value); err != nil {
-				return nil, err
-			} else if value {
-				options = append(options, jsonschema.WithStrict())
-			}
+	}
+	return generateOptions(baseOpts, targets)
+}
+
+var allTargets = map[string]struct{}{
+	"proto":               {},
+	"proto-bundle":        {},
+	"proto-strict":        {},
+	"proto-strict-bundle": {},
+	"json":                {},
+	"json-bundle":         {},
+	"json-strict":         {},
+	"json-strict-bundle":  {},
+}
+
+func generateOptions(baseOpts []jsonschema.GeneratorOption, targets map[string]struct{}) ([][]jsonschema.GeneratorOption, error) {
+	if _, ok := targets["all"]; ok || len(targets) == 0 {
+		targets = allTargets
+	}
+
+	var result [][]jsonschema.GeneratorOption
+	appendOpts := func(opts ...jsonschema.GeneratorOption) {
+		result = append(result, append(slices.Clone(baseOpts), opts...))
+	}
+	for target := range targets {
+		switch target {
+		case "proto":
+			appendOpts()
+		case "proto-bundle":
+			appendOpts(jsonschema.WithBundle())
+		case "proto-strict":
+			appendOpts(jsonschema.WithStrict())
+		case "proto-strict-bundle":
+			appendOpts(jsonschema.WithStrict(), jsonschema.WithBundle())
+		case "json":
+			appendOpts(jsonschema.WithJSONNames())
+		case "json-bundle":
+			appendOpts(jsonschema.WithJSONNames(), jsonschema.WithBundle())
+		case "json-strict":
+			appendOpts(jsonschema.WithJSONNames(), jsonschema.WithStrict())
+		case "json-strict-bundle":
+			appendOpts(jsonschema.WithJSONNames(), jsonschema.WithStrict(), jsonschema.WithBundle())
 		default:
-			return nil, fmt.Errorf("unknown parameter %q", param)
+			return nil, fmt.Errorf("unknown target %q", target)
 		}
 	}
-	return options, nil
+	return result, nil
 }
 
 func parseBoolean(value string) (bool, error) {

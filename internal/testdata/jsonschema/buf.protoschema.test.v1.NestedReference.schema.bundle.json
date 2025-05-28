@@ -1,0 +1,46 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.NestedReference.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(nestedMessage)$": {
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+        }
+      },
+      "properties": {
+        "nested_message": {
+          "$ref": "#/$defs/bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+        }
+      },
+      "title": "Nested Reference",
+      "type": "object"
+    },
+    "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "bb": {
+          "anyOf": [
+            {
+              "maximum": 2147483647,
+              "minimum": -2147483648,
+              "type": "integer"
+            },
+            {
+              "pattern": "^-?[0-9]+$",
+              "type": "string"
+            }
+          ],
+          "default": 0,
+          "description": "The field name \"b\" fails to compile in proto1 because it conflicts with\n a local variable named \"b\" in one of the generated methods.\n This file needs to compile in proto1 to test backwards-compatibility."
+        }
+      },
+      "title": "Nested Message",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.NestedReference.schema.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.NestedReference.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

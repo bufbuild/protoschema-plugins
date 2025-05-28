@@ -3,13 +3,44 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "This is a test case for the custom options in the buf.validate package... and\n comment parsing.",
+  "patternProperties": {
+    "^(int32Field)$": {
+      "description": "This field has a title!",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "title": "A field with a title.",
+      "type": "array"
+    },
+    "^(stringField)$": {
+      "type": "string"
+    }
+  },
   "properties": {
     "int32_field": {
       "description": "This field has a title!",
       "items": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "title": "A field with a title.",
       "type": "array"

@@ -2,6 +2,63 @@
   "$id": "buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
+  "patternProperties": {
+    "^(boolValue)$": {
+      "enum": [
+        true
+      ],
+      "type": "boolean"
+    },
+    "^(enumValue)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "exclusiveMaximum": 0,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 2147483647,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
+    "^(strictEnumValue)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
+    "^(stringValue)$": {
+      "type": "string"
+    }
+  },
   "properties": {
     "bool_value": {
       "enum": [
@@ -10,22 +67,50 @@
       "type": "boolean"
     },
     "enum_value": {
-      "enum": [
-        "ENUM_VAL1",
-        "ENUM_VAL2",
-        "ENUM_VAL7"
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "exclusiveMaximum": 0,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 2147483647,
+          "type": "integer"
+        }
       ],
-      "title": "Enum",
-      "type": "string"
+      "title": "Enum"
     },
     "strict_enum_value": {
-      "enum": [
-        "ENUM_VAL1",
-        "ENUM_VAL2",
-        "ENUM_VAL7"
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
+          "type": "integer"
+        }
       ],
-      "title": "Enum",
-      "type": "string"
+      "title": "Enum"
     },
     "string_value": {
       "type": "string"

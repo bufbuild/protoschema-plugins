@@ -1,0 +1,410 @@
+- at '': validation failed
+  - at '/test_cases/0/required_implicit': missing properties 'enum_value', 'strict_enum_value'
+  - at '/test_cases/1/required_implicit': missing properties 'bool_value', 'string_value', 'enum_value', 'strict_enum_value'
+  - at '/test_cases/2/required_implicit': validation failed
+    - at '/test_cases/2/required_implicit': missing properties 'enum_value', 'strict_enum_value'
+    - at '/test_cases/2/required_implicit/bool_value': value must be true
+  - at '/test_cases/3/required_optional': missing properties 'enum_value', 'strict_enum_value'
+  - at '/test_cases/4/required_optional': missing properties 'bool_value', 'string_value', 'enum_value', 'strict_enum_value'
+  - at '/test_cases/5/required_optional': missing properties 'enum_value', 'strict_enum_value'
+  - at '/test_cases/7/const_bool': value must be false
+  - at '/test_cases/9/const_string': value must be 'const'
+  - at '/test_cases/11/len_string': minLength: got 3, want 5
+  - at '/test_cases/14/min_len_string': minLength: got 3, want 5
+  - at '/test_cases/17/max_len_string': maxLength: got 11, want 5
+  - at '/test_cases/20/min_max_len_string': maxLength: got 11, want 10
+  - at '/test_cases/23/in_string': value must be one of 'in1', 'in2'
+  - at '/test_cases/26/pattern_string': 'other' does not match pattern '^pat*ern$'
+  - at '/test_cases/29/suffix_string': 'other' does not match pattern '.*_suffix$'
+  - at '/test_cases/32/prefix_string': 'other' does not match pattern '^prefix_.*'
+  - at '/test_cases/35/prefix_suffix_string': 'other_suffix' does not match pattern '^prefix_.*_suffix$'
+  - at '/test_cases/36/prefix_suffix_string': 'prefix_other' does not match pattern '^prefix_.*_suffix$'
+  - at '/test_cases/39/contains_string': 'other' does not match pattern '.*_contains_.*'
+  - at '/test_cases/42/prefix_contains_suffix_string': 'other' does not match pattern '^prefix_.*contains.*_suffix$'
+  - at '/test_cases/43/prefix_contains_suffix_string': 'prefix_foo_suffix' does not match pattern '^prefix_.*contains.*_suffix$'
+  - at '/test_cases/44/prefix_contains_suffix_string': 'prefix_contains' does not match pattern '^prefix_.*contains.*_suffix$'
+  - at '/test_cases/45/prefix_contains_suffix_string': 'contains_suffix' does not match pattern '^prefix_.*contains.*_suffix$'
+  - at '/test_cases/47/hostname_string': '-other' does not match pattern '^[A-Za-z0-9][A-Za-z0-9-]{0,63}(\\.[A-Za-z0-9-][A-Za-z0-9-]{0,63})*$'
+  - at '/test_cases/53/ip_string': 'other' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)$'
+  - at '/test_cases/63/uri_string': 'other' does not match pattern '^(?:(?:[a-zA-Z][a-zA-Z\\d+\\-.]*):)?(?://(?:[A-Za-z0-9\\-\\.]+(?::\\d+)?))?(/[^\\?#]*)?(?:\\?([^\\#]*))?(?:\\#(.*))?$'
+  - at '/test_cases/64/uri_string': 'example.com' does not match pattern '^(?:(?:[a-zA-Z][a-zA-Z\\d+\\-.]*):)?(?://(?:[A-Za-z0-9\\-\\.]+(?::\\d+)?))?(/[^\\?#]*)?(?:\\?([^\\#]*))?(?:\\#(.*))?$'
+  - at '/test_cases/67/uri_ref_string': 'other' does not match pattern '^(?:(?:[a-zA-Z][a-zA-Z\\d+\\-.]*):)?(?:\\/\\/(?:[A-Za-z0-9\\-\\.]+(?::\\d+)?))?(/[^\\?#]*)?(?:\\?([^\\#]*))?(?:\\#(.*))?$'
+  - at '/test_cases/71/address_string': '-other' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)$|^[A-Za-z0-9][A-Za-z0-9-]{0,63}(\\.[A-Za-z0-9-][A-Za-z0-9-]{0,63})*$'
+  - at '/test_cases/73/uuid_string': '550e8400-e29b-41d4-a716-44665544000' does not match pattern '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - at '/test_cases/74/uuid_string': 'other' does not match pattern '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+  - at '/test_cases/76/tuuid_string': '550e8400-e29b-41d4-a716-446655440000' does not match pattern '^[0-9a-fA-F]{32}$'
+  - at '/test_cases/77/tuuid_string': '550e8400e29b41d4a71644665544000' does not match pattern '^[0-9a-fA-F]{32}$'
+  - at '/test_cases/78/tuuid_string': 'other' does not match pattern '^[0-9a-fA-F]{32}$'
+  - at '/test_cases/81/ip_with_prefixlen_string': 'other' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/([0-9]|[12][0-9]|3[0-2])$|^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$'
+  - at '/test_cases/82/ip_with_prefixlen_string': '1.1.1.1/33' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/([0-9]|[12][0-9]|3[0-2])$|^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$'
+  - at '/test_cases/83/ip_with_prefixlen_string': '2001:0db8:85a3:0000:0000:8a2e:0370:7334/129' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/([0-9]|[12][0-9]|3[0-2])$|^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$'
+  - at '/test_cases/85/ipv4_with_prefixlen_string': '1.1.1.1' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/([0-9]|[12][0-9]|3[0-2])$'
+  - at '/test_cases/87/ipv6_with_prefixlen_string': '2001:0db8:85a3:0000:0000:8a2e:0370:7334' does not match pattern '^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$'
+  - at '/test_cases/90/ip_prefix_string': 'other' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}0/([0-9]|[12][0-9]|3[0-2])$|^(([0-9a-fA-F]{1,4}:){1,7}:|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$'
+  - at '/test_cases/92/ipv4_prefix_string': '1.1.1.1/32' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}0/([0-9]|[12][0-9]|3[0-2])$'
+  - at '/test_cases/93/ipv4_prefix_string': '1.1.1.0/33' does not match pattern '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}0/([0-9]|[12][0-9]|3[0-2])$'
+  - at '/test_cases/96/ipv6_prefix_string': '2001:0db8:85a3::8a2e:0370:7334/128' does not match pattern '^(([0-9a-fA-F]{1,4}:){1,7}:|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$'
+  - at '/test_cases/100/host_and_port_string': 'example.com' does not match pattern '^([A-Za-z0-9][A-Za-z0-9-]{0,63}(\\.[A-Za-z0-9-][A-Za-z0-9-]{0,63})*|((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|\\[(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)\\]):([1-9][0-9]{0,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$'
+  - at '/test_cases/102/http_header_name_strict_string': '\t' does not match pattern '^:?[0-9a-zA-Z!#$%&\\\'*+-.^_|~\\x60]+$'
+  - at '/test_cases/105/len_bytes': maxLength: got 9, want 8
+  - at '/test_cases/106/len_bytes': minLength: got 6, want 7
+  - at '/test_cases/109/max_len_bytes': maxLength: got 9, want 8
+  - at '/test_cases/111/min_len_bytes': minLength: got 6, want 7
+  - at '/test_cases/114/min_max_len_bytes': minLength: got 6, want 7
+  - at '/test_cases/115/min_max_len_bytes': maxLength: got 17, want 16
+  - at '/test_cases/117/const_int32': anyOf failed
+    - at '/test_cases/117/const_int32': value must be 5
+    - at '/test_cases/117/const_int32': got number, want string
+  - at '/test_cases/119/lt_int32': anyOf failed
+    - at '/test_cases/119/lt_int32': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/119/lt_int32': got number, want string
+  - at '/test_cases/121/lte_int32': anyOf failed
+    - at '/test_cases/121/lte_int32': maximum: got 6, want 5
+    - at '/test_cases/121/lte_int32': got number, want string
+  - at '/test_cases/123/gt_int32': anyOf failed
+    - at '/test_cases/123/gt_int32': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/123/gt_int32': got number, want string
+  - at '/test_cases/125/gte_int32': anyOf failed
+    - at '/test_cases/125/gte_int32': minimum: got 4, want 5
+    - at '/test_cases/125/gte_int32': got number, want string
+  - at '/test_cases/128/in_int32': anyOf failed
+    - at '/test_cases/128/in_int32': value must be one of 1, 2
+    - at '/test_cases/128/in_int32': got number, want string
+  - at '/test_cases/131/lt_gt_int32': anyOf failed
+    - at '/test_cases/131/lt_gt_int32': exclusiveMaximum: got 5, want 1
+    - at '/test_cases/131/lt_gt_int32': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/131/lt_gt_int32': got number, want string
+  - at '/test_cases/132/lt_gt_int32': anyOf failed
+    - at '/test_cases/132/lt_gt_int32': exclusiveMaximum: got 1, want 1
+    - at '/test_cases/132/lt_gt_int32': exclusiveMinimum: got 1, want 5
+    - at '/test_cases/132/lt_gt_int32': got number, want string
+  - at '/test_cases/134/const_int64': anyOf failed
+    - at '/test_cases/134/const_int64': value must be 5
+    - at '/test_cases/134/const_int64': got number, want string
+  - at '/test_cases/136/lt_int64': anyOf failed
+    - at '/test_cases/136/lt_int64': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/136/lt_int64': got number, want string
+  - at '/test_cases/138/lte_int64': anyOf failed
+    - at '/test_cases/138/lte_int64': maximum: got 6, want 5
+    - at '/test_cases/138/lte_int64': got number, want string
+  - at '/test_cases/140/gt_int64': anyOf failed
+    - at '/test_cases/140/gt_int64': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/140/gt_int64': got number, want string
+  - at '/test_cases/142/gte_int64': anyOf failed
+    - at '/test_cases/142/gte_int64': minimum: got 4, want 5
+    - at '/test_cases/142/gte_int64': got number, want string
+  - at '/test_cases/145/in_int64': anyOf failed
+    - at '/test_cases/145/in_int64': value must be one of 1, 2
+    - at '/test_cases/145/in_int64': got number, want string
+  - at '/test_cases/148/lt_gt_int64': anyOf failed
+    - at '/test_cases/148/lt_gt_int64': exclusiveMaximum: got 5, want 1
+    - at '/test_cases/148/lt_gt_int64': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/148/lt_gt_int64': got number, want string
+  - at '/test_cases/149/lt_gt_int64': anyOf failed
+    - at '/test_cases/149/lt_gt_int64': exclusiveMaximum: got 1, want 1
+    - at '/test_cases/149/lt_gt_int64': exclusiveMinimum: got 1, want 5
+    - at '/test_cases/149/lt_gt_int64': got number, want string
+  - at '/test_cases/151/const_uint32': anyOf failed
+    - at '/test_cases/151/const_uint32': value must be 5
+    - at '/test_cases/151/const_uint32': got number, want string
+  - at '/test_cases/153/lt_uint32': anyOf failed
+    - at '/test_cases/153/lt_uint32': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/153/lt_uint32': got number, want string
+  - at '/test_cases/155/lte_uint32': anyOf failed
+    - at '/test_cases/155/lte_uint32': maximum: got 6, want 5
+    - at '/test_cases/155/lte_uint32': got number, want string
+  - at '/test_cases/157/gt_uint32': anyOf failed
+    - at '/test_cases/157/gt_uint32': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/157/gt_uint32': got number, want string
+  - at '/test_cases/159/gte_uint32': anyOf failed
+    - at '/test_cases/159/gte_uint32': minimum: got 4, want 5
+    - at '/test_cases/159/gte_uint32': got number, want string
+  - at '/test_cases/162/in_uint32': anyOf failed
+    - at '/test_cases/162/in_uint32': value must be one of 1, 2
+    - at '/test_cases/162/in_uint32': got number, want string
+  - at '/test_cases/165/lt_gt_uint32': anyOf failed
+    - at '/test_cases/165/lt_gt_uint32': exclusiveMaximum: got 5, want 1
+    - at '/test_cases/165/lt_gt_uint32': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/165/lt_gt_uint32': got number, want string
+  - at '/test_cases/166/lt_gt_uint32': anyOf failed
+    - at '/test_cases/166/lt_gt_uint32': exclusiveMaximum: got 1, want 1
+    - at '/test_cases/166/lt_gt_uint32': exclusiveMinimum: got 1, want 5
+    - at '/test_cases/166/lt_gt_uint32': got number, want string
+  - at '/test_cases/168/const_uint64': anyOf failed
+    - at '/test_cases/168/const_uint64': value must be 5
+    - at '/test_cases/168/const_uint64': got number, want string
+  - at '/test_cases/170/lt_uint64': anyOf failed
+    - at '/test_cases/170/lt_uint64': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/170/lt_uint64': got number, want string
+  - at '/test_cases/172/lte_uint64': anyOf failed
+    - at '/test_cases/172/lte_uint64': maximum: got 6, want 5
+    - at '/test_cases/172/lte_uint64': got number, want string
+  - at '/test_cases/174/gt_uint64': anyOf failed
+    - at '/test_cases/174/gt_uint64': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/174/gt_uint64': got number, want string
+  - at '/test_cases/176/gte_uint64': anyOf failed
+    - at '/test_cases/176/gte_uint64': minimum: got 4, want 5
+    - at '/test_cases/176/gte_uint64': got number, want string
+  - at '/test_cases/179/in_uint64': anyOf failed
+    - at '/test_cases/179/in_uint64': value must be one of 1, 2
+    - at '/test_cases/179/in_uint64': got number, want string
+  - at '/test_cases/182/lt_gt_uint64': anyOf failed
+    - at '/test_cases/182/lt_gt_uint64': exclusiveMaximum: got 5, want 1
+    - at '/test_cases/182/lt_gt_uint64': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/182/lt_gt_uint64': got number, want string
+  - at '/test_cases/183/lt_gt_uint64': anyOf failed
+    - at '/test_cases/183/lt_gt_uint64': exclusiveMaximum: got 1, want 1
+    - at '/test_cases/183/lt_gt_uint64': exclusiveMinimum: got 1, want 5
+    - at '/test_cases/183/lt_gt_uint64': got number, want string
+  - at '/test_cases/185/const_sint32': anyOf failed
+    - at '/test_cases/185/const_sint32': value must be 5
+    - at '/test_cases/185/const_sint32': got number, want string
+  - at '/test_cases/187/lt_sint32': anyOf failed
+    - at '/test_cases/187/lt_sint32': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/187/lt_sint32': got number, want string
+  - at '/test_cases/189/lte_sint32': anyOf failed
+    - at '/test_cases/189/lte_sint32': maximum: got 6, want 5
+    - at '/test_cases/189/lte_sint32': got number, want string
+  - at '/test_cases/191/gt_sint32': anyOf failed
+    - at '/test_cases/191/gt_sint32': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/191/gt_sint32': got number, want string
+  - at '/test_cases/193/gte_sint32': anyOf failed
+    - at '/test_cases/193/gte_sint32': minimum: got 4, want 5
+    - at '/test_cases/193/gte_sint32': got number, want string
+  - at '/test_cases/196/in_sint32': anyOf failed
+    - at '/test_cases/196/in_sint32': value must be one of 1, 2
+    - at '/test_cases/196/in_sint32': got number, want string
+  - at '/test_cases/198/const_sint64': anyOf failed
+    - at '/test_cases/198/const_sint64': value must be 5
+    - at '/test_cases/198/const_sint64': got number, want string
+  - at '/test_cases/200/lt_sint64': anyOf failed
+    - at '/test_cases/200/lt_sint64': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/200/lt_sint64': got number, want string
+  - at '/test_cases/202/lte_sint64': anyOf failed
+    - at '/test_cases/202/lte_sint64': maximum: got 6, want 5
+    - at '/test_cases/202/lte_sint64': got number, want string
+  - at '/test_cases/204/gt_sint64': anyOf failed
+    - at '/test_cases/204/gt_sint64': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/204/gt_sint64': got number, want string
+  - at '/test_cases/206/gte_sint64': anyOf failed
+    - at '/test_cases/206/gte_sint64': minimum: got 4, want 5
+    - at '/test_cases/206/gte_sint64': got number, want string
+  - at '/test_cases/209/in_sint64': anyOf failed
+    - at '/test_cases/209/in_sint64': value must be one of 1, 2
+    - at '/test_cases/209/in_sint64': got number, want string
+  - at '/test_cases/211/const_sfixed32': anyOf failed
+    - at '/test_cases/211/const_sfixed32': value must be 5
+    - at '/test_cases/211/const_sfixed32': got number, want string
+  - at '/test_cases/213/lt_sfixed32': anyOf failed
+    - at '/test_cases/213/lt_sfixed32': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/213/lt_sfixed32': got number, want string
+  - at '/test_cases/215/lte_sfixed32': anyOf failed
+    - at '/test_cases/215/lte_sfixed32': maximum: got 6, want 5
+    - at '/test_cases/215/lte_sfixed32': got number, want string
+  - at '/test_cases/217/gt_sfixed32': anyOf failed
+    - at '/test_cases/217/gt_sfixed32': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/217/gt_sfixed32': got number, want string
+  - at '/test_cases/219/gte_sfixed32': anyOf failed
+    - at '/test_cases/219/gte_sfixed32': minimum: got 4, want 5
+    - at '/test_cases/219/gte_sfixed32': got number, want string
+  - at '/test_cases/222/in_sfixed32': anyOf failed
+    - at '/test_cases/222/in_sfixed32': value must be one of 1, 2
+    - at '/test_cases/222/in_sfixed32': got number, want string
+  - at '/test_cases/224/const_sfixed64': anyOf failed
+    - at '/test_cases/224/const_sfixed64': value must be 5
+    - at '/test_cases/224/const_sfixed64': got number, want string
+  - at '/test_cases/226/lt_sfixed64': anyOf failed
+    - at '/test_cases/226/lt_sfixed64': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/226/lt_sfixed64': got number, want string
+  - at '/test_cases/228/lte_sfixed64': anyOf failed
+    - at '/test_cases/228/lte_sfixed64': maximum: got 6, want 5
+    - at '/test_cases/228/lte_sfixed64': got number, want string
+  - at '/test_cases/230/gt_sfixed64': anyOf failed
+    - at '/test_cases/230/gt_sfixed64': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/230/gt_sfixed64': got number, want string
+  - at '/test_cases/232/gte_sfixed64': anyOf failed
+    - at '/test_cases/232/gte_sfixed64': minimum: got 4, want 5
+    - at '/test_cases/232/gte_sfixed64': got number, want string
+  - at '/test_cases/235/in_sfixed64': anyOf failed
+    - at '/test_cases/235/in_sfixed64': value must be one of 1, 2
+    - at '/test_cases/235/in_sfixed64': got number, want string
+  - at '/test_cases/237/const_fixed32': anyOf failed
+    - at '/test_cases/237/const_fixed32': value must be 5
+    - at '/test_cases/237/const_fixed32': got number, want string
+  - at '/test_cases/239/lt_fixed32': anyOf failed
+    - at '/test_cases/239/lt_fixed32': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/239/lt_fixed32': got number, want string
+  - at '/test_cases/241/lte_fixed32': anyOf failed
+    - at '/test_cases/241/lte_fixed32': maximum: got 6, want 5
+    - at '/test_cases/241/lte_fixed32': got number, want string
+  - at '/test_cases/243/gt_fixed32': anyOf failed
+    - at '/test_cases/243/gt_fixed32': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/243/gt_fixed32': got number, want string
+  - at '/test_cases/245/gte_fixed32': anyOf failed
+    - at '/test_cases/245/gte_fixed32': minimum: got 4, want 5
+    - at '/test_cases/245/gte_fixed32': got number, want string
+  - at '/test_cases/248/in_fixed32': anyOf failed
+    - at '/test_cases/248/in_fixed32': value must be one of 1, 2
+    - at '/test_cases/248/in_fixed32': got number, want string
+  - at '/test_cases/250/const_fixed64': anyOf failed
+    - at '/test_cases/250/const_fixed64': value must be 5
+    - at '/test_cases/250/const_fixed64': got number, want string
+  - at '/test_cases/252/lt_fixed64': anyOf failed
+    - at '/test_cases/252/lt_fixed64': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/252/lt_fixed64': got number, want string
+  - at '/test_cases/254/lte_fixed64': anyOf failed
+    - at '/test_cases/254/lte_fixed64': maximum: got 6, want 5
+    - at '/test_cases/254/lte_fixed64': got number, want string
+  - at '/test_cases/256/gt_fixed64': anyOf failed
+    - at '/test_cases/256/gt_fixed64': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/256/gt_fixed64': got number, want string
+  - at '/test_cases/258/gte_fixed64': anyOf failed
+    - at '/test_cases/258/gte_fixed64': minimum: got 4, want 5
+    - at '/test_cases/258/gte_fixed64': got number, want string
+  - at '/test_cases/261/in_fixed64': anyOf failed
+    - at '/test_cases/261/in_fixed64': value must be one of 1, 2
+    - at '/test_cases/261/in_fixed64': got number, want string
+  - at '/test_cases/265/const_double': anyOf failed
+    - at '/test_cases/265/const_double': value must be 5
+    - at '/test_cases/265/const_double': got number, want string
+  - at '/test_cases/267/lt_double': anyOf failed
+    - at '/test_cases/267/lt_double': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/267/lt_double': got number, want string
+    - at '/test_cases/267/lt_double': got number, want string
+  - at '/test_cases/269/lte_double': anyOf failed
+    - at '/test_cases/269/lte_double': maximum: got 5.1, want 5
+    - at '/test_cases/269/lte_double': got number, want string
+    - at '/test_cases/269/lte_double': got number, want string
+  - at '/test_cases/271/gt_double': anyOf failed
+    - at '/test_cases/271/gt_double': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/271/gt_double': got number, want string
+    - at '/test_cases/271/gt_double': got number, want string
+  - at '/test_cases/273/gte_double': anyOf failed
+    - at '/test_cases/273/gte_double': minimum: got 4.9, want 5
+    - at '/test_cases/273/gte_double': got number, want string
+    - at '/test_cases/273/gte_double': got number, want string
+  - at '/test_cases/276/in_double': anyOf failed
+    - at '/test_cases/276/in_double': value must be one of 1, 2
+    - at '/test_cases/276/in_double': got number, want string
+  - at '/test_cases/279/finite_double': anyOf failed
+    - at '/test_cases/279/finite_double': got string, want number
+    - at '/test_cases/279/finite_double': 'Infinity' does not match pattern '^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$'
+  - at '/test_cases/280/finite_double': anyOf failed
+    - at '/test_cases/280/finite_double': got string, want number
+    - at '/test_cases/280/finite_double': '-Infinity' does not match pattern '^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$'
+  - at '/test_cases/281/finite_double': anyOf failed
+    - at '/test_cases/281/finite_double': got string, want number
+    - at '/test_cases/281/finite_double': 'NaN' does not match pattern '^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$'
+  - at '/test_cases/284/lt_gt_double': anyOf failed
+    - at '/test_cases/284/lt_gt_double': exclusiveMaximum: got 5, want 1
+    - at '/test_cases/284/lt_gt_double': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/284/lt_gt_double': got number, want string
+    - at '/test_cases/284/lt_gt_double': got number, want string
+  - at '/test_cases/285/lt_gt_double': anyOf failed
+    - at '/test_cases/285/lt_gt_double': exclusiveMaximum: got 1, want 1
+    - at '/test_cases/285/lt_gt_double': exclusiveMinimum: got 1, want 5
+    - at '/test_cases/285/lt_gt_double': got number, want string
+    - at '/test_cases/285/lt_gt_double': got number, want string
+  - at '/test_cases/289/const_float': anyOf failed
+    - at '/test_cases/289/const_float': value must be 5
+    - at '/test_cases/289/const_float': got number, want string
+  - at '/test_cases/291/lt_float': anyOf failed
+    - at '/test_cases/291/lt_float': exclusiveMaximum: got 5, want 5
+    - at '/test_cases/291/lt_float': got number, want string
+    - at '/test_cases/291/lt_float': got number, want string
+  - at '/test_cases/293/lte_float': anyOf failed
+    - at '/test_cases/293/lte_float': maximum: got 5.1, want 5
+    - at '/test_cases/293/lte_float': got number, want string
+    - at '/test_cases/293/lte_float': got number, want string
+  - at '/test_cases/295/gt_float': anyOf failed
+    - at '/test_cases/295/gt_float': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/295/gt_float': got number, want string
+    - at '/test_cases/295/gt_float': got number, want string
+  - at '/test_cases/297/gte_float': anyOf failed
+    - at '/test_cases/297/gte_float': minimum: got 4.9, want 5
+    - at '/test_cases/297/gte_float': got number, want string
+    - at '/test_cases/297/gte_float': got number, want string
+  - at '/test_cases/300/in_float': anyOf failed
+    - at '/test_cases/300/in_float': value must be one of 1, 2
+    - at '/test_cases/300/in_float': got number, want string
+  - at '/test_cases/303/finite_float': anyOf failed
+    - at '/test_cases/303/finite_float': got string, want number
+    - at '/test_cases/303/finite_float': 'Infinity' does not match pattern '^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$'
+  - at '/test_cases/304/finite_float': anyOf failed
+    - at '/test_cases/304/finite_float': got string, want number
+    - at '/test_cases/304/finite_float': '-Infinity' does not match pattern '^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$'
+  - at '/test_cases/305/finite_float': anyOf failed
+    - at '/test_cases/305/finite_float': got string, want number
+    - at '/test_cases/305/finite_float': 'NaN' does not match pattern '^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$'
+  - at '/test_cases/308/lt_gt_float': anyOf failed
+    - at '/test_cases/308/lt_gt_float': exclusiveMaximum: got 5, want 1
+    - at '/test_cases/308/lt_gt_float': exclusiveMinimum: got 5, want 5
+    - at '/test_cases/308/lt_gt_float': got number, want string
+    - at '/test_cases/308/lt_gt_float': got number, want string
+  - at '/test_cases/309/lt_gt_float': anyOf failed
+    - at '/test_cases/309/lt_gt_float': exclusiveMaximum: got 1, want 1
+    - at '/test_cases/309/lt_gt_float': exclusiveMinimum: got 1, want 5
+    - at '/test_cases/309/lt_gt_float': got number, want string
+    - at '/test_cases/309/lt_gt_float': got number, want string
+  - at '/test_cases/310': validation failed
+    - at '/test_cases/310/in_map/key3': value must be one of 'value1', 'value2'
+    - at '': invalid propertyName 'key3'
+      - at '': value must be one of 'key1', 'key2'
+  - at '/test_cases/313/const_enum': anyOf failed
+    - at '/test_cases/313/const_enum': value must be 'ENUM_VAL2'
+    - at '/test_cases/313/const_enum': got string, want integer
+  - at '/test_cases/322/defined_only_enum': anyOf failed
+    - at '/test_cases/322/defined_only_enum': got number, want string
+    - at '/test_cases/322/defined_only_enum': maximum: got 1,234, want 2
+    - at '/test_cases/322/defined_only_enum': maximum: got 1,234, want 7
+  - at '/test_cases/327/in_enum': anyOf failed
+    - at '/test_cases/327/in_enum': got number, want string
+    - at '/test_cases/327/in_enum': minimum: got 0, want 1
+  - at '/test_cases/328/in_enum': anyOf failed
+    - at '/test_cases/328/in_enum': got number, want string
+    - at '/test_cases/328/in_enum': maximum: got 7, want 2
+  - at '/test_cases/329/in_enum': anyOf failed
+    - at '/test_cases/329/in_enum': value must be one of 'ENUM_VAL1', 'ENUM_VAL2'
+    - at '/test_cases/329/in_enum': got string, want integer
+  - at '/test_cases/330/in_enum': anyOf failed
+    - at '/test_cases/330/in_enum': value must be one of 'ENUM_VAL1', 'ENUM_VAL2'
+    - at '/test_cases/330/in_enum': got string, want integer
+  - at '/test_cases/337/not_in_enum': anyOf failed
+    - at '/test_cases/337/not_in_enum': value must be one of 'ENUM_VAL1', 'ENUM_VAL2'
+    - at '/test_cases/337/not_in_enum': got string, want integer
+  - at '/test_cases/338/not_in_enum': anyOf failed
+    - at '/test_cases/338/not_in_enum': value must be one of 'ENUM_VAL1', 'ENUM_VAL2'
+    - at '/test_cases/338/not_in_enum': got string, want integer
+  - at '/test_cases/345/defined_only_not_in_enum': anyOf failed
+    - at '/test_cases/345/defined_only_not_in_enum': got number, want string
+    - at '/test_cases/345/defined_only_not_in_enum': minimum: got 0, want 1
+    - at '/test_cases/345/defined_only_not_in_enum': minimum: got 0, want 7
+  - at '/test_cases/346/defined_only_not_in_enum': anyOf failed
+    - at '/test_cases/346/defined_only_not_in_enum': got number, want string
+    - at '/test_cases/346/defined_only_not_in_enum': maximum: got 1,234, want 2
+    - at '/test_cases/346/defined_only_not_in_enum': maximum: got 1,234, want 7
+  - at '/test_cases/347/defined_only_not_in_enum': anyOf failed
+    - at '/test_cases/347/defined_only_not_in_enum': value must be one of 'ENUM_VAL1', 'ENUM_VAL2', 'ENUM_VAL7'
+    - at '/test_cases/347/defined_only_not_in_enum': got string, want integer
+    - at '/test_cases/347/defined_only_not_in_enum': got string, want integer
+  - at '/test_cases/348/in_and_not_in_enum': anyOf failed
+    - at '/test_cases/348/in_and_not_in_enum': got number, want string
+    - at '/test_cases/348/in_and_not_in_enum': maximum: got 7, want 1
+  - at '/test_cases/349/in_and_not_in_enum': anyOf failed
+    - at '/test_cases/349/in_and_not_in_enum': value must be 'ENUM_VAL1'
+    - at '/test_cases/349/in_and_not_in_enum': got string, want integer
+  - at '/test_cases/350/in_and_not_in_enum': anyOf failed
+    - at '/test_cases/350/in_and_not_in_enum': got number, want string
+    - at '/test_cases/350/in_and_not_in_enum': minimum: got 0, want 1
+  - at '/test_cases/352/in_and_not_in_enum': anyOf failed
+    - at '/test_cases/352/in_and_not_in_enum': got number, want string
+    - at '/test_cases/352/in_and_not_in_enum': maximum: got 2, want 1
+  - at '/test_cases/353/in_and_not_in_enum': anyOf failed
+    - at '/test_cases/353/in_and_not_in_enum': got number, want string
+    - at '/test_cases/353/in_and_not_in_enum': maximum: got 1,234, want 1
+  - at '/test_cases/354/in_and_not_in_enum': anyOf failed
+    - at '/test_cases/354/in_and_not_in_enum': value must be 'ENUM_VAL1'
+    - at '/test_cases/354/in_and_not_in_enum': got string, want integer
+  - at '/test_cases/356/in_and_not_in_enum': anyOf failed
+    - at '/test_cases/356/in_and_not_in_enum': value must be 'ENUM_VAL1'
+    - at '/test_cases/356/in_and_not_in_enum': got string, want integer

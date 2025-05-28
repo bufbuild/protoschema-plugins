@@ -2,29 +2,103 @@
   "$id": "buf.protoschema.test.v1.ConstraintTest.RequiredOptional.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
+  "patternProperties": {
+    "^(boolValue)$": {
+      "type": "boolean"
+    },
+    "^(enumValue)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
+    "^(strictEnumValue)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum"
+    },
+    "^(stringValue)$": {
+      "type": "string"
+    }
+  },
   "properties": {
     "bool_value": {
       "type": "boolean"
     },
     "enum_value": {
-      "enum": [
-        "ENUM_UNSPECIFIED",
-        "ENUM_VAL1",
-        "ENUM_VAL2",
-        "ENUM_VAL7"
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
       ],
-      "title": "Enum",
-      "type": "string"
+      "title": "Enum"
     },
     "strict_enum_value": {
-      "enum": [
-        "ENUM_UNSPECIFIED",
-        "ENUM_VAL1",
-        "ENUM_VAL2",
-        "ENUM_VAL7"
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_VAL1",
+            "ENUM_VAL2",
+            "ENUM_VAL7"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "maximum": 7,
+          "minimum": 7,
+          "type": "integer"
+        }
       ],
-      "title": "Enum",
-      "type": "string"
+      "title": "Enum"
     },
     "string_value": {
       "type": "string"

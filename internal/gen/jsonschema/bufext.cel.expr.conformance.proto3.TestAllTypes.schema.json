@@ -3,6 +3,3752 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "This proto includes every type of field in both singular and repeated\n forms.",
+  "patternProperties": {
+    "^(listValue)$": {
+      "$ref": "google.protobuf.ListValue.schema.json"
+    },
+    "^(mapBoolAny)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolBool)$": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolBoolWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolBytes)$": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolBytesWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolDouble)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolDoubleWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolDuration)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolEnum)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Nested Enum"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolFloat)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolFloatWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolInt32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolInt32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolInt64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolInt64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolListValue)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolMessage)$": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolNullValue)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Null Value"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolString)$": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolStringWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolStruct)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolTimestamp)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolUint32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolUint32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolUint64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolUint64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapBoolValue)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    },
+    "^(mapInt32Any)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Bool)$": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32BoolWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Bytes)$": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32BytesWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Double)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32DoubleWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Duration)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Enum)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Nested Enum"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Float)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32FloatWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Int32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Int32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Int64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Int64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32ListValue)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Message)$": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32NullValue)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Null Value"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32String)$": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32StringWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Struct)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Timestamp)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Uint32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Uint32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Uint64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Uint64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt32Value)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Any)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Bool)$": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64BoolWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Bytes)$": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64BytesWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Double)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64DoubleWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Duration)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Enum)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Nested Enum"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Float)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64FloatWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Int32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Int32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Int64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Int64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64ListValue)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Message)$": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64NestedType)$": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.NestedTestAllTypes.schema.json"
+      },
+      "description": "Map",
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64NullValue)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Null Value"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64String)$": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64StringWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Struct)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Timestamp)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Uint32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Uint32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Uint64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Uint64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapInt64Value)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapStringAny)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringBool)$": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringBoolWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringBytes)$": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringBytesWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringDouble)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringDoubleWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringDuration)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringEnum)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Nested Enum"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringFloat)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringFloatWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringInt32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringInt32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringInt64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringInt64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringListValue)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringMessage)$": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringNullValue)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Null Value"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringString)$": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringStringWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringStruct)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringTimestamp)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringUint32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringUint32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringUint64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringUint64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapStringValue)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "^(mapUint32Any)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Bool)$": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32BoolWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Bytes)$": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32BytesWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Double)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32DoubleWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Duration)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Enum)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Nested Enum"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Float)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32FloatWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Int32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Int32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Int64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Int64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32ListValue)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Message)$": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32NullValue)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Null Value"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32String)$": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32StringWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Struct)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Timestamp)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Uint32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Uint32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Uint64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Uint64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint32Value)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Any)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Bool)$": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64BoolWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BoolValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Bytes)$": {
+      "additionalProperties": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64BytesWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.BytesValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Double)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64DoubleWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.DoubleValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Duration)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Duration.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Enum)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Nested Enum"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Float)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64FloatWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Int32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Int32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Int64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Int64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Int64Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64ListValue)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.ListValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Message)$": {
+      "additionalProperties": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64NullValue)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Null Value"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64String)$": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64StringWrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.StringValue.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Struct)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Struct.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Timestamp)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Uint32)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Uint32Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt32Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Uint64)$": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Uint64Wrapper)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.UInt64Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(mapUint64Value)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Value.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(nullValue)$": {
+      "anyOf": [
+        {
+          "pattern": "^NULL_VALUE$",
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Null Value"
+    },
+    "^(optionalNullValue)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "NULL_VALUE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Null Value"
+    },
+    "^(repeatedAny)$": {
+      "description": "Repeated wellknown.",
+      "items": {
+        "$ref": "google.protobuf.Any.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedBool)$": {
+      "items": {
+        "type": "boolean"
+      },
+      "type": "array"
+    },
+    "^(repeatedBoolWrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.BoolValue.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedBytes)$": {
+      "items": {
+        "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "^(repeatedBytesWrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.BytesValue.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedCord)$": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "^(repeatedDouble)$": {
+      "items": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedDoubleWrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.DoubleValue.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedDuration)$": {
+      "items": {
+        "$ref": "google.protobuf.Duration.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedFixed32)$": {
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedFixed64)$": {
+      "items": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedFloat)$": {
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedFloatWrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.FloatValue.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedInt32)$": {
+      "description": "Repeated",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedInt32Wrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.Int32Value.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedInt64)$": {
+      "items": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedInt64Wrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.Int64Value.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedLazyMessage)$": {
+      "items": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedListValue)$": {
+      "items": {
+        "$ref": "google.protobuf.ListValue.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedNestedEnum)$": {
+      "items": {
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Nested Enum"
+      },
+      "type": "array"
+    },
+    "^(repeatedNestedMessage)$": {
+      "description": "Repeated and nested",
+      "items": {
+        "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedNullValue)$": {
+      "items": {
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Null Value"
+      },
+      "type": "array"
+    },
+    "^(repeatedSfixed32)$": {
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedSfixed64)$": {
+      "items": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedSint32)$": {
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedSint64)$": {
+      "items": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedString)$": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "^(repeatedStringPiece)$": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "^(repeatedStringWrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.StringValue.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedStruct)$": {
+      "items": {
+        "$ref": "google.protobuf.Struct.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedTimestamp)$": {
+      "items": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedUint32)$": {
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedUint32Wrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.UInt32Value.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedUint64)$": {
+      "items": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(repeatedUint64Wrapper)$": {
+      "items": {
+        "$ref": "google.protobuf.UInt64Value.schema.json"
+      },
+      "type": "array"
+    },
+    "^(repeatedValue)$": {
+      "items": {
+        "$ref": "google.protobuf.Value.schema.json"
+      },
+      "type": "array"
+    },
+    "^(singleAny)$": {
+      "$ref": "google.protobuf.Any.schema.json",
+      "description": "Wellknown."
+    },
+    "^(singleBool)$": {
+      "default": false,
+      "type": "boolean"
+    },
+    "^(singleBoolWrapper)$": {
+      "$ref": "google.protobuf.BoolValue.schema.json"
+    },
+    "^(singleBytes)$": {
+      "default": null,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
+    "^(singleBytesWrapper)$": {
+      "$ref": "google.protobuf.BytesValue.schema.json"
+    },
+    "^(singleDouble)$": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleDoubleWrapper)$": {
+      "$ref": "google.protobuf.DoubleValue.schema.json"
+    },
+    "^(singleDuration)$": {
+      "$ref": "google.protobuf.Duration.schema.json"
+    },
+    "^(singleFixed32)$": {
+      "anyOf": [
+        {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleFixed64)$": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleFloat)$": {
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleFloatWrapper)$": {
+      "$ref": "google.protobuf.FloatValue.schema.json"
+    },
+    "^(singleInt32)$": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Singular"
+    },
+    "^(singleInt32Wrapper)$": {
+      "$ref": "google.protobuf.Int32Value.schema.json"
+    },
+    "^(singleInt64)$": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleInt64Wrapper)$": {
+      "$ref": "google.protobuf.Int64Value.schema.json"
+    },
+    "^(singleNestedEnum)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "FOO",
+            "BAR",
+            "BAZ"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Nested Enum"
+    },
+    "^(singleNestedMessage)$": {
+      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+    },
+    "^(singleSfixed32)$": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleSfixed64)$": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleSint32)$": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleSint64)$": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleString)$": {
+      "default": "",
+      "type": "string"
+    },
+    "^(singleStringWrapper)$": {
+      "$ref": "google.protobuf.StringValue.schema.json"
+    },
+    "^(singleStruct)$": {
+      "$ref": "google.protobuf.Struct.schema.json"
+    },
+    "^(singleTimestamp)$": {
+      "$ref": "google.protobuf.Timestamp.schema.json"
+    },
+    "^(singleUint32)$": {
+      "anyOf": [
+        {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleUint32Wrapper)$": {
+      "$ref": "google.protobuf.UInt32Value.schema.json"
+    },
+    "^(singleUint64)$": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(singleUint64Wrapper)$": {
+      "$ref": "google.protobuf.UInt64Value.schema.json"
+    },
+    "^(singleValue)$": {
+      "$ref": "google.protobuf.Value.schema.json"
+    },
+    "^(standaloneEnum)$": {
+      "anyOf": [
+        {
+          "pattern": "^FOO$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "BAR",
+            "BAZ"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Nested Enum"
+    },
+    "^(standaloneMessage)$": {
+      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
+    }
+  },
   "properties": {
     "list_value": {
       "$ref": "google.protobuf.ListValue.schema.json"
@@ -66,6 +3812,9 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
@@ -94,13 +3843,22 @@
     },
     "map_bool_enum": {
       "additionalProperties": {
-        "enum": [
-          "FOO",
-          "BAR",
-          "BAZ"
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Nested Enum",
-        "type": "string"
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "type": "boolean"
@@ -122,6 +3880,9 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
@@ -141,9 +3902,17 @@
     },
     "map_bool_int32": {
       "additionalProperties": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "boolean"
@@ -161,7 +3930,15 @@
     },
     "map_bool_int64": {
       "additionalProperties": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "boolean"
@@ -197,11 +3974,20 @@
     },
     "map_bool_null_value": {
       "additionalProperties": {
-        "enum": [
-          "NULL_VALUE"
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Null Value",
-        "type": "string"
+        "title": "Null Value"
       },
       "propertyNames": {
         "type": "boolean"
@@ -246,9 +4032,17 @@
     },
     "map_bool_uint32": {
       "additionalProperties": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "boolean"
@@ -266,8 +4060,16 @@
     },
     "map_bool_uint64": {
       "additionalProperties": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "boolean"
@@ -297,9 +4099,17 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -308,9 +4118,17 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -319,9 +4137,17 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -331,9 +4157,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -342,9 +4176,17 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -361,13 +4203,24 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -376,9 +4229,17 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -387,26 +4248,51 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int32_enum": {
       "additionalProperties": {
-        "enum": [
-          "FOO",
-          "BAR",
-          "BAZ"
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Nested Enum",
-        "type": "string"
+        "title": "Nested Enum"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -425,13 +4311,24 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -440,22 +4337,46 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int32_int32": {
       "additionalProperties": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -464,20 +4385,44 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int32_int64": {
       "additionalProperties": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -486,9 +4431,17 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -497,9 +4450,17 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -508,24 +4469,49 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int32_null_value": {
       "additionalProperties": {
-        "enum": [
-          "NULL_VALUE"
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Null Value",
-        "type": "string"
+        "title": "Null Value"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -534,9 +4520,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -545,9 +4539,17 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -556,9 +4558,17 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -567,22 +4577,46 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int32_uint32": {
       "additionalProperties": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -591,21 +4625,45 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int32_uint64": {
       "additionalProperties": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -614,9 +4672,17 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -625,9 +4691,17 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -636,7 +4710,15 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -645,7 +4727,15 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -654,7 +4744,15 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -664,7 +4762,15 @@
         "type": "string"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -673,7 +4779,15 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -690,11 +4804,22 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -703,7 +4828,15 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -712,22 +4845,47 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int64_enum": {
       "additionalProperties": {
-        "enum": [
-          "FOO",
-          "BAR",
-          "BAZ"
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Nested Enum",
-        "type": "string"
+        "title": "Nested Enum"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -746,11 +4904,22 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -759,18 +4928,42 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int64_int32": {
       "additionalProperties": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -779,16 +4972,40 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int64_int64": {
       "additionalProperties": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -797,7 +5014,15 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -806,7 +5031,15 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -815,7 +5048,15 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -825,20 +5066,45 @@
       },
       "description": "Map",
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int64_null_value": {
       "additionalProperties": {
-        "enum": [
-          "NULL_VALUE"
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Null Value",
-        "type": "string"
+        "title": "Null Value"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -847,7 +5113,15 @@
         "type": "string"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -856,7 +5130,15 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -865,7 +5147,15 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -874,18 +5164,42 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int64_uint32": {
       "additionalProperties": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -894,17 +5208,41 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_int64_uint64": {
       "additionalProperties": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -913,7 +5251,15 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -922,7 +5268,15 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -985,6 +5339,9 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
@@ -1013,13 +5370,22 @@
     },
     "map_string_enum": {
       "additionalProperties": {
-        "enum": [
-          "FOO",
-          "BAR",
-          "BAZ"
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Nested Enum",
-        "type": "string"
+        "title": "Nested Enum"
       },
       "propertyNames": {
         "type": "string"
@@ -1041,6 +5407,9 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
@@ -1060,9 +5429,17 @@
     },
     "map_string_int32": {
       "additionalProperties": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "string"
@@ -1080,7 +5457,15 @@
     },
     "map_string_int64": {
       "additionalProperties": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "string"
@@ -1116,11 +5501,20 @@
     },
     "map_string_null_value": {
       "additionalProperties": {
-        "enum": [
-          "NULL_VALUE"
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Null Value",
-        "type": "string"
+        "title": "Null Value"
       },
       "propertyNames": {
         "type": "string"
@@ -1165,9 +5559,17 @@
     },
     "map_string_uint32": {
       "additionalProperties": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "string"
@@ -1185,8 +5587,16 @@
     },
     "map_string_uint64": {
       "additionalProperties": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
         "type": "string"
@@ -1216,9 +5626,17 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1227,9 +5645,17 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1238,9 +5664,17 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1250,9 +5684,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1261,9 +5703,17 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1280,13 +5730,24 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1295,9 +5756,17 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1306,26 +5775,51 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint32_enum": {
       "additionalProperties": {
-        "enum": [
-          "FOO",
-          "BAR",
-          "BAZ"
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Nested Enum",
-        "type": "string"
+        "title": "Nested Enum"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1344,13 +5838,24 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1359,22 +5864,46 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint32_int32": {
       "additionalProperties": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1383,20 +5912,44 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint32_int64": {
       "additionalProperties": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1405,9 +5958,17 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1416,9 +5977,17 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1427,24 +5996,49 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint32_null_value": {
       "additionalProperties": {
-        "enum": [
-          "NULL_VALUE"
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Null Value",
-        "type": "string"
+        "title": "Null Value"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1453,9 +6047,17 @@
         "type": "string"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1464,9 +6066,17 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1475,9 +6085,17 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1486,22 +6104,46 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint32_uint32": {
       "additionalProperties": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1510,21 +6152,45 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint32_uint64": {
       "additionalProperties": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1533,9 +6199,17 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1544,9 +6218,17 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1555,8 +6237,16 @@
         "$ref": "google.protobuf.Any.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1565,8 +6255,16 @@
         "type": "boolean"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1575,8 +6273,16 @@
         "$ref": "google.protobuf.BoolValue.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1586,8 +6292,16 @@
         "type": "string"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1596,8 +6310,16 @@
         "$ref": "google.protobuf.BytesValue.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1614,12 +6336,23 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1628,8 +6361,16 @@
         "$ref": "google.protobuf.DoubleValue.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1638,24 +6379,49 @@
         "$ref": "google.protobuf.Duration.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint64_enum": {
       "additionalProperties": {
-        "enum": [
-          "FOO",
-          "BAR",
-          "BAZ"
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Nested Enum",
-        "type": "string"
+        "title": "Nested Enum"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1674,12 +6440,23 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1688,20 +6465,44 @@
         "$ref": "google.protobuf.FloatValue.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint64_int32": {
       "additionalProperties": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1710,18 +6511,42 @@
         "$ref": "google.protobuf.Int32Value.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint64_int64": {
       "additionalProperties": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1730,8 +6555,16 @@
         "$ref": "google.protobuf.Int64Value.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1740,8 +6573,16 @@
         "$ref": "google.protobuf.ListValue.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1750,22 +6591,47 @@
         "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint64_null_value": {
       "additionalProperties": {
-        "enum": [
-          "NULL_VALUE"
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Null Value",
-        "type": "string"
+        "title": "Null Value"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1774,8 +6640,16 @@
         "type": "string"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1784,8 +6658,16 @@
         "$ref": "google.protobuf.StringValue.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1794,8 +6676,16 @@
         "$ref": "google.protobuf.Struct.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1804,20 +6694,44 @@
         "$ref": "google.protobuf.Timestamp.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint64_uint32": {
       "additionalProperties": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1826,19 +6740,43 @@
         "$ref": "google.protobuf.UInt32Value.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "map_uint64_uint64": {
       "additionalProperties": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1847,8 +6785,16 @@
         "$ref": "google.protobuf.UInt64Value.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
@@ -1857,24 +6803,49 @@
         "$ref": "google.protobuf.Value.schema.json"
       },
       "propertyNames": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "object"
     },
     "null_value": {
-      "enum": [
-        "NULL_VALUE"
+      "anyOf": [
+        {
+          "pattern": "^NULL_VALUE$",
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
       ],
-      "title": "Null Value",
-      "type": "string"
+      "default": 0,
+      "title": "Null Value"
     },
     "optional_null_value": {
-      "enum": [
-        "NULL_VALUE"
+      "anyOf": [
+        {
+          "enum": [
+            "NULL_VALUE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
       ],
-      "title": "Null Value",
-      "type": "string"
+      "title": "Null Value"
     },
     "repeated_any": {
       "description": "Repeated wellknown.",
@@ -1927,6 +6898,9 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
@@ -1946,16 +6920,32 @@
     },
     "repeated_fixed32": {
       "items": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
     "repeated_fixed64": {
       "items": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -1974,6 +6964,9 @@
               "NaN"
             ],
             "type": "string"
+          },
+          {
+            "type": "string"
           }
         ]
       },
@@ -1988,9 +6981,17 @@
     "repeated_int32": {
       "description": "Repeated",
       "items": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2002,7 +7003,15 @@
     },
     "repeated_int64": {
       "items": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2026,13 +7035,22 @@
     },
     "repeated_nested_enum": {
       "items": {
-        "enum": [
-          "FOO",
-          "BAR",
-          "BAZ"
+        "anyOf": [
+          {
+            "enum": [
+              "FOO",
+              "BAR",
+              "BAZ"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Nested Enum",
-        "type": "string"
+        "title": "Nested Enum"
       },
       "type": "array"
     },
@@ -2045,39 +7063,80 @@
     },
     "repeated_null_value": {
       "items": {
-        "enum": [
-          "NULL_VALUE"
+        "anyOf": [
+          {
+            "enum": [
+              "NULL_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
         ],
-        "title": "Null Value",
-        "type": "string"
+        "title": "Null Value"
       },
       "type": "array"
     },
     "repeated_sfixed32": {
       "items": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
     "repeated_sfixed64": {
       "items": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
     "repeated_sint32": {
       "items": {
-        "maximum": 2147483647,
-        "minimum": -2147483648,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
     "repeated_sint64": {
       "items": {
-        "type": "integer"
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2113,9 +7172,17 @@
     },
     "repeated_uint32": {
       "items": {
-        "maximum": 4294967295,
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2127,8 +7194,16 @@
     },
     "repeated_uint64": {
       "items": {
-        "minimum": 0,
-        "type": "integer"
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
       },
       "type": "array"
     },
@@ -2149,12 +7224,14 @@
       "description": "Wellknown."
     },
     "single_bool": {
+      "default": false,
       "type": "boolean"
     },
     "single_bool_wrapper": {
       "$ref": "google.protobuf.BoolValue.schema.json"
     },
     "single_bytes": {
+      "default": null,
       "pattern": "^[A-Za-z0-9+/]*={0,2}$",
       "type": "string"
     },
@@ -2173,8 +7250,12 @@
             "NaN"
           ],
           "type": "string"
+        },
+        {
+          "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "single_double_wrapper": {
       "$ref": "google.protobuf.DoubleValue.schema.json"
@@ -2183,13 +7264,31 @@
       "$ref": "google.protobuf.Duration.schema.json"
     },
     "single_fixed32": {
-      "maximum": 4294967295,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_fixed64": {
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_float": {
       "anyOf": [
@@ -2205,56 +7304,124 @@
             "NaN"
           ],
           "type": "string"
+        },
+        {
+          "type": "string"
         }
-      ]
+      ],
+      "default": 0
     },
     "single_float_wrapper": {
       "$ref": "google.protobuf.FloatValue.schema.json"
     },
     "single_int32": {
-      "description": "Singular",
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Singular"
     },
     "single_int32_wrapper": {
       "$ref": "google.protobuf.Int32Value.schema.json"
     },
     "single_int64": {
-      "type": "integer"
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_int64_wrapper": {
       "$ref": "google.protobuf.Int64Value.schema.json"
     },
     "single_nested_enum": {
-      "enum": [
-        "FOO",
-        "BAR",
-        "BAZ"
+      "anyOf": [
+        {
+          "enum": [
+            "FOO",
+            "BAR",
+            "BAZ"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
       ],
-      "title": "Nested Enum",
-      "type": "string"
+      "title": "Nested Enum"
     },
     "single_nested_message": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
     },
     "single_sfixed32": {
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_sfixed64": {
-      "type": "integer"
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_sint32": {
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_sint64": {
-      "type": "integer"
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_string": {
+      "default": "",
       "type": "string"
     },
     "single_string_wrapper": {
@@ -2267,16 +7434,34 @@
       "$ref": "google.protobuf.Timestamp.schema.json"
     },
     "single_uint32": {
-      "maximum": 4294967295,
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "maximum": 4294967295,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_uint32_wrapper": {
       "$ref": "google.protobuf.UInt32Value.schema.json"
     },
     "single_uint64": {
-      "minimum": 0,
-      "type": "integer"
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
     },
     "single_uint64_wrapper": {
       "$ref": "google.protobuf.UInt64Value.schema.json"
@@ -2285,37 +7470,31 @@
       "$ref": "google.protobuf.Value.schema.json"
     },
     "standalone_enum": {
-      "enum": [
-        "FOO",
-        "BAR",
-        "BAZ"
+      "anyOf": [
+        {
+          "pattern": "^FOO$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "BAR",
+            "BAZ"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
       ],
-      "title": "Nested Enum",
-      "type": "string"
+      "default": 0,
+      "title": "Nested Enum"
     },
     "standalone_message": {
       "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.schema.json"
     }
   },
-  "required": [
-    "single_int32",
-    "single_int64",
-    "single_uint32",
-    "single_uint64",
-    "single_sint32",
-    "single_sint64",
-    "single_fixed32",
-    "single_fixed64",
-    "single_sfixed32",
-    "single_sfixed64",
-    "single_float",
-    "single_double",
-    "single_bool",
-    "single_string",
-    "single_bytes",
-    "null_value",
-    "standalone_enum"
-  ],
   "title": "Test All Types",
   "type": "object"
 }

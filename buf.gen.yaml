@@ -15,4 +15,4 @@ plugins:
     out: internal/gen/jsonschema
     opt:
      - additional_properties=true
-     - strict=true
+     - target=proto+json-strict-bundle
