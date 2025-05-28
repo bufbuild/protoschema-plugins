@@ -52,39 +52,35 @@ func run() error {
 	}
 	protoNameGenerator := jsonschema.NewGenerator()
 	protoNameBundleGenerator := jsonschema.NewGenerator(jsonschema.WithBundle())
+	protoNameStrictGenerator := jsonschema.NewGenerator(jsonschema.WithStrict())
+	protoNameStrictBundleGenerator := jsonschema.NewGenerator(jsonschema.WithStrict(), jsonschema.WithBundle())
 	jsonNameGenerator := jsonschema.NewGenerator(jsonschema.WithJSONNames())
 	jsonNameBundleGenerator := jsonschema.NewGenerator(jsonschema.WithJSONNames(), jsonschema.WithBundle())
+	jsonNameStrictGenerator := jsonschema.NewGenerator(jsonschema.WithJSONNames(), jsonschema.WithStrict())
+	jsonNameStrictBundleGenerator := jsonschema.NewGenerator(jsonschema.WithJSONNames(), jsonschema.WithStrict(), jsonschema.WithBundle())
+	generators := []*jsonschema.Generator{
+		protoNameGenerator,
+		protoNameBundleGenerator,
+		protoNameStrictGenerator,
+		protoNameStrictBundleGenerator,
+		jsonNameGenerator,
+		jsonNameBundleGenerator,
+		jsonNameStrictGenerator,
+		jsonNameStrictBundleGenerator,
+	}
 	for _, testDesc := range testDescs {
-		if err := protoNameGenerator.Add(testDesc); err != nil {
-			return err
+		for _, generator := range generators {
+			if err := generator.Add(testDesc); err != nil {
+				return err
+			}
 		}
-		if err := protoNameBundleGenerator.Add(testDesc); err != nil {
-			return err
-		}
-		if err := jsonNameGenerator.Add(testDesc); err != nil {
-			return err
-		}
-		if err := jsonNameBundleGenerator.Add(testDesc); err != nil {
-			return err
-		}
-	}
-	// Generate the JSON schema with proto names.
-	if err := writeJSONSchema(outputDir, protoNameGenerator.Generate()); err != nil {
-		return err
-	}
-	// Generate the JSON schema with proto names and bundle.
-	if err := writeJSONSchema(outputDir, protoNameBundleGenerator.Generate()); err != nil {
-		return err
-	}
-	// Generate the JSON schema with JSON names.
-	if err := writeJSONSchema(outputDir, jsonNameGenerator.Generate()); err != nil {
-		return err
-	}
-	// Generate the JSON schema with JSON names and bundle.
-	if err := writeJSONSchema(outputDir, jsonNameBundleGenerator.Generate()); err != nil {
-		return err
 	}
 
+	for _, generator := range generators {
+		if err := writeJSONSchema(outputDir, generator.Generate()); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 

@@ -99,8 +99,9 @@ func writeFiles(
 }
 
 func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
-	var options []jsonschema.GeneratorOption
-	var skipBundle, skipNonBundle, skipJSON, skipProto bool
+	var baseOpts []jsonschema.GeneratorOption
+
+	targets := make(map[string]struct{})
 	if param != "" { // nolint:nestif
 		// Params are in the form of "key1=value1,key2=value2"
 		params := strings.Split(param, ",")
@@ -117,69 +118,68 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 				if value, err := parseBoolean(value); err != nil {
 					return nil, err
 				} else if value {
-					options = append(options, jsonschema.WithAdditionalProperties())
+					baseOpts = append(baseOpts, jsonschema.WithAdditionalProperties())
 				}
-			case "strict":
+			case "strict-names":
 				if value, err := parseBoolean(value); err != nil {
 					return nil, err
 				} else if value {
-					options = append(options, jsonschema.WithStrict())
+					baseOpts = append(baseOpts, jsonschema.WithStrict())
 				}
-			case "names":
-				switch strings.ToLower(value) {
-				case "json-strict":
-					options = append(options, jsonschema.WithStrictNames())
-					fallthrough
-				case "json":
-					skipProto = true
-				case "proto-strict":
-					options = append(options, jsonschema.WithStrictNames())
-					fallthrough
-				case "proto":
-					skipJSON = true
-				case "all-strict":
-					options = append(options, jsonschema.WithStrictNames())
-					fallthrough
-				case "all":
-				default:
-					return nil, fmt.Errorf("invalid value %q for names, expected json, proto, or all", value)
-				}
-			case "bundle":
-				switch strings.ToLower(value) {
-				case "true":
-					skipNonBundle = true
-				case "false":
-					skipBundle = true
-				case "all":
-				default:
-					return nil, fmt.Errorf("invalid value %q for bundle, expected true, false, or all", value)
+			case "target":
+				// Targets are delimited by '+', e.g. "proto+json".
+				targetsList := strings.Split(value, "+")
+				for _, target := range targetsList {
+					targets[strings.ToLower(strings.TrimSpace(target))] = struct{}{}
 				}
 			default:
 				return nil, fmt.Errorf("unknown parameter %q", param)
 			}
 		}
 	}
+	return generateOptions(baseOpts, targets)
+}
+
+var allTargets = map[string]struct{}{
+	"proto":               {},
+	"proto-bundle":        {},
+	"proto-strict":        {},
+	"proto-strict-bundle": {},
+	"json":                {},
+	"json-bundle":         {},
+	"json-strict":         {},
+	"json-strict-bundle":  {},
+}
+
+func generateOptions(baseOpts []jsonschema.GeneratorOption, targets map[string]struct{}) ([][]jsonschema.GeneratorOption, error) {
+	if _, ok := targets["all"]; ok || len(targets) == 0 {
+		targets = allTargets
+	}
 
 	var result [][]jsonschema.GeneratorOption
-	if !skipProto {
-		if !skipNonBundle {
-			result = append(result, options)
-		}
-		if !skipBundle {
-			protoNameBundleOpts := slices.Clone(options)
-			protoNameBundleOpts = append(protoNameBundleOpts, jsonschema.WithBundle())
-			result = append(result, protoNameBundleOpts)
-		}
+	appendOpts := func(opts ...jsonschema.GeneratorOption) {
+		result = append(result, append(slices.Clone(baseOpts), opts...))
 	}
-	if !skipJSON {
-		jsonNameBundleOpts := slices.Clone(options)
-		jsonNameBundleOpts = append(jsonNameBundleOpts, jsonschema.WithJSONNames(), jsonschema.WithBundle())
-		jsonNameOpts := jsonNameBundleOpts[:len(jsonNameBundleOpts)-1]
-		if !skipNonBundle {
-			result = append(result, jsonNameOpts)
-		}
-		if !skipBundle {
-			result = append(result, jsonNameBundleOpts)
+	for target := range targets {
+		switch target {
+		case "proto":
+			appendOpts()
+		case "proto-bundle":
+			appendOpts(jsonschema.WithBundle())
+		case "proto-strict":
+			appendOpts(jsonschema.WithStrict())
+		case "proto-strict-bundle":
+			appendOpts(jsonschema.WithStrict(), jsonschema.WithBundle())
+		case "json":
+			appendOpts(jsonschema.WithJSONNames())
+		case "json-bundle":
+			appendOpts(jsonschema.WithJSONNames(), jsonschema.WithBundle())
+		case "json-strict":
+			appendOpts(jsonschema.WithJSONNames(), jsonschema.WithStrict())
+		case "json-strict-bundle":
+			appendOpts(jsonschema.WithJSONNames(), jsonschema.WithStrict(), jsonschema.WithBundle())
+		default:
+			return nil, fmt.Errorf("unknown target %q", target)
 		}
 	}
 	return result, nil

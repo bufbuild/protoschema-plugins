@@ -95,12 +95,17 @@ message Product {
 
 ```
 
-Results in the following JSON Schema files:
+By default, results in the following JSON Schema files:
 
-- `*.schema.json` files are generated with the protobuf field name (e.g. `product_id`, `product_name`)
-- `*.schema.bundle.json` files include all dependencies in a single file with the protobuf field name.
-- `*.jsonschema.json` files are generated with the json field name (e.g. `productId`, `productName`)
-- `*.jsonschema.bundle.json` files include all dependencies in a single file with the json field name.
+- `*.schema.json` files are generated with protobuf field names (e.g. `product_id`, `product_name`)
+- `*.schema.bundle.json` files include all dependencies in a single file with protobuf field names.
+- `*.schema.strict.json` files are generated with protobuf field names, but do not allow aliases, string numbers, or any other non-normalized representation.
+- `*.schema.strict.bundle.json` files include the strict schema with all dependencies in a single file with protobuf field names.
+- `*.jsonschema.json` files are generated with JSON field names (e.g. `productId`, `productName`)
+  other non-normalized representation.
+- `*.jsonschema.bundle.json` files include all dependencies in a single file with the json field names.
+- `*.jsonschema.strict.json` files are generated with JSON field names, but do not allow aliases, string numbers, or any other non-normalized representation.
+- `*.jsonschema.strict.bundle.json` files include the strict JSON schema with all dependencies in a single file with JSON field names.
 
 For example, the above protobuf generates the following `*.schema.json` files:
 
@@ -217,78 +222,75 @@ For example, the above protobuf generates the following `*.schema.json` files:
 
 </details>
 
-Or the following `*.jsonschema.json` files, when the `strict` option is set to `true`:
+Or the following `*.jsonschema.strict.bundle.json` file:
 
 <details>
-<summary>Product.jsonschema.json</summary>
+<summary>Product.jsonschema.strict.bundle.json</summary>
 
 ```json
 {
-  "$id": "Product.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": false,
-  "title": "A product.",
-  "description": "A product is a good or service that is offered for sale.",
-  "type": "object",
-  "properties": {
-    "productId": {
-      "description": "The unique identifier for the product.",
-      "maximum": 2147483647,
-      "minimum": -2147483648,
-      "type": "integer"
-    },
-    "productName": {
-      "description": "The name of the product.",
-      "type": "string"
-    },
-    "price": {
-      "description": "The price of the product.",
-      "maximum": 3.4028234663852886e38,
-      "minimum": 0,
-      "type": "number"
-    },
-    "tags": {
-      "description": "The tags associated with the product.",
-      "items": {
-        "type": "string"
+  "$id": "buf.protoschema.test.v1.Product.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.Product.jsonschema.strict.json",
+  "$defs": {
+    "buf.protoschema.test.v1.Product.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "A product.",
+      "description": "A product is a good or service that is offered for sale.",
+      "type": "object",
+      "properties": {
+        "productId": {
+          "description": "The unique identifier for the product.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "productName": {
+          "description": "The name of the product.",
+          "type": "string"
+        },
+        "price": {
+          "description": "The price of the product.",
+          "maximum": 3.4028234663852886e38,
+          "minimum": 0,
+          "type": "number"
+        },
+        "tags": {
+          "description": "The tags associated with the product.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "location": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.Product.Location.jsonschema.strict.json",
+          "description": "The location of the product."
+        }
       },
-      "type": "array"
+      "required": ["productId", "productName", "price", "location"],
+      "additionalProperties": false
     },
-    "location": {
-      "$ref": "Product.Location.jsonschema.json",
-      "description": "The location of the product."
+    "buf.protoschema.test.v1.Product.Location.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "A point on the earth's surface.",
+      "properties": {
+        "lat": {
+          "maximum": 90,
+          "minimum": -90,
+          "type": "number"
+        },
+        "long": {
+          "maximum": 180,
+          "minimum": -180,
+          "type": "number"
+        }
+      },
+      "required": ["lat", "long"],
+      "title": "Location",
+      "type": "object"
     }
-  },
-  "required": ["productId", "productName", "price", "location"]
-}
-```
-
-</details>
-
-<details>
-<summary>Product.Location.jsonschema.json</summary>
-
-```json
-{
-  "$id": "buf.protoschema.test.v1.Product.Location.jsonschema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "additionalProperties": false,
-  "title": "Location",
-  "description": "A point on the earth's surface.",
-  "type": "object",
-  "properties": {
-    "lat": {
-      "maximum": 90,
-      "minimum": -90,
-      "type": "number"
-    },
-    "long": {
-      "maximum": 180,
-      "minimum": -180,
-      "type": "number"
-    }
-  },
-  "required": ["lat", "long"]
+  }
 }
 ```
 
@@ -298,25 +300,22 @@ Or the following `*.jsonschema.json` files, when the `strict` option is set to `
 
 The JSON Schema plugin supports the following options:
 
-- `bundle` - One of `true`, `false`, or `all`. Defaults to `all`. If `true`, only the bundle
-  schema will be generated. If `false`, only the non-bundle schema will be generated. If `all`, both
-  schemas will be generated. The bundle schema includes all dependencies in a single file, while the
-  non-bundle schema references the dependencies in separate files.
-- `names` - One of `json`, `proto`, or `all`, optionally suffixed with `-strict`. Defaults to `all`.
-  If `json`, the JSON field name schema will be generated (e.g. `productId`, `productName`).
-  If `proto`,the Protobuf field name schema will be generated (e.g. `product_id`, `product_name`).
-  If `all`, both schemas will be generated.
-  If suffixed with `-strict`, the generated schema will not allow mixing of JSON and Protobuf field
-  names.
+- `target` - Any of `proto`, `json`, `proto-bundle`, `json-bundle`, `proto-strict`, `json-strict`,
+  `proto-strict-bundle`, `json-strict-bundle`, or `all` separated by `+` (e.g. `proto+json`). Defaults to `all`.
+  - If `proto`, the schema will be generated with Protobuf field names (e.g. `product_id`,
+    `product_name`).
+  - If `json`, the schema will be generated with JSON field names (e.g. `productId`, `productName`).
+  - If suffixed with `-bundle`, the schema will include all dependencies in a single file.
+  - If suffixed with `-strict`, the schema will not allow aliases, string numbers, or any other
+    non-normalized representation. Strict is useful when the validated JSON data is used directly
+    instead of being converted to a Protobuf message. Requires the "always emit fields without
+    presence" option when using [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
+- `strict-names` - One of `true` or `false`. Defaults to `false`. If `true`, the generated schema will
+  not allow mixing of JSON and Protobuf field names.
 - `additional_properties` - If `true`, the generated schema will set `additionalProperties` to
   `true`, causing unknown fields to be ignored instead of erroring. Defaults to `false`. Useful when a
   client/sender may have a different version the schema than the server/receiver. Similar to the
   "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
-- `strict` - If `true`, the generated schema will not allow aliases, string numbers, or any other
-  non-normalized representation. Defaults to `false`. Useful if the validated JSON is used directly
-  instead of being converted to a Protobuf message. Requires the "always emit fields without presence"
-  option when using [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
-  Strict schemas include `.strict` in the filename (e.g. `Product.jsonschema.strict.json`).
 
 ## Community
 

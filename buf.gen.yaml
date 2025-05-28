@@ -15,6 +15,5 @@ plugins:
     out: internal/gen/jsonschema
     opt:
      - additional_properties=true
-     - strict=true
-     - names=json-strict
-     - bundle=true
+     - strict-names=true
+     - target=proto+json-strict-bundle

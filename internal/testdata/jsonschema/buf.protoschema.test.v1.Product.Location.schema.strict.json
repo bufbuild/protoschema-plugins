@@ -1,0 +1,24 @@
+{
+  "$id": "buf.protoschema.test.v1.Product.Location.schema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A point on the earth's surface.",
+  "properties": {
+    "lat": {
+      "maximum": 90,
+      "minimum": -90,
+      "type": "number"
+    },
+    "long": {
+      "maximum": 180,
+      "minimum": -180,
+      "type": "number"
+    }
+  },
+  "required": [
+    "lat",
+    "long"
+  ],
+  "title": "Location",
+  "type": "object"
+}

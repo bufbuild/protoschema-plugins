@@ -1,0 +1,41 @@
+{
+  "$id": "buf.protoschema.test.v1.ConstraintTest.RequiredOptional.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "boolValue": {
+      "type": "boolean"
+    },
+    "enumValue": {
+      "enum": [
+        "ENUM_UNSPECIFIED",
+        "ENUM_VAL1",
+        "ENUM_VAL2",
+        "ENUM_VAL7"
+      ],
+      "title": "Enum",
+      "type": "string"
+    },
+    "strictEnumValue": {
+      "enum": [
+        "ENUM_UNSPECIFIED",
+        "ENUM_VAL1",
+        "ENUM_VAL2",
+        "ENUM_VAL7"
+      ],
+      "title": "Enum",
+      "type": "string"
+    },
+    "stringValue": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "boolValue",
+    "stringValue",
+    "enumValue",
+    "strictEnumValue"
+  ],
+  "title": "Required Optional",
+  "type": "object"
+}

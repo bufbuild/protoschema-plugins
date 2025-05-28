@@ -1,0 +1,43 @@
+{
+  "$id": "buf.protoschema.test.v1.Product.schema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A product is a good or service that is offered for sale.",
+  "properties": {
+    "location": {
+      "$ref": "buf.protoschema.test.v1.Product.Location.schema.strict.json",
+      "description": "The location of the product."
+    },
+    "price": {
+      "description": "The price of the product.",
+      "maximum": 3.4028234663852886e+38,
+      "minimum": 0,
+      "type": "number"
+    },
+    "product_id": {
+      "description": "The unique identifier for the product.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "type": "integer"
+    },
+    "product_name": {
+      "description": "The name of the product.",
+      "type": "string"
+    },
+    "tags": {
+      "description": "The tags associated with the product.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "product_id",
+    "product_name",
+    "price",
+    "location"
+  ],
+  "title": "A product.",
+  "type": "object"
+}

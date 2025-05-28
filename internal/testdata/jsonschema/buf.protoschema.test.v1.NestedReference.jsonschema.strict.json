@@ -1,0 +1,12 @@
+{
+  "$id": "buf.protoschema.test.v1.NestedReference.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "nestedMessage": {
+      "$ref": "bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage.jsonschema.strict.json"
+    }
+  },
+  "title": "Nested Reference",
+  "type": "object"
+}
