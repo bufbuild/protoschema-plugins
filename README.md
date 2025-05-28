@@ -103,7 +103,7 @@ By default, results in the following JSON Schema files:
 - `*.schema.strict.bundle.json` files include the strict schema with all dependencies in a single file with protobuf field names.
 - `*.jsonschema.json` files are generated with JSON field names (e.g. `productId`, `productName`)
   other non-normalized representation.
-- `*.jsonschema.bundle.json` files include all dependencies in a single file with the json field names.
+- `*.jsonschema.bundle.json` files include all dependencies in a single file with the JSON field names.
 - `*.jsonschema.strict.json` files are generated with JSON field names, but do not allow aliases, string numbers, or any other non-normalized representation.
 - `*.jsonschema.strict.bundle.json` files include the strict JSON schema with all dependencies in a single file with JSON field names.
 
