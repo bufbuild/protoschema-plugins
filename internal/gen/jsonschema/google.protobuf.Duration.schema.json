@@ -1,5 +1,5 @@
 {
-  "$id": "google.protobuf.Duration.schema.strict.json",
+  "$id": "google.protobuf.Duration.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "format": "duration",
   "title": "Duration",

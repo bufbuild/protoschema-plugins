@@ -1,5 +1,5 @@
 {
-  "$id": "google.protobuf.StringValue.schema.strict.json",
+  "$id": "google.protobuf.StringValue.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "The string value.",
   "title": "String Value",

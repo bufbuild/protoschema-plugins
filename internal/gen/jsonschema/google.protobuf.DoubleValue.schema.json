@@ -1,5 +1,5 @@
 {
-  "$id": "google.protobuf.DoubleValue.schema.strict.json",
+  "$id": "google.protobuf.DoubleValue.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "anyOf": [
     {
@@ -11,6 +11,9 @@
         "-Infinity",
         "NaN"
       ],
+      "type": "string"
+    },
+    {
       "type": "string"
     }
   ],

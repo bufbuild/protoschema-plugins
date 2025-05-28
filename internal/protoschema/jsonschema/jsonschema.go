@@ -94,14 +94,6 @@ func WithStrict() GeneratorOption {
 	}
 }
 
-// WithStrictNames sets the generator to produces schemas that do not allow
-// mixing JSON and proto field names.
-func WithStrictNames() GeneratorOption {
-	return func(p *Generator) {
-		p.strictNames = true
-	}
-}
-
 // WithBundle sets the generator to bundle all schemas references into the
 // same file.
 func WithBundle() GeneratorOption {
@@ -117,7 +109,6 @@ type Generator struct {
 	useJSONNames         bool
 	additionalProperties bool
 	strict               bool
-	strictNames          bool
 	bundle               bool
 }
 
@@ -332,7 +323,7 @@ func (p *Generator) addFieldProperties(
 			properties[field.JSONName()] = fieldSchema
 		}
 		// Add the proto name as an alias.
-		if !p.strictNames && field.JSONName() != string(field.Name()) {
+		if field.JSONName() != string(field.Name()) {
 			aliases = append(aliases, string(field.Name()))
 		}
 		return aliases
@@ -345,7 +336,7 @@ func (p *Generator) addFieldProperties(
 		properties[string(field.Name())] = fieldSchema
 	}
 	// Add the JSON name as an alias.
-	if !p.strictNames && field.JSONName() != string(field.Name()) {
+	if field.JSONName() != string(field.Name()) {
 		aliases = append(aliases, field.JSONName())
 	}
 	return aliases

@@ -1,5 +1,5 @@
 {
-  "$id": "google.protobuf.FloatValue.schema.strict.json",
+  "$id": "google.protobuf.FloatValue.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "anyOf": [
     {
@@ -13,6 +13,9 @@
         "-Infinity",
         "NaN"
       ],
+      "type": "string"
+    },
+    {
       "type": "string"
     }
   ],

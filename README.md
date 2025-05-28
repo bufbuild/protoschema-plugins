@@ -310,8 +310,7 @@ The JSON Schema plugin supports the following options:
     non-normalized representation. Strict is useful when the validated JSON data is used directly
     instead of being converted to a Protobuf message. Requires the "always emit fields without
     presence" option when using [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
-- `strict-names` - One of `true` or `false`. Defaults to `false`. If `true`, the generated schema will
-  not allow mixing of JSON and Protobuf field names.
+  - If suffixed with `-strict-bundle`, the schema will be strict and include all dependencies in a single file.
 - `additional_properties` - If `true`, the generated schema will set `additionalProperties` to
   `true`, causing unknown fields to be ignored instead of erroring. Defaults to `false`. Useful when a
   client/sender may have a different version the schema than the server/receiver. Similar to the

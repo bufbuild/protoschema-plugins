@@ -1,5 +1,5 @@
 {
-  "$id": "google.protobuf.Any.schema.strict.json",
+  "$id": "google.protobuf.Any.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "properties": {
     "@type": {
