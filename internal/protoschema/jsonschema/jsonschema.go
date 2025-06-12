@@ -23,7 +23,7 @@ import (
 	"unicode"
 
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	"buf.build/go/protovalidate/resolve"
+	"buf.build/go/protovalidate"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
@@ -434,7 +434,7 @@ func (p *Generator) generateFieldValidation(entry *msgSchema, field protoreflect
 }
 
 func (p *Generator) getFieldRules(field protoreflect.FieldDescriptor) (*validate.FieldRules, error) {
-	rules, err := resolve.FieldRules(field)
+	rules, err := protovalidate.ResolveFieldRules(field)
 	if err != nil {
 		return nil, err
 	}
