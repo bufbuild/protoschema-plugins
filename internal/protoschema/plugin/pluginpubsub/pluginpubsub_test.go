@@ -16,7 +16,6 @@ package pluginpubsub
 
 import (
 	"bytes"
-	"context"
 	"os"
 	"path"
 	"path/filepath"
@@ -57,7 +56,7 @@ func TestPubsubHandler(t *testing.T) {
 	stdout := bytes.NewBuffer(nil)
 	stderr := bytes.NewBuffer(nil)
 	err = protoplugin.Run(
-		context.Background(),
+		t.Context(),
 		protoplugin.Env{
 			Stdin:  stdin,
 			Stdout: stdout,

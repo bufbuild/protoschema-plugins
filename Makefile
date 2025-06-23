@@ -11,7 +11,8 @@ export PATH := $(BIN):$(PATH)
 export GOBIN := $(abspath $(BIN))
 BUF_VERSION = $(shell go list -m -f '{{.Version}}' github.com/bufbuild/buf)
 COPYRIGHT_YEARS := 2024-2025
-GOLANGCI_LINT_VERSION := v2.0.2
+GOLANGCI_LINT_VERSION := v2.1.6
+GOLANGCI_LINT := $(BIN)/golangci-lint-$(GOLANGCI_LINT_VERSION)
 LICENSE_IGNORE := --ignore testdata/
 
 UNAME_OS := $(shell uname -s)
@@ -58,17 +59,17 @@ build: generate ## Build all packages
 	go build ./...
 
 .PHONY: lint
-lint: $(BIN)/golangci-lint $(BIN)/buf ## Lint
+lint: $(GOLANGCI_LINT) $(BIN)/buf ## Lint
 	go vet ./...
-	$(BIN)/golangci-lint fmt --diff
-	$(BIN)/golangci-lint run
+	$(GOLANGCI_LINT) fmt --diff
+	$(GOLANGCI_LINT) run
 	buf lint
 	buf format -d --exit-code
 
 .PHONY: lintfix
-lintfix: $(BIN)/golangci-lint ## Automatically fix some lint errors
-	$(BIN)/golangci-lint fmt
-	$(BIN)/golangci-lint run --fix
+lintfix: $(GOLANGCI_LINT) ## Automatically fix some lint errors
+	$(GOLANGCI_LINT) fmt
+	$(GOLANGCI_LINT) run --fix
 	buf format -w
 
 .PHONY: install
@@ -112,8 +113,9 @@ $(BIN)/buf: $(BIN) Makefile
 $(BIN)/license-header: $(BIN) Makefile
 	go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(BUF_VERSION)
 
-$(BIN)/golangci-lint: $(BIN) Makefile
+$(GOLANGCI_LINT): $(BIN) Makefile
 	go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+	mv $(BIN)/golangci-lint $@
 
 $(BIN)/jv: $(BIN) Makefile
 	go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest
