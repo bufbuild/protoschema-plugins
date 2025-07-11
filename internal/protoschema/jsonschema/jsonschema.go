@@ -290,7 +290,11 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 			return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
 		}
 		// Add the field schema to the properties.
-		aliases := p.addFieldProperties(field, visibility == FieldHide, fieldSchema, properties)
+		fieldProperty, aliases := p.getFieldPropertyNames(field, visibility == FieldHide)
+		if fieldProperty != "" {
+			properties[fieldProperty] = fieldSchema
+		}
+
 		// Add any aliases to the pattern properties.
 		if !p.strict && len(aliases) > 0 {
 			pattern := "^(" + strings.Join(aliases, "|") + ")$"
@@ -308,38 +312,37 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	return nil
 }
 
-func (p *Generator) addFieldProperties(
+func (p *Generator) getFieldPropertyNames(
 	field protoreflect.FieldDescriptor,
 	hide bool,
-	fieldSchema map[string]any,
-	properties map[string]any) []string {
+) (name string, aliases []string) {
 	// TODO: Add an option to include custom alias.
-	aliases := make([]string, 0, 1)
+	aliases = make([]string, 0, 1)
 	if p.useJSONNames {
 		// Add the JSON name as the primary name.
 		if hide {
 			aliases = append(aliases, field.JSONName())
 		} else {
-			properties[field.JSONName()] = fieldSchema
+			name = field.JSONName()
 		}
 		// Add the proto name as an alias.
 		if field.JSONName() != string(field.Name()) {
 			aliases = append(aliases, string(field.Name()))
 		}
-		return aliases
+		return
 	}
 
 	// Add the proto name as the primary name.
 	if hide {
 		aliases = append(aliases, string(field.Name()))
 	} else {
-		properties[string(field.Name())] = fieldSchema
+		name = string(field.Name())
 	}
 	// Add the JSON name as an alias.
 	if field.JSONName() != string(field.Name()) {
 		aliases = append(aliases, field.JSONName())
 	}
-	return aliases
+	return
 }
 
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
