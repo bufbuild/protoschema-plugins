@@ -26,10 +26,11 @@ import (
 	imagev1 "github.com/bufbuild/buf/private/gen/proto/go/buf/alpha/image/v1"
 	"github.com/bufbuild/buf/private/pkg/protoencoding"
 	"github.com/bufbuild/protoplugin"
-	_ "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/pluginpb"
+
+	_ "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
 )
 
 func TestJSONSchemaHandler(t *testing.T) {
@@ -77,10 +78,13 @@ func TestJSONSchemaHandler(t *testing.T) {
 	require.Equal(t, wantFiles, gatherGoldenFiles(t, goldenPath))
 
 	for _, file := range response.GetFile() {
-		filename := path.Join(goldenPath, file.GetName())
-		want, err := os.ReadFile(filename)
-		require.NoError(t, err)
-		require.Equal(t, string(want), file.GetContent())
+		t.Run(file.GetName(), func(t *testing.T) {
+			t.Parallel()
+			filename := path.Join(goldenPath, file.GetName())
+			want, err := os.ReadFile(filename)
+			require.NoError(t, err)
+			require.Equal(t, string(want), file.GetContent())
+		})
 	}
 }
 
