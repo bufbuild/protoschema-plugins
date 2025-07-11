@@ -265,6 +265,7 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	var required []string
 	properties := make(map[string]any)
 	patternProperties := make(map[string]any)
+	dependentSchemas := make(map[string]any)
 	for i := range entry.desc.Fields().Len() {
 		field := entry.desc.Fields().Get(i)
 		visibility := p.shouldIgnoreField(field)
@@ -293,6 +294,11 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		fieldProperty, aliases := p.getFieldPropertyNames(field, visibility == FieldHide)
 		if fieldProperty != "" {
 			properties[fieldProperty] = fieldSchema
+
+			// Add field oneOf dependent schema
+			if ds := p.fieldOneOfDependentSchema(field); ds != nil {
+				dependentSchemas[fieldProperty] = ds
+			}
 		}
 
 		// Add any aliases to the pattern properties.
@@ -309,7 +315,44 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	if len(required) > 0 {
 		entry.schema["required"] = required
 	}
+	if len(dependentSchemas) > 0 {
+		entry.schema["dependentSchemas"] = dependentSchemas
+	}
 	return nil
+}
+
+func (p *Generator) fieldOneOfDependentSchema(field protoreflect.FieldDescriptor) any {
+	oneOf := field.ContainingOneof()
+	if oneOf == nil {
+		return nil
+	}
+
+	oneOfFields := oneOf.Fields()
+	otherFields := make([]string, 0, oneOfFields.Len())
+	for i := 0; i < oneOfFields.Len(); i++ {
+		f := oneOfFields.Get(i)
+		if field.FullName() == f.FullName() {
+			continue
+		}
+
+		visibility := p.shouldIgnoreField(f)
+		if visibility == FieldIgnore {
+			continue
+		}
+		fProperty, _ := p.getFieldPropertyNames(f, visibility == FieldHide)
+		if fProperty == "" {
+			continue
+		}
+		otherFields = append(otherFields, fProperty)
+	}
+	if len(otherFields) == 0 {
+		return nil
+	}
+	return map[string]any{
+		"not": map[string]any{
+			"required": otherFields,
+		},
+	}
 }
 
 func (p *Generator) getFieldPropertyNames(
