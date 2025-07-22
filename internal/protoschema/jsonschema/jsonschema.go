@@ -275,7 +275,7 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		if err != nil {
 			return err
 		}
-		if (rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED) || // Required by validate rules.
+		if (rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_ZERO_VALUE) || // Required by validate rules.
 			(p.strict && p.hasImplicitDefault(field, field.IsList() || field.IsMap(), rules)) { // Required by strict mode.
 			if p.useJSONNames {
 				required = append(required, field.JSONName())
@@ -456,7 +456,7 @@ func (p *Generator) hasImplicitDefault(field protoreflect.FieldDescriptor, hasIm
 	if field.HasPresence() || hasImplicitPresence {
 		return false // Default values is absence.
 	}
-	if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED {
+	if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_ZERO_VALUE {
 		return false // A value is required.
 	}
 	// The value is always present so has an implicit default.
@@ -487,7 +487,7 @@ func nameToTitle(name protoreflect.Name) string {
 
 func (p *Generator) generateBoolValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, rules *validate.FieldRules, schema map[string]any) {
 	schema["type"] = jsBoolean
-	if !field.HasPresence() && rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
+	if !field.HasPresence() && rules.GetRequired() {
 		// False is not allowed.
 		schema["enum"] = []bool{true}
 		return
@@ -509,7 +509,7 @@ func (p *Generator) generateEnumValidation(field protoreflect.FieldDescriptor, h
 	hideZero := false
 	if !field.HasPresence() && !hasImplicitPresence {
 		// The field is a non-optional, non-oneof proto3 enum field.
-		if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_UNPOPULATED {
+		if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_ZERO_VALUE {
 			// It is required, so zero is not allowed.
 			allowZero = false
 		} else if !p.strict {
@@ -1287,7 +1287,7 @@ func (p *Generator) generateStringValidation(field protoreflect.FieldDescriptor,
 	} else {
 		if rules.GetString().MinLen != nil && rules.GetString().GetMinLen() > 0 {
 			schema["minLength"] = rules.GetString().GetMinLen()
-		} else if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
+		} else if rules.GetRequired() {
 			schema["minLength"] = 1
 		}
 		if rules.GetString().MaxLen != nil {
@@ -1358,7 +1358,7 @@ func (p *Generator) generateBytesValidation(field protoreflect.FieldDescriptor, 
 		if rules.GetBytes().MinLen != nil {
 			size, _ := base64EncodedLength(rules.GetBytes().GetMinLen())
 			schema["minLength"] = size
-		} else if rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_DEFAULT_VALUE {
+		} else if rules.GetRequired() {
 			schema["minLength"] = 1
 		}
 	}
