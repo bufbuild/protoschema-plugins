@@ -50,6 +50,9 @@
           "type": "string"
         }
       },
+      "required": [
+        "string_field"
+      ],
       "title": "The title for CustomOptions. On\n multiple lines.",
       "type": "object"
     }

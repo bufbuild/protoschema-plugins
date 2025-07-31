@@ -187,36 +187,38 @@ type ConstraintTest struct {
 	//	*ConstraintTest_GtSfixed64
 	//	*ConstraintTest_GteSfixed64
 	//	*ConstraintTest_InSfixed64
-	TestCase      isConstraintTest_TestCase `protobuf_oneof:"test_case"`
-	ConstFixed32  uint32                    `protobuf:"fixed32,86,opt,name=const_fixed32,json=constFixed32,proto3" json:"const_fixed32,omitempty"`
-	LtFixed32     uint32                    `protobuf:"fixed32,87,opt,name=lt_fixed32,json=ltFixed32,proto3" json:"lt_fixed32,omitempty"`
-	LteFixed32    uint32                    `protobuf:"fixed32,88,opt,name=lte_fixed32,json=lteFixed32,proto3" json:"lte_fixed32,omitempty"`
-	GtFixed32     uint32                    `protobuf:"fixed32,89,opt,name=gt_fixed32,json=gtFixed32,proto3" json:"gt_fixed32,omitempty"`
-	GteFixed32    uint32                    `protobuf:"fixed32,90,opt,name=gte_fixed32,json=gteFixed32,proto3" json:"gte_fixed32,omitempty"`
-	InFixed32     uint32                    `protobuf:"fixed32,91,opt,name=in_fixed32,json=inFixed32,proto3" json:"in_fixed32,omitempty"`
-	ConstFixed64  uint64                    `protobuf:"fixed64,92,opt,name=const_fixed64,json=constFixed64,proto3" json:"const_fixed64,omitempty"`
-	LtFixed64     uint64                    `protobuf:"fixed64,93,opt,name=lt_fixed64,json=ltFixed64,proto3" json:"lt_fixed64,omitempty"`
-	LteFixed64    uint64                    `protobuf:"fixed64,94,opt,name=lte_fixed64,json=lteFixed64,proto3" json:"lte_fixed64,omitempty"`
-	GtFixed64     uint64                    `protobuf:"fixed64,95,opt,name=gt_fixed64,json=gtFixed64,proto3" json:"gt_fixed64,omitempty"`
-	GteFixed64    uint64                    `protobuf:"fixed64,96,opt,name=gte_fixed64,json=gteFixed64,proto3" json:"gte_fixed64,omitempty"`
-	InFixed64     uint64                    `protobuf:"fixed64,97,opt,name=in_fixed64,json=inFixed64,proto3" json:"in_fixed64,omitempty"`
-	ConstDouble   float64                   `protobuf:"fixed64,98,opt,name=const_double,json=constDouble,proto3" json:"const_double,omitempty"`
-	LtDouble      float64                   `protobuf:"fixed64,99,opt,name=lt_double,json=ltDouble,proto3" json:"lt_double,omitempty"`
-	LteDouble     float64                   `protobuf:"fixed64,100,opt,name=lte_double,json=lteDouble,proto3" json:"lte_double,omitempty"`
-	GtDouble      float64                   `protobuf:"fixed64,101,opt,name=gt_double,json=gtDouble,proto3" json:"gt_double,omitempty"`
-	GteDouble     float64                   `protobuf:"fixed64,102,opt,name=gte_double,json=gteDouble,proto3" json:"gte_double,omitempty"`
-	InDouble      float64                   `protobuf:"fixed64,103,opt,name=in_double,json=inDouble,proto3" json:"in_double,omitempty"`
-	FiniteDouble  float64                   `protobuf:"fixed64,104,opt,name=finite_double,json=finiteDouble,proto3" json:"finite_double,omitempty"`
-	LtGtDouble    float64                   `protobuf:"fixed64,105,opt,name=lt_gt_double,json=ltGtDouble,proto3" json:"lt_gt_double,omitempty"`
-	ConstFloat    float32                   `protobuf:"fixed32,106,opt,name=const_float,json=constFloat,proto3" json:"const_float,omitempty"`
-	LtFloat       float32                   `protobuf:"fixed32,107,opt,name=lt_float,json=ltFloat,proto3" json:"lt_float,omitempty"`
-	LteFloat      float32                   `protobuf:"fixed32,108,opt,name=lte_float,json=lteFloat,proto3" json:"lte_float,omitempty"`
-	GtFloat       float32                   `protobuf:"fixed32,109,opt,name=gt_float,json=gtFloat,proto3" json:"gt_float,omitempty"`
-	GteFloat      float32                   `protobuf:"fixed32,110,opt,name=gte_float,json=gteFloat,proto3" json:"gte_float,omitempty"`
-	InFloat       float32                   `protobuf:"fixed32,111,opt,name=in_float,json=inFloat,proto3" json:"in_float,omitempty"`
-	FiniteFloat   float32                   `protobuf:"fixed32,112,opt,name=finite_float,json=finiteFloat,proto3" json:"finite_float,omitempty"`
-	LtGtFloat     float32                   `protobuf:"fixed32,113,opt,name=lt_gt_float,json=ltGtFloat,proto3" json:"lt_gt_float,omitempty"`
-	InMap         map[string]string         `protobuf:"bytes,118,rep,name=in_map,json=inMap,proto3" json:"in_map,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	TestCase      isConstraintTest_TestCase     `protobuf_oneof:"test_case"`
+	OneOfRequired *ConstraintTest_OneOfRequired `protobuf:"bytes,125,opt,name=one_of_required,json=oneOfRequired,proto3" json:"one_of_required,omitempty"`
+	OneOfOptional *ConstraintTest_OneOfOptional `protobuf:"bytes,126,opt,name=one_of_optional,json=oneOfOptional,proto3" json:"one_of_optional,omitempty"`
+	ConstFixed32  uint32                        `protobuf:"fixed32,86,opt,name=const_fixed32,json=constFixed32,proto3" json:"const_fixed32,omitempty"`
+	LtFixed32     uint32                        `protobuf:"fixed32,87,opt,name=lt_fixed32,json=ltFixed32,proto3" json:"lt_fixed32,omitempty"`
+	LteFixed32    uint32                        `protobuf:"fixed32,88,opt,name=lte_fixed32,json=lteFixed32,proto3" json:"lte_fixed32,omitempty"`
+	GtFixed32     uint32                        `protobuf:"fixed32,89,opt,name=gt_fixed32,json=gtFixed32,proto3" json:"gt_fixed32,omitempty"`
+	GteFixed32    uint32                        `protobuf:"fixed32,90,opt,name=gte_fixed32,json=gteFixed32,proto3" json:"gte_fixed32,omitempty"`
+	InFixed32     uint32                        `protobuf:"fixed32,91,opt,name=in_fixed32,json=inFixed32,proto3" json:"in_fixed32,omitempty"`
+	ConstFixed64  uint64                        `protobuf:"fixed64,92,opt,name=const_fixed64,json=constFixed64,proto3" json:"const_fixed64,omitempty"`
+	LtFixed64     uint64                        `protobuf:"fixed64,93,opt,name=lt_fixed64,json=ltFixed64,proto3" json:"lt_fixed64,omitempty"`
+	LteFixed64    uint64                        `protobuf:"fixed64,94,opt,name=lte_fixed64,json=lteFixed64,proto3" json:"lte_fixed64,omitempty"`
+	GtFixed64     uint64                        `protobuf:"fixed64,95,opt,name=gt_fixed64,json=gtFixed64,proto3" json:"gt_fixed64,omitempty"`
+	GteFixed64    uint64                        `protobuf:"fixed64,96,opt,name=gte_fixed64,json=gteFixed64,proto3" json:"gte_fixed64,omitempty"`
+	InFixed64     uint64                        `protobuf:"fixed64,97,opt,name=in_fixed64,json=inFixed64,proto3" json:"in_fixed64,omitempty"`
+	ConstDouble   float64                       `protobuf:"fixed64,98,opt,name=const_double,json=constDouble,proto3" json:"const_double,omitempty"`
+	LtDouble      float64                       `protobuf:"fixed64,99,opt,name=lt_double,json=ltDouble,proto3" json:"lt_double,omitempty"`
+	LteDouble     float64                       `protobuf:"fixed64,100,opt,name=lte_double,json=lteDouble,proto3" json:"lte_double,omitempty"`
+	GtDouble      float64                       `protobuf:"fixed64,101,opt,name=gt_double,json=gtDouble,proto3" json:"gt_double,omitempty"`
+	GteDouble     float64                       `protobuf:"fixed64,102,opt,name=gte_double,json=gteDouble,proto3" json:"gte_double,omitempty"`
+	InDouble      float64                       `protobuf:"fixed64,103,opt,name=in_double,json=inDouble,proto3" json:"in_double,omitempty"`
+	FiniteDouble  float64                       `protobuf:"fixed64,104,opt,name=finite_double,json=finiteDouble,proto3" json:"finite_double,omitempty"`
+	LtGtDouble    float64                       `protobuf:"fixed64,105,opt,name=lt_gt_double,json=ltGtDouble,proto3" json:"lt_gt_double,omitempty"`
+	ConstFloat    float32                       `protobuf:"fixed32,106,opt,name=const_float,json=constFloat,proto3" json:"const_float,omitempty"`
+	LtFloat       float32                       `protobuf:"fixed32,107,opt,name=lt_float,json=ltFloat,proto3" json:"lt_float,omitempty"`
+	LteFloat      float32                       `protobuf:"fixed32,108,opt,name=lte_float,json=lteFloat,proto3" json:"lte_float,omitempty"`
+	GtFloat       float32                       `protobuf:"fixed32,109,opt,name=gt_float,json=gtFloat,proto3" json:"gt_float,omitempty"`
+	GteFloat      float32                       `protobuf:"fixed32,110,opt,name=gte_float,json=gteFloat,proto3" json:"gte_float,omitempty"`
+	InFloat       float32                       `protobuf:"fixed32,111,opt,name=in_float,json=inFloat,proto3" json:"in_float,omitempty"`
+	FiniteFloat   float32                       `protobuf:"fixed32,112,opt,name=finite_float,json=finiteFloat,proto3" json:"finite_float,omitempty"`
+	LtGtFloat     float32                       `protobuf:"fixed32,113,opt,name=lt_gt_float,json=ltGtFloat,proto3" json:"lt_gt_float,omitempty"`
+	InMap         map[string]string             `protobuf:"bytes,118,rep,name=in_map,json=inMap,proto3" json:"in_map,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1111,6 +1113,20 @@ func (x *ConstraintTest) GetInSfixed64() int64 {
 		}
 	}
 	return 0
+}
+
+func (x *ConstraintTest) GetOneOfRequired() *ConstraintTest_OneOfRequired {
+	if x != nil {
+		return x.OneOfRequired
+	}
+	return nil
+}
+
+func (x *ConstraintTest) GetOneOfOptional() *ConstraintTest_OneOfOptional {
+	if x != nil {
+		return x.OneOfOptional
+	}
+	return nil
 }
 
 func (x *ConstraintTest) GetConstFixed32() uint32 {
@@ -2070,11 +2086,115 @@ func (x *ConstraintTest_RequiredOptional) GetStrictEnumValue() ConstraintTest_En
 	return ConstraintTest_ENUM_UNSPECIFIED
 }
 
+type ConstraintTest_OneOfRequired struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ConstraintTest_OneOfRequired) Reset() {
+	*x = ConstraintTest_OneOfRequired{}
+	mi := &file_buf_protoschema_test_v1_constraints_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConstraintTest_OneOfRequired) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConstraintTest_OneOfRequired) ProtoMessage() {}
+
+func (x *ConstraintTest_OneOfRequired) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_protoschema_test_v1_constraints_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConstraintTest_OneOfRequired.ProtoReflect.Descriptor instead.
+func (*ConstraintTest_OneOfRequired) Descriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_constraints_proto_rawDescGZIP(), []int{0, 2}
+}
+
+func (x *ConstraintTest_OneOfRequired) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ConstraintTest_OneOfRequired) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type ConstraintTest_OneOfOptional struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ConstraintTest_OneOfOptional) Reset() {
+	*x = ConstraintTest_OneOfOptional{}
+	mi := &file_buf_protoschema_test_v1_constraints_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConstraintTest_OneOfOptional) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConstraintTest_OneOfOptional) ProtoMessage() {}
+
+func (x *ConstraintTest_OneOfOptional) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_protoschema_test_v1_constraints_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConstraintTest_OneOfOptional.ProtoReflect.Descriptor instead.
+func (*ConstraintTest_OneOfOptional) Descriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_constraints_proto_rawDescGZIP(), []int{0, 3}
+}
+
+func (x *ConstraintTest_OneOfOptional) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ConstraintTest_OneOfOptional) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 var File_buf_protoschema_test_v1_constraints_proto protoreflect.FileDescriptor
 
 const file_buf_protoschema_test_v1_constraints_proto_rawDesc = "" +
 	"\n" +
-	")buf/protoschema/test/v1/constraints.proto\x12\x17buf.protoschema.test.v1\x1a\x1bbuf/validate/validate.proto\"\xfc8\n" +
+	")buf/protoschema/test/v1/constraints.proto\x12\x17buf.protoschema.test.v1\x1a\x1bbuf/validate/validate.proto\"\xc8;\n" +
 	"\x0eConstraintTest\x12g\n" +
 	"\x11required_implicit\x18\x01 \x01(\v28.buf.protoschema.test.v1.ConstraintTest.RequiredImplicitH\x00R\x10requiredImplicit\x12g\n" +
 	"\x11required_optional\x18\x02 \x01(\v28.buf.protoschema.test.v1.ConstraintTest.RequiredOptionalH\x00R\x10requiredOptional\x12(\n" +
@@ -2220,7 +2340,9 @@ const file_buf_protoschema_test_v1_constraints_proto_rawDesc = "" +
 	"gtSfixed64\x123\n" +
 	"\fgte_sfixed64\x18T \x01(\x10B\x0e\xbaH\vb\t)\x05\x00\x00\x00\x00\x00\x00\x00H\x00R\vgteSfixed64\x12:\n" +
 	"\vin_sfixed64\x18U \x01(\x10B\x17\xbaH\x14b\x121\x01\x00\x00\x00\x00\x00\x00\x001\x02\x00\x00\x00\x00\x00\x00\x00H\x00R\n" +
-	"inSfixed64\x12/\n" +
+	"inSfixed64\x12]\n" +
+	"\x0fone_of_required\x18} \x01(\v25.buf.protoschema.test.v1.ConstraintTest.OneOfRequiredR\roneOfRequired\x12]\n" +
+	"\x0fone_of_optional\x18~ \x01(\v25.buf.protoschema.test.v1.ConstraintTest.OneOfOptionalR\roneOfOptional\x12/\n" +
 	"\rconst_fixed32\x18V \x01(\aB\n" +
 	"\xbaH\aJ\x05\r\x05\x00\x00\x00R\fconstFixed32\x12)\n" +
 	"\n" +
@@ -2302,7 +2424,18 @@ const file_buf_protoschema_test_v1_constraints_proto_rawDesc = "" +
 	"\v_bool_valueB\x0f\n" +
 	"\r_string_valueB\r\n" +
 	"\v_enum_valueB\x14\n" +
-	"\x12_strict_enum_value\x1a8\n" +
+	"\x12_strict_enum_value\x1aF\n" +
+	"\rOneOfRequired\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name:\x11\xbaH\x0e\"\f\n" +
+	"\x02id\n" +
+	"\x04name\x10\x01\x1aD\n" +
+	"\rOneOfOptional\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name:\x0f\xbaH\f\"\n" +
+	"\n" +
+	"\x02id\n" +
+	"\x04name\x1a8\n" +
 	"\n" +
 	"InMapEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
@@ -2331,14 +2464,16 @@ func file_buf_protoschema_test_v1_constraints_proto_rawDescGZIP() []byte {
 }
 
 var file_buf_protoschema_test_v1_constraints_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_buf_protoschema_test_v1_constraints_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_buf_protoschema_test_v1_constraints_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_buf_protoschema_test_v1_constraints_proto_goTypes = []any{
 	(ConstraintTest_Enum)(0),                // 0: buf.protoschema.test.v1.ConstraintTest.Enum
 	(*ConstraintTest)(nil),                  // 1: buf.protoschema.test.v1.ConstraintTest
 	(*ConstraintTests)(nil),                 // 2: buf.protoschema.test.v1.ConstraintTests
 	(*ConstraintTest_RequiredImplicit)(nil), // 3: buf.protoschema.test.v1.ConstraintTest.RequiredImplicit
 	(*ConstraintTest_RequiredOptional)(nil), // 4: buf.protoschema.test.v1.ConstraintTest.RequiredOptional
-	nil,                                     // 5: buf.protoschema.test.v1.ConstraintTest.InMapEntry
+	(*ConstraintTest_OneOfRequired)(nil),    // 5: buf.protoschema.test.v1.ConstraintTest.OneOfRequired
+	(*ConstraintTest_OneOfOptional)(nil),    // 6: buf.protoschema.test.v1.ConstraintTest.OneOfOptional
+	nil,                                     // 7: buf.protoschema.test.v1.ConstraintTest.InMapEntry
 }
 var file_buf_protoschema_test_v1_constraints_proto_depIdxs = []int32{
 	3,  // 0: buf.protoschema.test.v1.ConstraintTest.required_implicit:type_name -> buf.protoschema.test.v1.ConstraintTest.RequiredImplicit
@@ -2349,17 +2484,19 @@ var file_buf_protoschema_test_v1_constraints_proto_depIdxs = []int32{
 	0,  // 5: buf.protoschema.test.v1.ConstraintTest.not_in_enum:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
 	0,  // 6: buf.protoschema.test.v1.ConstraintTest.defined_only_not_in_enum:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
 	0,  // 7: buf.protoschema.test.v1.ConstraintTest.in_and_not_in_enum:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
-	5,  // 8: buf.protoschema.test.v1.ConstraintTest.in_map:type_name -> buf.protoschema.test.v1.ConstraintTest.InMapEntry
-	1,  // 9: buf.protoschema.test.v1.ConstraintTests.test_cases:type_name -> buf.protoschema.test.v1.ConstraintTest
-	0,  // 10: buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
-	0,  // 11: buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.strict_enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
-	0,  // 12: buf.protoschema.test.v1.ConstraintTest.RequiredOptional.enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
-	0,  // 13: buf.protoschema.test.v1.ConstraintTest.RequiredOptional.strict_enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	5,  // 8: buf.protoschema.test.v1.ConstraintTest.one_of_required:type_name -> buf.protoschema.test.v1.ConstraintTest.OneOfRequired
+	6,  // 9: buf.protoschema.test.v1.ConstraintTest.one_of_optional:type_name -> buf.protoschema.test.v1.ConstraintTest.OneOfOptional
+	7,  // 10: buf.protoschema.test.v1.ConstraintTest.in_map:type_name -> buf.protoschema.test.v1.ConstraintTest.InMapEntry
+	1,  // 11: buf.protoschema.test.v1.ConstraintTests.test_cases:type_name -> buf.protoschema.test.v1.ConstraintTest
+	0,  // 12: buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
+	0,  // 13: buf.protoschema.test.v1.ConstraintTest.RequiredImplicit.strict_enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
+	0,  // 14: buf.protoschema.test.v1.ConstraintTest.RequiredOptional.enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
+	0,  // 15: buf.protoschema.test.v1.ConstraintTest.RequiredOptional.strict_enum_value:type_name -> buf.protoschema.test.v1.ConstraintTest.Enum
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_buf_protoschema_test_v1_constraints_proto_init() }
@@ -2471,7 +2608,7 @@ func file_buf_protoschema_test_v1_constraints_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_protoschema_test_v1_constraints_proto_rawDesc), len(file_buf_protoschema_test_v1_constraints_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -2,22 +2,40 @@
   "$id": "bufext.cel.expr.conformance.proto3.TestAllTypes.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
-  "dependentSchemas": {
-    "singleNestedEnum": {
-      "not": {
-        "required": [
-          "singleNestedMessage"
-        ]
-      }
-    },
-    "singleNestedMessage": {
-      "not": {
-        "required": [
-          "singleNestedEnum"
-        ]
-      }
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "not": {
+            "required": [
+              "singleNestedEnum"
+            ]
+          },
+          "required": [
+            "singleNestedMessage"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "singleNestedMessage"
+            ]
+          },
+          "required": [
+            "singleNestedEnum"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "singleNestedMessage",
+              "singleNestedEnum"
+            ]
+          }
+        }
+      ]
     }
-  },
+  ],
   "description": "This proto includes every type of field in both singular and repeated\n forms.",
   "patternProperties": {
     "^(list_value)$": {
