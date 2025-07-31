@@ -24,6 +24,7 @@ import (
 
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	"buf.build/go/protovalidate"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
@@ -262,14 +263,33 @@ func (p *Generator) generate(desc protoreflect.MessageDescriptor) (*msgSchema, e
 func (p *Generator) generateMessage(entry *msgSchema) error {
 	entry.schema["type"] = jsObject
 	p.setDescription(entry.desc, entry.schema)
+
+	var oneOfRules []*validate.MessageOneofRule
+	rules, err := p.getMessageRules(entry.desc)
+	if err != nil {
+		return err
+	}
+	if rules != nil {
+		oneOfRules = append(oneOfRules, rules.Oneof...)
+	}
+
 	var required []string
 	properties := make(map[string]any)
 	patternProperties := make(map[string]any)
-	dependentSchemas := make(map[string]any)
+	fieldPropertiesNames := make(map[protoreflect.Name]string)
 	for i := range entry.desc.Fields().Len() {
 		field := entry.desc.Fields().Get(i)
+
+		// If this is a one fields add it as a oneOf message rule
+		if oneOfRule, err := p.fieldOneOfToMessageRule(field); err != nil {
+			return err
+		} else if oneOfRule != nil {
+			oneOfRules = append(oneOfRules, oneOfRule)
+		}
+
 		visibility := p.shouldIgnoreField(field)
 		if visibility == FieldIgnore {
+			fieldPropertiesNames[field.Name()] = ""
 			continue
 		}
 		rules, err := p.getFieldRules(field)
@@ -292,13 +312,9 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		}
 		// Add the field schema to the properties.
 		fieldProperty, aliases := p.getFieldPropertyNames(field, visibility == FieldHide)
+		fieldPropertiesNames[field.Name()] = fieldProperty
 		if fieldProperty != "" {
 			properties[fieldProperty] = fieldSchema
-
-			// Add field oneOf dependent schema
-			if ds := p.fieldOneOfDependentSchema(field); ds != nil {
-				dependentSchemas[fieldProperty] = ds
-			}
 		}
 
 		// Add any aliases to the pattern properties.
@@ -315,44 +331,117 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	if len(required) > 0 {
 		entry.schema["required"] = required
 	}
-	if len(dependentSchemas) > 0 {
-		entry.schema["dependentSchemas"] = dependentSchemas
-	}
-	return nil
+
+	return p.addOneOfConstraintsToSchema(entry.schema, fieldPropertiesNames, oneOfRules)
 }
 
-func (p *Generator) fieldOneOfDependentSchema(field protoreflect.FieldDescriptor) any {
+func (p *Generator) fieldOneOfToMessageRule(field protoreflect.FieldDescriptor) (*validate.MessageOneofRule, error) {
 	oneOf := field.ContainingOneof()
 	if oneOf == nil {
+		return nil, nil
+	}
+	fields := oneOf.Fields()
+
+	// Only transform the first field to avoid duplicate entries
+	if fields.Len() == 0 || fields.Get(0).FullName() != field.FullName() {
+		return nil, nil
+	}
+
+	rule := validate.MessageOneofRule_builder{}
+	rule.Fields = make([]string, fields.Len())
+	for i := 0; i < fields.Len(); i++ {
+		rule.Fields[i] = string(fields.Get(i).Name())
+	}
+
+	oneOfRule, err := protovalidate.ResolveOneofRules(oneOf)
+	if err != nil {
+		return nil, err
+	}
+	if oneOfRule != nil && oneOfRule.HasRequired() {
+		rule.Required = proto.Bool(oneOfRule.GetRequired())
+	}
+	return rule.Build(), nil
+}
+
+func (p *Generator) addOneOfConstraintsToSchema(schema map[string]any, fieldProperties map[protoreflect.Name]string, rules []*validate.MessageOneofRule) error {
+	if len(rules) == 0 {
 		return nil
 	}
 
-	oneOfFields := oneOf.Fields()
-	otherFields := make([]string, 0, oneOfFields.Len())
-	for i := 0; i < oneOfFields.Len(); i++ {
-		f := oneOfFields.Get(i)
-		if field.FullName() == f.FullName() {
+	var required []string
+	if r, found := schema["required"]; found {
+		rs, ok := r.([]string)
+		if !ok {
+			return fmt.Errorf("invalid required field in schema")
+		}
+		required = rs
+	}
+
+	var allOf []any
+	for _, rule := range rules {
+		fields := rule.GetFields()
+		properties := make([]string, 0, len(fields))
+		for _, field := range fields {
+			property, ok := fieldProperties[protoreflect.Name(field)]
+			if !ok {
+				return fmt.Errorf("failed to generate one of rule for unknown field %q", field)
+			}
+			if property == "" {
+				continue
+			}
+			properties = append(properties, property)
+		}
+		if len(properties) == 0 {
 			continue
 		}
 
-		visibility := p.shouldIgnoreField(f)
-		if visibility == FieldIgnore {
+		if len(properties) == 1 {
+			if rule.GetRequired() && !slices.Contains(required, properties[0]) {
+				required = append(required, properties[0])
+			}
 			continue
 		}
-		fProperty, _ := p.getFieldPropertyNames(f, visibility == FieldHide)
-		if fProperty == "" {
-			continue
+
+		anyOf := make([]map[string]any, 0, len(properties)+1)
+		for j := range properties {
+			notRequired := make([]string, 0, len(fields)-1)
+			notRequired = append(notRequired, properties[:j]...)
+			notRequired = append(notRequired, properties[j+1:]...)
+			anyOf = append(anyOf, map[string]any{
+				"required": []string{properties[j]},
+				"not": map[string]any{
+					"required": notRequired,
+				},
+			})
 		}
-		otherFields = append(otherFields, fProperty)
+
+		if !rule.GetRequired() {
+			anyOf = append(anyOf, map[string]any{
+				"not": map[string]any{
+					"required": properties,
+				},
+			})
+		}
+		allOf = append(allOf, map[string]any{
+			"anyOf": anyOf,
+		})
+
+		// Ensure none of the oneOf fields are required
+		required = slices.DeleteFunc(required, func(s string) bool {
+			return slices.Contains(properties, s)
+		})
 	}
-	if len(otherFields) == 0 {
-		return nil
+
+	if len(required) == 0 {
+		delete(schema, "required")
+	} else {
+		schema["required"] = required
 	}
-	return map[string]any{
-		"not": map[string]any{
-			"required": otherFields,
-		},
+	if len(allOf) > 0 {
+		schema["allOf"] = allOf
 	}
+
+	return nil
 }
 
 func (p *Generator) getFieldPropertyNames(
@@ -477,6 +566,10 @@ func (p *Generator) generateFieldValidation(entry *msgSchema, field protoreflect
 		}
 	}
 	return nil
+}
+
+func (p *Generator) getMessageRules(msg protoreflect.MessageDescriptor) (*validate.MessageRules, error) {
+	return protovalidate.ResolveMessageRules(msg)
 }
 
 func (p *Generator) getFieldRules(field protoreflect.FieldDescriptor) (*validate.FieldRules, error) {
