@@ -41,7 +41,10 @@ message ConstraintTest {
 
   message OneOfRequired {
     option (buf.validate.message).oneof = {
-      fields: ["id", "name"],
+      fields: [
+        "id",
+        "name"
+      ]
       required: true
     };
     string id = 1;
@@ -50,7 +53,10 @@ message ConstraintTest {
 
   message OneOfOptional {
     option (buf.validate.message).oneof = {
-      fields: ["id", "name"]
+      fields: [
+        "id",
+        "name"
+      ]
     };
     string id = 1;
     string name = 2;

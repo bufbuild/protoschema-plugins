@@ -15,6 +15,7 @@
 package jsonschema
 
 import (
+	"errors"
 	"fmt"
 	"maps"
 	"math"
@@ -270,7 +271,7 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		return err
 	}
 	if rules != nil {
-		oneOfRules = append(oneOfRules, rules.Oneof...)
+		oneOfRules = append(oneOfRules, rules.GetOneof()...)
 	}
 
 	var required []string
@@ -349,7 +350,7 @@ func (p *Generator) fieldOneOfToMessageRule(field protoreflect.FieldDescriptor) 
 
 	rule := validate.MessageOneofRule_builder{}
 	rule.Fields = make([]string, fields.Len())
-	for i := 0; i < fields.Len(); i++ {
+	for i := range fields.Len() {
 		rule.Fields[i] = string(fields.Get(i).Name())
 	}
 
@@ -372,12 +373,12 @@ func (p *Generator) addOneOfConstraintsToSchema(schema map[string]any, fieldProp
 	if r, found := schema["required"]; found {
 		rs, ok := r.([]string)
 		if !ok {
-			return fmt.Errorf("invalid required field in schema")
+			return errors.New("invalid required field in schema")
 		}
 		required = rs
 	}
 
-	var allOf []any
+	allOf := make([]any, 0, len(rules))
 	for _, rule := range rules {
 		fields := rule.GetFields()
 		properties := make([]string, 0, len(fields))
@@ -447,7 +448,11 @@ func (p *Generator) addOneOfConstraintsToSchema(schema map[string]any, fieldProp
 func (p *Generator) getFieldPropertyNames(
 	field protoreflect.FieldDescriptor,
 	hide bool,
-) (name string, aliases []string) {
+) (string, []string) {
+	var (
+		name    string
+		aliases []string
+	)
 	// TODO: Add an option to include custom alias.
 	aliases = make([]string, 0, 1)
 	if p.useJSONNames {
@@ -461,7 +466,7 @@ func (p *Generator) getFieldPropertyNames(
 		if field.JSONName() != string(field.Name()) {
 			aliases = append(aliases, string(field.Name()))
 		}
-		return
+		return name, aliases
 	}
 
 	// Add the proto name as the primary name.
@@ -474,7 +479,7 @@ func (p *Generator) getFieldPropertyNames(
 	if field.JSONName() != string(field.Name()) {
 		aliases = append(aliases, field.JSONName())
 	}
-	return
+	return name, aliases
 }
 
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
