@@ -65,12 +65,14 @@ lint: $(GOLANGCI_LINT) $(BIN)/buf ## Lint
 	$(GOLANGCI_LINT) run
 	buf lint
 	buf format -d --exit-code
+	go mod tidy
 
 .PHONY: lintfix
 lintfix: $(GOLANGCI_LINT) ## Automatically fix some lint errors
 	$(GOLANGCI_LINT) fmt
 	$(GOLANGCI_LINT) run --fix
 	buf format -w
+	go mod tidy
 
 .PHONY: install
 install: ## Install all binaries
