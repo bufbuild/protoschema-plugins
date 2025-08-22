@@ -39,6 +39,29 @@ message ConstraintTest {
     ];
   }
 
+  message OneOfRequired {
+    option (buf.validate.message).oneof = {
+      fields: [
+        "id",
+        "name"
+      ]
+      required: true
+    };
+    string id = 1;
+    string name = 2;
+  }
+
+  message OneOfOptional {
+    option (buf.validate.message).oneof = {
+      fields: [
+        "id",
+        "name"
+      ]
+    };
+    string id = 1;
+    string name = 2;
+  }
+
   enum Enum {
     ENUM_UNSPECIFIED = 0;
     ENUM_VAL1 = 1;
@@ -238,6 +261,9 @@ message ConstraintTest {
       ]
     }];
   }
+  OneOfRequired one_of_required = 125;
+  OneOfOptional one_of_optional = 126;
+
   fixed32 const_fixed32 = 86 [(buf.validate.field).fixed32.const = 5];
   fixed32 lt_fixed32 = 87 [(buf.validate.field).fixed32.lt = 5];
   fixed32 lte_fixed32 = 88 [(buf.validate.field).fixed32.lte = 5];

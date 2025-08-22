@@ -1,0 +1,49 @@
+{
+  "$id": "buf.protoschema.test.v1.ConstraintTest.OneOfOptional.schema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "not": {
+            "required": [
+              "name"
+            ]
+          },
+          "required": [
+            "id"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "id"
+            ]
+          },
+          "required": [
+            "name"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "id",
+              "name"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "title": "One Of Optional",
+  "type": "object"
+}
