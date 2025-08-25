@@ -8,7 +8,7 @@ managed:
     - file_option: go_package_prefix
       value: github.com/bufbuild/protoschema-plugins/internal/gen/proto
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.36.7
+  - remote: buf.build/protocolbuffers/go:v1.36.8
     out: internal/gen/proto
     opt: paths=source_relative
   - local: ["go", "run", "./cmd/protoc-gen-jsonschema"]

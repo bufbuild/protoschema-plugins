@@ -11,7 +11,7 @@ export PATH := $(BIN):$(PATH)
 export GOBIN := $(abspath $(BIN))
 BUF_VERSION = $(shell go list -m -f '{{.Version}}' github.com/bufbuild/buf)
 COPYRIGHT_YEARS := 2024-2025
-GOLANGCI_LINT_VERSION := v2.1.6
+GOLANGCI_LINT_VERSION := v2.4.0
 GOLANGCI_LINT := $(BIN)/golangci-lint-$(GOLANGCI_LINT_VERSION)
 LICENSE_IGNORE := --ignore testdata/
 
