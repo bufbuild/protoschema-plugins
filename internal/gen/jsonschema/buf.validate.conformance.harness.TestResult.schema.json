@@ -1,0 +1,48 @@
+{
+  "$id": "buf.validate.conformance.harness.TestResult.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "TestResult is the result of a single test. Only one of the fields will be set.",
+  "patternProperties": {
+    "^(compilationError)$": {
+      "description": "compilation_error is the error if the test failed due to compilation errors.",
+      "type": "string"
+    },
+    "^(runtimeError)$": {
+      "description": "runtime_error is the error if the test failed due to runtime errors.",
+      "type": "string"
+    },
+    "^(unexpectedError)$": {
+      "description": "unexpected_error is any other error that may have occurred.",
+      "type": "string"
+    },
+    "^(validationError)$": {
+      "$ref": "buf.validate.Violations.schema.json",
+      "description": "validation_error is the error if the test failed due to validation errors."
+    }
+  },
+  "properties": {
+    "compilation_error": {
+      "description": "compilation_error is the error if the test failed due to compilation errors.",
+      "type": "string"
+    },
+    "runtime_error": {
+      "description": "runtime_error is the error if the test failed due to runtime errors.",
+      "type": "string"
+    },
+    "success": {
+      "description": "success is true if the test succeeded.",
+      "type": "boolean"
+    },
+    "unexpected_error": {
+      "description": "unexpected_error is any other error that may have occurred.",
+      "type": "string"
+    },
+    "validation_error": {
+      "$ref": "buf.validate.Violations.schema.json",
+      "description": "validation_error is the error if the test failed due to validation errors."
+    }
+  },
+  "title": "Test Result",
+  "type": "object"
+}

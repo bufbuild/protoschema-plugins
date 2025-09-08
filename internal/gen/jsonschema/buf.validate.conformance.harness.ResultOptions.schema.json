@@ -1,0 +1,57 @@
+{
+  "$id": "buf.validate.conformance.harness.ResultOptions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "ResultOptions are the options passed to the test runner to configure the\n test run.",
+  "patternProperties": {
+    "^(caseFilter)$": {
+      "default": "",
+      "description": "The case filter is a regex that matches against the case name.",
+      "type": "string"
+    },
+    "^(strictError)$": {
+      "default": false,
+      "description": "If the distinction between runtime and compile time errors must be exact.",
+      "type": "boolean"
+    },
+    "^(strictMessage)$": {
+      "default": false,
+      "description": "If the violation message must be an exact match.",
+      "type": "boolean"
+    },
+    "^(suiteFilter)$": {
+      "default": "",
+      "description": "The suite filter is a regex that matches against the suite name.",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "case_filter": {
+      "default": "",
+      "description": "The case filter is a regex that matches against the case name.",
+      "type": "string"
+    },
+    "strict_error": {
+      "default": false,
+      "description": "If the distinction between runtime and compile time errors must be exact.",
+      "type": "boolean"
+    },
+    "strict_message": {
+      "default": false,
+      "description": "If the violation message must be an exact match.",
+      "type": "boolean"
+    },
+    "suite_filter": {
+      "default": "",
+      "description": "The suite filter is a regex that matches against the suite name.",
+      "type": "string"
+    },
+    "verbose": {
+      "default": false,
+      "description": "If the test runner should print verbose output.",
+      "type": "boolean"
+    }
+  },
+  "title": "Result Options",
+  "type": "object"
+}

@@ -1,0 +1,33 @@
+{
+  "$id": "buf.validate.conformance.cases.EnumAliasNotIn.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "pattern": "^TEST_ENUM_ALIAS_UNSPECIFIED$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "TEST_ENUM_ALIAS_B",
+            "TEST_ENUM_ALIAS_C",
+            "TEST_ENUM_ALIAS_BETA",
+            "TEST_ENUM_ALIAS_GAMMA"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Test Enum Alias"
+    }
+  },
+  "title": "Enum Alias Not In",
+  "type": "object"
+}

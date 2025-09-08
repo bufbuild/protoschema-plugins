@@ -1,0 +1,30 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.SInt64ExGTELTE.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "maximum": 128,
+              "type": "integer"
+            },
+            {
+              "minimum": 256,
+              "type": "integer"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "S Int64 ExGTELTE",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.SInt64ExGTELTE.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.SInt64ExGTELTE.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

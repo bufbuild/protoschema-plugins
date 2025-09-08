@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.BytesMinLen.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "minLength": 4,
+          "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Bytes Min Len",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.BytesMinLen.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.BytesMinLen.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

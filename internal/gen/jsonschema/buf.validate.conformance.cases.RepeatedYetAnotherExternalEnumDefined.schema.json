@@ -1,0 +1,29 @@
+{
+  "$id": "buf.validate.conformance.cases.RepeatedYetAnotherExternalEnumDefined.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "items": {
+        "anyOf": [
+          {
+            "enum": [
+              "ENUMERATED_UNSPECIFIED",
+              "ENUMERATED_VALUE"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "integer"
+          }
+        ],
+        "title": "Enumerated"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Repeated Yet Another External Enum Defined",
+  "type": "object"
+}

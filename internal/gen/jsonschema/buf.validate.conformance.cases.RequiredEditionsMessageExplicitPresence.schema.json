@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredEditionsMessageExplicitPresence.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.RequiredEditionsMessageExplicitPresence.Msg.schema.json"
+    }
+  },
+  "required": [
+    "val"
+  ],
+  "title": "Required Editions Message Explicit Presence",
+  "type": "object"
+}

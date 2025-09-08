@@ -1,0 +1,13 @@
+[![The Buf logo](../../../.github/buf-logo.svg)][buf]
+
+# Go conformance executor
+
+This binary is the [conformance testing executor](https://github.com/bufbuild/protovalidate/tree/main/tools/protovalidate-conformance) for generated JSON Schemas, the Go conformance tests can be executed with make:
+
+```shell
+make conformance # runs all conformance tests
+
+make conformance ARGS='-suite uint64' # pass flags to the conformance harness
+```
+
+[buf]: https://buf.build

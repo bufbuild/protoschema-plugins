@@ -1,0 +1,17 @@
+{
+  "$id": "buf.validate.conformance.cases.StringIn.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "enum": [
+        "bar",
+        "baz"
+      ],
+      "type": "string"
+    }
+  },
+  "title": "String In",
+  "type": "object"
+}

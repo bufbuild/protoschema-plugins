@@ -1,0 +1,30 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.SInt64ExLTGT.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "exclusiveMaximum": 0,
+              "type": "integer"
+            },
+            {
+              "exclusiveMinimum": 10,
+              "type": "integer"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "S Int64 ExLTGT",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.SInt64ExLTGT.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.SInt64ExLTGT.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

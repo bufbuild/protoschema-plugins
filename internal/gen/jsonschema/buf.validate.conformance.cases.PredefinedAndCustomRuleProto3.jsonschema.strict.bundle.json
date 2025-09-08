@@ -1,0 +1,42 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedAndCustomRuleProto3.Nested.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "c": {
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "c"
+      ],
+      "title": "Nested",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.PredefinedAndCustomRuleProto3.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "b": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedAndCustomRuleProto3.Nested.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "a"
+      ],
+      "title": "Predefined And Custom Rule Proto3",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedAndCustomRuleProto3.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedAndCustomRuleProto3.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

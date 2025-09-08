@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredProto3OptionalScalarIgnoreAlways.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "type": "string"
+    }
+  },
+  "title": "Required Proto3 Optional Scalar Ignore Always",
+  "type": "object"
+}

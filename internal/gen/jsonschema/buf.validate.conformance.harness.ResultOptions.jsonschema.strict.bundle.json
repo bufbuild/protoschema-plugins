@@ -1,0 +1,43 @@
+{
+  "$defs": {
+    "buf.validate.conformance.harness.ResultOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "ResultOptions are the options passed to the test runner to configure the\n test run.",
+      "properties": {
+        "caseFilter": {
+          "description": "The case filter is a regex that matches against the case name.",
+          "type": "string"
+        },
+        "strictError": {
+          "description": "If the distinction between runtime and compile time errors must be exact.",
+          "type": "boolean"
+        },
+        "strictMessage": {
+          "description": "If the violation message must be an exact match.",
+          "type": "boolean"
+        },
+        "suiteFilter": {
+          "description": "The suite filter is a regex that matches against the suite name.",
+          "type": "string"
+        },
+        "verbose": {
+          "description": "If the test runner should print verbose output.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "suiteFilter",
+        "caseFilter",
+        "verbose",
+        "strictMessage",
+        "strictError"
+      ],
+      "title": "Result Options",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.harness.ResultOptions.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.harness.ResultOptions.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

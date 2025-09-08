@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.TimestampRequired.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.Timestamp.schema.json"
+    }
+  },
+  "required": [
+    "val"
+  ],
+  "title": "Timestamp Required",
+  "type": "object"
+}

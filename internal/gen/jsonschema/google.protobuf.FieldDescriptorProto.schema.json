@@ -1,0 +1,149 @@
+{
+  "$id": "google.protobuf.FieldDescriptorProto.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Describes a field within a message.",
+  "patternProperties": {
+    "^(defaultValue)$": {
+      "description": "For numeric types, contains the original text representation of the value.\n For booleans, \"true\" or \"false\".\n For strings, contains the default text contents (not escaped in any way).\n For bytes, contains the C escaped value.  All bytes \u003e= 128 are escaped.",
+      "type": "string"
+    },
+    "^(jsonName)$": {
+      "description": "JSON name of this field. The value is set by protocol compiler. If the\n user has set a \"json_name\" option on this field, that option's value\n will be used. Otherwise, it's deduced from the field's name by converting\n it to camelCase.",
+      "type": "string"
+    },
+    "^(oneofIndex)$": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "If set, gives the index of a oneof in the containing type's oneof_decl\n list.  This field is a member of that oneof."
+    },
+    "^(proto3Optional)$": {
+      "description": "When proto3_optional is true, this field must belong to a oneof to signal\n to old proto3 clients that presence is tracked for this field. This oneof\n is known as a \"synthetic\" oneof, and this field must be its sole member\n (each proto3 optional field gets its own synthetic oneof). Synthetic oneofs\n exist in the descriptor only, and do not generate any API. Synthetic oneofs\n must be ordered after all \"real\" oneofs.\n\n For message fields, proto3_optional doesn't create any semantic change,\n since non-repeated message fields always track presence. However it still\n indicates the semantic detail of whether the user wrote \"optional\" or not.\n This can be useful for round-tripping the .proto file. For consistency we\n give message fields a synthetic oneof also, even though it is not required\n to track presence. This is especially important because the parser can't\n tell if a field is a message or an enum, so it must always create a\n synthetic oneof.\n\n Proto2 optional fields do not set this flag, because they already indicate\n optional with `LABEL_OPTIONAL`.",
+      "title": "If true, this is a proto3 \"optional\". When a proto3 field is optional, it\n tracks presence regardless of field type.",
+      "type": "boolean"
+    },
+    "^(typeName)$": {
+      "description": "For message and enum types, this is the name of the type.  If the name\n starts with a '.', it is fully-qualified.  Otherwise, C++-like scoping\n rules are used to find the type (i.e. first the nested types within this\n message are searched, then within the parent, on up to the root\n namespace).",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "default_value": {
+      "description": "For numeric types, contains the original text representation of the value.\n For booleans, \"true\" or \"false\".\n For strings, contains the default text contents (not escaped in any way).\n For bytes, contains the C escaped value.  All bytes \u003e= 128 are escaped.",
+      "type": "string"
+    },
+    "extendee": {
+      "description": "For extensions, this is the name of the type being extended.  It is\n resolved in the same manner as type_name.",
+      "type": "string"
+    },
+    "json_name": {
+      "description": "JSON name of this field. The value is set by protocol compiler. If the\n user has set a \"json_name\" option on this field, that option's value\n will be used. Otherwise, it's deduced from the field's name by converting\n it to camelCase.",
+      "type": "string"
+    },
+    "label": {
+      "anyOf": [
+        {
+          "enum": [
+            "LABEL_OPTIONAL",
+            "LABEL_REPEATED",
+            "LABEL_REQUIRED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Label"
+    },
+    "name": {
+      "type": "string"
+    },
+    "number": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "oneof_index": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "If set, gives the index of a oneof in the containing type's oneof_decl\n list.  This field is a member of that oneof."
+    },
+    "options": {
+      "$ref": "google.protobuf.FieldOptions.schema.json"
+    },
+    "proto3_optional": {
+      "description": "When proto3_optional is true, this field must belong to a oneof to signal\n to old proto3 clients that presence is tracked for this field. This oneof\n is known as a \"synthetic\" oneof, and this field must be its sole member\n (each proto3 optional field gets its own synthetic oneof). Synthetic oneofs\n exist in the descriptor only, and do not generate any API. Synthetic oneofs\n must be ordered after all \"real\" oneofs.\n\n For message fields, proto3_optional doesn't create any semantic change,\n since non-repeated message fields always track presence. However it still\n indicates the semantic detail of whether the user wrote \"optional\" or not.\n This can be useful for round-tripping the .proto file. For consistency we\n give message fields a synthetic oneof also, even though it is not required\n to track presence. This is especially important because the parser can't\n tell if a field is a message or an enum, so it must always create a\n synthetic oneof.\n\n Proto2 optional fields do not set this flag, because they already indicate\n optional with `LABEL_OPTIONAL`.",
+      "title": "If true, this is a proto3 \"optional\". When a proto3 field is optional, it\n tracks presence regardless of field type.",
+      "type": "boolean"
+    },
+    "type": {
+      "anyOf": [
+        {
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "If type_name is set, this need not be set.  If both this and type_name\n are set, this must be one of TYPE_ENUM, TYPE_MESSAGE or TYPE_GROUP.",
+      "title": "Type"
+    },
+    "type_name": {
+      "description": "For message and enum types, this is the name of the type.  If the name\n starts with a '.', it is fully-qualified.  Otherwise, C++-like scoping\n rules are used to find the type (i.e. first the nested types within this\n message are searched, then within the parent, on up to the root\n namespace).",
+      "type": "string"
+    }
+  },
+  "title": "Field Descriptor Proto",
+  "type": "object"
+}

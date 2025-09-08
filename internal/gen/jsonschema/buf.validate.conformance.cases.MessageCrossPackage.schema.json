@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.MessageCrossPackage.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.other_package.Embed.schema.json"
+    }
+  },
+  "title": "Message Cross Package",
+  "type": "object"
+}

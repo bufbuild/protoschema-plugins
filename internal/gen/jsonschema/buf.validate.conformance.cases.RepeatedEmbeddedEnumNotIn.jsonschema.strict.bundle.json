@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RepeatedEmbeddedEnumNotIn.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "enum": [
+              "ANOTHER_NOT_IN_ENUM_A",
+              "ANOTHER_NOT_IN_ENUM_B"
+            ],
+            "title": "Another Not In Enum",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Repeated Embedded Enum Not In",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RepeatedEmbeddedEnumNotIn.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RepeatedEmbeddedEnumNotIn.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

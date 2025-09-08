@@ -1,0 +1,26 @@
+{
+  "$id": "buf.validate.conformance.cases.EnumConst.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "enum": [
+            "TEST_ENUM_TWO"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Test Enum"
+    }
+  },
+  "title": "Enum Const",
+  "type": "object"
+}

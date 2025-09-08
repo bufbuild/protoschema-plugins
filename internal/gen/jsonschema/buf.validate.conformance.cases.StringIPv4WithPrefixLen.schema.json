@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringIPv4WithPrefixLen.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "pattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/([0-9]|[12][0-9]|3[0-2])$",
+      "type": "string"
+    }
+  },
+  "title": "StringI Pv4 With Prefix Len",
+  "type": "object"
+}

@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.EnumExternal2.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            "DOUBLE_ENUMERATED_UNSPECIFIED",
+            "DOUBLE_ENUMERATED_VALUE"
+          ],
+          "title": "Double Enumerated",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Enum External2",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.EnumExternal2.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.EnumExternal2.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

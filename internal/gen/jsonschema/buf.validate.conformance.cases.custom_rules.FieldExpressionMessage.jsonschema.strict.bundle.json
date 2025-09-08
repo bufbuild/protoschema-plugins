@@ -1,0 +1,34 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.custom_rules.FieldExpressionMessage.Msg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "a"
+      ],
+      "title": "Msg",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.custom_rules.FieldExpressionMessage.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.FieldExpressionMessage.Msg.jsonschema.strict.json"
+        }
+      },
+      "title": "Field Expression Message",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionMessage.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.FieldExpressionMessage.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

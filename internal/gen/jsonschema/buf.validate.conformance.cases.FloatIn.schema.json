@@ -1,0 +1,27 @@
+{
+  "$id": "buf.validate.conformance.cases.FloatIn.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "enum": [
+            4.56,
+            7.89
+          ],
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Float In",
+  "type": "object"
+}

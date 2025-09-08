@@ -1,0 +1,31 @@
+{
+  "$id": "buf.validate.conformance.cases.EnumNone.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "pattern": "^TEST_ENUM_UNSPECIFIED$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "TEST_ENUM_ONE",
+            "TEST_ENUM_TWO"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Test Enum"
+    }
+  },
+  "title": "Enum None",
+  "type": "object"
+}

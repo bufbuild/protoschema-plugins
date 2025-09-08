@@ -1,0 +1,16 @@
+{
+  "$id": "buf.validate.conformance.cases.StringInOneof.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "bar": {
+      "enum": [
+        "a",
+        "b"
+      ],
+      "type": "string"
+    }
+  },
+  "title": "String In Oneof",
+  "type": "object"
+}

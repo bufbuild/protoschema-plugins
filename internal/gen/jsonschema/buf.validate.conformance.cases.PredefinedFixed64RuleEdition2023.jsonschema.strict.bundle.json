@@ -1,0 +1,19 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedFixed64RuleEdition2023.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "title": "Predefined Fixed64 Rule Edition2023",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedFixed64RuleEdition2023.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedFixed64RuleEdition2023.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

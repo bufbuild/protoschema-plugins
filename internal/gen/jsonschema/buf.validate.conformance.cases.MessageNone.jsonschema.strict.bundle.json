@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MessageNone.NoneMsg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {},
+      "title": "None Msg",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.MessageNone.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.MessageNone.NoneMsg.jsonschema.strict.json"
+        }
+      },
+      "title": "Message None",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MessageNone.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MessageNone.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

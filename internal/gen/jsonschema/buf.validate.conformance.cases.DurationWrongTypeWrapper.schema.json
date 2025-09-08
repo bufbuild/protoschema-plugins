@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.DurationWrongTypeWrapper.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.Int32Value.schema.json"
+    }
+  },
+  "title": "Duration Wrong Type Wrapper",
+  "type": "object"
+}

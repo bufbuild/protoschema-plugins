@@ -1,0 +1,1522 @@
+{
+  "$defs": {
+    "buf.validate.FieldPath.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "This message provides enough information to render a dotted field path even without protobuf descriptors.\n It also provides enough information to resolve a nested field through unknown wire data.",
+      "properties": {
+        "elements": {
+          "description": "`elements` contains each element of the path, starting from the root and recursing downward.",
+          "items": {
+            "$ref": "#/$defs/buf.validate.FieldPathElement.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "`FieldPath` provides a path to a nested protobuf field.",
+      "type": "object"
+    },
+    "buf.validate.FieldPathElement.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "If the selected field is a map or repeated field, the `subscript` value selects a specific element from it.\n A path that refers to a value nested under a map key or repeated field index will have a `subscript` value.\n The `field_type` field allows unambiguous resolution of a field even if descriptors are not available.",
+      "properties": {
+        "boolKey": {
+          "description": "`bool_key` specifies a map key of type bool.",
+          "type": "boolean"
+        },
+        "fieldName": {
+          "description": "`field_name` contains the field name this path element refers to.\n This can be used to display a human-readable path even if the field number is unknown.",
+          "type": "string"
+        },
+        "fieldNumber": {
+          "description": "`field_number` is the field number this path element refers to.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "fieldType": {
+          "description": "This value is provided to make it possible to traverse unknown fields through wire data.\n When traversing wire data, be mindful of both packed[1] and delimited[2] encoding schemes.\n\n [1]: https://protobuf.dev/programming-guides/encoding/#packed\n [2]: https://protobuf.dev/programming-guides/encoding/#groups\n\n N.B.: Although groups are deprecated, the corresponding delimited encoding scheme is not, and\n can be explicitly used in Protocol Buffers 2023 Edition.",
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "index": {
+          "description": "`index` specifies a 0-based index into a repeated field.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "intKey": {
+          "description": "`int_key` specifies a map key of type int32, int64, sint32, sint64, sfixed32 or sfixed64.",
+          "type": "integer"
+        },
+        "keyType": {
+          "description": "`key_type` specifies the map key type of this field. This value is useful when traversing\n unknown fields through wire data: specifically, it allows handling the differences between\n different integer encodings.",
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "stringKey": {
+          "description": "`string_key` specifies a map key of type string.",
+          "type": "string"
+        },
+        "uintKey": {
+          "description": "`uint_key` specifies a map key of type uint32, uint64, fixed32 or fixed64.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "valueType": {
+          "description": "`value_type` specifies map value type of this field. This is useful if you want to display a\n value inside unknown fields through wire data.",
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "title": "`FieldPathElement` provides enough information to nest through a single protobuf field.",
+      "type": "object"
+    },
+    "buf.validate.Violation.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "For example, consider the following message:\n\n ```proto\n message User {\n     int32 age = 1 [(buf.validate.field).cel = {\n         id: \"user.age\",\n         expression: \"this \u003c 18 ? 'User must be at least 18 years old' : ''\",\n     }];\n }\n ```\n\n It could produce the following violation:\n\n ```json\n {\n   \"ruleId\": \"user.age\",\n   \"message\": \"User must be at least 18 years old\",\n   \"field\": {\n     \"elements\": [\n       {\n         \"fieldNumber\": 1,\n         \"fieldName\": \"age\",\n         \"fieldType\": \"TYPE_INT32\"\n       }\n     ]\n   },\n   \"rule\": {\n     \"elements\": [\n       {\n         \"fieldNumber\": 23,\n         \"fieldName\": \"cel\",\n         \"fieldType\": \"TYPE_MESSAGE\",\n         \"index\": \"0\"\n       }\n     ]\n   }\n }\n ```",
+      "properties": {
+        "field": {
+          "$ref": "#/$defs/buf.validate.FieldPath.jsonschema.strict.json",
+          "description": "For example, consider the following message:\n\n ```proto\n message Message {\n   bool a = 1 [(buf.validate.field).required = true];\n }\n ```\n\n It could produce the following violation:\n\n ```textproto\n violation {\n   field { element { field_number: 1, field_name: \"a\", field_type: 8 } }\n   ...\n }\n ```",
+          "title": "`field` is a machine-readable path to the field that failed validation.\n This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation."
+        },
+        "forKey": {
+          "description": "`for_key` indicates whether the violation was caused by a map key, rather than a value.",
+          "type": "boolean"
+        },
+        "message": {
+          "description": "`message` is a human-readable error message that describes the nature of the violation.\n This can be the default error message from the violated `Rule`, or it can be a custom message that gives more context about the violation.",
+          "type": "string"
+        },
+        "rule": {
+          "$ref": "#/$defs/buf.validate.FieldPath.jsonschema.strict.json",
+          "description": "For example, consider the following message:\n\n ```proto\n message Message {\n   bool a = 1 [(buf.validate.field).required = true];\n   bool b = 2 [(buf.validate.field).cel = {\n     id: \"custom_rule\",\n     expression: \"!this ? 'b must be true': ''\"\n   }]\n }\n ```\n\n It could produce the following violations:\n\n ```textproto\n violation {\n   rule { element { field_number: 25, field_name: \"required\", field_type: 8 } }\n   ...\n }\n violation {\n   rule { element { field_number: 23, field_name: \"cel\", field_type: 11, index: 0 } }\n   ...\n }\n ```",
+          "title": "`rule` is a machine-readable path that points to the specific rule that failed validation.\n This will be a nested field starting from the FieldRules of the field that failed validation.\n For custom rules, this will provide the path of the rule, e.g. `cel[0]`."
+        },
+        "ruleId": {
+          "description": "`rule_id` is the unique identifier of the `Rule` that was not fulfilled.\n This is the same `id` that was specified in the `Rule` message, allowing easy tracing of which rule was violated.",
+          "type": "string"
+        }
+      },
+      "title": "`Violation` represents a single instance where a validation rule, expressed\n as a `Rule`, was not met. It provides information about the field that\n caused the violation, the specific rule that wasn't fulfilled, and a\n human-readable error message.",
+      "type": "object"
+    },
+    "buf.validate.Violations.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "`Violations` is a collection of `Violation` messages. This message type is returned by\n Protovalidate when a proto message fails to meet the requirements set by the `Rule` validation rules.\n Each individual violation is represented by a `Violation` message.",
+      "properties": {
+        "violations": {
+          "description": "`violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.",
+          "items": {
+            "$ref": "#/$defs/buf.validate.Violation.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Violations",
+      "type": "object"
+    },
+    "buf.validate.conformance.harness.CaseResult.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "A case result is a single test case result.",
+      "properties": {
+        "expectedFailure": {
+          "description": "Denotes if the test is expected to fail. True, if the test case was expected to fail.",
+          "type": "boolean"
+        },
+        "got": {
+          "$ref": "#/$defs/buf.validate.conformance.harness.TestResult.jsonschema.strict.json",
+          "description": "The actual result."
+        },
+        "input": {
+          "$ref": "#/$defs/google.protobuf.Any.jsonschema.strict.json",
+          "description": "The input used to invoke the test case."
+        },
+        "name": {
+          "description": "The case name.",
+          "type": "string"
+        },
+        "success": {
+          "description": "Success state of the test case. True if the test case succeeded.",
+          "type": "boolean"
+        },
+        "wanted": {
+          "$ref": "#/$defs/buf.validate.conformance.harness.TestResult.jsonschema.strict.json",
+          "description": "The expected result."
+        }
+      },
+      "required": [
+        "name",
+        "success",
+        "expectedFailure"
+      ],
+      "title": "Case Result",
+      "type": "object"
+    },
+    "buf.validate.conformance.harness.SuiteResults.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "A suite result is a single test suite result.",
+      "properties": {
+        "cases": {
+          "description": "List of case results.",
+          "items": {
+            "$ref": "#/$defs/buf.validate.conformance.harness.CaseResult.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "expectedFailures": {
+          "description": "Count of expected failures.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "failures": {
+          "description": "Count of failures.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "fdset": {
+          "$ref": "#/$defs/google.protobuf.FileDescriptorSet.jsonschema.strict.json",
+          "description": "The file descriptor set used to generate this result."
+        },
+        "name": {
+          "description": "The suite name.",
+          "type": "string"
+        },
+        "successes": {
+          "description": "Count of successes.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "successes",
+        "failures",
+        "expectedFailures"
+      ],
+      "title": "Suite Results",
+      "type": "object"
+    },
+    "buf.validate.conformance.harness.TestResult.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "TestResult is the result of a single test. Only one of the fields will be set.",
+      "properties": {
+        "compilationError": {
+          "description": "compilation_error is the error if the test failed due to compilation errors.",
+          "type": "string"
+        },
+        "runtimeError": {
+          "description": "runtime_error is the error if the test failed due to runtime errors.",
+          "type": "string"
+        },
+        "success": {
+          "description": "success is true if the test succeeded.",
+          "type": "boolean"
+        },
+        "unexpectedError": {
+          "description": "unexpected_error is any other error that may have occurred.",
+          "type": "string"
+        },
+        "validationError": {
+          "$ref": "#/$defs/buf.validate.Violations.jsonschema.strict.json",
+          "description": "validation_error is the error if the test failed due to validation errors."
+        }
+      },
+      "title": "Test Result",
+      "type": "object"
+    },
+    "google.protobuf.Any.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "title": "Any",
+      "type": "object"
+    },
+    "google.protobuf.DescriptorProto.ExtensionRange.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "end": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.ExtensionRangeOptions.jsonschema.strict.json"
+        },
+        "start": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "title": "Extension Range",
+      "type": "object"
+    },
+    "google.protobuf.DescriptorProto.ReservedRange.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Range of reserved tag numbers. Reserved tag numbers may not be used by\n fields or extension ranges in the same message. Reserved ranges may\n not overlap.",
+      "properties": {
+        "end": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "start": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "title": "Reserved Range",
+      "type": "object"
+    },
+    "google.protobuf.DescriptorProto.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Describes a message type.",
+      "properties": {
+        "enumType": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.EnumDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "extension": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.FieldDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "extensionRange": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.DescriptorProto.ExtensionRange.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "field": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.FieldDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nestedType": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.DescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "oneofDecl": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.OneofDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.MessageOptions.jsonschema.strict.json"
+        },
+        "reservedName": {
+          "description": "Reserved field names, which may not be used by fields in the same message.\n A given name may only be reserved once.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reservedRange": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.DescriptorProto.ReservedRange.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "visibility": {
+          "description": "Support for `export` and `local` keywords on enums.",
+          "enum": [
+            "VISIBILITY_UNSET",
+            "VISIBILITY_LOCAL",
+            "VISIBILITY_EXPORT"
+          ],
+          "title": "Symbol Visibility",
+          "type": "string"
+        }
+      },
+      "title": "Descriptor Proto",
+      "type": "object"
+    },
+    "google.protobuf.EnumDescriptorProto.EnumReservedRange.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Note that this is distinct from DescriptorProto.ReservedRange in that it\n is inclusive such that it can appropriately represent the entire int32\n domain.",
+      "properties": {
+        "end": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "start": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "title": "Range of reserved numeric values. Reserved values may not be used by\n entries in the same enum. Reserved ranges may not overlap.",
+      "type": "object"
+    },
+    "google.protobuf.EnumDescriptorProto.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Describes an enum type.",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.EnumOptions.jsonschema.strict.json"
+        },
+        "reservedName": {
+          "description": "Reserved enum value names, which may not be reused. A given name may only\n be reserved once.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reservedRange": {
+          "description": "Range of reserved numeric values. Reserved numeric values may not be used\n by enum values in the same enum declaration. Reserved ranges may not\n overlap.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.EnumDescriptorProto.EnumReservedRange.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "value": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.EnumValueDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "visibility": {
+          "description": "Support for `export` and `local` keywords on enums.",
+          "enum": [
+            "VISIBILITY_UNSET",
+            "VISIBILITY_LOCAL",
+            "VISIBILITY_EXPORT"
+          ],
+          "title": "Symbol Visibility",
+          "type": "string"
+        }
+      },
+      "title": "Enum Descriptor Proto",
+      "type": "object"
+    },
+    "google.protobuf.EnumOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "allowAlias": {
+          "description": "Set this option to true to allow mapping different tag names to the same\n value.",
+          "type": "boolean"
+        },
+        "deprecated": {
+          "description": "Is this enum deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the enum, or it will be completely ignored; in the very least, this\n is a formalization for deprecating enums.",
+          "type": "boolean"
+        },
+        "deprecatedLegacyJsonFieldConflicts": {
+          "description": "Enable the legacy handling of JSON field name conflicts.  This lowercases\n and strips underscored from the fields before comparison in proto3 only.\n The new behavior takes `json_name` into account and applies to proto2 as\n well.\n TODO Remove this legacy behavior once downstream teams have\n had time to migrate.",
+          "type": "boolean"
+        },
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here. See above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Enum Options",
+      "type": "object"
+    },
+    "google.protobuf.EnumValueDescriptorProto.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Describes a value within an enum.",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.EnumValueOptions.jsonschema.strict.json"
+        }
+      },
+      "title": "Enum Value Descriptor Proto",
+      "type": "object"
+    },
+    "google.protobuf.EnumValueOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "debugRedact": {
+          "description": "Indicate that fields annotated with this enum value should not be printed\n out when using debug formats, e.g. when the field contains sensitive\n credentials.",
+          "type": "boolean"
+        },
+        "deprecated": {
+          "description": "Is this enum value deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the enum value, or it will be completely ignored; in the very least,\n this is a formalization for deprecating enum values.",
+          "type": "boolean"
+        },
+        "featureSupport": {
+          "$ref": "#/$defs/google.protobuf.FieldOptions.FeatureSupport.jsonschema.strict.json",
+          "description": "Information about the support window of a feature value."
+        },
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here. See above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Enum Value Options",
+      "type": "object"
+    },
+    "google.protobuf.ExtensionRangeOptions.Declaration.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "fullName": {
+          "description": "The fully-qualified name of the extension field. There must be a leading\n dot in front of the full name.",
+          "type": "string"
+        },
+        "number": {
+          "description": "The extension number declared within the extension range.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "repeated": {
+          "description": "If true, indicates that the extension must be defined as repeated.\n Otherwise the extension must be defined as optional.",
+          "type": "boolean"
+        },
+        "reserved": {
+          "description": "If true, indicates that the number is reserved in the extension range,\n and any extension field with the number will fail to compile. Set this\n when a declared extension field is deleted.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "The fully-qualified type name of the extension field. Unlike\n Metadata.type, Declaration.type must have a leading dot for messages\n and enums.",
+          "type": "string"
+        }
+      },
+      "title": "Declaration",
+      "type": "object"
+    },
+    "google.protobuf.ExtensionRangeOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "declaration": {
+          "description": "For external users: DO NOT USE. We are in the process of open sourcing\n extension declaration and executing internal cleanups before it can be\n used externally.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.ExtensionRangeOptions.Declaration.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition."
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here. See above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "verification": {
+          "description": "The verification state of the range.\n TODO: flip the default to DECLARATION once all empty ranges\n are marked as UNVERIFIED.",
+          "enum": [
+            "DECLARATION",
+            "UNVERIFIED"
+          ],
+          "title": "Verification State",
+          "type": "string"
+        }
+      },
+      "title": "Extension Range Options",
+      "type": "object"
+    },
+    "google.protobuf.FeatureSet.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "TODO Enums in C++ gencode (and potentially other languages) are\n not well scoped.  This means that each of the feature enums below can clash\n with each other.  The short names we've chosen maximize call-site\n readability, but leave us very open to this scenario.  A future feature will\n be designed and implemented to handle this, hopefully before we ever hit a\n conflict here.",
+      "properties": {
+        "defaultSymbolVisibility": {
+          "enum": [
+            "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN",
+            "EXPORT_ALL",
+            "EXPORT_TOP_LEVEL",
+            "LOCAL_ALL",
+            "STRICT"
+          ],
+          "title": "Default Symbol Visibility",
+          "type": "string"
+        },
+        "enforceNamingStyle": {
+          "enum": [
+            "ENFORCE_NAMING_STYLE_UNKNOWN",
+            "STYLE2024",
+            "STYLE_LEGACY"
+          ],
+          "title": "Enforce Naming Style",
+          "type": "string"
+        },
+        "enumType": {
+          "enum": [
+            "ENUM_TYPE_UNKNOWN",
+            "OPEN",
+            "CLOSED"
+          ],
+          "title": "Enum Type",
+          "type": "string"
+        },
+        "fieldPresence": {
+          "enum": [
+            "FIELD_PRESENCE_UNKNOWN",
+            "EXPLICIT",
+            "IMPLICIT",
+            "LEGACY_REQUIRED"
+          ],
+          "title": "Field Presence",
+          "type": "string"
+        },
+        "jsonFormat": {
+          "enum": [
+            "JSON_FORMAT_UNKNOWN",
+            "ALLOW",
+            "LEGACY_BEST_EFFORT"
+          ],
+          "title": "Json Format",
+          "type": "string"
+        },
+        "messageEncoding": {
+          "enum": [
+            "MESSAGE_ENCODING_UNKNOWN",
+            "LENGTH_PREFIXED",
+            "DELIMITED"
+          ],
+          "title": "Message Encoding",
+          "type": "string"
+        },
+        "repeatedFieldEncoding": {
+          "enum": [
+            "REPEATED_FIELD_ENCODING_UNKNOWN",
+            "PACKED",
+            "EXPANDED"
+          ],
+          "title": "Repeated Field Encoding",
+          "type": "string"
+        },
+        "utf8Validation": {
+          "enum": [
+            "UTF8_VALIDATION_UNKNOWN",
+            "VERIFY",
+            "NONE"
+          ],
+          "title": "Utf8 Validation",
+          "type": "string"
+        }
+      },
+      "title": "Feature Set",
+      "type": "object"
+    },
+    "google.protobuf.FieldDescriptorProto.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Describes a field within a message.",
+      "properties": {
+        "defaultValue": {
+          "description": "For numeric types, contains the original text representation of the value.\n For booleans, \"true\" or \"false\".\n For strings, contains the default text contents (not escaped in any way).\n For bytes, contains the C escaped value.  All bytes \u003e= 128 are escaped.",
+          "type": "string"
+        },
+        "extendee": {
+          "description": "For extensions, this is the name of the type being extended.  It is\n resolved in the same manner as type_name.",
+          "type": "string"
+        },
+        "jsonName": {
+          "description": "JSON name of this field. The value is set by protocol compiler. If the\n user has set a \"json_name\" option on this field, that option's value\n will be used. Otherwise, it's deduced from the field's name by converting\n it to camelCase.",
+          "type": "string"
+        },
+        "label": {
+          "enum": [
+            "LABEL_OPTIONAL",
+            "LABEL_REPEATED",
+            "LABEL_REQUIRED"
+          ],
+          "title": "Label",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "oneofIndex": {
+          "description": "If set, gives the index of a oneof in the containing type's oneof_decl\n list.  This field is a member of that oneof.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.FieldOptions.jsonschema.strict.json"
+        },
+        "proto3Optional": {
+          "description": "When proto3_optional is true, this field must belong to a oneof to signal\n to old proto3 clients that presence is tracked for this field. This oneof\n is known as a \"synthetic\" oneof, and this field must be its sole member\n (each proto3 optional field gets its own synthetic oneof). Synthetic oneofs\n exist in the descriptor only, and do not generate any API. Synthetic oneofs\n must be ordered after all \"real\" oneofs.\n\n For message fields, proto3_optional doesn't create any semantic change,\n since non-repeated message fields always track presence. However it still\n indicates the semantic detail of whether the user wrote \"optional\" or not.\n This can be useful for round-tripping the .proto file. For consistency we\n give message fields a synthetic oneof also, even though it is not required\n to track presence. This is especially important because the parser can't\n tell if a field is a message or an enum, so it must always create a\n synthetic oneof.\n\n Proto2 optional fields do not set this flag, because they already indicate\n optional with `LABEL_OPTIONAL`.",
+          "title": "If true, this is a proto3 \"optional\". When a proto3 field is optional, it\n tracks presence regardless of field type.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "If type_name is set, this need not be set.  If both this and type_name\n are set, this must be one of TYPE_ENUM, TYPE_MESSAGE or TYPE_GROUP.",
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "typeName": {
+          "description": "For message and enum types, this is the name of the type.  If the name\n starts with a '.', it is fully-qualified.  Otherwise, C++-like scoping\n rules are used to find the type (i.e. first the nested types within this\n message are searched, then within the parent, on up to the root\n namespace).",
+          "type": "string"
+        }
+      },
+      "title": "Field Descriptor Proto",
+      "type": "object"
+    },
+    "google.protobuf.FieldOptions.EditionDefault.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "edition": {
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "title": "Edition",
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "Edition Default",
+      "type": "object"
+    },
+    "google.protobuf.FieldOptions.FeatureSupport.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Information about the support window of a feature.",
+      "properties": {
+        "deprecationWarning": {
+          "description": "The deprecation warning text if this feature is used after the edition it\n was marked deprecated in.",
+          "type": "string"
+        },
+        "editionDeprecated": {
+          "description": "The edition this feature becomes deprecated in.  Using this after this\n edition may trigger warnings.",
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "title": "Edition",
+          "type": "string"
+        },
+        "editionIntroduced": {
+          "description": "The edition that this feature was first available in.  In editions\n earlier than this one, the default assigned to EDITION_LEGACY will be\n used, and proto files will not be able to override it.",
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "title": "Edition",
+          "type": "string"
+        },
+        "editionRemoved": {
+          "description": "The edition this feature is no longer available in.  In editions after\n this one, the last default assigned will be used, and proto files will\n not be able to override it.",
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "title": "Edition",
+          "type": "string"
+        }
+      },
+      "title": "Feature Support",
+      "type": "object"
+    },
+    "google.protobuf.FieldOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "ctype": {
+          "description": "NOTE: ctype is deprecated. Use `features.(pb.cpp).string_type` instead.\n The ctype option instructs the C++ code generator to use a different\n representation of the field than it normally would.  See the specific\n options below.  This option is only implemented to support use of\n [ctype=CORD] and [ctype=STRING] (the default) on non-repeated fields of\n type \"bytes\" in the open source release.\n TODO: make ctype actually deprecated.",
+          "enum": [
+            "STRING",
+            "CORD",
+            "STRING_PIECE"
+          ],
+          "title": "C Type",
+          "type": "string"
+        },
+        "debugRedact": {
+          "description": "Indicate that the field value should not be printed out when using debug\n formats, e.g. when the field contains sensitive credentials.",
+          "type": "boolean"
+        },
+        "deprecated": {
+          "description": "Is this field deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for accessors, or it will be completely ignored; in the very least, this\n is a formalization for deprecating fields.",
+          "type": "boolean"
+        },
+        "editionDefaults": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.FieldOptions.EditionDefault.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "featureSupport": {
+          "$ref": "#/$defs/google.protobuf.FieldOptions.FeatureSupport.jsonschema.strict.json"
+        },
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+        },
+        "jstype": {
+          "description": "This option is an enum to permit additional types to be added, e.g.\n goog.math.Integer.",
+          "enum": [
+            "JS_NORMAL",
+            "JS_STRING",
+            "JS_NUMBER"
+          ],
+          "title": "JS Type",
+          "type": "string"
+        },
+        "lazy": {
+          "description": "This is only a hint.  Implementations are free to choose whether to use\n eager or lazy parsing regardless of the value of this option.  However,\n setting this option true suggests that the protocol author believes that\n using lazy parsing on this field is worth the additional bookkeeping\n overhead typically needed to implement it.\n\n This option does not affect the public interface of any generated code;\n all method signatures remain the same.  Furthermore, thread-safety of the\n interface is not affected by this option; const methods remain safe to\n call from multiple threads concurrently, while non-const methods continue\n to require exclusive access.\n\n Note that lazy message fields are still eagerly verified to check\n ill-formed wireformat or missing required fields. Calling IsInitialized()\n on the outer message would fail if the inner message has missing required\n fields. Failed verification would result in parsing failure (except when\n uninitialized messages are acceptable).",
+          "title": "Should this field be parsed lazily?  Lazy applies only to message-type\n fields.  It means that when the outer message is initially parsed, the\n inner message's contents will not be parsed but instead stored in encoded\n form.  The inner message will actually be parsed when it is first accessed.",
+          "type": "boolean"
+        },
+        "packed": {
+          "description": "The packed option can be enabled for repeated primitive fields to enable\n a more efficient representation on the wire. Rather than repeatedly\n writing the tag and type for each element, the entire array is encoded as\n a single length-delimited blob. In proto3, only explicit setting it to\n false will avoid using packed encoding.  This option is prohibited in\n Editions, but the `repeated_field_encoding` feature can be used to control\n the behavior.",
+          "type": "boolean"
+        },
+        "retention": {
+          "enum": [
+            "RETENTION_UNKNOWN",
+            "RETENTION_RUNTIME",
+            "RETENTION_SOURCE"
+          ],
+          "title": "Option Retention",
+          "type": "string"
+        },
+        "targets": {
+          "items": {
+            "enum": [
+              "TARGET_TYPE_UNKNOWN",
+              "TARGET_TYPE_FILE",
+              "TARGET_TYPE_EXTENSION_RANGE",
+              "TARGET_TYPE_MESSAGE",
+              "TARGET_TYPE_FIELD",
+              "TARGET_TYPE_ONEOF",
+              "TARGET_TYPE_ENUM",
+              "TARGET_TYPE_ENUM_ENTRY",
+              "TARGET_TYPE_SERVICE",
+              "TARGET_TYPE_METHOD"
+            ],
+            "title": "Option Target Type",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here. See above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "unverifiedLazy": {
+          "description": "unverified_lazy does no correctness checks on the byte stream. This should\n only be used where lazy with verification is prohibitive for performance\n reasons.",
+          "type": "boolean"
+        },
+        "weak": {
+          "description": "For Google-internal migration only. Do not use.",
+          "type": "boolean"
+        }
+      },
+      "title": "Field Options",
+      "type": "object"
+    },
+    "google.protobuf.FileDescriptorProto.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Describes a complete .proto file.",
+      "properties": {
+        "dependency": {
+          "description": "Names of files imported by this file.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "edition": {
+          "description": "The edition of the proto file.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language.",
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "title": "Edition",
+          "type": "string"
+        },
+        "enumType": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.EnumDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "extension": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.FieldDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "messageType": {
+          "description": "All top-level definitions in this file.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.DescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "optionDependency": {
+          "description": "Names of files imported by this file purely for the purpose of providing\n option extensions. These are excluded from the dependency list above.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.FileOptions.jsonschema.strict.json"
+        },
+        "package": {
+          "type": "string"
+        },
+        "publicDependency": {
+          "description": "Indexes of the public imported files in the dependency list above.",
+          "items": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "service": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.ServiceDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "sourceCodeInfo": {
+          "$ref": "#/$defs/google.protobuf.SourceCodeInfo.jsonschema.strict.json",
+          "description": "This field contains optional information about the original source code.\n You may safely remove this entire field without harming runtime\n functionality of the descriptors -- the information is needed only by\n development tools."
+        },
+        "syntax": {
+          "description": "If `edition` is present, this value must be \"editions\".\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language.",
+          "title": "The syntax of the proto file.\n The supported values are \"proto2\", \"proto3\", and \"editions\".",
+          "type": "string"
+        },
+        "weakDependency": {
+          "description": "Indexes of the weak imported files in the dependency list.\n For Google-internal migration only. Do not use.",
+          "items": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "title": "File Descriptor Proto",
+      "type": "object"
+    },
+    "google.protobuf.FileDescriptorSet.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "The protocol compiler can output a FileDescriptorSet containing the .proto\n files it parses.",
+      "properties": {
+        "file": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.FileDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "File Descriptor Set",
+      "type": "object"
+    },
+    "google.protobuf.FileOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "ccEnableArenas": {
+          "description": "Enables the use of arenas for the proto messages in this file. This applies\n only to generated classes for C++.",
+          "type": "boolean"
+        },
+        "ccGenericServices": {
+          "description": "Generic services are now considered deprecated in favor of using plugins\n that generate code specific to your particular RPC system.  Therefore,\n these default to false.  Old code which depends on generic services should\n explicitly set them to true.",
+          "title": "Should generic services be generated in each language?  \"Generic\" services\n are not specific to any particular RPC system.  They are generated by the\n main code generators in each language (without additional plugins).\n Generic services were the only kind of service generation supported by\n early versions of google.protobuf.",
+          "type": "boolean"
+        },
+        "csharpNamespace": {
+          "description": "Namespace for generated classes; defaults to the package.",
+          "type": "string"
+        },
+        "deprecated": {
+          "description": "Is this file deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for everything in the file, or it will be completely ignored; in the very\n least, this is a formalization for deprecating files.",
+          "type": "boolean"
+        },
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+        },
+        "goPackage": {
+          "description": "Sets the Go package where structs generated from this .proto will be\n placed. If omitted, the Go package will be derived from the following:\n   - The basename of the package import path, if provided.\n   - Otherwise, the package statement in the .proto file, if present.\n   - Otherwise, the basename of the .proto file, without extension.",
+          "type": "string"
+        },
+        "javaGenerateEqualsAndHash": {
+          "description": "This option does nothing.",
+          "type": "boolean"
+        },
+        "javaGenericServices": {
+          "type": "boolean"
+        },
+        "javaMultipleFiles": {
+          "description": "If enabled, then the Java code generator will generate a separate .java\n file for each top-level message, enum, and service defined in the .proto\n file.  Thus, these types will *not* be nested inside the wrapper class\n named by java_outer_classname.  However, the wrapper class will still be\n generated to contain the file's getDescriptor() method as well as any\n top-level extensions defined in the file.",
+          "type": "boolean"
+        },
+        "javaOuterClassname": {
+          "description": "Controls the name of the wrapper Java class generated for the .proto file.\n That class will always contain the .proto file's getDescriptor() method as\n well as any top-level extensions defined in the .proto file.\n If java_multiple_files is disabled, then all the other classes from the\n .proto file will be nested inside the single wrapper outer class.",
+          "type": "string"
+        },
+        "javaPackage": {
+          "description": "Sets the Java package where classes generated from this .proto will be\n placed.  By default, the proto package is used, but this is often\n inappropriate because proto packages do not normally start with backwards\n domain names.",
+          "type": "string"
+        },
+        "javaStringCheckUtf8": {
+          "description": "TODO: clarify exactly what kinds of field types this option\n applies to, and update these docs accordingly.\n\n Proto3 files already perform these checks. Setting the option explicitly to\n false has no effect: it cannot be used to opt proto3 files out of UTF-8\n checks.",
+          "title": "A proto2 file can set this to true to opt in to UTF-8 checking for Java,\n which will throw an exception if invalid UTF-8 is parsed from the wire or\n assigned to a string field.",
+          "type": "boolean"
+        },
+        "objcClassPrefix": {
+          "description": "Sets the objective c class prefix which is prepended to all objective c\n generated classes from this .proto. There is no default.",
+          "type": "string"
+        },
+        "optimizeFor": {
+          "enum": [
+            "SPEED",
+            "CODE_SIZE",
+            "LITE_RUNTIME"
+          ],
+          "title": "Optimize Mode",
+          "type": "string"
+        },
+        "phpClassPrefix": {
+          "description": "Sets the php class prefix which is prepended to all php generated classes\n from this .proto. Default is empty.",
+          "type": "string"
+        },
+        "phpMetadataNamespace": {
+          "description": "Use this option to change the namespace of php generated metadata classes.\n Default is empty. When this option is empty, the proto file name will be\n used for determining the namespace.",
+          "type": "string"
+        },
+        "phpNamespace": {
+          "description": "Use this option to change the namespace of php generated classes. Default\n is empty. When this option is empty, the package name will be used for\n determining the namespace.",
+          "type": "string"
+        },
+        "pyGenericServices": {
+          "type": "boolean"
+        },
+        "rubyPackage": {
+          "description": "Use this option to change the package of ruby generated classes. Default\n is empty. When this option is not set, the package name will be used for\n determining the ruby package.",
+          "type": "string"
+        },
+        "swiftPrefix": {
+          "description": "By default Swift generators will take the proto package and CamelCase it\n replacing '.' with underscore and use that to prefix the types/symbols\n defined. When this options is provided, they will use this value instead\n to prefix the types/symbols defined.",
+          "type": "string"
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here.\n See the documentation for the \"Options\" section above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "File Options",
+      "type": "object"
+    },
+    "google.protobuf.MessageOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "deprecated": {
+          "description": "Is this message deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the message, or it will be completely ignored; in the very least,\n this is a formalization for deprecating messages.",
+          "type": "boolean"
+        },
+        "deprecatedLegacyJsonFieldConflicts": {
+          "description": "This should only be used as a temporary measure against broken builds due\n to the change in behavior for JSON field name conflicts.\n\n TODO This is legacy behavior we plan to remove once downstream\n teams have had time to migrate.",
+          "title": "Enable the legacy handling of JSON field name conflicts.  This lowercases\n and strips underscored from the fields before comparison in proto3 only.\n The new behavior takes `json_name` into account and applies to proto2 as\n well.",
+          "type": "boolean"
+        },
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+        },
+        "mapEntry": {
+          "description": "For maps fields:\n     map\u003cKeyType, ValueType\u003e map_field = 1;\n The parsed descriptor looks like:\n     message MapFieldEntry {\n         option map_entry = true;\n         optional KeyType key = 1;\n         optional ValueType value = 2;\n     }\n     repeated MapFieldEntry map_field = 1;\n\n Implementations may choose not to generate the map_entry=true message, but\n use a native map in the target language to hold the keys and values.\n The reflection APIs in such implementations still need to work as\n if the field is a repeated message field.\n\n NOTE: Do not set the option in .proto files. Always use the maps syntax\n instead. The option should only be implicitly set by the proto compiler\n parser.",
+          "title": "Whether the message is an automatically generated map entry type for the\n maps field.",
+          "type": "boolean"
+        },
+        "messageSetWireFormat": {
+          "description": "The message must be defined exactly as follows:\n   message Foo {\n     option message_set_wire_format = true;\n     extensions 4 to max;\n   }\n Note that the message cannot have any defined fields; MessageSets only\n have extensions.\n\n All extensions of your type must be singular messages; e.g. they cannot\n be int32s, enums, or repeated messages.\n\n Because this is an option, the above two restrictions are not enforced by\n the protocol compiler.",
+          "title": "Set true to use the old proto1 MessageSet wire format for extensions.\n This is provided for backwards-compatibility with the MessageSet wire\n format.  You should not use this for any other reason:  It's less\n efficient, has fewer features, and is more complicated.",
+          "type": "boolean"
+        },
+        "noStandardDescriptorAccessor": {
+          "description": "Disables the generation of the standard \"descriptor()\" accessor, which can\n conflict with a field of the same name.  This is meant to make migration\n from proto1 easier; new code should avoid fields named \"descriptor\".",
+          "type": "boolean"
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here. See above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Message Options",
+      "type": "object"
+    },
+    "google.protobuf.MethodDescriptorProto.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Describes a method of a service.",
+      "properties": {
+        "clientStreaming": {
+          "description": "Identifies if client streams multiple client messages",
+          "type": "boolean"
+        },
+        "inputType": {
+          "description": "Input and output type names.  These are resolved in the same way as\n FieldDescriptorProto.type_name, but must refer to a message type.",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.MethodOptions.jsonschema.strict.json"
+        },
+        "outputType": {
+          "type": "string"
+        },
+        "serverStreaming": {
+          "description": "Identifies if server streams multiple server messages",
+          "type": "boolean"
+        }
+      },
+      "title": "Method Descriptor Proto",
+      "type": "object"
+    },
+    "google.protobuf.MethodOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "deprecated": {
+          "description": "Is this method deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the method, or it will be completely ignored; in the very least,\n this is a formalization for deprecating methods.",
+          "type": "boolean"
+        },
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+        },
+        "idempotencyLevel": {
+          "enum": [
+            "IDEMPOTENCY_UNKNOWN",
+            "NO_SIDE_EFFECTS",
+            "IDEMPOTENT"
+          ],
+          "title": "Idempotency Level",
+          "type": "string"
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here. See above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Method Options",
+      "type": "object"
+    },
+    "google.protobuf.OneofDescriptorProto.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Describes a oneof.",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.OneofOptions.jsonschema.strict.json"
+        }
+      },
+      "title": "Oneof Descriptor Proto",
+      "type": "object"
+    },
+    "google.protobuf.OneofOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here. See above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Oneof Options",
+      "type": "object"
+    },
+    "google.protobuf.ServiceDescriptorProto.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Describes a service.",
+      "properties": {
+        "method": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.MethodDescriptorProto.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/$defs/google.protobuf.ServiceOptions.jsonschema.strict.json"
+        }
+      },
+      "title": "Service Descriptor Proto",
+      "type": "object"
+    },
+    "google.protobuf.ServiceOptions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "deprecated": {
+          "description": "Is this service deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the service, or it will be completely ignored; in the very least,\n this is a formalization for deprecating services.",
+          "type": "boolean"
+        },
+        "features": {
+          "$ref": "#/$defs/google.protobuf.FeatureSet.jsonschema.strict.json",
+          "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+        },
+        "uninterpretedOption": {
+          "description": "The parser stores options it doesn't recognize here. See above.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Service Options",
+      "type": "object"
+    },
+    "google.protobuf.SourceCodeInfo.Location.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "leadingComments": {
+          "description": "A series of line comments appearing on consecutive lines, with no other\n tokens appearing on those lines, will be treated as a single comment.\n\n leading_detached_comments will keep paragraphs of comments that appear\n before (but not connected to) the current element. Each paragraph,\n separated by empty lines, will be one comment element in the repeated\n field.\n\n Only the comment content is provided; comment markers (e.g. //) are\n stripped out.  For block comments, leading whitespace and an asterisk\n will be stripped from the beginning of each line other than the first.\n Newlines are included in the output.\n\n Examples:\n\n   optional int32 foo = 1;  // Comment attached to foo.\n   // Comment attached to bar.\n   optional int32 bar = 2;\n\n   optional string baz = 3;\n   // Comment attached to baz.\n   // Another line attached to baz.\n\n   // Comment attached to moo.\n   //\n   // Another line attached to moo.\n   optional double moo = 4;\n\n   // Detached comment for corge. This is not leading or trailing comments\n   // to moo or corge because there are blank lines separating it from\n   // both.\n\n   // Detached comment for corge paragraph 2.\n\n   optional string corge = 5;\n   /* Block comment attached\n    * to corge.  Leading asterisks\n    * will be removed. */\n   /* Block comment attached to\n    * grault. */\n   optional int32 grault = 6;\n\n   // ignored detached comments.",
+          "title": "If this SourceCodeInfo represents a complete declaration, these are any\n comments appearing before and after the declaration which appear to be\n attached to the declaration.",
+          "type": "string"
+        },
+        "leadingDetachedComments": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "Each element is a field number or an index.  They form a path from\n the root FileDescriptorProto to the place where the definition appears.\n For example, this path:\n   [ 4, 3, 2, 7, 1 ]\n refers to:\n   file.message_type(3)  // 4, 3\n       .field(7)         // 2, 7\n       .name()           // 1\n This is because FileDescriptorProto.message_type has field number 4:\n   repeated DescriptorProto message_type = 4;\n and DescriptorProto.field has field number 2:\n   repeated FieldDescriptorProto field = 2;\n and FieldDescriptorProto.name has field number 1:\n   optional string name = 1;\n\n Thus, the above path gives the location of a field name.  If we removed\n the last element:\n   [ 4, 3, 2, 7 ]\n this path refers to the whole field declaration (from the beginning\n of the label to the terminating semicolon).",
+          "items": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "title": "Identifies which part of the FileDescriptorProto was defined at this\n location.",
+          "type": "array"
+        },
+        "span": {
+          "description": "Always has exactly three or four elements: start line, start column,\n end line (optional, otherwise assumed same as start line), end column.\n These are packed into a single field for efficiency.  Note that line\n and column numbers are zero-based -- typically you will want to add\n 1 to each before displaying to a user.",
+          "items": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "trailingComments": {
+          "type": "string"
+        }
+      },
+      "title": "Location",
+      "type": "object"
+    },
+    "google.protobuf.SourceCodeInfo.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Encapsulates information about the original source file from which a\n FileDescriptorProto was generated.",
+      "properties": {
+        "location": {
+          "description": "For example, say we have a file like:\n   message Foo {\n     optional string foo = 1;\n   }\n Let's look at just the field definition:\n   optional string foo = 1;\n   ^       ^^     ^^  ^  ^^^\n   a       bc     de  f  ghi\n We have the following locations:\n   span   path               represents\n   [a,i)  [ 4, 0, 2, 0 ]     The whole field definition.\n   [a,b)  [ 4, 0, 2, 0, 4 ]  The label (optional).\n   [c,d)  [ 4, 0, 2, 0, 5 ]  The type (string).\n   [e,f)  [ 4, 0, 2, 0, 1 ]  The name (foo).\n   [g,h)  [ 4, 0, 2, 0, 3 ]  The number (1).\n\n Notes:\n - A location may refer to a repeated field itself (i.e. not to any\n   particular index within it).  This is used whenever a set of elements are\n   logically enclosed in a single code segment.  For example, an entire\n   extend block (possibly containing multiple extension definitions) will\n   have an outer location whose path refers to the \"extensions\" repeated\n   field without an index.\n - Multiple locations may have the same path.  This happens when a single\n   logical declaration is spread out across multiple places.  The most\n   obvious example is the \"extend\" block again -- there may be multiple\n   extend blocks in the same scope, each of which will have the same path.\n - A location's span is not always a subset of its parent's span.  For\n   example, the \"extendee\" of an extension declaration appears at the\n   beginning of the \"extend\" block and is shared by all extensions within\n   the block.\n - Just because a location's span is a subset of some other location's span\n   does not mean that it is a descendant.  For example, a \"group\" defines\n   both a type and a field in a single declaration.  Thus, the locations\n   corresponding to the type and field and their components will overlap.\n - Code which tries to interpret locations should probably be designed to\n   ignore those that it doesn't understand, as more types of locations could\n   be recorded in the future.",
+          "items": {
+            "$ref": "#/$defs/google.protobuf.SourceCodeInfo.Location.jsonschema.strict.json"
+          },
+          "title": "A Location identifies a piece of source code in a .proto file which\n corresponds to a particular definition.  This information is intended\n to be useful to IDEs, code indexers, documentation generators, and similar\n tools.",
+          "type": "array"
+        }
+      },
+      "title": "Source Code Info",
+      "type": "object"
+    },
+    "google.protobuf.UninterpretedOption.NamePart.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "The name of the uninterpreted option.  Each string represents a segment in\n a dot-separated name.  is_extension is true iff a segment represents an\n extension (denoted with parentheses in options specs in .proto files).\n E.g.,{ [\"foo\", false], [\"bar.baz\", true], [\"moo\", false] } represents\n \"foo.(bar.baz).moo\".",
+      "properties": {
+        "isExtension": {
+          "type": "boolean"
+        },
+        "namePart": {
+          "type": "string"
+        }
+      },
+      "title": "Name Part",
+      "type": "object"
+    },
+    "google.protobuf.UninterpretedOption.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "A message representing a option the parser does not recognize. This only\n appears in options protos created by the compiler::Parser class.\n DescriptorPool resolves these when building Descriptor objects. Therefore,\n options protos in descriptor objects (e.g. returned by Descriptor::options(),\n or produced by Descriptor::CopyTo()) will never have UninterpretedOptions\n in them.",
+      "properties": {
+        "aggregateValue": {
+          "type": "string"
+        },
+        "doubleValue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "enum": [
+                "Infinity",
+                "-Infinity",
+                "NaN"
+              ],
+              "type": "string"
+            }
+          ]
+        },
+        "identifierValue": {
+          "description": "The value of the uninterpreted option, in whatever type the tokenizer\n identified it as during parsing. Exactly one of these should be set.",
+          "type": "string"
+        },
+        "name": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.UninterpretedOption.NamePart.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "negativeIntValue": {
+          "type": "integer"
+        },
+        "positiveIntValue": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "stringValue": {
+          "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+          "type": "string"
+        }
+      },
+      "title": "Uninterpreted Option",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.harness.SuiteResults.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.harness.SuiteResults.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.custom_rules.FieldExpressionRepeatedEnumItems.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "enum": [
+              "ENUM_UNSPECIFIED",
+              "ENUM_ONE"
+            ],
+            "title": "Enum",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Field Expression Repeated Enum Items",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionRepeatedEnumItems.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.FieldExpressionRepeatedEnumItems.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,27 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.WrapperRequiredEmptyString.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.StringValue.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Wrapper Required Empty String",
+      "type": "object"
+    },
+    "google.protobuf.StringValue.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The string value.",
+      "title": "String Value",
+      "type": "string"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.WrapperRequiredEmptyString.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.WrapperRequiredEmptyString.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

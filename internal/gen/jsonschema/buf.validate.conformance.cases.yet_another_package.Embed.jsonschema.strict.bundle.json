@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.yet_another_package.Embed.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Validate message embedding across packages.",
+      "properties": {
+        "val": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Embed",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.yet_another_package.Embed.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.yet_another_package.Embed.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

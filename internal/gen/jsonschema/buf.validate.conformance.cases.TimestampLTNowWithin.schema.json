@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.TimestampLTNowWithin.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.Timestamp.schema.json"
+    }
+  },
+  "title": "TimestampLT Now Within",
+  "type": "object"
+}

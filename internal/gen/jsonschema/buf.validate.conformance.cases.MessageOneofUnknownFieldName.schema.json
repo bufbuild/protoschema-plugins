@@ -1,0 +1,19 @@
+{
+  "$id": "buf.validate.conformance.cases.MessageOneofUnknownFieldName.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(strField)$": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "str_field": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "title": "Message Oneof Unknown Field Name",
+  "type": "object"
+}

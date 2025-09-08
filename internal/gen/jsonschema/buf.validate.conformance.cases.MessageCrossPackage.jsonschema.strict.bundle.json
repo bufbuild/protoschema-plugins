@@ -1,0 +1,34 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MessageCrossPackage.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.other_package.Embed.jsonschema.strict.json"
+        }
+      },
+      "title": "Message Cross Package",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.other_package.Embed.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Validate message embedding across packages.",
+      "properties": {
+        "val": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Embed",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MessageCrossPackage.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MessageCrossPackage.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

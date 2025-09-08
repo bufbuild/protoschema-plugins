@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.TimestampWrongTypeScalar.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "The below messages should throw compilation errors due to rules being applied toincorrect types.",
+      "properties": {
+        "val": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Timestamp Wrong Type Scalar",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.TimestampWrongTypeScalar.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.TimestampWrongTypeScalar.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

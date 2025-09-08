@@ -1,0 +1,36 @@
+{
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionMapUint64.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    }
+  },
+  "title": "Field Expression Map Uint64",
+  "type": "object"
+}

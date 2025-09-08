@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringMinLen.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "minLength": 3,
+      "type": "string"
+    }
+  },
+  "title": "String Min Len",
+  "type": "object"
+}

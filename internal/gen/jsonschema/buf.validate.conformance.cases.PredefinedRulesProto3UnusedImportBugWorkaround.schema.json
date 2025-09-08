@@ -1,0 +1,24 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedRulesProto3UnusedImportBugWorkaround.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "This is a workaround for https://github.com/bufbuild/buf/issues/3306.\n TODO(jchadwick-buf): Remove this when bufbuild/buf#3306 is fixed.",
+  "patternProperties": {
+    "^(dummy1)$": {
+      "$ref": "buf.validate.conformance.cases.StandardPredefinedAndCustomRuleProto2.schema.json"
+    },
+    "^(dummy2)$": {
+      "$ref": "buf.validate.conformance.cases.StandardPredefinedAndCustomRuleEdition2023.schema.json"
+    }
+  },
+  "properties": {
+    "dummy_1": {
+      "$ref": "buf.validate.conformance.cases.StandardPredefinedAndCustomRuleProto2.schema.json"
+    },
+    "dummy_2": {
+      "$ref": "buf.validate.conformance.cases.StandardPredefinedAndCustomRuleEdition2023.schema.json"
+    }
+  },
+  "title": "Predefined Rules Proto3 Unused Import Bug Workaround",
+  "type": "object"
+}

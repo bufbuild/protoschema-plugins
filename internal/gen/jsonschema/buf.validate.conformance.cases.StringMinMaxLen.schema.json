@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.StringMinMaxLen.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "maxLength": 5,
+      "minLength": 3,
+      "type": "string"
+    }
+  },
+  "title": "String Min Max Len",
+  "type": "object"
+}

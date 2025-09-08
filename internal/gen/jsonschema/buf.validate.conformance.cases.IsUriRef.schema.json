@@ -1,0 +1,13 @@
+{
+  "$id": "buf.validate.conformance.cases.IsUriRef.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "title": "Is Uri Ref",
+  "type": "object"
+}

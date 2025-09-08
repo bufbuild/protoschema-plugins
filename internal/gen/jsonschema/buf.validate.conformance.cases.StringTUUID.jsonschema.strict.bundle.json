@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.StringTUUID.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "pattern": "^[0-9a-fA-F]{32}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "StringTUUID",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.StringTUUID.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.StringTUUID.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

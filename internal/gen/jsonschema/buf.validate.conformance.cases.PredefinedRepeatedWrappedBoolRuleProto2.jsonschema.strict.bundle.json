@@ -1,0 +1,27 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedRepeatedWrappedBoolRuleProto2.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.BoolValue.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Predefined Repeated Wrapped Bool Rule Proto2",
+      "type": "object"
+    },
+    "google.protobuf.BoolValue.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The bool value.",
+      "title": "Bool Value",
+      "type": "boolean"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedRepeatedWrappedBoolRuleProto2.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedRepeatedWrappedBoolRuleProto2.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

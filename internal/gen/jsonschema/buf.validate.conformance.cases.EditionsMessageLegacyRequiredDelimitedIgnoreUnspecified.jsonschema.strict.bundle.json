@@ -1,0 +1,29 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.EditionsMessageLegacyRequiredDelimitedIgnoreUnspecified.Msg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "title": "Msg",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.EditionsMessageLegacyRequiredDelimitedIgnoreUnspecified.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.EditionsMessageLegacyRequiredDelimitedIgnoreUnspecified.Msg.jsonschema.strict.json"
+        }
+      },
+      "title": "Editions Message Legacy Required Delimited Ignore Unspecified",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.EditionsMessageLegacyRequiredDelimitedIgnoreUnspecified.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.EditionsMessageLegacyRequiredDelimitedIgnoreUnspecified.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

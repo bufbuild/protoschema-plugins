@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.SFixed32GT.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 16,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "S Fixed32GT",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.SFixed32GT.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.SFixed32GT.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
