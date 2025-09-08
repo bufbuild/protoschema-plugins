@@ -1,0 +1,28 @@
+{
+  "$id": "buf.validate.conformance.cases.FloatGT.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 16,
+          "maximum": 3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "FloatGT",
+  "type": "object"
+}

@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Proto2RepeatedItemIgnoreUnspecified.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "exclusiveMaximum": 2147483648,
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Proto2 Repeated Item Ignore Unspecified",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Proto2RepeatedItemIgnoreUnspecified.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Proto2RepeatedItemIgnoreUnspecified.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

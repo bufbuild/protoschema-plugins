@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredEditionsMessageExplicitPresenceDelimited.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.RequiredEditionsMessageExplicitPresenceDelimited.Msg.schema.json"
+    }
+  },
+  "required": [
+    "val"
+  ],
+  "title": "Required Editions Message Explicit Presence Delimited",
+  "type": "object"
+}

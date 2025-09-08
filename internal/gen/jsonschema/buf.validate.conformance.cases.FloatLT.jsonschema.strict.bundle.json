@@ -1,0 +1,33 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.FloatLT.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "exclusiveMaximum": 0,
+              "minimum": -3.4028234663852886e+38,
+              "type": "number"
+            },
+            {
+              "enum": [
+                "-Infinity"
+              ],
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "FloatLT",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.FloatLT.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.FloatLT.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

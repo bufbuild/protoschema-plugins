@@ -1,0 +1,20 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.custom_rules.FieldExpressionOptionalScalar.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "title": "Field Expression Optional Scalar",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionOptionalScalar.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.FieldExpressionOptionalScalar.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

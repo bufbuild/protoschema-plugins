@@ -1,0 +1,28 @@
+{
+  "$id": "buf.validate.conformance.cases.UInt32ExLTGT.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "exclusiveMaximum": 4294967296,
+          "exclusiveMinimum": 10,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "U Int32 ExLTGT",
+  "type": "object"
+}

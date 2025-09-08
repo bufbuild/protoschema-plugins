@@ -1,0 +1,25 @@
+{
+  "$id": "buf.validate.conformance.cases.OneofNone.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "x": {
+      "type": "string"
+    },
+    "y": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "title": "Oneof None",
+  "type": "object"
+}

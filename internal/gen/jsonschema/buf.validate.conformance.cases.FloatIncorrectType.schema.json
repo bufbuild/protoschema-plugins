@@ -1,0 +1,27 @@
+{
+  "$id": "buf.validate.conformance.cases.FloatIncorrectType.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Float Incorrect Type",
+  "type": "object"
+}

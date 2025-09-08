@@ -1,0 +1,28 @@
+{
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "additionalProperties": {
+        "$ref": "buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.Msg.schema.json"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    }
+  },
+  "title": "Field Expression Map Message Values",
+  "type": "object"
+}

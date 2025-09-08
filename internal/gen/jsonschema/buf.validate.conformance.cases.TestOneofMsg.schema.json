@@ -1,0 +1,16 @@
+{
+  "$id": "buf.validate.conformance.cases.TestOneofMsg.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": false,
+      "enum": [
+        true
+      ],
+      "type": "boolean"
+    }
+  },
+  "title": "Test Oneof Msg",
+  "type": "object"
+}

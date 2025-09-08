@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.StandardPredefinedAndCustomRuleProto3.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "exclusiveMaximum": 28,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "a"
+      ],
+      "title": "Standard Predefined And Custom Rule Proto3",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.StandardPredefinedAndCustomRuleProto3.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.StandardPredefinedAndCustomRuleProto3.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

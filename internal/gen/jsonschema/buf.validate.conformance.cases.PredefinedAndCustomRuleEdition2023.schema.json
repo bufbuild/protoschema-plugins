@@ -1,0 +1,25 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedAndCustomRuleEdition2023.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "a": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "b": {
+      "$ref": "buf.validate.conformance.cases.PredefinedAndCustomRuleEdition2023.Nested.schema.json"
+    }
+  },
+  "title": "Predefined And Custom Rule Edition2023",
+  "type": "object"
+}

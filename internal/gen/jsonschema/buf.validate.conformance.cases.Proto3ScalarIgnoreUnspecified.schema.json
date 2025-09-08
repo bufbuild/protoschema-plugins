@@ -1,0 +1,23 @@
+{
+  "$id": "buf.validate.conformance.cases.Proto3ScalarIgnoreUnspecified.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Proto3 Scalar Ignore Unspecified",
+  "type": "object"
+}

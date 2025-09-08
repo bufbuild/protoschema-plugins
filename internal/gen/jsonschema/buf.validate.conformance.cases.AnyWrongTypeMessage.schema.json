@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.AnyWrongTypeMessage.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.AnyWrongTypeMessage.WrongType.schema.json"
+    }
+  },
+  "title": "Any Wrong Type Message",
+  "type": "object"
+}

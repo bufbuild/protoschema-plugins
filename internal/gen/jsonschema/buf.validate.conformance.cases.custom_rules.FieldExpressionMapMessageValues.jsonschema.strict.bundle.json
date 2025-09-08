@@ -1,0 +1,42 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.Msg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "a"
+      ],
+      "title": "Msg",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "additionalProperties": {
+            "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.Msg.jsonschema.strict.json"
+          },
+          "propertyNames": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "type": "object"
+        }
+      },
+      "title": "Field Expression Map Message Values",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.FieldExpressionMapMessageValues.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

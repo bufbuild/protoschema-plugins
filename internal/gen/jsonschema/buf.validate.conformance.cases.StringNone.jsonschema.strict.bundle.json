@@ -1,0 +1,21 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.StringNone.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "String None",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.StringNone.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.StringNone.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

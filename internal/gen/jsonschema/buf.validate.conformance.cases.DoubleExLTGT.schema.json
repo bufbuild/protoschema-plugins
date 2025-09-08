@@ -1,0 +1,32 @@
+{
+  "$id": "buf.validate.conformance.cases.DoubleExLTGT.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 0,
+          "type": "number"
+        },
+        {
+          "exclusiveMinimum": 10,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Double ExLTGT",
+  "type": "object"
+}

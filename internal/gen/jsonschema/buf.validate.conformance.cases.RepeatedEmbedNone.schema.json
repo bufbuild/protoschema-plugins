@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.RepeatedEmbedNone.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "items": {
+        "$ref": "buf.validate.conformance.cases.Embed.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Repeated Embed None",
+  "type": "object"
+}

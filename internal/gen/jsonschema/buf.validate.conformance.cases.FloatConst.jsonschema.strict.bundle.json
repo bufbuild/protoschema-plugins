@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.FloatConst.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            1.23
+          ],
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Float Const",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.FloatConst.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.FloatConst.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

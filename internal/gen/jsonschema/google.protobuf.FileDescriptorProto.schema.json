@@ -1,0 +1,189 @@
+{
+  "$id": "google.protobuf.FileDescriptorProto.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Describes a complete .proto file.",
+  "patternProperties": {
+    "^(enumType)$": {
+      "items": {
+        "$ref": "google.protobuf.EnumDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "^(messageType)$": {
+      "description": "All top-level definitions in this file.",
+      "items": {
+        "$ref": "google.protobuf.DescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "^(optionDependency)$": {
+      "description": "Names of files imported by this file purely for the purpose of providing\n option extensions. These are excluded from the dependency list above.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "^(publicDependency)$": {
+      "description": "Indexes of the public imported files in the dependency list above.",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(sourceCodeInfo)$": {
+      "$ref": "google.protobuf.SourceCodeInfo.schema.json",
+      "description": "This field contains optional information about the original source code.\n You may safely remove this entire field without harming runtime\n functionality of the descriptors -- the information is needed only by\n development tools."
+    },
+    "^(weakDependency)$": {
+      "description": "Indexes of the weak imported files in the dependency list.\n For Google-internal migration only. Do not use.",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    }
+  },
+  "properties": {
+    "dependency": {
+      "description": "Names of files imported by this file.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "edition": {
+      "anyOf": [
+        {
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "The edition of the proto file.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language.",
+      "title": "Edition"
+    },
+    "enum_type": {
+      "items": {
+        "$ref": "google.protobuf.EnumDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "extension": {
+      "items": {
+        "$ref": "google.protobuf.FieldDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "message_type": {
+      "description": "All top-level definitions in this file.",
+      "items": {
+        "$ref": "google.protobuf.DescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "option_dependency": {
+      "description": "Names of files imported by this file purely for the purpose of providing\n option extensions. These are excluded from the dependency list above.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "options": {
+      "$ref": "google.protobuf.FileOptions.schema.json"
+    },
+    "package": {
+      "type": "string"
+    },
+    "public_dependency": {
+      "description": "Indexes of the public imported files in the dependency list above.",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "service": {
+      "items": {
+        "$ref": "google.protobuf.ServiceDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "source_code_info": {
+      "$ref": "google.protobuf.SourceCodeInfo.schema.json",
+      "description": "This field contains optional information about the original source code.\n You may safely remove this entire field without harming runtime\n functionality of the descriptors -- the information is needed only by\n development tools."
+    },
+    "syntax": {
+      "description": "If `edition` is present, this value must be \"editions\".\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language.",
+      "title": "The syntax of the proto file.\n The supported values are \"proto2\", \"proto3\", and \"editions\".",
+      "type": "string"
+    },
+    "weak_dependency": {
+      "description": "Indexes of the weak imported files in the dependency list.\n For Google-internal migration only. Do not use.",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    }
+  },
+  "title": "File Descriptor Proto",
+  "type": "object"
+}

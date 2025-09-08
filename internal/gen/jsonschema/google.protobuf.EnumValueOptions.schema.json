@@ -1,0 +1,49 @@
+{
+  "$id": "google.protobuf.EnumValueOptions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(debugRedact)$": {
+      "description": "Indicate that fields annotated with this enum value should not be printed\n out when using debug formats, e.g. when the field contains sensitive\n credentials.",
+      "type": "boolean"
+    },
+    "^(featureSupport)$": {
+      "$ref": "google.protobuf.FieldOptions.FeatureSupport.schema.json",
+      "description": "Information about the support window of a feature value."
+    },
+    "^(uninterpretedOption)$": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "properties": {
+    "debug_redact": {
+      "description": "Indicate that fields annotated with this enum value should not be printed\n out when using debug formats, e.g. when the field contains sensitive\n credentials.",
+      "type": "boolean"
+    },
+    "deprecated": {
+      "description": "Is this enum value deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the enum value, or it will be completely ignored; in the very least,\n this is a formalization for deprecating enum values.",
+      "type": "boolean"
+    },
+    "feature_support": {
+      "$ref": "google.protobuf.FieldOptions.FeatureSupport.schema.json",
+      "description": "Information about the support window of a feature value."
+    },
+    "features": {
+      "$ref": "google.protobuf.FeatureSet.schema.json",
+      "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+    },
+    "uninterpreted_option": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Enum Value Options",
+  "type": "object"
+}

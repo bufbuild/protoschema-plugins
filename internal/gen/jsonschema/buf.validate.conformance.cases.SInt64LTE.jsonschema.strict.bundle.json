@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.SInt64LTE.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "maximum": 64,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "S Int64LTE",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.SInt64LTE.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.SInt64LTE.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

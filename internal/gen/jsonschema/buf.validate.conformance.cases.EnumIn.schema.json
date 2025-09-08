@@ -1,0 +1,35 @@
+{
+  "$id": "buf.validate.conformance.cases.EnumIn.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "pattern": "^TEST_ENUM_UNSPECIFIED$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "TEST_ENUM_TWO"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 0,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Test Enum"
+    }
+  },
+  "title": "Enum In",
+  "type": "object"
+}

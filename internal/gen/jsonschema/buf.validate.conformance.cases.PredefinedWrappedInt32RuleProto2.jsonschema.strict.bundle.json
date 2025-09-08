@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedWrappedInt32RuleProto2.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.Int32Value.jsonschema.strict.json"
+        }
+      },
+      "title": "Predefined Wrapped Int32 Rule Proto2",
+      "type": "object"
+    },
+    "google.protobuf.Int32Value.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The int32 value.",
+      "maximum": 2147483647,
+      "minimum": -2147483648,
+      "title": "Int32 Value",
+      "type": "integer"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedWrappedInt32RuleProto2.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedWrappedInt32RuleProto2.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

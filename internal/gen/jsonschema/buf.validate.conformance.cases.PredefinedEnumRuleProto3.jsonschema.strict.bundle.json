@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedEnumRuleProto3.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            "ENUM_PROTO3_ZERO_UNSPECIFIED",
+            "ENUM_PROTO3_ONE"
+          ],
+          "title": "Enum Proto3",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Predefined Enum Rule Proto3",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedEnumRuleProto3.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedEnumRuleProto3.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

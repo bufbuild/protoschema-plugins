@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringContains.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "pattern": ".*bar.*",
+      "type": "string"
+    }
+  },
+  "title": "String Contains",
+  "type": "object"
+}

@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.StringIPv6.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "format": "ipv6",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "StringI Pv6",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.StringIPv6.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.StringIPv6.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

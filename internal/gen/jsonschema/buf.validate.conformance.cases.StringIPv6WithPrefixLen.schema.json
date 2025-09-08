@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringIPv6WithPrefixLen.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "pattern": "^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$",
+      "type": "string"
+    }
+  },
+  "title": "StringI Pv6 With Prefix Len",
+  "type": "object"
+}

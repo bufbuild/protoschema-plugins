@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedRepeatedWrappedUInt64RuleEdition2023.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "items": {
+        "$ref": "google.protobuf.UInt64Value.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Predefined Repeated WrappedU Int64 Rule Edition2023",
+  "type": "object"
+}

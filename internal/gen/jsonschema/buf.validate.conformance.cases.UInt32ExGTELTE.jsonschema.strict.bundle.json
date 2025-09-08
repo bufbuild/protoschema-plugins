@@ -1,0 +1,32 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.UInt32ExGTELTE.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "maximum": 128,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "exclusiveMaximum": 4294967296,
+              "minimum": 256,
+              "type": "integer"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "U Int32 ExGTELTE",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.UInt32ExGTELTE.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.UInt32ExGTELTE.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

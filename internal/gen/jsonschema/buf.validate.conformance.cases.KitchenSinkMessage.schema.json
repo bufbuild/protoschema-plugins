@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.KitchenSinkMessage.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.ComplexTestMsg.schema.json"
+    }
+  },
+  "title": "Kitchen Sink Message",
+  "type": "object"
+}

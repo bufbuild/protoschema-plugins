@@ -1,0 +1,29 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Proto2MessageRequiredIgnoreEmpty.Msg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "title": "Msg",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.Proto2MessageRequiredIgnoreEmpty.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.Proto2MessageRequiredIgnoreEmpty.Msg.jsonschema.strict.json"
+        }
+      },
+      "title": "Proto2 Message Required Ignore Empty",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Proto2MessageRequiredIgnoreEmpty.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Proto2MessageRequiredIgnoreEmpty.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

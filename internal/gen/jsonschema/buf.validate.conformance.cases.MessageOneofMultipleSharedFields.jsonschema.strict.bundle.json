@@ -1,0 +1,31 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MessageOneofMultipleSharedFields.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "boolField": {
+          "type": "boolean"
+        },
+        "intField": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "strField": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "strField",
+        "boolField",
+        "intField"
+      ],
+      "title": "Message Oneof Multiple Shared Fields",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MessageOneofMultipleSharedFields.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MessageOneofMultipleSharedFields.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

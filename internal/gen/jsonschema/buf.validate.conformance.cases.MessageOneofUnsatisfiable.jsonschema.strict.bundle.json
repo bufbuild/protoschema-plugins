@@ -1,0 +1,29 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MessageOneofUnsatisfiable.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "type": "boolean"
+        },
+        "b": {
+          "type": "boolean"
+        },
+        "c": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "a",
+        "b",
+        "c"
+      ],
+      "title": "Message Oneof Unsatisfiable",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MessageOneofUnsatisfiable.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MessageOneofUnsatisfiable.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

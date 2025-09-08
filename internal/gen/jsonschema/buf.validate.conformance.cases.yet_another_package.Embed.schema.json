@@ -1,0 +1,23 @@
+{
+  "$id": "buf.validate.conformance.cases.yet_another_package.Embed.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Validate message embedding across packages.",
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Embed",
+  "type": "object"
+}

@@ -1,0 +1,31 @@
+{
+  "$id": "buf.validate.conformance.cases.RepeatedMultipleUnique.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "a": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "b": {
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    }
+  },
+  "title": "Repeated Multiple Unique",
+  "type": "object"
+}

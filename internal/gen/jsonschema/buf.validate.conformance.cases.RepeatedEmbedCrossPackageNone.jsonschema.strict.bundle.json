@@ -1,0 +1,37 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RepeatedEmbedCrossPackageNone.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "$ref": "#/$defs/buf.validate.conformance.cases.other_package.Embed.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Repeated Embed Cross Package None",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.other_package.Embed.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Validate message embedding across packages.",
+      "properties": {
+        "val": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Embed",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RepeatedEmbedCrossPackageNone.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RepeatedEmbedCrossPackageNone.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

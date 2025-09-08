@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringEqualMinMaxBytes.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "maxLength": 4,
+      "type": "string"
+    }
+  },
+  "title": "String Equal Min Max Bytes",
+  "type": "object"
+}

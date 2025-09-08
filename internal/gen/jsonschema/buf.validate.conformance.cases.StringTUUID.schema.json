@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringTUUID.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "pattern": "^[0-9a-fA-F]{32}$",
+      "type": "string"
+    }
+  },
+  "title": "StringTUUID",
+  "type": "object"
+}

@@ -1,0 +1,44 @@
+{
+  "$id": "buf.validate.conformance.cases.EnumInsideOneof.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "enum": [
+            "TEST_ENUM_UNSPECIFIED",
+            "TEST_ENUM_ONE",
+            "TEST_ENUM_TWO"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 0,
+          "type": "integer"
+        }
+      ],
+      "title": "Test Enum"
+    },
+    "val2": {
+      "anyOf": [
+        {
+          "enum": [
+            "TEST_ENUM_ONE",
+            "TEST_ENUM_TWO"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 1,
+          "type": "integer"
+        }
+      ],
+      "title": "Test Enum"
+    }
+  },
+  "title": "Enum Inside Oneof",
+  "type": "object"
+}

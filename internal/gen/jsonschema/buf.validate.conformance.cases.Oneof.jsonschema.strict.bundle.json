@@ -1,0 +1,44 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Oneof.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "x": {
+          "pattern": "^foo.*",
+          "type": "string"
+        },
+        "y": {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        "z": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.TestOneofMsg.jsonschema.strict.json"
+        }
+      },
+      "title": "Oneof",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.TestOneofMsg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            true
+          ],
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Test Oneof Msg",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Oneof.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Oneof.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

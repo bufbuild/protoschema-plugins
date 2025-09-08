@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedWrappedStringRuleProto3.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.StringValue.schema.json"
+    }
+  },
+  "title": "Predefined Wrapped String Rule Proto3",
+  "type": "object"
+}

@@ -1,0 +1,20 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Proto2OneofIgnoreAlwaysWithDefault.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "title": "Proto2 Oneof Ignore Always With Default",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Proto2OneofIgnoreAlwaysWithDefault.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Proto2OneofIgnoreAlwaysWithDefault.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

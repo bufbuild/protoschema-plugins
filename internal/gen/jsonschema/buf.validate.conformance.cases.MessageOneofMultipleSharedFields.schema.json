@@ -1,0 +1,55 @@
+{
+  "$id": "buf.validate.conformance.cases.MessageOneofMultipleSharedFields.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(boolField)$": {
+      "default": false,
+      "type": "boolean"
+    },
+    "^(intField)$": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(strField)$": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "bool_field": {
+      "default": false,
+      "type": "boolean"
+    },
+    "int_field": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "str_field": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "title": "Message Oneof Multiple Shared Fields",
+  "type": "object"
+}

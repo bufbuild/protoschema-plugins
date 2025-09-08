@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.IsHostAndPort.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "portRequired": {
+          "type": "boolean"
+        },
+        "val": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "val",
+        "portRequired"
+      ],
+      "title": "Is Host And Port",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.IsHostAndPort.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.IsHostAndPort.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

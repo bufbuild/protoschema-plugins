@@ -1,0 +1,48 @@
+{
+  "$id": "google.protobuf.MethodDescriptorProto.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Describes a method of a service.",
+  "patternProperties": {
+    "^(clientStreaming)$": {
+      "description": "Identifies if client streams multiple client messages",
+      "type": "boolean"
+    },
+    "^(inputType)$": {
+      "description": "Input and output type names.  These are resolved in the same way as\n FieldDescriptorProto.type_name, but must refer to a message type.",
+      "type": "string"
+    },
+    "^(outputType)$": {
+      "type": "string"
+    },
+    "^(serverStreaming)$": {
+      "description": "Identifies if server streams multiple server messages",
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "client_streaming": {
+      "description": "Identifies if client streams multiple client messages",
+      "type": "boolean"
+    },
+    "input_type": {
+      "description": "Input and output type names.  These are resolved in the same way as\n FieldDescriptorProto.type_name, but must refer to a message type.",
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "options": {
+      "$ref": "google.protobuf.MethodOptions.schema.json"
+    },
+    "output_type": {
+      "type": "string"
+    },
+    "server_streaming": {
+      "description": "Identifies if server streams multiple server messages",
+      "type": "boolean"
+    }
+  },
+  "title": "Method Descriptor Proto",
+  "type": "object"
+}

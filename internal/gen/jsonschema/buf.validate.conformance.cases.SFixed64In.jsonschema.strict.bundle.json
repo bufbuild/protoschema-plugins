@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.SFixed64In.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            2,
+            3
+          ],
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "S Fixed64 In",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.SFixed64In.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.SFixed64In.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

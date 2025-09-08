@@ -1,0 +1,29 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RepeatedMultipleUnique.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "b": {
+          "items": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Repeated Multiple Unique",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RepeatedMultipleUnique.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RepeatedMultipleUnique.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

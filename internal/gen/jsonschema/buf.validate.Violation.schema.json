@@ -1,0 +1,42 @@
+{
+  "$id": "buf.validate.Violation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "For example, consider the following message:\n\n ```proto\n message User {\n     int32 age = 1 [(buf.validate.field).cel = {\n         id: \"user.age\",\n         expression: \"this \u003c 18 ? 'User must be at least 18 years old' : ''\",\n     }];\n }\n ```\n\n It could produce the following violation:\n\n ```json\n {\n   \"ruleId\": \"user.age\",\n   \"message\": \"User must be at least 18 years old\",\n   \"field\": {\n     \"elements\": [\n       {\n         \"fieldNumber\": 1,\n         \"fieldName\": \"age\",\n         \"fieldType\": \"TYPE_INT32\"\n       }\n     ]\n   },\n   \"rule\": {\n     \"elements\": [\n       {\n         \"fieldNumber\": 23,\n         \"fieldName\": \"cel\",\n         \"fieldType\": \"TYPE_MESSAGE\",\n         \"index\": \"0\"\n       }\n     ]\n   }\n }\n ```",
+  "patternProperties": {
+    "^(forKey)$": {
+      "description": "`for_key` indicates whether the violation was caused by a map key, rather than a value.",
+      "type": "boolean"
+    },
+    "^(ruleId)$": {
+      "description": "`rule_id` is the unique identifier of the `Rule` that was not fulfilled.\n This is the same `id` that was specified in the `Rule` message, allowing easy tracing of which rule was violated.",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "field": {
+      "$ref": "buf.validate.FieldPath.schema.json",
+      "description": "For example, consider the following message:\n\n ```proto\n message Message {\n   bool a = 1 [(buf.validate.field).required = true];\n }\n ```\n\n It could produce the following violation:\n\n ```textproto\n violation {\n   field { element { field_number: 1, field_name: \"a\", field_type: 8 } }\n   ...\n }\n ```",
+      "title": "`field` is a machine-readable path to the field that failed validation.\n This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation."
+    },
+    "for_key": {
+      "description": "`for_key` indicates whether the violation was caused by a map key, rather than a value.",
+      "type": "boolean"
+    },
+    "message": {
+      "description": "`message` is a human-readable error message that describes the nature of the violation.\n This can be the default error message from the violated `Rule`, or it can be a custom message that gives more context about the violation.",
+      "type": "string"
+    },
+    "rule": {
+      "$ref": "buf.validate.FieldPath.schema.json",
+      "description": "For example, consider the following message:\n\n ```proto\n message Message {\n   bool a = 1 [(buf.validate.field).required = true];\n   bool b = 2 [(buf.validate.field).cel = {\n     id: \"custom_rule\",\n     expression: \"!this ? 'b must be true': ''\"\n   }]\n }\n ```\n\n It could produce the following violations:\n\n ```textproto\n violation {\n   rule { element { field_number: 25, field_name: \"required\", field_type: 8 } }\n   ...\n }\n violation {\n   rule { element { field_number: 23, field_name: \"cel\", field_type: 11, index: 0 } }\n   ...\n }\n ```",
+      "title": "`rule` is a machine-readable path that points to the specific rule that failed validation.\n This will be a nested field starting from the FieldRules of the field that failed validation.\n For custom rules, this will provide the path of the rule, e.g. `cel[0]`."
+    },
+    "rule_id": {
+      "description": "`rule_id` is the unique identifier of the `Rule` that was not fulfilled.\n This is the same `id` that was specified in the `Rule` message, allowing easy tracing of which rule was violated.",
+      "type": "string"
+    }
+  },
+  "title": "`Violation` represents a single instance where a validation rule, expressed\n as a `Rule`, was not met. It provides information about the field that\n caused the violation, the specific rule that wasn't fulfilled, and a\n human-readable error message.",
+  "type": "object"
+}

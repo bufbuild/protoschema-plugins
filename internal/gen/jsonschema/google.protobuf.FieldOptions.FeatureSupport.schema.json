@@ -1,0 +1,188 @@
+{
+  "$id": "google.protobuf.FieldOptions.FeatureSupport.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Information about the support window of a feature.",
+  "patternProperties": {
+    "^(deprecationWarning)$": {
+      "description": "The deprecation warning text if this feature is used after the edition it\n was marked deprecated in.",
+      "type": "string"
+    },
+    "^(editionDeprecated)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "The edition this feature becomes deprecated in.  Using this after this\n edition may trigger warnings.",
+      "title": "Edition"
+    },
+    "^(editionIntroduced)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "The edition that this feature was first available in.  In editions\n earlier than this one, the default assigned to EDITION_LEGACY will be\n used, and proto files will not be able to override it.",
+      "title": "Edition"
+    },
+    "^(editionRemoved)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "The edition this feature is no longer available in.  In editions after\n this one, the last default assigned will be used, and proto files will\n not be able to override it.",
+      "title": "Edition"
+    }
+  },
+  "properties": {
+    "deprecation_warning": {
+      "description": "The deprecation warning text if this feature is used after the edition it\n was marked deprecated in.",
+      "type": "string"
+    },
+    "edition_deprecated": {
+      "anyOf": [
+        {
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "The edition this feature becomes deprecated in.  Using this after this\n edition may trigger warnings.",
+      "title": "Edition"
+    },
+    "edition_introduced": {
+      "anyOf": [
+        {
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "The edition that this feature was first available in.  In editions\n earlier than this one, the default assigned to EDITION_LEGACY will be\n used, and proto files will not be able to override it.",
+      "title": "Edition"
+    },
+    "edition_removed": {
+      "anyOf": [
+        {
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_LEGACY",
+            "EDITION_PROTO2",
+            "EDITION_PROTO3",
+            "EDITION_2023",
+            "EDITION_2024",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY",
+            "EDITION_MAX"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "The edition this feature is no longer available in.  In editions after\n this one, the last default assigned will be used, and proto files will\n not be able to override it.",
+      "title": "Edition"
+    }
+  },
+  "title": "Feature Support",
+  "type": "object"
+}

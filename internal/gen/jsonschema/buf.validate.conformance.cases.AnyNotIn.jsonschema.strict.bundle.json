@@ -1,0 +1,28 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.AnyNotIn.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.Any.jsonschema.strict.json"
+        }
+      },
+      "title": "Any Not In",
+      "type": "object"
+    },
+    "google.protobuf.Any.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "title": "Any",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.AnyNotIn.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.AnyNotIn.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

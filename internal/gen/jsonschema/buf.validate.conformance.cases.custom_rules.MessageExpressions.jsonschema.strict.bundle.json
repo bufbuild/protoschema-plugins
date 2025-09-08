@@ -1,0 +1,76 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.custom_rules.MessageExpressions.Nested.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "b": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "a",
+        "b"
+      ],
+      "title": "Nested",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.custom_rules.MessageExpressions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "A message with message-level custom expressions",
+      "properties": {
+        "a": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "b": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "c": {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_ONE"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        "d": {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_ONE"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        "e": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.MessageExpressions.Nested.jsonschema.strict.json"
+        },
+        "f": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.MessageExpressions.Nested.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "title": "Message Expressions",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.custom_rules.MessageExpressions.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.MessageExpressions.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

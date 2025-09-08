@@ -1,0 +1,32 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.DoubleGTE.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "minimum": 8,
+              "type": "number"
+            },
+            {
+              "enum": [
+                "Infinity"
+              ],
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "DoubleGTE",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.DoubleGTE.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.DoubleGTE.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

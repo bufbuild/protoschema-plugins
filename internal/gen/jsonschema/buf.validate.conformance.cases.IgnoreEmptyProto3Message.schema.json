@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.IgnoreEmptyProto3Message.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.IgnoreEmptyProto3Message.Msg.schema.json"
+    }
+  },
+  "title": "Ignore Empty Proto3 Message",
+  "type": "object"
+}

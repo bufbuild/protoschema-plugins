@@ -1,0 +1,66 @@
+{
+  "$id": "buf.validate.conformance.cases.MultipleMaps.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "first": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 4294967296,
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "second": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 0,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "third": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 2147483648,
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    }
+  },
+  "title": "Multiple Maps",
+  "type": "object"
+}

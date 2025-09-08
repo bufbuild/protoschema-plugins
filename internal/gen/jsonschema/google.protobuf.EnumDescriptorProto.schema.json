@@ -1,0 +1,71 @@
+{
+  "$id": "google.protobuf.EnumDescriptorProto.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Describes an enum type.",
+  "patternProperties": {
+    "^(reservedName)$": {
+      "description": "Reserved enum value names, which may not be reused. A given name may only\n be reserved once.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "^(reservedRange)$": {
+      "description": "Range of reserved numeric values. Reserved numeric values may not be used\n by enum values in the same enum declaration. Reserved ranges may not\n overlap.",
+      "items": {
+        "$ref": "google.protobuf.EnumDescriptorProto.EnumReservedRange.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "options": {
+      "$ref": "google.protobuf.EnumOptions.schema.json"
+    },
+    "reserved_name": {
+      "description": "Reserved enum value names, which may not be reused. A given name may only\n be reserved once.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reserved_range": {
+      "description": "Range of reserved numeric values. Reserved numeric values may not be used\n by enum values in the same enum declaration. Reserved ranges may not\n overlap.",
+      "items": {
+        "$ref": "google.protobuf.EnumDescriptorProto.EnumReservedRange.schema.json"
+      },
+      "type": "array"
+    },
+    "value": {
+      "items": {
+        "$ref": "google.protobuf.EnumValueDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "visibility": {
+      "anyOf": [
+        {
+          "enum": [
+            "VISIBILITY_UNSET",
+            "VISIBILITY_LOCAL",
+            "VISIBILITY_EXPORT"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "Support for `export` and `local` keywords on enums.",
+      "title": "Symbol Visibility"
+    }
+  },
+  "title": "Enum Descriptor Proto",
+  "type": "object"
+}

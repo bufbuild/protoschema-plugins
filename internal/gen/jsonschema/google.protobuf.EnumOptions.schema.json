@@ -1,0 +1,49 @@
+{
+  "$id": "google.protobuf.EnumOptions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(allowAlias)$": {
+      "description": "Set this option to true to allow mapping different tag names to the same\n value.",
+      "type": "boolean"
+    },
+    "^(deprecatedLegacyJsonFieldConflicts)$": {
+      "description": "Enable the legacy handling of JSON field name conflicts.  This lowercases\n and strips underscored from the fields before comparison in proto3 only.\n The new behavior takes `json_name` into account and applies to proto2 as\n well.\n TODO Remove this legacy behavior once downstream teams have\n had time to migrate.",
+      "type": "boolean"
+    },
+    "^(uninterpretedOption)$": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "properties": {
+    "allow_alias": {
+      "description": "Set this option to true to allow mapping different tag names to the same\n value.",
+      "type": "boolean"
+    },
+    "deprecated": {
+      "description": "Is this enum deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the enum, or it will be completely ignored; in the very least, this\n is a formalization for deprecating enums.",
+      "type": "boolean"
+    },
+    "deprecated_legacy_json_field_conflicts": {
+      "description": "Enable the legacy handling of JSON field name conflicts.  This lowercases\n and strips underscored from the fields before comparison in proto3 only.\n The new behavior takes `json_name` into account and applies to proto2 as\n well.\n TODO Remove this legacy behavior once downstream teams have\n had time to migrate.",
+      "type": "boolean"
+    },
+    "features": {
+      "$ref": "google.protobuf.FeatureSet.schema.json",
+      "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+    },
+    "uninterpreted_option": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Enum Options",
+  "type": "object"
+}

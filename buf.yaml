@@ -3,6 +3,7 @@ modules:
   - path: internal/proto
 deps:
   - buf.build/bufbuild/protovalidate
+  - buf.build/bufbuild/protovalidate-testing#v0.14.2
 lint:
   except:
     - FIELD_NOT_REQUIRED

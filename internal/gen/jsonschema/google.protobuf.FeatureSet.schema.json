@@ -1,0 +1,306 @@
+{
+  "$id": "google.protobuf.FeatureSet.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "TODO Enums in C++ gencode (and potentially other languages) are\n not well scoped.  This means that each of the feature enums below can clash\n with each other.  The short names we've chosen maximize call-site\n readability, but leave us very open to this scenario.  A future feature will\n be designed and implemented to handle this, hopefully before we ever hit a\n conflict here.",
+  "patternProperties": {
+    "^(defaultSymbolVisibility)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN",
+            "EXPORT_ALL",
+            "EXPORT_TOP_LEVEL",
+            "LOCAL_ALL",
+            "STRICT"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Default Symbol Visibility"
+    },
+    "^(enforceNamingStyle)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENFORCE_NAMING_STYLE_UNKNOWN",
+            "STYLE2024",
+            "STYLE_LEGACY"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Enforce Naming Style"
+    },
+    "^(enumType)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_TYPE_UNKNOWN",
+            "OPEN",
+            "CLOSED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum Type"
+    },
+    "^(fieldPresence)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "FIELD_PRESENCE_UNKNOWN",
+            "EXPLICIT",
+            "IMPLICIT",
+            "LEGACY_REQUIRED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Field Presence"
+    },
+    "^(jsonFormat)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "JSON_FORMAT_UNKNOWN",
+            "ALLOW",
+            "LEGACY_BEST_EFFORT"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Json Format"
+    },
+    "^(messageEncoding)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "MESSAGE_ENCODING_UNKNOWN",
+            "LENGTH_PREFIXED",
+            "DELIMITED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Message Encoding"
+    },
+    "^(repeatedFieldEncoding)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "REPEATED_FIELD_ENCODING_UNKNOWN",
+            "PACKED",
+            "EXPANDED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Repeated Field Encoding"
+    },
+    "^(utf8Validation)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "UTF8_VALIDATION_UNKNOWN",
+            "VERIFY",
+            "NONE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Utf8 Validation"
+    }
+  },
+  "properties": {
+    "default_symbol_visibility": {
+      "anyOf": [
+        {
+          "enum": [
+            "DEFAULT_SYMBOL_VISIBILITY_UNKNOWN",
+            "EXPORT_ALL",
+            "EXPORT_TOP_LEVEL",
+            "LOCAL_ALL",
+            "STRICT"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Default Symbol Visibility"
+    },
+    "enforce_naming_style": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENFORCE_NAMING_STYLE_UNKNOWN",
+            "STYLE2024",
+            "STYLE_LEGACY"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Enforce Naming Style"
+    },
+    "enum_type": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_TYPE_UNKNOWN",
+            "OPEN",
+            "CLOSED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum Type"
+    },
+    "field_presence": {
+      "anyOf": [
+        {
+          "enum": [
+            "FIELD_PRESENCE_UNKNOWN",
+            "EXPLICIT",
+            "IMPLICIT",
+            "LEGACY_REQUIRED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Field Presence"
+    },
+    "json_format": {
+      "anyOf": [
+        {
+          "enum": [
+            "JSON_FORMAT_UNKNOWN",
+            "ALLOW",
+            "LEGACY_BEST_EFFORT"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Json Format"
+    },
+    "message_encoding": {
+      "anyOf": [
+        {
+          "enum": [
+            "MESSAGE_ENCODING_UNKNOWN",
+            "LENGTH_PREFIXED",
+            "DELIMITED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Message Encoding"
+    },
+    "repeated_field_encoding": {
+      "anyOf": [
+        {
+          "enum": [
+            "REPEATED_FIELD_ENCODING_UNKNOWN",
+            "PACKED",
+            "EXPANDED"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Repeated Field Encoding"
+    },
+    "utf8_validation": {
+      "anyOf": [
+        {
+          "enum": [
+            "UTF8_VALIDATION_UNKNOWN",
+            "VERIFY",
+            "NONE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Utf8 Validation"
+    }
+  },
+  "title": "Feature Set",
+  "type": "object"
+}

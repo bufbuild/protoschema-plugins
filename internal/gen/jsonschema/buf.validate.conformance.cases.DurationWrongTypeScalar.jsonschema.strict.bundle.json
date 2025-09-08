@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.DurationWrongTypeScalar.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "The below messages should throw compilation errors due to incorrect types.",
+      "properties": {
+        "seconds": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "seconds"
+      ],
+      "title": "Duration Wrong Type Scalar",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.DurationWrongTypeScalar.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.DurationWrongTypeScalar.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

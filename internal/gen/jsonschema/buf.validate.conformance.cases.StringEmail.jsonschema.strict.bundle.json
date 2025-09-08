@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.StringEmail.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "format": "email",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "String Email",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.StringEmail.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.StringEmail.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

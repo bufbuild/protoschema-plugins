@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringPrefix.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "pattern": "^foo.*",
+      "type": "string"
+    }
+  },
+  "title": "String Prefix",
+  "type": "object"
+}

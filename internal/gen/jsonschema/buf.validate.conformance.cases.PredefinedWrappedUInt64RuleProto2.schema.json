@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedWrappedUInt64RuleProto2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.UInt64Value.schema.json"
+    }
+  },
+  "title": "Predefined WrappedU Int64 Rule Proto2",
+  "type": "object"
+}

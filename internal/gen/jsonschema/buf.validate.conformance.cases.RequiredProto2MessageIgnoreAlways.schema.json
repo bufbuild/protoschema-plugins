@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredProto2MessageIgnoreAlways.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.RequiredProto2MessageIgnoreAlways.Msg.schema.json"
+    }
+  },
+  "title": "Required Proto2 Message Ignore Always",
+  "type": "object"
+}

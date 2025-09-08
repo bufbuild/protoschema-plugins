@@ -1,0 +1,16 @@
+{
+  "$id": "google.protobuf.OneofDescriptorProto.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Describes a oneof.",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "options": {
+      "$ref": "google.protobuf.OneofOptions.schema.json"
+    }
+  },
+  "title": "Oneof Descriptor Proto",
+  "type": "object"
+}

@@ -1,0 +1,21 @@
+{
+  "$id": "buf.validate.conformance.cases.SFixed64None.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "S Fixed64 None",
+  "type": "object"
+}

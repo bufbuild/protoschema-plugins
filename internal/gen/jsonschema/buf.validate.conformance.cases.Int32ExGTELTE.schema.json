@@ -1,0 +1,28 @@
+{
+  "$id": "buf.validate.conformance.cases.Int32ExGTELTE.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "maximum": 128,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "exclusiveMaximum": 2147483648,
+          "minimum": 256,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Int32 ExGTELTE",
+  "type": "object"
+}

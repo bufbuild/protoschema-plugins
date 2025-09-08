@@ -1,0 +1,33 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.OneofRequired.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "nameWithUnderscores": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "underAnd1Number": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "x": {
+          "type": "string"
+        },
+        "y": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "title": "Oneof Required",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.OneofRequired.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.OneofRequired.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

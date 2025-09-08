@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.BoolConstFalse.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            false
+          ],
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Bool Const False",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.BoolConstFalse.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.BoolConstFalse.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

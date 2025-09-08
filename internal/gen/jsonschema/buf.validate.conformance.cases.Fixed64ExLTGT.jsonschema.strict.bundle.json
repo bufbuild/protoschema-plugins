@@ -1,0 +1,31 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Fixed64ExLTGT.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "exclusiveMaximum": 5,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "exclusiveMinimum": 10,
+              "type": "integer"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Fixed64 ExLTGT",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Fixed64ExLTGT.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Fixed64ExLTGT.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
