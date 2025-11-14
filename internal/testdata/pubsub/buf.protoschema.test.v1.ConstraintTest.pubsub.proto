@@ -126,6 +126,7 @@ message ConstraintTest {
   optional float finite_float = 112;
   optional float lt_gt_float = 113;
   map<string, string> in_map = 118;
+  repeated string is_list = 125;
   message RequiredImplicit {
     optional bool bool_value = 1;
     optional string string_value = 2;
