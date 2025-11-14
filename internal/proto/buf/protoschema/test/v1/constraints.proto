@@ -312,6 +312,11 @@ message ConstraintTest {
       }
     }
   }];
+
+  repeated string is_list = 125 [
+    (buf.validate.field).repeated.min_items = 1,
+    (buf.validate.field).repeated.max_items = 10
+  ];
 }
 
 message ConstraintTests {
