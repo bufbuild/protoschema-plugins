@@ -1174,6 +1174,14 @@
           "pattern": "^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$",
           "type": "string"
         },
+        "^(isList)$": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "type": "array"
+        },
         "^(lenBytes)$": {
           "maxLength": 8,
           "minLength": 7,
@@ -2651,6 +2659,14 @@
         "ipv6_with_prefixlen_string": {
           "pattern": "^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8])$",
           "type": "string"
+        },
+        "is_list": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "minItems": 1,
+          "type": "array"
         },
         "len_bytes": {
           "maxLength": 8,

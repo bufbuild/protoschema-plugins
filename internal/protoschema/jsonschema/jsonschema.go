@@ -382,6 +382,14 @@ func (p *Generator) generateField(entry *msgSchema, field protoreflect.FieldDesc
 func (p *Generator) generateFieldValidation(entry *msgSchema, field protoreflect.FieldDescriptor, hasImplicitPresence bool, rules *validate.FieldRules, schema map[string]any) error {
 	if field.IsList() {
 		schema["type"] = jsArray
+		if rules.HasRepeated() {
+			if rules.GetRepeated().MinItems != nil {
+				schema["minItems"] = rules.GetRepeated().GetMinItems()
+			}
+			if rules.GetRepeated().MaxItems != nil {
+				schema["maxItems"] = rules.GetRepeated().GetMaxItems()
+			}
+		}
 		items := make(map[string]any)
 		schema["items"] = items
 		schema = items
