@@ -1,0 +1,18 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RequiredProto3OptionalScalarIgnoreAlways.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "title": "Required Proto3 Optional Scalar Ignore Always",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RequiredProto3OptionalScalarIgnoreAlways.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RequiredProto3OptionalScalarIgnoreAlways.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

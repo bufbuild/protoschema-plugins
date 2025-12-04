@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Fixed64GTLT.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "exclusiveMaximum": 10,
+          "exclusiveMinimum": 5,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Fixed64GTLT",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Fixed64GTLT.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Fixed64GTLT.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

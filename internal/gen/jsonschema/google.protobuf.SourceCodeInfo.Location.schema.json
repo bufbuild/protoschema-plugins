@@ -1,0 +1,74 @@
+{
+  "$id": "google.protobuf.SourceCodeInfo.Location.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(leadingComments)$": {
+      "description": "A series of line comments appearing on consecutive lines, with no other\n tokens appearing on those lines, will be treated as a single comment.\n\n leading_detached_comments will keep paragraphs of comments that appear\n before (but not connected to) the current element. Each paragraph,\n separated by empty lines, will be one comment element in the repeated\n field.\n\n Only the comment content is provided; comment markers (e.g. //) are\n stripped out.  For block comments, leading whitespace and an asterisk\n will be stripped from the beginning of each line other than the first.\n Newlines are included in the output.\n\n Examples:\n\n   optional int32 foo = 1;  // Comment attached to foo.\n   // Comment attached to bar.\n   optional int32 bar = 2;\n\n   optional string baz = 3;\n   // Comment attached to baz.\n   // Another line attached to baz.\n\n   // Comment attached to moo.\n   //\n   // Another line attached to moo.\n   optional double moo = 4;\n\n   // Detached comment for corge. This is not leading or trailing comments\n   // to moo or corge because there are blank lines separating it from\n   // both.\n\n   // Detached comment for corge paragraph 2.\n\n   optional string corge = 5;\n   /* Block comment attached\n    * to corge.  Leading asterisks\n    * will be removed. */\n   /* Block comment attached to\n    * grault. */\n   optional int32 grault = 6;\n\n   // ignored detached comments.",
+      "title": "If this SourceCodeInfo represents a complete declaration, these are any\n comments appearing before and after the declaration which appear to be\n attached to the declaration.",
+      "type": "string"
+    },
+    "^(leadingDetachedComments)$": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "^(trailingComments)$": {
+      "type": "string"
+    }
+  },
+  "properties": {
+    "leading_comments": {
+      "description": "A series of line comments appearing on consecutive lines, with no other\n tokens appearing on those lines, will be treated as a single comment.\n\n leading_detached_comments will keep paragraphs of comments that appear\n before (but not connected to) the current element. Each paragraph,\n separated by empty lines, will be one comment element in the repeated\n field.\n\n Only the comment content is provided; comment markers (e.g. //) are\n stripped out.  For block comments, leading whitespace and an asterisk\n will be stripped from the beginning of each line other than the first.\n Newlines are included in the output.\n\n Examples:\n\n   optional int32 foo = 1;  // Comment attached to foo.\n   // Comment attached to bar.\n   optional int32 bar = 2;\n\n   optional string baz = 3;\n   // Comment attached to baz.\n   // Another line attached to baz.\n\n   // Comment attached to moo.\n   //\n   // Another line attached to moo.\n   optional double moo = 4;\n\n   // Detached comment for corge. This is not leading or trailing comments\n   // to moo or corge because there are blank lines separating it from\n   // both.\n\n   // Detached comment for corge paragraph 2.\n\n   optional string corge = 5;\n   /* Block comment attached\n    * to corge.  Leading asterisks\n    * will be removed. */\n   /* Block comment attached to\n    * grault. */\n   optional int32 grault = 6;\n\n   // ignored detached comments.",
+      "title": "If this SourceCodeInfo represents a complete declaration, these are any\n comments appearing before and after the declaration which appear to be\n attached to the declaration.",
+      "type": "string"
+    },
+    "leading_detached_comments": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "path": {
+      "description": "Each element is a field number or an index.  They form a path from\n the root FileDescriptorProto to the place where the definition appears.\n For example, this path:\n   [ 4, 3, 2, 7, 1 ]\n refers to:\n   file.message_type(3)  // 4, 3\n       .field(7)         // 2, 7\n       .name()           // 1\n This is because FileDescriptorProto.message_type has field number 4:\n   repeated DescriptorProto message_type = 4;\n and DescriptorProto.field has field number 2:\n   repeated FieldDescriptorProto field = 2;\n and FieldDescriptorProto.name has field number 1:\n   optional string name = 1;\n\n Thus, the above path gives the location of a field name.  If we removed\n the last element:\n   [ 4, 3, 2, 7 ]\n this path refers to the whole field declaration (from the beginning\n of the label to the terminating semicolon).",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "title": "Identifies which part of the FileDescriptorProto was defined at this\n location.",
+      "type": "array"
+    },
+    "span": {
+      "description": "Always has exactly three or four elements: start line, start column,\n end line (optional, otherwise assumed same as start line), end column.\n These are packed into a single field for efficiency.  Note that line\n and column numbers are zero-based -- typically you will want to add\n 1 to each before displaying to a user.",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "trailing_comments": {
+      "type": "string"
+    }
+  },
+  "title": "Location",
+  "type": "object"
+}

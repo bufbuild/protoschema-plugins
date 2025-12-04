@@ -1,0 +1,86 @@
+{
+  "$id": "buf.validate.conformance.cases.custom_rules.MessageExpressions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "A message with message-level custom expressions",
+  "properties": {
+    "a": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "b": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "c": {
+      "anyOf": [
+        {
+          "pattern": "^ENUM_UNSPECIFIED$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "ENUM_ONE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Enum"
+    },
+    "d": {
+      "anyOf": [
+        {
+          "pattern": "^ENUM_UNSPECIFIED$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "ENUM_ONE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Enum"
+    },
+    "e": {
+      "$ref": "buf.validate.conformance.cases.custom_rules.MessageExpressions.Nested.schema.json"
+    },
+    "f": {
+      "$ref": "buf.validate.conformance.cases.custom_rules.MessageExpressions.Nested.schema.json"
+    }
+  },
+  "title": "Message Expressions",
+  "type": "object"
+}

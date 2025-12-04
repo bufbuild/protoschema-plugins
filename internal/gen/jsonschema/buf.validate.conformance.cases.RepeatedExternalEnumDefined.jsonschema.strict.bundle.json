@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RepeatedExternalEnumDefined.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "enum": [
+              "ENUMERATED_UNSPECIFIED",
+              "ENUMERATED_VALUE"
+            ],
+            "title": "Enumerated",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Repeated External Enum Defined",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RepeatedExternalEnumDefined.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RepeatedExternalEnumDefined.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

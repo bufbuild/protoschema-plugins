@@ -1,0 +1,35 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RequiredProto3Message.Msg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Msg",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.RequiredProto3Message.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.RequiredProto3Message.Msg.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Required Proto3 Message",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RequiredProto3Message.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RequiredProto3Message.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

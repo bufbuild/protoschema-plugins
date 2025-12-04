@@ -1,0 +1,30 @@
+{
+  "$id": "buf.validate.conformance.cases.RepeatedItemRule.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "items": {
+        "anyOf": [
+          {
+            "exclusiveMinimum": 0,
+            "maximum": 3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    }
+  },
+  "title": "Repeated Item Rule",
+  "type": "object"
+}

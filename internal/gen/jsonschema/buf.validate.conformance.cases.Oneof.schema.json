@@ -1,0 +1,29 @@
+{
+  "$id": "buf.validate.conformance.cases.Oneof.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "x": {
+      "pattern": "^foo.*",
+      "type": "string"
+    },
+    "y": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "z": {
+      "$ref": "buf.validate.conformance.cases.TestOneofMsg.schema.json"
+    }
+  },
+  "title": "Oneof",
+  "type": "object"
+}

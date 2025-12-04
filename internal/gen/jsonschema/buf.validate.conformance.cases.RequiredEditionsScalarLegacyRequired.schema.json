@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredEditionsScalarLegacyRequired.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "val"
+  ],
+  "title": "Required Editions Scalar Legacy Required",
+  "type": "object"
+}

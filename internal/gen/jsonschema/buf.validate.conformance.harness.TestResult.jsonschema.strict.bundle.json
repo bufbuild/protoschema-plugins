@@ -1,0 +1,215 @@
+{
+  "$defs": {
+    "buf.validate.FieldPath.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "This message provides enough information to render a dotted field path even without protobuf descriptors.\n It also provides enough information to resolve a nested field through unknown wire data.",
+      "properties": {
+        "elements": {
+          "description": "`elements` contains each element of the path, starting from the root and recursing downward.",
+          "items": {
+            "$ref": "#/$defs/buf.validate.FieldPathElement.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "`FieldPath` provides a path to a nested protobuf field.",
+      "type": "object"
+    },
+    "buf.validate.FieldPathElement.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "If the selected field is a map or repeated field, the `subscript` value selects a specific element from it.\n A path that refers to a value nested under a map key or repeated field index will have a `subscript` value.\n The `field_type` field allows unambiguous resolution of a field even if descriptors are not available.",
+      "properties": {
+        "boolKey": {
+          "description": "`bool_key` specifies a map key of type bool.",
+          "type": "boolean"
+        },
+        "fieldName": {
+          "description": "`field_name` contains the field name this path element refers to.\n This can be used to display a human-readable path even if the field number is unknown.",
+          "type": "string"
+        },
+        "fieldNumber": {
+          "description": "`field_number` is the field number this path element refers to.",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "fieldType": {
+          "description": "This value is provided to make it possible to traverse unknown fields through wire data.\n When traversing wire data, be mindful of both packed[1] and delimited[2] encoding schemes.\n\n [1]: https://protobuf.dev/programming-guides/encoding/#packed\n [2]: https://protobuf.dev/programming-guides/encoding/#groups\n\n N.B.: Although groups are deprecated, the corresponding delimited encoding scheme is not, and\n can be explicitly used in Protocol Buffers 2023 Edition.",
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "index": {
+          "description": "`index` specifies a 0-based index into a repeated field.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "intKey": {
+          "description": "`int_key` specifies a map key of type int32, int64, sint32, sint64, sfixed32 or sfixed64.",
+          "type": "integer"
+        },
+        "keyType": {
+          "description": "`key_type` specifies the map key type of this field. This value is useful when traversing\n unknown fields through wire data: specifically, it allows handling the differences between\n different integer encodings.",
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "stringKey": {
+          "description": "`string_key` specifies a map key of type string.",
+          "type": "string"
+        },
+        "uintKey": {
+          "description": "`uint_key` specifies a map key of type uint32, uint64, fixed32 or fixed64.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "valueType": {
+          "description": "`value_type` specifies map value type of this field. This is useful if you want to display a\n value inside unknown fields through wire data.",
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "title": "`FieldPathElement` provides enough information to nest through a single protobuf field.",
+      "type": "object"
+    },
+    "buf.validate.Violation.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "For example, consider the following message:\n\n ```proto\n message User {\n     int32 age = 1 [(buf.validate.field).cel = {\n         id: \"user.age\",\n         expression: \"this \u003c 18 ? 'User must be at least 18 years old' : ''\",\n     }];\n }\n ```\n\n It could produce the following violation:\n\n ```json\n {\n   \"ruleId\": \"user.age\",\n   \"message\": \"User must be at least 18 years old\",\n   \"field\": {\n     \"elements\": [\n       {\n         \"fieldNumber\": 1,\n         \"fieldName\": \"age\",\n         \"fieldType\": \"TYPE_INT32\"\n       }\n     ]\n   },\n   \"rule\": {\n     \"elements\": [\n       {\n         \"fieldNumber\": 23,\n         \"fieldName\": \"cel\",\n         \"fieldType\": \"TYPE_MESSAGE\",\n         \"index\": \"0\"\n       }\n     ]\n   }\n }\n ```",
+      "properties": {
+        "field": {
+          "$ref": "#/$defs/buf.validate.FieldPath.jsonschema.strict.json",
+          "description": "For example, consider the following message:\n\n ```proto\n message Message {\n   bool a = 1 [(buf.validate.field).required = true];\n }\n ```\n\n It could produce the following violation:\n\n ```textproto\n violation {\n   field { element { field_number: 1, field_name: \"a\", field_type: 8 } }\n   ...\n }\n ```",
+          "title": "`field` is a machine-readable path to the field that failed validation.\n This could be a nested field, in which case the path will include all the parent fields leading to the actual field that caused the violation."
+        },
+        "forKey": {
+          "description": "`for_key` indicates whether the violation was caused by a map key, rather than a value.",
+          "type": "boolean"
+        },
+        "message": {
+          "description": "`message` is a human-readable error message that describes the nature of the violation.\n This can be the default error message from the violated `Rule`, or it can be a custom message that gives more context about the violation.",
+          "type": "string"
+        },
+        "rule": {
+          "$ref": "#/$defs/buf.validate.FieldPath.jsonschema.strict.json",
+          "description": "For example, consider the following message:\n\n ```proto\n message Message {\n   bool a = 1 [(buf.validate.field).required = true];\n   bool b = 2 [(buf.validate.field).cel = {\n     id: \"custom_rule\",\n     expression: \"!this ? 'b must be true': ''\"\n   }]\n }\n ```\n\n It could produce the following violations:\n\n ```textproto\n violation {\n   rule { element { field_number: 25, field_name: \"required\", field_type: 8 } }\n   ...\n }\n violation {\n   rule { element { field_number: 23, field_name: \"cel\", field_type: 11, index: 0 } }\n   ...\n }\n ```",
+          "title": "`rule` is a machine-readable path that points to the specific rule that failed validation.\n This will be a nested field starting from the FieldRules of the field that failed validation.\n For custom rules, this will provide the path of the rule, e.g. `cel[0]`."
+        },
+        "ruleId": {
+          "description": "`rule_id` is the unique identifier of the `Rule` that was not fulfilled.\n This is the same `id` that was specified in the `Rule` message, allowing easy tracing of which rule was violated.",
+          "type": "string"
+        }
+      },
+      "title": "`Violation` represents a single instance where a validation rule, expressed\n as a `Rule`, was not met. It provides information about the field that\n caused the violation, the specific rule that wasn't fulfilled, and a\n human-readable error message.",
+      "type": "object"
+    },
+    "buf.validate.Violations.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "`Violations` is a collection of `Violation` messages. This message type is returned by\n Protovalidate when a proto message fails to meet the requirements set by the `Rule` validation rules.\n Each individual violation is represented by a `Violation` message.",
+      "properties": {
+        "violations": {
+          "description": "`violations` is a repeated field that contains all the `Violation` messages corresponding to the violations detected.",
+          "items": {
+            "$ref": "#/$defs/buf.validate.Violation.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Violations",
+      "type": "object"
+    },
+    "buf.validate.conformance.harness.TestResult.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "TestResult is the result of a single test. Only one of the fields will be set.",
+      "properties": {
+        "compilationError": {
+          "description": "compilation_error is the error if the test failed due to compilation errors.",
+          "type": "string"
+        },
+        "runtimeError": {
+          "description": "runtime_error is the error if the test failed due to runtime errors.",
+          "type": "string"
+        },
+        "success": {
+          "description": "success is true if the test succeeded.",
+          "type": "boolean"
+        },
+        "unexpectedError": {
+          "description": "unexpected_error is any other error that may have occurred.",
+          "type": "string"
+        },
+        "validationError": {
+          "$ref": "#/$defs/buf.validate.Violations.jsonschema.strict.json",
+          "description": "validation_error is the error if the test failed due to validation errors."
+        }
+      },
+      "title": "Test Result",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.harness.TestResult.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.harness.TestResult.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

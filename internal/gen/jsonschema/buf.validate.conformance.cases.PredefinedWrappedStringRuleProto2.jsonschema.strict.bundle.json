@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedWrappedStringRuleProto2.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.StringValue.jsonschema.strict.json"
+        }
+      },
+      "title": "Predefined Wrapped String Rule Proto2",
+      "type": "object"
+    },
+    "google.protobuf.StringValue.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The string value.",
+      "title": "String Value",
+      "type": "string"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedWrappedStringRuleProto2.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedWrappedStringRuleProto2.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

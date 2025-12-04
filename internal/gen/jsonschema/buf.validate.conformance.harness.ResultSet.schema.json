@@ -1,0 +1,83 @@
+{
+  "$id": "buf.validate.conformance.harness.ResultSet.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "A result is the result of a test run.",
+  "patternProperties": {
+    "^(expectedFailures)$": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Count of expected failures."
+    }
+  },
+  "properties": {
+    "expected_failures": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Count of expected failures."
+    },
+    "failures": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Count of failures."
+    },
+    "options": {
+      "$ref": "buf.validate.conformance.harness.ResultOptions.schema.json",
+      "description": "Options used to generate this result."
+    },
+    "successes": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Count of successes."
+    },
+    "suites": {
+      "description": "List of suite results.",
+      "items": {
+        "$ref": "buf.validate.conformance.harness.SuiteResults.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Result Set",
+  "type": "object"
+}

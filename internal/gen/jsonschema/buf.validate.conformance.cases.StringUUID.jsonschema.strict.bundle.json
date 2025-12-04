@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.StringUUID.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "StringUUID",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.StringUUID.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.StringUUID.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

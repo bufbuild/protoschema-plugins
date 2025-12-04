@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedRepeatedWrappedBytesRuleProto2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "items": {
+        "$ref": "google.protobuf.BytesValue.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Predefined Repeated Wrapped Bytes Rule Proto2",
+  "type": "object"
+}

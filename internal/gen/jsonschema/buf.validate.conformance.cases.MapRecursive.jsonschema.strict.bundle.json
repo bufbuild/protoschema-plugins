@@ -1,0 +1,41 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MapRecursive.Msg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Msg",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.MapRecursive.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "additionalProperties": {
+            "$ref": "#/$defs/buf.validate.conformance.cases.MapRecursive.Msg.jsonschema.strict.json"
+          },
+          "propertyNames": {
+            "maximum": 4294967295,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "object"
+        }
+      },
+      "title": "Map Recursive",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MapRecursive.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MapRecursive.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

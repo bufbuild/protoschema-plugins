@@ -1,0 +1,29 @@
+{
+  "$id": "google.protobuf.EnumValueDescriptorProto.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Describes a value within an enum.",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "number": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "options": {
+      "$ref": "google.protobuf.EnumValueOptions.schema.json"
+    }
+  },
+  "title": "Enum Value Descriptor Proto",
+  "type": "object"
+}

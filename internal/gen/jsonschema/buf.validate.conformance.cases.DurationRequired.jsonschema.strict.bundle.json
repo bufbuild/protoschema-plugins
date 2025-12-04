@@ -1,0 +1,27 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.DurationRequired.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.Duration.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Duration Required",
+      "type": "object"
+    },
+    "google.protobuf.Duration.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "format": "duration",
+      "title": "Duration",
+      "type": "string"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.DurationRequired.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.DurationRequired.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

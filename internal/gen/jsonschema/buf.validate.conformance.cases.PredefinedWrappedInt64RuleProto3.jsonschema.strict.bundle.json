@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedWrappedInt64RuleProto3.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.Int64Value.jsonschema.strict.json"
+        }
+      },
+      "title": "Predefined Wrapped Int64 Rule Proto3",
+      "type": "object"
+    },
+    "google.protobuf.Int64Value.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The int64 value.",
+      "title": "Int64 Value",
+      "type": "integer"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedWrappedInt64RuleProto3.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedWrappedInt64RuleProto3.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

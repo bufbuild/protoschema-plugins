@@ -1,0 +1,26 @@
+{
+  "$id": "buf.validate.conformance.cases.Int64ExLTGT.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 0,
+          "type": "integer"
+        },
+        {
+          "exclusiveMinimum": 10,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Int64 ExLTGT",
+  "type": "object"
+}

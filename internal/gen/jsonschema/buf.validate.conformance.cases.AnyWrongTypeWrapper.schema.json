@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.AnyWrongTypeWrapper.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.Int32Value.schema.json"
+    }
+  },
+  "title": "Any Wrong Type Wrapper",
+  "type": "object"
+}

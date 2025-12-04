@@ -1,0 +1,18 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredEditionsOneof.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "a": {
+      "type": "string"
+    },
+    "b": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "a"
+  ],
+  "title": "Required Editions Oneof",
+  "type": "object"
+}

@@ -1,0 +1,17 @@
+{
+  "$id": "buf.validate.FieldPath.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "This message provides enough information to render a dotted field path even without protobuf descriptors.\n It also provides enough information to resolve a nested field through unknown wire data.",
+  "properties": {
+    "elements": {
+      "description": "`elements` contains each element of the path, starting from the root and recursing downward.",
+      "items": {
+        "$ref": "buf.validate.FieldPathElement.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "`FieldPath` provides a path to a nested protobuf field.",
+  "type": "object"
+}

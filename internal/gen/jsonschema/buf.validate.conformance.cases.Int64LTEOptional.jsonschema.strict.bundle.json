@@ -1,0 +1,19 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Int64LTEOptional.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "maximum": 64,
+          "type": "integer"
+        }
+      },
+      "title": "Int64LTE Optional",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Int64LTEOptional.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Int64LTEOptional.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.SFixed32LT.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "exclusiveMaximum": 0,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "S Fixed32LT",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.SFixed32LT.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.SFixed32LT.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

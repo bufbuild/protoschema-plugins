@@ -1,0 +1,19 @@
+{
+  "$id": "buf.validate.conformance.cases.MapValuesPattern.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "additionalProperties": {
+        "pattern": "(?i)^[a-z0-9]+$",
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "title": "Map Values Pattern",
+  "type": "object"
+}

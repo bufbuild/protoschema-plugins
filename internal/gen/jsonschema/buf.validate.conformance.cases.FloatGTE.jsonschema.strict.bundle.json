@@ -1,0 +1,33 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.FloatGTE.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "maximum": 3.4028234663852886e+38,
+              "minimum": 8,
+              "type": "number"
+            },
+            {
+              "enum": [
+                "Infinity"
+              ],
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "FloatGTE",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.FloatGTE.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.FloatGTE.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

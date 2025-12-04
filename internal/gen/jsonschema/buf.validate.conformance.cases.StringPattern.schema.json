@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringPattern.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "pattern": "(?i)^[a-z0-9]+$",
+      "type": "string"
+    }
+  },
+  "title": "String Pattern",
+  "type": "object"
+}

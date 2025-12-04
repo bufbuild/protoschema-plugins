@@ -1,0 +1,31 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RepeatedAnyIn.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.Any.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Repeated Any In",
+      "type": "object"
+    },
+    "google.protobuf.Any.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "title": "Any",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RepeatedAnyIn.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RepeatedAnyIn.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

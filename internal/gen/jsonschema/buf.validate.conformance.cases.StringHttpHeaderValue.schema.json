@@ -1,0 +1,13 @@
+{
+  "$id": "buf.validate.conformance.cases.StringHttpHeaderValue.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "title": "String Http Header Value",
+  "type": "object"
+}

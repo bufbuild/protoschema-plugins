@@ -1,0 +1,21 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedBoolRuleProto3.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Predefined Bool Rule Proto3",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedBoolRuleProto3.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedBoolRuleProto3.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

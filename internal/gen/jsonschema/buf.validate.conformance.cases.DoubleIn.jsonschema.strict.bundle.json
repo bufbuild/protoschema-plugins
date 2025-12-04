@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.DoubleIn.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            4.56,
+            7.89
+          ],
+          "type": "number"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Double In",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.DoubleIn.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.DoubleIn.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

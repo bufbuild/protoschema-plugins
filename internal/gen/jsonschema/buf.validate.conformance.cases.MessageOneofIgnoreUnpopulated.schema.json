@@ -1,0 +1,33 @@
+{
+  "$id": "buf.validate.conformance.cases.MessageOneofIgnoreUnpopulated.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(boolField)$": {
+      "default": false,
+      "enum": [
+        true
+      ],
+      "type": "boolean"
+    },
+    "^(strField)$": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "bool_field": {
+      "default": false,
+      "enum": [
+        true
+      ],
+      "type": "boolean"
+    },
+    "str_field": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "title": "Message Oneof Ignore Unpopulated",
+  "type": "object"
+}

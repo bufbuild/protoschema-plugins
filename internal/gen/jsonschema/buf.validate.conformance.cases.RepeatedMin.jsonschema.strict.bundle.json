@@ -1,0 +1,36 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Embed.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Embed",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.RepeatedMin.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "$ref": "#/$defs/buf.validate.conformance.cases.Embed.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Repeated Min",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RepeatedMin.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RepeatedMin.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

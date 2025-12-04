@@ -1,0 +1,18 @@
+{
+  "$id": "buf.validate.conformance.cases.MapMinMax.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "title": "Map Min Max",
+  "type": "object"
+}

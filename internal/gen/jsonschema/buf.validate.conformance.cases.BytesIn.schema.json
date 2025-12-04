@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.BytesIn.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": null,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    }
+  },
+  "title": "Bytes In",
+  "type": "object"
+}

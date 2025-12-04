@@ -14,6 +14,10 @@ COPYRIGHT_YEARS := 2024-2025
 GOLANGCI_LINT_VERSION := v2.4.0
 GOLANGCI_LINT := $(BIN)/golangci-lint-$(GOLANGCI_LINT_VERSION)
 LICENSE_IGNORE := --ignore testdata/
+# Set to use a different version of protovalidate-conformance.
+# Should be kept in sync with the version referenced in buf.yaml and
+# 'buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go' in go.mod.
+CONFORMANCE_VERSION ?= v0.14.2
 
 UNAME_OS := $(shell uname -s)
 ifeq ($(UNAME_OS),Darwin)
@@ -33,6 +37,7 @@ help: ## Describe useful make targets
 .PHONY: all
 all: ## Build, test, and lint (default)
 	$(MAKE) test
+	$(MAKE) conformance
 	$(MAKE) lint
 
 .PHONY: clean
@@ -74,6 +79,10 @@ lintfix: $(GOLANGCI_LINT) ## Automatically fix some lint errors
 	buf format -w
 	go mod tidy
 
+.PHONY: conformance
+conformance: $(BIN)/protovalidate-conformance protovalidate-conformance-jsonschema ## Run conformance tests
+	JSONSCHEMA_DIR=./internal/gen/jsonschema $(BIN)/protovalidate-conformance $(BIN)/protovalidate-conformance-jsonschema --expected_failures=conformance/expected_failures.yaml
+
 .PHONY: install
 install: ## Install all binaries
 	go install ./...
@@ -82,6 +91,7 @@ install: ## Install all binaries
 generate: $(BIN)/license-header $(BIN)/buf ## Regenerate code and licenses
 	rm -rf internal/gen
 	buf generate
+	buf generate buf.build/bufbuild/protovalidate-testing
 	license-header \
 		--license-type apache \
 		--copyright-holder "Buf Technologies, Inc." \
@@ -121,3 +131,11 @@ $(GOLANGCI_LINT): $(BIN) Makefile
 
 $(BIN)/jv: $(BIN) Makefile
 	go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest
+
+$(BIN)/protovalidate-conformance: $(BIN) Makefile
+	GOBIN=$(abspath $(BIN)) go install \
+    	github.com/bufbuild/protovalidate/tools/protovalidate-conformance@$(CONFORMANCE_VERSION)
+
+.PHONY: protovalidate-conformance-jsonschema
+protovalidate-conformance-jsonschema: $(BIN)
+	GOBIN=$(abspath $(BIN)) go install ./internal/cmd/protovalidate-conformance-jsonschema

@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.DurationNotIn.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.Duration.schema.json"
+    }
+  },
+  "title": "Duration Not In",
+  "type": "object"
+}

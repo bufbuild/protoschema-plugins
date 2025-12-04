@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.Proto2MessageOptionalIgnoreEmpty.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.Proto2MessageOptionalIgnoreEmpty.Msg.schema.json"
+    }
+  },
+  "title": "Proto2 Message Optional Ignore Empty",
+  "type": "object"
+}

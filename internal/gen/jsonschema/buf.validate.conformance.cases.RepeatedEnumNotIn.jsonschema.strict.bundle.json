@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RepeatedEnumNotIn.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "enum": [
+              "AN_ENUM_X",
+              "AN_ENUM_Y"
+            ],
+            "title": "An Enum",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Repeated Enum Not In",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RepeatedEnumNotIn.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RepeatedEnumNotIn.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

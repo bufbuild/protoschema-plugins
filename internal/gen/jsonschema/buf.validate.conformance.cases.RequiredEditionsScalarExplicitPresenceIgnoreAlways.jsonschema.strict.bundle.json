@@ -1,0 +1,18 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RequiredEditionsScalarExplicitPresenceIgnoreAlways.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "title": "Required Editions Scalar Explicit Presence Ignore Always",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RequiredEditionsScalarExplicitPresenceIgnoreAlways.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RequiredEditionsScalarExplicitPresenceIgnoreAlways.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

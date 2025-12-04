@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredEditionsScalarExplicitPresenceIgnoreAlways.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "type": "string"
+    }
+  },
+  "title": "Required Editions Scalar Explicit Presence Ignore Always",
+  "type": "object"
+}

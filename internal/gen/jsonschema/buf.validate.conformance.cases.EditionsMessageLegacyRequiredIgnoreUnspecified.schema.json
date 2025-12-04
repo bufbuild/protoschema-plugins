@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.EditionsMessageLegacyRequiredIgnoreUnspecified.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.EditionsMessageLegacyRequiredIgnoreUnspecified.Msg.schema.json"
+    }
+  },
+  "title": "Editions Message Legacy Required Ignore Unspecified",
+  "type": "object"
+}

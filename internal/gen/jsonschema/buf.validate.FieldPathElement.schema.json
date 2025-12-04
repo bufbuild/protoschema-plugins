@@ -1,0 +1,331 @@
+{
+  "$id": "buf.validate.FieldPathElement.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "If the selected field is a map or repeated field, the `subscript` value selects a specific element from it.\n A path that refers to a value nested under a map key or repeated field index will have a `subscript` value.\n The `field_type` field allows unambiguous resolution of a field even if descriptors are not available.",
+  "patternProperties": {
+    "^(boolKey)$": {
+      "description": "`bool_key` specifies a map key of type bool.",
+      "type": "boolean"
+    },
+    "^(fieldName)$": {
+      "description": "`field_name` contains the field name this path element refers to.\n This can be used to display a human-readable path even if the field number is unknown.",
+      "type": "string"
+    },
+    "^(fieldNumber)$": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "`field_number` is the field number this path element refers to."
+    },
+    "^(fieldType)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "This value is provided to make it possible to traverse unknown fields through wire data.\n When traversing wire data, be mindful of both packed[1] and delimited[2] encoding schemes.\n\n [1]: https://protobuf.dev/programming-guides/encoding/#packed\n [2]: https://protobuf.dev/programming-guides/encoding/#groups\n\n N.B.: Although groups are deprecated, the corresponding delimited encoding scheme is not, and\n can be explicitly used in Protocol Buffers 2023 Edition.",
+      "title": "Type"
+    },
+    "^(intKey)$": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "`int_key` specifies a map key of type int32, int64, sint32, sint64, sfixed32 or sfixed64."
+    },
+    "^(keyType)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "`key_type` specifies the map key type of this field. This value is useful when traversing\n unknown fields through wire data: specifically, it allows handling the differences between\n different integer encodings.",
+      "title": "Type"
+    },
+    "^(stringKey)$": {
+      "description": "`string_key` specifies a map key of type string.",
+      "type": "string"
+    },
+    "^(uintKey)$": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "`uint_key` specifies a map key of type uint32, uint64, fixed32 or fixed64."
+    },
+    "^(valueType)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "`value_type` specifies map value type of this field. This is useful if you want to display a\n value inside unknown fields through wire data.",
+      "title": "Type"
+    }
+  },
+  "properties": {
+    "bool_key": {
+      "description": "`bool_key` specifies a map key of type bool.",
+      "type": "boolean"
+    },
+    "field_name": {
+      "description": "`field_name` contains the field name this path element refers to.\n This can be used to display a human-readable path even if the field number is unknown.",
+      "type": "string"
+    },
+    "field_number": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "`field_number` is the field number this path element refers to."
+    },
+    "field_type": {
+      "anyOf": [
+        {
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "This value is provided to make it possible to traverse unknown fields through wire data.\n When traversing wire data, be mindful of both packed[1] and delimited[2] encoding schemes.\n\n [1]: https://protobuf.dev/programming-guides/encoding/#packed\n [2]: https://protobuf.dev/programming-guides/encoding/#groups\n\n N.B.: Although groups are deprecated, the corresponding delimited encoding scheme is not, and\n can be explicitly used in Protocol Buffers 2023 Edition.",
+      "title": "Type"
+    },
+    "index": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "`index` specifies a 0-based index into a repeated field."
+    },
+    "int_key": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "`int_key` specifies a map key of type int32, int64, sint32, sint64, sfixed32 or sfixed64."
+    },
+    "key_type": {
+      "anyOf": [
+        {
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "`key_type` specifies the map key type of this field. This value is useful when traversing\n unknown fields through wire data: specifically, it allows handling the differences between\n different integer encodings.",
+      "title": "Type"
+    },
+    "string_key": {
+      "description": "`string_key` specifies a map key of type string.",
+      "type": "string"
+    },
+    "uint_key": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "`uint_key` specifies a map key of type uint32, uint64, fixed32 or fixed64."
+    },
+    "value_type": {
+      "anyOf": [
+        {
+          "enum": [
+            "TYPE_DOUBLE",
+            "TYPE_FLOAT",
+            "TYPE_INT64",
+            "TYPE_UINT64",
+            "TYPE_INT32",
+            "TYPE_FIXED64",
+            "TYPE_FIXED32",
+            "TYPE_BOOL",
+            "TYPE_STRING",
+            "TYPE_GROUP",
+            "TYPE_MESSAGE",
+            "TYPE_BYTES",
+            "TYPE_UINT32",
+            "TYPE_ENUM",
+            "TYPE_SFIXED32",
+            "TYPE_SFIXED64",
+            "TYPE_SINT32",
+            "TYPE_SINT64"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "`value_type` specifies map value type of this field. This is useful if you want to display a\n value inside unknown fields through wire data.",
+      "title": "Type"
+    }
+  },
+  "title": "`FieldPathElement` provides enough information to nest through a single protobuf field.",
+  "type": "object"
+}

@@ -1,0 +1,33 @@
+{
+  "$id": "google.protobuf.ServiceOptions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(uninterpretedOption)$": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "properties": {
+    "deprecated": {
+      "description": "Is this service deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the service, or it will be completely ignored; in the very least,\n this is a formalization for deprecating services.",
+      "type": "boolean"
+    },
+    "features": {
+      "$ref": "google.protobuf.FeatureSet.schema.json",
+      "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+    },
+    "uninterpreted_option": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Service Options",
+  "type": "object"
+}

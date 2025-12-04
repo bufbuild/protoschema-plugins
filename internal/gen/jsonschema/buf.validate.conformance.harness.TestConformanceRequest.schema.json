@@ -1,0 +1,22 @@
+{
+  "$id": "buf.validate.conformance.harness.TestConformanceRequest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "TestConformanceRequest is the request for Conformance Tests.\n The FileDescriptorSet is the FileDescriptorSet to test against.\n The cases map is a map of case name to the Any message that represents the case.",
+  "properties": {
+    "cases": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.Any.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "fdset": {
+      "$ref": "google.protobuf.FileDescriptorSet.schema.json"
+    }
+  },
+  "title": "Test Conformance Request",
+  "type": "object"
+}

@@ -1,0 +1,22 @@
+{
+  "$id": "buf.validate.conformance.cases.UInt64GTE.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "minimum": 8,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "U Int64GTE",
+  "type": "object"
+}

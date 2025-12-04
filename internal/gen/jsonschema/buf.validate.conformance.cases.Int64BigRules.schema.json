@@ -1,0 +1,309 @@
+{
+  "$id": "buf.validate.conformance.cases.Int64BigRules.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(constantNeg)$": {
+      "anyOf": [
+        {
+          "enum": [
+            -5444333222
+          ],
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(constantPos)$": {
+      "anyOf": [
+        {
+          "enum": [
+            5444333222
+          ],
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(gtNeg)$": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": -5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(gtPos)$": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(gteNeg)$": {
+      "anyOf": [
+        {
+          "minimum": -5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(gtePos)$": {
+      "anyOf": [
+        {
+          "minimum": 5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(ltNeg)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": -5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(ltPos)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Intentionally choose limits that are outside the range of both signed and unsigned 32-bit integers."
+    },
+    "^(lteNeg)$": {
+      "anyOf": [
+        {
+          "maximum": -5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(ltePos)$": {
+      "anyOf": [
+        {
+          "maximum": 5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "properties": {
+    "constant_neg": {
+      "anyOf": [
+        {
+          "enum": [
+            -5444333222
+          ],
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "constant_pos": {
+      "anyOf": [
+        {
+          "enum": [
+            5444333222
+          ],
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "gt_neg": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": -5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "gt_pos": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "gte_neg": {
+      "anyOf": [
+        {
+          "minimum": -5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "gte_pos": {
+      "anyOf": [
+        {
+          "minimum": 5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "in": {
+      "anyOf": [
+        {
+          "enum": [
+            5444333222,
+            -5444333222
+          ],
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "lt_neg": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": -5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "lt_pos": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Intentionally choose limits that are outside the range of both signed and unsigned 32-bit integers."
+    },
+    "lte_neg": {
+      "anyOf": [
+        {
+          "maximum": -5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "lte_pos": {
+      "anyOf": [
+        {
+          "maximum": 5444333222,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "notin": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Int64 Big Rules",
+  "type": "object"
+}

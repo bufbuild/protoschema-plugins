@@ -1,0 +1,21 @@
+{
+  "$id": "buf.validate.conformance.cases.MessageOneofUnsatisfiable.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "a": {
+      "default": false,
+      "type": "boolean"
+    },
+    "b": {
+      "default": false,
+      "type": "boolean"
+    },
+    "c": {
+      "default": false,
+      "type": "boolean"
+    }
+  },
+  "title": "Message Oneof Unsatisfiable",
+  "type": "object"
+}

@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.custom_rules.FieldExpressionEnum.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_ONE"
+          ],
+          "title": "Enum",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Field Expression Enum",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionEnum.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.FieldExpressionEnum.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

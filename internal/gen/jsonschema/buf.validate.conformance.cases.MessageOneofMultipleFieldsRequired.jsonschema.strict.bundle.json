@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MessageOneofMultipleFieldsRequired.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "boolField": {
+          "type": "boolean"
+        },
+        "strField": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "strField",
+        "boolField"
+      ],
+      "title": "Message Oneof Multiple Fields Required",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MessageOneofMultipleFieldsRequired.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MessageOneofMultipleFieldsRequired.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

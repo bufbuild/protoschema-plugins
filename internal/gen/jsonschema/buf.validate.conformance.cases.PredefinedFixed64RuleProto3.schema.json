@@ -1,0 +1,22 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedFixed64RuleProto3.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "Predefined Fixed64 Rule Proto3",
+  "type": "object"
+}

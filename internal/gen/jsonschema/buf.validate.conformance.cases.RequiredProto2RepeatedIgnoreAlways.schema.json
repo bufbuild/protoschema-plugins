@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredProto2RepeatedIgnoreAlways.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Required Proto2 Repeated Ignore Always",
+  "type": "object"
+}

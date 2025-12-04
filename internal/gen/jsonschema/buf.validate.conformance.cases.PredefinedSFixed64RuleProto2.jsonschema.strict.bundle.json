@@ -1,0 +1,18 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedSFixed64RuleProto2.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "integer"
+        }
+      },
+      "title": "PredefinedS Fixed64 Rule Proto2",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedSFixed64RuleProto2.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedSFixed64RuleProto2.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

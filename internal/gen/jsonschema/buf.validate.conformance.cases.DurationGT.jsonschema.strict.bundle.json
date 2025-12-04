@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.DurationGT.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.Duration.jsonschema.strict.json"
+        }
+      },
+      "title": "DurationGT",
+      "type": "object"
+    },
+    "google.protobuf.Duration.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "format": "duration",
+      "title": "Duration",
+      "type": "string"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.DurationGT.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.DurationGT.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

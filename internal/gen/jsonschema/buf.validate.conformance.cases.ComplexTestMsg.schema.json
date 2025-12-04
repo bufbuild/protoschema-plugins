@@ -1,0 +1,279 @@
+{
+  "$id": "buf.validate.conformance.cases.ComplexTestMsg.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(anyVal)$": {
+      "$ref": "google.protobuf.Any.schema.json"
+    },
+    "^(boolConst)$": {
+      "default": false,
+      "enum": [
+        false
+      ],
+      "type": "boolean"
+    },
+    "^(bytesVal)$": {
+      "default": null,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
+    "^(doubleIn)$": {
+      "anyOf": [
+        {
+          "enum": [
+            456.789,
+            123
+          ],
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(durVal)$": {
+      "$ref": "google.protobuf.Duration.schema.json"
+    },
+    "^(enumConst)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "COMPLEX_TEST_ENUM_TWO"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Complex Test Enum"
+    },
+    "^(floatConst)$": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 8,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(floatVal)$": {
+      "$ref": "google.protobuf.FloatValue.schema.json"
+    },
+    "^(intConst)$": {
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "^(mapVal)$": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 0,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "^(repTsVal)$": {
+      "items": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "type": "array"
+    },
+    "^(tsVal)$": {
+      "$ref": "google.protobuf.Timestamp.schema.json"
+    }
+  },
+  "properties": {
+    "another": {
+      "$ref": "#"
+    },
+    "any_val": {
+      "$ref": "google.protobuf.Any.schema.json"
+    },
+    "bool_const": {
+      "default": false,
+      "enum": [
+        false
+      ],
+      "type": "boolean"
+    },
+    "bytes_val": {
+      "default": null,
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "type": "string"
+    },
+    "const": {
+      "default": "",
+      "enum": [
+        "abcd"
+      ],
+      "type": "string"
+    },
+    "double_in": {
+      "anyOf": [
+        {
+          "enum": [
+            456.789,
+            123
+          ],
+          "type": "number"
+        },
+        {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "dur_val": {
+      "$ref": "google.protobuf.Duration.schema.json"
+    },
+    "enum_const": {
+      "anyOf": [
+        {
+          "enum": [
+            "COMPLEX_TEST_ENUM_TWO"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Complex Test Enum"
+    },
+    "float_const": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 8,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "-Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "float_val": {
+      "$ref": "google.protobuf.FloatValue.schema.json"
+    },
+    "int_const": {
+      "anyOf": [
+        {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    },
+    "map_val": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "exclusiveMaximum": 0,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "nested": {
+      "$ref": "#"
+    },
+    "rep_ts_val": {
+      "items": {
+        "$ref": "google.protobuf.Timestamp.schema.json"
+      },
+      "type": "array"
+    },
+    "ts_val": {
+      "$ref": "google.protobuf.Timestamp.schema.json"
+    },
+    "x": {
+      "type": "string"
+    },
+    "y": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "required": [
+    "dur_val"
+  ],
+  "title": "Complex Test Msg",
+  "type": "object"
+}

@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.TimestampNotLTNow.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.Timestamp.schema.json"
+    }
+  },
+  "title": "Timestamp NotLT Now",
+  "type": "object"
+}

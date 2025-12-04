@@ -1,0 +1,27 @@
+{
+  "$id": "buf.validate.conformance.cases.MessageOneofMultipleFieldsRequired.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(boolField)$": {
+      "default": false,
+      "type": "boolean"
+    },
+    "^(strField)$": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "bool_field": {
+      "default": false,
+      "type": "boolean"
+    },
+    "str_field": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "title": "Message Oneof Multiple Fields Required",
+  "type": "object"
+}

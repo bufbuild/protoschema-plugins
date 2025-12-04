@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.UInt32Ignore.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "maximum": 256,
+          "minimum": 128,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "U Int32 Ignore",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.UInt32Ignore.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.UInt32Ignore.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

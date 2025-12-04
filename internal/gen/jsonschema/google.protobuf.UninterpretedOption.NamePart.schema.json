@@ -1,0 +1,24 @@
+{
+  "$id": "google.protobuf.UninterpretedOption.NamePart.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "The name of the uninterpreted option.  Each string represents a segment in\n a dot-separated name.  is_extension is true iff a segment represents an\n extension (denoted with parentheses in options specs in .proto files).\n E.g.,{ [\"foo\", false], [\"bar.baz\", true], [\"moo\", false] } represents\n \"foo.(bar.baz).moo\".",
+  "patternProperties": {
+    "^(isExtension)$": {
+      "type": "boolean"
+    },
+    "^(namePart)$": {
+      "type": "string"
+    }
+  },
+  "properties": {
+    "is_extension": {
+      "type": "boolean"
+    },
+    "name_part": {
+      "type": "string"
+    }
+  },
+  "title": "Name Part",
+  "type": "object"
+}

@@ -1,0 +1,33 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.DoubleNotFinite.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "enum": [
+                "Infinity",
+                "-Infinity",
+                "NaN"
+              ],
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Double Not Finite",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.DoubleNotFinite.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.DoubleNotFinite.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

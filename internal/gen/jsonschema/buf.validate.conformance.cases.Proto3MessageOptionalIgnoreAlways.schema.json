@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.Proto3MessageOptionalIgnoreAlways.Msg.schema.json"
+    }
+  },
+  "title": "Proto3 Message Optional Ignore Always",
+  "type": "object"
+}

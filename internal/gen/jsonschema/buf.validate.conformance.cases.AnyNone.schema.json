@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.AnyNone.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.Any.schema.json"
+    }
+  },
+  "title": "Any None",
+  "type": "object"
+}

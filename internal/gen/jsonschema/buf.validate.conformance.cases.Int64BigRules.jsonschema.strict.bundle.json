@@ -1,0 +1,84 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Int64BigRules.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "constantNeg": {
+          "enum": [
+            -5444333222
+          ],
+          "type": "integer"
+        },
+        "constantPos": {
+          "enum": [
+            5444333222
+          ],
+          "type": "integer"
+        },
+        "gtNeg": {
+          "exclusiveMinimum": -5444333222,
+          "type": "integer"
+        },
+        "gtPos": {
+          "exclusiveMinimum": 5444333222,
+          "type": "integer"
+        },
+        "gteNeg": {
+          "minimum": -5444333222,
+          "type": "integer"
+        },
+        "gtePos": {
+          "minimum": 5444333222,
+          "type": "integer"
+        },
+        "in": {
+          "enum": [
+            5444333222,
+            -5444333222
+          ],
+          "type": "integer"
+        },
+        "ltNeg": {
+          "exclusiveMaximum": -5444333222,
+          "type": "integer"
+        },
+        "ltPos": {
+          "description": "Intentionally choose limits that are outside the range of both signed and unsigned 32-bit integers.",
+          "exclusiveMaximum": 5444333222,
+          "type": "integer"
+        },
+        "lteNeg": {
+          "maximum": -5444333222,
+          "type": "integer"
+        },
+        "ltePos": {
+          "maximum": 5444333222,
+          "type": "integer"
+        },
+        "notin": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ltPos",
+        "ltNeg",
+        "gtPos",
+        "gtNeg",
+        "ltePos",
+        "lteNeg",
+        "gtePos",
+        "gteNeg",
+        "constantPos",
+        "constantNeg",
+        "in",
+        "notin"
+      ],
+      "title": "Int64 Big Rules",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Int64BigRules.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Int64BigRules.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

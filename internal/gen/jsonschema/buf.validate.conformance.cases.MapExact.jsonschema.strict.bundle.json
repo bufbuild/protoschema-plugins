@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MapExact.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "propertyNames": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "object"
+        }
+      },
+      "title": "Map Exact",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MapExact.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MapExact.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

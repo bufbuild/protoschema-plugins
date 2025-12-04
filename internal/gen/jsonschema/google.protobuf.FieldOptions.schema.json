@@ -1,0 +1,164 @@
+{
+  "$id": "google.protobuf.FieldOptions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(debugRedact)$": {
+      "description": "Indicate that the field value should not be printed out when using debug\n formats, e.g. when the field contains sensitive credentials.",
+      "type": "boolean"
+    },
+    "^(editionDefaults)$": {
+      "items": {
+        "$ref": "google.protobuf.FieldOptions.EditionDefault.schema.json"
+      },
+      "type": "array"
+    },
+    "^(featureSupport)$": {
+      "$ref": "google.protobuf.FieldOptions.FeatureSupport.schema.json"
+    },
+    "^(uninterpretedOption)$": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    },
+    "^(unverifiedLazy)$": {
+      "description": "unverified_lazy does no correctness checks on the byte stream. This should\n only be used where lazy with verification is prohibitive for performance\n reasons.",
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "ctype": {
+      "anyOf": [
+        {
+          "enum": [
+            "STRING",
+            "CORD",
+            "STRING_PIECE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "NOTE: ctype is deprecated. Use `features.(pb.cpp).string_type` instead.\n The ctype option instructs the C++ code generator to use a different\n representation of the field than it normally would.  See the specific\n options below.  This option is only implemented to support use of\n [ctype=CORD] and [ctype=STRING] (the default) on non-repeated fields of\n type \"bytes\" in the open source release.\n TODO: make ctype actually deprecated.",
+      "title": "C Type"
+    },
+    "debug_redact": {
+      "description": "Indicate that the field value should not be printed out when using debug\n formats, e.g. when the field contains sensitive credentials.",
+      "type": "boolean"
+    },
+    "deprecated": {
+      "description": "Is this field deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for accessors, or it will be completely ignored; in the very least, this\n is a formalization for deprecating fields.",
+      "type": "boolean"
+    },
+    "edition_defaults": {
+      "items": {
+        "$ref": "google.protobuf.FieldOptions.EditionDefault.schema.json"
+      },
+      "type": "array"
+    },
+    "feature_support": {
+      "$ref": "google.protobuf.FieldOptions.FeatureSupport.schema.json"
+    },
+    "features": {
+      "$ref": "google.protobuf.FeatureSet.schema.json",
+      "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+    },
+    "jstype": {
+      "anyOf": [
+        {
+          "enum": [
+            "JS_NORMAL",
+            "JS_STRING",
+            "JS_NUMBER"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "This option is an enum to permit additional types to be added, e.g.\n goog.math.Integer.",
+      "title": "JS Type"
+    },
+    "lazy": {
+      "description": "This is only a hint.  Implementations are free to choose whether to use\n eager or lazy parsing regardless of the value of this option.  However,\n setting this option true suggests that the protocol author believes that\n using lazy parsing on this field is worth the additional bookkeeping\n overhead typically needed to implement it.\n\n This option does not affect the public interface of any generated code;\n all method signatures remain the same.  Furthermore, thread-safety of the\n interface is not affected by this option; const methods remain safe to\n call from multiple threads concurrently, while non-const methods continue\n to require exclusive access.\n\n Note that lazy message fields are still eagerly verified to check\n ill-formed wireformat or missing required fields. Calling IsInitialized()\n on the outer message would fail if the inner message has missing required\n fields. Failed verification would result in parsing failure (except when\n uninitialized messages are acceptable).",
+      "title": "Should this field be parsed lazily?  Lazy applies only to message-type\n fields.  It means that when the outer message is initially parsed, the\n inner message's contents will not be parsed but instead stored in encoded\n form.  The inner message will actually be parsed when it is first accessed.",
+      "type": "boolean"
+    },
+    "packed": {
+      "description": "The packed option can be enabled for repeated primitive fields to enable\n a more efficient representation on the wire. Rather than repeatedly\n writing the tag and type for each element, the entire array is encoded as\n a single length-delimited blob. In proto3, only explicit setting it to\n false will avoid using packed encoding.  This option is prohibited in\n Editions, but the `repeated_field_encoding` feature can be used to control\n the behavior.",
+      "type": "boolean"
+    },
+    "retention": {
+      "anyOf": [
+        {
+          "enum": [
+            "RETENTION_UNKNOWN",
+            "RETENTION_RUNTIME",
+            "RETENTION_SOURCE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Option Retention"
+    },
+    "targets": {
+      "items": {
+        "anyOf": [
+          {
+            "enum": [
+              "TARGET_TYPE_UNKNOWN",
+              "TARGET_TYPE_FILE",
+              "TARGET_TYPE_EXTENSION_RANGE",
+              "TARGET_TYPE_MESSAGE",
+              "TARGET_TYPE_FIELD",
+              "TARGET_TYPE_ONEOF",
+              "TARGET_TYPE_ENUM",
+              "TARGET_TYPE_ENUM_ENTRY",
+              "TARGET_TYPE_SERVICE",
+              "TARGET_TYPE_METHOD"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          }
+        ],
+        "title": "Option Target Type"
+      },
+      "type": "array"
+    },
+    "uninterpreted_option": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    },
+    "unverified_lazy": {
+      "description": "unverified_lazy does no correctness checks on the byte stream. This should\n only be used where lazy with verification is prohibitive for performance\n reasons.",
+      "type": "boolean"
+    },
+    "weak": {
+      "description": "For Google-internal migration only. Do not use.",
+      "type": "boolean"
+    }
+  },
+  "title": "Field Options",
+  "type": "object"
+}

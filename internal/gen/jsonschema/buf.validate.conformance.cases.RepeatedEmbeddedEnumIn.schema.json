@@ -1,0 +1,28 @@
+{
+  "$id": "buf.validate.conformance.cases.RepeatedEmbeddedEnumIn.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "items": {
+        "anyOf": [
+          {
+            "enum": [
+              "ANOTHER_IN_ENUM_UNSPECIFIED"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 0,
+            "minimum": 0,
+            "type": "integer"
+          }
+        ],
+        "title": "Another In Enum"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Repeated Embedded Enum In",
+  "type": "object"
+}

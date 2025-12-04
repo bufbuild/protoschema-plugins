@@ -1,0 +1,19 @@
+{
+  "$id": "buf.validate.conformance.cases.TestMsg.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "const": {
+      "default": "",
+      "enum": [
+        "foo"
+      ],
+      "type": "string"
+    },
+    "nested": {
+      "$ref": "#"
+    }
+  },
+  "title": "Test Msg",
+  "type": "object"
+}

@@ -1,0 +1,48 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedRulesProto3UnusedImportBugWorkaround.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "This is a workaround for https://github.com/bufbuild/buf/issues/3306.\n TODO(jchadwick-buf): Remove this when bufbuild/buf#3306 is fixed.",
+      "properties": {
+        "dummy1": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.StandardPredefinedAndCustomRuleProto2.jsonschema.strict.json"
+        },
+        "dummy2": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.StandardPredefinedAndCustomRuleEdition2023.jsonschema.strict.json"
+        }
+      },
+      "title": "Predefined Rules Proto3 Unused Import Bug Workaround",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.StandardPredefinedAndCustomRuleEdition2023.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "exclusiveMaximum": 28,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "title": "Standard Predefined And Custom Rule Edition2023",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.StandardPredefinedAndCustomRuleProto2.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "a": {
+          "exclusiveMaximum": 28,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "title": "Standard Predefined And Custom Rule Proto2",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedRulesProto3UnusedImportBugWorkaround.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedRulesProto3UnusedImportBugWorkaround.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

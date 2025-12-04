@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredEditionsOneofIgnoreAlways.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "a": {
+      "type": "string"
+    },
+    "b": {
+      "type": "string"
+    }
+  },
+  "title": "Required Editions Oneof Ignore Always",
+  "type": "object"
+}

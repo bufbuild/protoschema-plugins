@@ -1,0 +1,26 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.EnumNotIn.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            "TEST_ENUM_UNSPECIFIED",
+            "TEST_ENUM_TWO"
+          ],
+          "title": "Test Enum",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Enum Not In",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.EnumNotIn.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.EnumNotIn.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

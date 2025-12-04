@@ -1,0 +1,18 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredProto3MapValue.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "title": "Required Proto3 Map Value",
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MapValues.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "additionalProperties": {
+            "minLength": 3,
+            "type": "string"
+          },
+          "propertyNames": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "title": "Map Values",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MapValues.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MapValues.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

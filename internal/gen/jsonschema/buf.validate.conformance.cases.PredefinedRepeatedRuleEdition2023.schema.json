@@ -1,0 +1,24 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedRepeatedRuleEdition2023.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "items": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "pattern": "^[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    }
+  },
+  "title": "Predefined Repeated Rule Edition2023",
+  "type": "object"
+}

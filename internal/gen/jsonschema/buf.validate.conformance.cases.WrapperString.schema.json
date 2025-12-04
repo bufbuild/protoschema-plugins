@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.WrapperString.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.StringValue.schema.json"
+    }
+  },
+  "title": "Wrapper String",
+  "type": "object"
+}

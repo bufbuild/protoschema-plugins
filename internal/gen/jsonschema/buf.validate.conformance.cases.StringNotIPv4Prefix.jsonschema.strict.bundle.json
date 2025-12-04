@@ -1,0 +1,21 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.StringNotIPv4Prefix.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "String NotI Pv4 Prefix",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.StringNotIPv4Prefix.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.StringNotIPv4Prefix.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Fixed32LTE.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "maximum": 64,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Fixed32LTE",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Fixed32LTE.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Fixed32LTE.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

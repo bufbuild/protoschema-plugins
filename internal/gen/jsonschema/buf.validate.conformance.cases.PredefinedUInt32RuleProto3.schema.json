@@ -1,0 +1,23 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedUInt32RuleProto3.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "exclusiveMaximum": 4294967296,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "pattern": "^[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "PredefinedU Int32 Rule Proto3",
+  "type": "object"
+}
