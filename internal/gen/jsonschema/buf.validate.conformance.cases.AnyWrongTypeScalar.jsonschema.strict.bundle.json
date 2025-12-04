@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.AnyWrongTypeScalar.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "The below messages should throw compilation errors due to incorrect types.",
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Any Wrong Type Scalar",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.AnyWrongTypeScalar.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.AnyWrongTypeScalar.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

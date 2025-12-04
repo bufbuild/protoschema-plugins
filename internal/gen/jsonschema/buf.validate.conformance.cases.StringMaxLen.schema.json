@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringMaxLen.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "maxLength": 5,
+      "type": "string"
+    }
+  },
+  "title": "String Max Len",
+  "type": "object"
+}

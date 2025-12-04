@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Fixed64GT.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "exclusiveMinimum": 16,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Fixed64GT",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Fixed64GT.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Fixed64GT.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

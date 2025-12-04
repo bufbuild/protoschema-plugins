@@ -1,0 +1,37 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.FloatExGTELTE.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "maximum": 128,
+              "type": "number"
+            },
+            {
+              "minimum": 256,
+              "type": "number"
+            },
+            {
+              "enum": [
+                "Infinity",
+                "-Infinity"
+              ],
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Float ExGTELTE",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.FloatExGTELTE.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.FloatExGTELTE.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

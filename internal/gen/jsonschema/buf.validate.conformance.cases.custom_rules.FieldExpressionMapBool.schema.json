@@ -1,0 +1,18 @@
+{
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionMapBool.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "propertyNames": {
+        "type": "boolean"
+      },
+      "type": "object"
+    }
+  },
+  "title": "Field Expression Map Bool",
+  "type": "object"
+}

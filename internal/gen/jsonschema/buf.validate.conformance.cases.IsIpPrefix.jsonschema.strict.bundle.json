@@ -1,0 +1,29 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.IsIpPrefix.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "strict": {
+          "type": "boolean"
+        },
+        "val": {
+          "type": "string"
+        },
+        "version": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Is Ip Prefix",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.IsIpPrefix.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.IsIpPrefix.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

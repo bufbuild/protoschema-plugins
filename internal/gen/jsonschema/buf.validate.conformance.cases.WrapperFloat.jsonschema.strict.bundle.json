@@ -1,0 +1,38 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.WrapperFloat.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.FloatValue.jsonschema.strict.json"
+        }
+      },
+      "title": "Wrapper Float",
+      "type": "object"
+    },
+    "google.protobuf.FloatValue.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
+          "type": "string"
+        }
+      ],
+      "description": "The float value.",
+      "title": "Float Value"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.WrapperFloat.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.WrapperFloat.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,27 @@
+{
+  "$id": "buf.validate.conformance.cases.EnumAliasConst.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "enum": [
+            "TEST_ENUM_ALIAS_B",
+            "TEST_ENUM_ALIAS_BETA"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2,
+          "minimum": 2,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Test Enum Alias"
+    }
+  },
+  "title": "Enum Alias Const",
+  "type": "object"
+}

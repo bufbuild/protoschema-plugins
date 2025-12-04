@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedEnumRuleEdition2023.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            "ENUM_EDITION2023_ZERO_UNSPECIFIED",
+            "ENUM_EDITION2023_ONE"
+          ],
+          "title": "Enum Edition2023",
+          "type": "string"
+        }
+      },
+      "title": "Predefined Enum Rule Edition2023",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedEnumRuleEdition2023.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedEnumRuleEdition2023.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

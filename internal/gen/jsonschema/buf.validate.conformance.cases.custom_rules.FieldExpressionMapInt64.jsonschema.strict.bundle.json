@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.custom_rules.FieldExpressionMapInt64.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "propertyNames": {
+            "type": "integer"
+          },
+          "type": "object"
+        }
+      },
+      "title": "Field Expression Map Int64",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.custom_rules.FieldExpressionMapInt64.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.FieldExpressionMapInt64.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

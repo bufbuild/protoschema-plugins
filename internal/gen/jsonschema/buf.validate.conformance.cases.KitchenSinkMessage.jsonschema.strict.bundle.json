@@ -1,0 +1,174 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.ComplexTestMsg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "another": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.ComplexTestMsg.jsonschema.strict.json"
+        },
+        "anyVal": {
+          "$ref": "#/$defs/google.protobuf.Any.jsonschema.strict.json"
+        },
+        "boolConst": {
+          "enum": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "bytesVal": {
+          "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+          "type": "string"
+        },
+        "const": {
+          "enum": [
+            "abcd"
+          ],
+          "type": "string"
+        },
+        "doubleIn": {
+          "enum": [
+            456.789,
+            123
+          ],
+          "type": "number"
+        },
+        "durVal": {
+          "$ref": "#/$defs/google.protobuf.Duration.jsonschema.strict.json"
+        },
+        "enumConst": {
+          "enum": [
+            "COMPLEX_TEST_ENUM_TWO"
+          ],
+          "title": "Complex Test Enum",
+          "type": "string"
+        },
+        "floatConst": {
+          "anyOf": [
+            {
+              "exclusiveMaximum": 8,
+              "minimum": -3.4028234663852886e+38,
+              "type": "number"
+            },
+            {
+              "enum": [
+                "-Infinity"
+              ],
+              "type": "string"
+            }
+          ]
+        },
+        "floatVal": {
+          "$ref": "#/$defs/google.protobuf.FloatValue.jsonschema.strict.json"
+        },
+        "intConst": {
+          "enum": [
+            5
+          ],
+          "exclusiveMaximum": 2147483648,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "mapVal": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "propertyNames": {
+            "exclusiveMaximum": 0,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "nested": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.ComplexTestMsg.jsonschema.strict.json"
+        },
+        "repTsVal": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.Timestamp.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
+        "tsVal": {
+          "$ref": "#/$defs/google.protobuf.Timestamp.jsonschema.strict.json"
+        },
+        "x": {
+          "type": "string"
+        },
+        "y": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "const",
+        "intConst",
+        "boolConst",
+        "durVal",
+        "floatConst",
+        "doubleIn",
+        "enumConst",
+        "bytesVal"
+      ],
+      "title": "Complex Test Msg",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.KitchenSinkMessage.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.ComplexTestMsg.jsonschema.strict.json"
+        }
+      },
+      "title": "Kitchen Sink Message",
+      "type": "object"
+    },
+    "google.protobuf.Any.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "title": "Any",
+      "type": "object"
+    },
+    "google.protobuf.Duration.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "format": "duration",
+      "title": "Duration",
+      "type": "string"
+    },
+    "google.protobuf.FloatValue.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "anyOf": [
+        {
+          "maximum": 3.4028234663852886e+38,
+          "minimum": -3.4028234663852886e+38,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
+          "type": "string"
+        }
+      ],
+      "description": "The float value.",
+      "title": "Float Value"
+    },
+    "google.protobuf.Timestamp.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.KitchenSinkMessage.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.KitchenSinkMessage.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,27 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RepeatedDuration.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.Duration.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Repeated Duration",
+      "type": "object"
+    },
+    "google.protobuf.Duration.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "format": "duration",
+      "title": "Duration",
+      "type": "string"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RepeatedDuration.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RepeatedDuration.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

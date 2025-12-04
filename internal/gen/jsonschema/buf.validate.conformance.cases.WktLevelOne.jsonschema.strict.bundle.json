@@ -1,0 +1,50 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.WktLevelOne.WktLevelTwo.WktLevelThree.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "uuid": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uuid"
+      ],
+      "title": "Wkt Level Three",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.WktLevelOne.WktLevelTwo.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "three": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.WktLevelOne.WktLevelTwo.WktLevelThree.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "three"
+      ],
+      "title": "Wkt Level Two",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.WktLevelOne.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "two": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.WktLevelOne.WktLevelTwo.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "two"
+      ],
+      "title": "Wkt Level One",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.WktLevelOne.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.WktLevelOne.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

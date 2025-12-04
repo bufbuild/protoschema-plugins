@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredProto2Message.Msg.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "type": "string"
+    }
+  },
+  "title": "Msg",
+  "type": "object"
+}

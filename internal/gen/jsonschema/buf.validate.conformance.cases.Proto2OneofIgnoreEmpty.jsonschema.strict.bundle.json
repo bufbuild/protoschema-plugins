@@ -1,0 +1,20 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Proto2OneofIgnoreEmpty.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        }
+      },
+      "title": "Proto2 Oneof Ignore Empty",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Proto2OneofIgnoreEmpty.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Proto2OneofIgnoreEmpty.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

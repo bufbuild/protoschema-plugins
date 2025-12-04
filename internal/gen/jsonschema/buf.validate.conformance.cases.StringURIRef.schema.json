@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringURIRef.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "pattern": "^(?:(?:[a-zA-Z][a-zA-Z\\d+\\-.]*):)?(?:\\/\\/(?:[A-Za-z0-9\\-\\.]+(?::\\d+)?))?(/[^\\?#]*)?(?:\\?([^\\#]*))?(?:\\#(.*))?$",
+      "type": "string"
+    }
+  },
+  "title": "StringURI Ref",
+  "type": "object"
+}

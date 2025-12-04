@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.WktLevelOne.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "two": {
+      "$ref": "buf.validate.conformance.cases.WktLevelOne.WktLevelTwo.schema.json"
+    }
+  },
+  "required": [
+    "two"
+  ],
+  "title": "Wkt Level One",
+  "type": "object"
+}

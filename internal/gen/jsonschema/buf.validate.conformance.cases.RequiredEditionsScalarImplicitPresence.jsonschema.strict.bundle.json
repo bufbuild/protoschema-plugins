@@ -1,0 +1,21 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RequiredEditionsScalarImplicitPresence.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Required Editions Scalar Implicit Presence",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RequiredEditionsScalarImplicitPresence.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RequiredEditionsScalarImplicitPresence.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

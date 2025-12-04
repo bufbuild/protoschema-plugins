@@ -1,0 +1,33 @@
+{
+  "$id": "buf.validate.conformance.cases.MapEnumDefined.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "enum": [
+              "TEST_ENUM_UNSPECIFIED",
+              "TEST_ENUM_ONE",
+              "TEST_ENUM_TWO"
+            ],
+            "type": "string"
+          },
+          {
+            "maximum": 2,
+            "minimum": 0,
+            "type": "integer"
+          }
+        ],
+        "title": "Test Enum"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "title": "Map Enum Defined",
+  "type": "object"
+}

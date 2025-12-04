@@ -1,0 +1,30 @@
+{
+  "$id": "buf.validate.conformance.cases.EnumExternal2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "pattern": "^DOUBLE_ENUMERATED_UNSPECIFIED$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "DOUBLE_ENUMERATED_VALUE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "title": "Double Enumerated"
+    }
+  },
+  "title": "Enum External2",
+  "type": "object"
+}

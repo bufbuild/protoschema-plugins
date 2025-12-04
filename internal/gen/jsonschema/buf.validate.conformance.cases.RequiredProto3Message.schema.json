@@ -1,0 +1,15 @@
+{
+  "$id": "buf.validate.conformance.cases.RequiredProto3Message.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "buf.validate.conformance.cases.RequiredProto3Message.Msg.schema.json"
+    }
+  },
+  "required": [
+    "val"
+  ],
+  "title": "Required Proto3 Message",
+  "type": "object"
+}

@@ -1,0 +1,23 @@
+{
+  "$id": "buf.validate.conformance.cases.IsHostAndPort.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(portRequired)$": {
+      "default": false,
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "port_required": {
+      "default": false,
+      "type": "boolean"
+    },
+    "val": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "title": "Is Host And Port",
+  "type": "object"
+}

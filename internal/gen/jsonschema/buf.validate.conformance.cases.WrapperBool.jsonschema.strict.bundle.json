@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.WrapperBool.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.BoolValue.jsonschema.strict.json"
+        }
+      },
+      "title": "Wrapper Bool",
+      "type": "object"
+    },
+    "google.protobuf.BoolValue.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The bool value.",
+      "title": "Bool Value",
+      "type": "boolean"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.WrapperBool.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.WrapperBool.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,44 @@
+{
+  "$id": "buf.validate.conformance.harness.CaseResult.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "A case result is a single test case result.",
+  "patternProperties": {
+    "^(expectedFailure)$": {
+      "default": false,
+      "description": "Denotes if the test is expected to fail. True, if the test case was expected to fail.",
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "expected_failure": {
+      "default": false,
+      "description": "Denotes if the test is expected to fail. True, if the test case was expected to fail.",
+      "type": "boolean"
+    },
+    "got": {
+      "$ref": "buf.validate.conformance.harness.TestResult.schema.json",
+      "description": "The actual result."
+    },
+    "input": {
+      "$ref": "google.protobuf.Any.schema.json",
+      "description": "The input used to invoke the test case."
+    },
+    "name": {
+      "default": "",
+      "description": "The case name.",
+      "type": "string"
+    },
+    "success": {
+      "default": false,
+      "description": "Success state of the test case. True if the test case succeeded.",
+      "type": "boolean"
+    },
+    "wanted": {
+      "$ref": "buf.validate.conformance.harness.TestResult.schema.json",
+      "description": "The expected result."
+    }
+  },
+  "title": "Case Result",
+  "type": "object"
+}

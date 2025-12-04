@@ -1,0 +1,27 @@
+{
+  "$id": "buf.validate.conformance.cases.DoubleGTE.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "minimum": 8,
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "default": 0
+    }
+  },
+  "title": "DoubleGTE",
+  "type": "object"
+}

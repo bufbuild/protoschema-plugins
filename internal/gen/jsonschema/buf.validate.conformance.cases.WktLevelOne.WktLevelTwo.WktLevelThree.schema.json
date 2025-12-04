@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.WktLevelOne.WktLevelTwo.WktLevelThree.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "uuid": {
+      "default": "",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+      "type": "string"
+    }
+  },
+  "title": "Wkt Level Three",
+  "type": "object"
+}

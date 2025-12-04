@@ -1,0 +1,25 @@
+{
+  "$id": "buf.validate.conformance.cases.MessageOneofIgnoreOverride.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(boolField)$": {
+      "default": false,
+      "type": "boolean"
+    },
+    "^(msgField)$": {
+      "$ref": "buf.validate.conformance.cases.TestMsg.schema.json"
+    }
+  },
+  "properties": {
+    "bool_field": {
+      "default": false,
+      "type": "boolean"
+    },
+    "msg_field": {
+      "$ref": "buf.validate.conformance.cases.TestMsg.schema.json"
+    }
+  },
+  "title": "Message Oneof Ignore Override",
+  "type": "object"
+}

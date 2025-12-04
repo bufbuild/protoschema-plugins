@@ -1,0 +1,123 @@
+{
+  "$id": "google.protobuf.DescriptorProto.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Describes a message type.",
+  "patternProperties": {
+    "^(enumType)$": {
+      "items": {
+        "$ref": "google.protobuf.EnumDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "^(extensionRange)$": {
+      "items": {
+        "$ref": "google.protobuf.DescriptorProto.ExtensionRange.schema.json"
+      },
+      "type": "array"
+    },
+    "^(nestedType)$": {
+      "items": {
+        "$ref": "#"
+      },
+      "type": "array"
+    },
+    "^(oneofDecl)$": {
+      "items": {
+        "$ref": "google.protobuf.OneofDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "^(reservedName)$": {
+      "description": "Reserved field names, which may not be used by fields in the same message.\n A given name may only be reserved once.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "^(reservedRange)$": {
+      "items": {
+        "$ref": "google.protobuf.DescriptorProto.ReservedRange.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "properties": {
+    "enum_type": {
+      "items": {
+        "$ref": "google.protobuf.EnumDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "extension": {
+      "items": {
+        "$ref": "google.protobuf.FieldDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "extension_range": {
+      "items": {
+        "$ref": "google.protobuf.DescriptorProto.ExtensionRange.schema.json"
+      },
+      "type": "array"
+    },
+    "field": {
+      "items": {
+        "$ref": "google.protobuf.FieldDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "nested_type": {
+      "items": {
+        "$ref": "#"
+      },
+      "type": "array"
+    },
+    "oneof_decl": {
+      "items": {
+        "$ref": "google.protobuf.OneofDescriptorProto.schema.json"
+      },
+      "type": "array"
+    },
+    "options": {
+      "$ref": "google.protobuf.MessageOptions.schema.json"
+    },
+    "reserved_name": {
+      "description": "Reserved field names, which may not be used by fields in the same message.\n A given name may only be reserved once.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reserved_range": {
+      "items": {
+        "$ref": "google.protobuf.DescriptorProto.ReservedRange.schema.json"
+      },
+      "type": "array"
+    },
+    "visibility": {
+      "anyOf": [
+        {
+          "enum": [
+            "VISIBILITY_UNSET",
+            "VISIBILITY_LOCAL",
+            "VISIBILITY_EXPORT"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "description": "Support for `export` and `local` keywords on enums.",
+      "title": "Symbol Visibility"
+    }
+  },
+  "title": "Descriptor Proto",
+  "type": "object"
+}

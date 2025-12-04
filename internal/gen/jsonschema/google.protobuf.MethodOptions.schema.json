@@ -1,0 +1,69 @@
+{
+  "$id": "google.protobuf.MethodOptions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(idempotencyLevel)$": {
+      "anyOf": [
+        {
+          "enum": [
+            "IDEMPOTENCY_UNKNOWN",
+            "NO_SIDE_EFFECTS",
+            "IDEMPOTENT"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Idempotency Level"
+    },
+    "^(uninterpretedOption)$": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "properties": {
+    "deprecated": {
+      "description": "Is this method deprecated?\n Depending on the target platform, this can emit Deprecated annotations\n for the method, or it will be completely ignored; in the very least,\n this is a formalization for deprecating methods.",
+      "type": "boolean"
+    },
+    "features": {
+      "$ref": "google.protobuf.FeatureSet.schema.json",
+      "description": "Any features defined in the specific edition.\n WARNING: This field should only be used by protobuf plugins or special\n cases like the proto compiler. Other uses are discouraged and\n developers should rely on the protoreflect APIs for their client language."
+    },
+    "idempotency_level": {
+      "anyOf": [
+        {
+          "enum": [
+            "IDEMPOTENCY_UNKNOWN",
+            "NO_SIDE_EFFECTS",
+            "IDEMPOTENT"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Idempotency Level"
+    },
+    "uninterpreted_option": {
+      "description": "The parser stores options it doesn't recognize here. See above.",
+      "items": {
+        "$ref": "google.protobuf.UninterpretedOption.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Method Options",
+  "type": "object"
+}

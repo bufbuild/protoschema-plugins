@@ -1,0 +1,30 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MapEnumDefined.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "additionalProperties": {
+            "enum": [
+              "TEST_ENUM_UNSPECIFIED",
+              "TEST_ENUM_ONE",
+              "TEST_ENUM_TWO"
+            ],
+            "title": "Test Enum",
+            "type": "string"
+          },
+          "propertyNames": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "title": "Map Enum Defined",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MapEnumDefined.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MapEnumDefined.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.EditionsRepeatedExpandedItemIgnoreAlways.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "exclusiveMaximum": 2147483648,
+            "exclusiveMinimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Editions Repeated Expanded Item Ignore Always",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.EditionsRepeatedExpandedItemIgnoreAlways.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.EditionsRepeatedExpandedItemIgnoreAlways.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,27 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.EnumAliasIn.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "enum": [
+            "TEST_ENUM_ALIAS_UNSPECIFIED",
+            "TEST_ENUM_ALIAS_B",
+            "TEST_ENUM_ALIAS_BETA"
+          ],
+          "title": "Test Enum Alias",
+          "type": "string"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Enum Alias In",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.EnumAliasIn.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.EnumAliasIn.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

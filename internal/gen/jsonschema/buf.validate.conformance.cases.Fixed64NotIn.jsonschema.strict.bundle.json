@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.Fixed64NotIn.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Fixed64 Not In",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.Fixed64NotIn.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.Fixed64NotIn.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

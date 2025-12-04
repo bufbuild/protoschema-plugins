@@ -1,0 +1,25 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedWrappedUInt64RuleProto3.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.UInt64Value.jsonschema.strict.json"
+        }
+      },
+      "title": "Predefined WrappedU Int64 Rule Proto3",
+      "type": "object"
+    },
+    "google.protobuf.UInt64Value.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The uint64 value.",
+      "minimum": 0,
+      "title": "U Int64 Value",
+      "type": "integer"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedWrappedUInt64RuleProto3.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedWrappedUInt64RuleProto3.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

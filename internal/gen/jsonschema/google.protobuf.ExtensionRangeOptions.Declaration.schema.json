@@ -1,0 +1,45 @@
+{
+  "$id": "google.protobuf.ExtensionRangeOptions.Declaration.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "patternProperties": {
+    "^(fullName)$": {
+      "description": "The fully-qualified name of the extension field. There must be a leading\n dot in front of the full name.",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "full_name": {
+      "description": "The fully-qualified name of the extension field. There must be a leading\n dot in front of the full name.",
+      "type": "string"
+    },
+    "number": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "description": "The extension number declared within the extension range."
+    },
+    "repeated": {
+      "description": "If true, indicates that the extension must be defined as repeated.\n Otherwise the extension must be defined as optional.",
+      "type": "boolean"
+    },
+    "reserved": {
+      "description": "If true, indicates that the number is reserved in the extension range,\n and any extension field with the number will fail to compile. Set this\n when a declared extension field is deleted.",
+      "type": "boolean"
+    },
+    "type": {
+      "description": "The fully-qualified type name of the extension field. Unlike\n Metadata.type, Declaration.type must have a leading dot for messages\n and enums.",
+      "type": "string"
+    }
+  },
+  "title": "Declaration",
+  "type": "object"
+}

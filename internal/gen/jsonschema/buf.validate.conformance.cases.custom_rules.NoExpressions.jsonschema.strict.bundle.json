@@ -1,0 +1,43 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.custom_rules.NoExpressions.Nested.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {},
+      "title": "Nested",
+      "type": "object"
+    },
+    "buf.validate.conformance.cases.custom_rules.NoExpressions.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "A message that does not contain any expressions",
+      "properties": {
+        "a": {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "b": {
+          "enum": [
+            "ENUM_UNSPECIFIED",
+            "ENUM_ONE"
+          ],
+          "title": "Enum",
+          "type": "string"
+        },
+        "c": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.NoExpressions.Nested.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "a",
+        "b"
+      ],
+      "title": "No Expressions",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.custom_rules.NoExpressions.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.custom_rules.NoExpressions.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

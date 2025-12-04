@@ -1,0 +1,29 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.MapExternalEnumDefined.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "additionalProperties": {
+            "enum": [
+              "ENUMERATED_UNSPECIFIED",
+              "ENUMERATED_VALUE"
+            ],
+            "title": "Enumerated",
+            "type": "string"
+          },
+          "propertyNames": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "title": "Map External Enum Defined",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.MapExternalEnumDefined.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.MapExternalEnumDefined.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

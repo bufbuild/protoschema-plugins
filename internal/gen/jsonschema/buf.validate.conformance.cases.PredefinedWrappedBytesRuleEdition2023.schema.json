@@ -1,0 +1,12 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedWrappedBytesRuleEdition2023.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "$ref": "google.protobuf.BytesValue.schema.json"
+    }
+  },
+  "title": "Predefined Wrapped Bytes Rule Edition2023",
+  "type": "object"
+}

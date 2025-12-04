@@ -1,0 +1,45 @@
+{
+  "$id": "buf.validate.conformance.cases.MapMin.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "maximum": 3.4028234663852886e+38,
+            "minimum": -3.4028234663852886e+38,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Infinity",
+              "-Infinity",
+              "NaN"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "propertyNames": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "object"
+    }
+  },
+  "title": "Map Min",
+  "type": "object"
+}

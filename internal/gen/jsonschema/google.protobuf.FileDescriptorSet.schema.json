@@ -1,0 +1,16 @@
+{
+  "$id": "google.protobuf.FileDescriptorSet.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "The protocol compiler can output a FileDescriptorSet containing the .proto\n files it parses.",
+  "properties": {
+    "file": {
+      "items": {
+        "$ref": "google.protobuf.FileDescriptorProto.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "title": "File Descriptor Set",
+  "type": "object"
+}

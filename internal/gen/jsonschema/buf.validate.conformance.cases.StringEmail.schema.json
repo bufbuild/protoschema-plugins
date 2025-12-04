@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringEmail.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "format": "email",
+      "type": "string"
+    }
+  },
+  "title": "String Email",
+  "type": "object"
+}

@@ -1,0 +1,21 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.RequiredEditionsRepeatedExpandedIgnoreAlways.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Required Editions Repeated Expanded Ignore Always",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.RequiredEditionsRepeatedExpandedIgnoreAlways.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.RequiredEditionsRepeatedExpandedIgnoreAlways.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

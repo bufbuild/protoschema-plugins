@@ -1,0 +1,28 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedRepeatedWrappedBytesRuleProto3.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.BytesValue.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Predefined Repeated Wrapped Bytes Rule Proto3",
+      "type": "object"
+    },
+    "google.protobuf.BytesValue.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The bytes value.",
+      "pattern": "^[A-Za-z0-9+/]*={0,2}$",
+      "title": "Bytes Value",
+      "type": "string"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedRepeatedWrappedBytesRuleProto3.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedRepeatedWrappedBytesRuleProto3.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

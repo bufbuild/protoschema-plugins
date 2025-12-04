@@ -1,0 +1,33 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedDoubleRuleProto3.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "enum": [
+                "Infinity",
+                "-Infinity",
+                "NaN"
+              ],
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Predefined Double Rule Proto3",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedDoubleRuleProto3.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedDoubleRuleProto3.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

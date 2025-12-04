@@ -1,0 +1,21 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.BoolExample.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "val"
+      ],
+      "title": "Bool Example",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.BoolExample.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.BoolExample.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

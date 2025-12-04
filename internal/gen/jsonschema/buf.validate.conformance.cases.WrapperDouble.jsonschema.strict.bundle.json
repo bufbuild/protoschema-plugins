@@ -1,0 +1,36 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.WrapperDouble.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "$ref": "#/$defs/google.protobuf.DoubleValue.jsonschema.strict.json"
+        }
+      },
+      "title": "Wrapper Double",
+      "type": "object"
+    },
+    "google.protobuf.DoubleValue.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "enum": [
+            "Infinity",
+            "-Infinity",
+            "NaN"
+          ],
+          "type": "string"
+        }
+      ],
+      "description": "The double value.",
+      "title": "Double Value"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.WrapperDouble.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.WrapperDouble.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

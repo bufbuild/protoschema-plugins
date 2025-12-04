@@ -1,0 +1,26 @@
+{
+  "$id": "buf.validate.conformance.cases.PredefinedEnumRuleEdition2023.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "anyOf": [
+        {
+          "enum": [
+            "ENUM_EDITION2023_ZERO_UNSPECIFIED",
+            "ENUM_EDITION2023_ONE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "title": "Enum Edition2023"
+    }
+  },
+  "title": "Predefined Enum Rule Edition2023",
+  "type": "object"
+}

@@ -1,0 +1,33 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.DurationFieldWithOtherFields.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "description": "Regression for earlier bug where missing Duration field would short circuit\n evaluation in C++.",
+      "properties": {
+        "durationVal": {
+          "$ref": "#/$defs/google.protobuf.Duration.jsonschema.strict.json"
+        },
+        "intVal": {
+          "exclusiveMaximum": 2147483648,
+          "exclusiveMinimum": 16,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "intVal"
+      ],
+      "title": "Duration Field With Other Fields",
+      "type": "object"
+    },
+    "google.protobuf.Duration.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "format": "duration",
+      "title": "Duration",
+      "type": "string"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.DurationFieldWithOtherFields.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.DurationFieldWithOtherFields.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

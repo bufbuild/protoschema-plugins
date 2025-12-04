@@ -1,0 +1,36 @@
+{
+  "$id": "google.protobuf.EnumDescriptorProto.EnumReservedRange.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Note that this is distinct from DescriptorProto.ReservedRange in that it\n is inclusive such that it can appropriately represent the entire int32\n domain.",
+  "properties": {
+    "end": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
+    },
+    "start": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "title": "Range of reserved numeric values. Reserved values may not be used by\n entries in the same enum. Reserved ranges may not overlap.",
+  "type": "object"
+}

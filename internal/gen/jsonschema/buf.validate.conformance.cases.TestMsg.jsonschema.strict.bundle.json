@@ -1,0 +1,27 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.TestMsg.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "const": {
+          "enum": [
+            "foo"
+          ],
+          "type": "string"
+        },
+        "nested": {
+          "$ref": "#/$defs/buf.validate.conformance.cases.TestMsg.jsonschema.strict.json"
+        }
+      },
+      "required": [
+        "const"
+      ],
+      "title": "Test Msg",
+      "type": "object"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.TestMsg.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.TestMsg.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

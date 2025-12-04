@@ -1,0 +1,14 @@
+{
+  "$id": "buf.validate.conformance.cases.StringIPv4.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "val": {
+      "default": "",
+      "format": "ipv4",
+      "type": "string"
+    }
+  },
+  "title": "StringI Pv4",
+  "type": "object"
+}

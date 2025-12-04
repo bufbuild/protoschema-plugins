@@ -1,0 +1,88 @@
+{
+  "$id": "buf.validate.conformance.harness.SuiteResults.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "A suite result is a single test suite result.",
+  "patternProperties": {
+    "^(expectedFailures)$": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Count of expected failures."
+    }
+  },
+  "properties": {
+    "cases": {
+      "description": "List of case results.",
+      "items": {
+        "$ref": "buf.validate.conformance.harness.CaseResult.schema.json"
+      },
+      "type": "array"
+    },
+    "expected_failures": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Count of expected failures."
+    },
+    "failures": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Count of failures."
+    },
+    "fdset": {
+      "$ref": "google.protobuf.FileDescriptorSet.schema.json",
+      "description": "The file descriptor set used to generate this result."
+    },
+    "name": {
+      "default": "",
+      "description": "The suite name.",
+      "type": "string"
+    },
+    "successes": {
+      "anyOf": [
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      ],
+      "default": 0,
+      "description": "Count of successes."
+    }
+  },
+  "title": "Suite Results",
+  "type": "object"
+}

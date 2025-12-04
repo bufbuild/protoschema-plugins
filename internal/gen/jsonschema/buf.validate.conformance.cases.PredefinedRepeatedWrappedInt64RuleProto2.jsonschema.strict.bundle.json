@@ -1,0 +1,27 @@
+{
+  "$defs": {
+    "buf.validate.conformance.cases.PredefinedRepeatedWrappedInt64RuleProto2.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "val": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.Int64Value.jsonschema.strict.json"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Predefined Repeated Wrapped Int64 Rule Proto2",
+      "type": "object"
+    },
+    "google.protobuf.Int64Value.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "description": "The int64 value.",
+      "title": "Int64 Value",
+      "type": "integer"
+    }
+  },
+  "$id": "buf.validate.conformance.cases.PredefinedRepeatedWrappedInt64RuleProto2.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.validate.conformance.cases.PredefinedRepeatedWrappedInt64RuleProto2.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
