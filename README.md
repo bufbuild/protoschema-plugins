@@ -315,7 +315,7 @@ The JSON Schema plugin supports the following options:
   `true`, causing unknown fields to be ignored instead of erroring. Defaults to `false`. Useful when a
   client/sender may have a different version the schema than the server/receiver. Similar to the
   "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
-- `use_proto_names` - if `true`, the generated schema will use proto field name instead of defaulting to a lowerCamelCase JSON field name. Defaults to `false`. Matches the behavior of [`protojson.MarshalOptions.UseProtoNames`](https://pkg.go.dev/google.golang.org/protobuf/encoding/protojson#MarshalOptions).
+- `use_proto_names` - if `true`, the generated schema will always use proto field name instead of defaulting to a lowerCamelCase JSON field name. Defaults to `false`. Matches the behavior of [`protojson.MarshalOptions.UseProtoNames`](https://pkg.go.dev/google.golang.org/protobuf/encoding/protojson#MarshalOptions).
 
 ## Community
 

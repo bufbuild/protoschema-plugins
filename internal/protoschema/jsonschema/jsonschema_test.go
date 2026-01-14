@@ -67,6 +67,45 @@ func TestTitle(t *testing.T) {
 	require.Equal(t, "FOO", nameToTitle("FOO"))
 }
 
+func TestUseProtoNames(t *testing.T) {
+	t.Parallel()
+	testDescs, err := golden.GetTestDescriptors("../../testdata")
+	require.NoError(t, err)
+	require.NotEmpty(t, testDescs)
+
+	// Use the Product message which has snake_case field names like product_id
+	var productDesc = testDescs[len(testDescs)-1]
+	require.Equal(t, "buf.protoschema.test.v1.Product", string(productDesc.FullName()))
+
+	// Test with UseProtoNames - should use snake_case field names
+	protoNamesGen := NewGenerator(WithUseProtoNames())
+	err = protoNamesGen.Add(productDesc)
+	require.NoError(t, err)
+	protoNamesSchemas := protoNamesGen.Generate()
+	protoSchema := protoNamesSchemas[productDesc.FullName()]
+	protoProps := protoSchema["properties"].(map[string]any)
+
+	// Should have snake_case names as primary
+	require.Contains(t, protoProps, "product_id")
+	require.Contains(t, protoProps, "product_name")
+	require.NotContains(t, protoProps, "productId")
+	require.NotContains(t, protoProps, "productName")
+
+	// Test with JSONNames - should use camelCase field names
+	jsonNamesGen := NewGenerator(WithJSONNames)
+	err = jsonNamesGen.Add(productDesc)
+	require.NoError(t, err)
+	jsonNamesSchemas := jsonNamesGen.Generate()
+	jsonSchema := jsonNamesSchemas[productDesc.FullName()]
+	jsonProps := jsonSchema["properties"].(map[string]any)
+
+	// Should have camelCase names as primary
+	require.Contains(t, jsonProps, "productId")
+	require.Contains(t, jsonProps, "productName")
+	require.NotContains(t, jsonProps, "product_id")
+	require.NotContains(t, jsonProps, "product_name")
+}
+
 func TestConstraints(t *testing.T) {
 	t.Parallel()
 	schemaPath := filepath.FromSlash("../../testdata/jsonschema/buf.protoschema.test.v1.ConstraintTests.schema.json")
