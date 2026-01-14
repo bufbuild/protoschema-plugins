@@ -63,6 +63,14 @@ func WithJSONNames() GeneratorOption {
 	}
 }
 
+// WithProtoNames sets the generator to use proto field names as the primary name 
+// unless the json_name option is explicitly set.
+func WithUseProtoNames() GeneratorOption {
+	return func(p *Generator) {
+		p.useProtoNames = true
+	}
+}
+
 // WithAdditionalProperties sets the generator to allow additional properties on messages.
 func WithAdditionalProperties() GeneratorOption {
 	return func(p *Generator) {
@@ -107,6 +115,7 @@ type Generator struct {
 	schema               map[protoreflect.FullName]*msgSchema
 	custom               map[protoreflect.FullName]func(protoreflect.MessageDescriptor, *validate.FieldRules, map[string]any) error
 	useJSONNames         bool
+	useProtoNames        bool
 	additionalProperties bool
 	strict               bool
 	bundle               bool
@@ -277,11 +286,7 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		}
 		if (rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_ZERO_VALUE) || // Required by validate rules.
 			(p.strict && p.hasImplicitDefault(field, field.IsList() || field.IsMap(), rules)) { // Required by strict mode.
-			if p.useJSONNames {
-				required = append(required, field.JSONName())
-			} else {
-				required = append(required, string(field.Name()))
-			}
+			required = append(required, p.getPrimaryFieldName(field))
 		}
 
 		// Generate the schema.
@@ -315,31 +320,43 @@ func (p *Generator) addFieldProperties(
 	properties map[string]any) []string {
 	// TODO: Add an option to include custom alias.
 	aliases := make([]string, 0, 1)
-	if p.useJSONNames {
-		// Add the JSON name as the primary name.
-		if hide {
-			aliases = append(aliases, field.JSONName())
-		} else {
-			properties[field.JSONName()] = fieldSchema
-		}
-		// Add the proto name as an alias.
-		if field.JSONName() != string(field.Name()) {
-			aliases = append(aliases, string(field.Name()))
-		}
-		return aliases
-	}
 
-	// Add the proto name as the primary name.
-	if hide {
-		aliases = append(aliases, string(field.Name()))
+	// Determine the primary name to use.
+	primaryName := p.getPrimaryFieldName(field)
+	altName := p.getAltFieldName(field)
+
+	if (hide {
+		aliases = append(aliases, primaryName)
 	} else {
-		properties[string(field.Name())] = fieldSchema
+		properties[primaryName] = fieldSchema
 	}
-	// Add the JSON name as an alias.
-	if field.JSONName() != string(field.Name()) {
-		aliases = append(aliases, field.JSONName())
+	// Add the alternate name as an alias if different.
+	if altName != primaryName {
+		aliases = append(aliases, altName)
 	}
 	return aliases
+}
+
+// getPrimaryFieldName returns the primary field name to use in the JSON schema.
+func (p *Generator) getPrimaryFieldName(field protoreflect.FieldDescriptor) string {
+	if p.useProtoNames {
+		return string(field.Name())
+	}
+	if p.useJSONNames {
+		return field.JSONName()
+	}
+	return string(field.Name())
+}
+
+// getAltFieldName returns the alternate field name (alias) to use in the JSON schema.
+func (p *Generator) getAltFieldName(field protoreflect.FieldDescriptor) string {
+	if p.useProtoNames {
+		return field.JSONName()
+	}
+	if p.useJSONNames {
+		return string(field.Name())
+	}
+	return field.JSONName()
 }
 
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
