@@ -282,6 +282,10 @@ func findRootAndPath(target protoreflect.Descriptor) (protoreflect.MessageDescri
 		path = append(path, string(target.Name()))
 		target = parentMsg
 	}
+	// Reverse path from bottom-up to top-down order.
+	for i, j := 0, len(path)-1; i < j; i, j = i+1, j-1 {
+		path[i], path[j] = path[j], path[i]
+	}
 	msg, _ := target.(protoreflect.MessageDescriptor)
 	return msg, path
 }
