@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Buf Technologies, Inc.
+// Copyright 2024-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -104,15 +104,14 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 	targets := make(map[string]struct{})
 	if param != "" { // nolint:nestif
 		// Params are in the form of "key1=value1,key2=value2"
-		params := strings.Split(param, ",")
-		for _, param := range params {
+		for param := range strings.SplitSeq(param, ",") {
 			// Split the param into key and value.
-			pos := strings.Index(param, "=")
-			if pos == -1 {
+			key, value, ok := strings.Cut(param, "=")
+			if !ok {
 				return nil, fmt.Errorf("invalid parameter %q, expected key=value", param)
 			}
-			key := strings.TrimSpace(param[:pos])
-			value := strings.TrimSpace(param[pos+1:])
+			key = strings.TrimSpace(key)
+			value = strings.TrimSpace(value)
 			switch key {
 			case "additional_properties":
 				if value, err := parseBoolean(value); err != nil {

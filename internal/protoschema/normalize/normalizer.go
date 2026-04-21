@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Buf Technologies, Inc.
+// Copyright 2024-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -216,10 +216,7 @@ func (n *Normalizer) updateMessageType(refDesc protoreflect.MessageDescriptor, f
 			return fmt.Errorf("could not find mangled name for %s", ref)
 		}
 	}
-	newType := newRef
-	for _, pathPart := range path {
-		newType += "." + pathPart
-	}
+	newType := strings.Join(append([]string{newRef}, path...), ".")
 	field.TypeName = proto.String(newType)
 	return nil
 }
