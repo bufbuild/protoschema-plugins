@@ -10,9 +10,10 @@ BIN := .tmp/bin
 export PATH := $(BIN):$(PATH)
 export GOBIN := $(abspath $(BIN))
 BUF_VERSION = $(shell go list -m -f '{{.Version}}' github.com/bufbuild/buf)
-COPYRIGHT_YEARS := 2024-2025
-GOLANGCI_LINT_VERSION := v2.4.0
+COPYRIGHT_YEARS := 2024-2026
+GOLANGCI_LINT_VERSION := v2.11.4
 GOLANGCI_LINT := $(BIN)/golangci-lint-$(GOLANGCI_LINT_VERSION)
+GOLANGCILINT_GOTOOLCHAIN_VERSION := $(shell go env GOVERSION | sed 's/^go//')
 LICENSE_IGNORE := --ignore testdata/
 
 UNAME_OS := $(shell uname -s)
@@ -61,16 +62,16 @@ build: generate ## Build all packages
 .PHONY: lint
 lint: $(GOLANGCI_LINT) $(BIN)/buf ## Lint
 	go vet ./...
-	$(GOLANGCI_LINT) fmt --diff
-	$(GOLANGCI_LINT) run
+	GOTOOLCHAIN=go$(GOLANGCILINT_GOTOOLCHAIN_VERSION) $(GOLANGCI_LINT) fmt --diff
+	GOTOOLCHAIN=go$(GOLANGCILINT_GOTOOLCHAIN_VERSION) $(GOLANGCI_LINT) run
 	buf lint
 	buf format -d --exit-code
 	go mod tidy
 
 .PHONY: lintfix
 lintfix: $(GOLANGCI_LINT) ## Automatically fix some lint errors
-	$(GOLANGCI_LINT) fmt
-	$(GOLANGCI_LINT) run --fix
+	GOTOOLCHAIN=go$(GOLANGCILINT_GOTOOLCHAIN_VERSION) $(GOLANGCI_LINT) fmt
+	GOTOOLCHAIN=go$(GOLANGCILINT_GOTOOLCHAIN_VERSION) $(GOLANGCI_LINT) run --fix
 	buf format -w
 	go mod tidy
 
@@ -116,7 +117,7 @@ $(BIN)/license-header: $(BIN) Makefile
 	go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(BUF_VERSION)
 
 $(GOLANGCI_LINT): $(BIN) Makefile
-	go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+	GOTOOLCHAIN=go$(GOLANGCILINT_GOTOOLCHAIN_VERSION) go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
 	mv $(BIN)/golangci-lint $@
 
 $(BIN)/jv: $(BIN) Makefile
