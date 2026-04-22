@@ -1646,6 +1646,15 @@
       },
       "type": "object"
     },
+    "^(mapStringFieldMask)$": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FieldMask.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
     "^(mapStringFloat)$": {
       "additionalProperties": {
         "anyOf": [
@@ -3172,6 +3181,12 @@
       },
       "type": "array"
     },
+    "^(repeatedFieldMask)$": {
+      "items": {
+        "$ref": "google.protobuf.FieldMask.schema.json"
+      },
+      "type": "array"
+    },
     "^(repeatedFixed32)$": {
       "items": {
         "anyOf": [
@@ -3516,6 +3531,9 @@
     },
     "^(singleDuration)$": {
       "$ref": "google.protobuf.Duration.schema.json"
+    },
+    "^(singleFieldMask)$": {
+      "$ref": "google.protobuf.FieldMask.schema.json"
     },
     "^(singleFixed32)$": {
       "anyOf": [
@@ -5392,6 +5410,15 @@
       },
       "type": "object"
     },
+    "map_string_field_mask": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FieldMask.schema.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
     "map_string_float": {
       "additionalProperties": {
         "anyOf": [
@@ -6918,6 +6945,12 @@
       },
       "type": "array"
     },
+    "repeated_field_mask": {
+      "items": {
+        "$ref": "google.protobuf.FieldMask.schema.json"
+      },
+      "type": "array"
+    },
     "repeated_fixed32": {
       "items": {
         "anyOf": [
@@ -7262,6 +7295,9 @@
     },
     "single_duration": {
       "$ref": "google.protobuf.Duration.schema.json"
+    },
+    "single_field_mask": {
+      "$ref": "google.protobuf.FieldMask.schema.json"
     },
     "single_fixed32": {
       "anyOf": [

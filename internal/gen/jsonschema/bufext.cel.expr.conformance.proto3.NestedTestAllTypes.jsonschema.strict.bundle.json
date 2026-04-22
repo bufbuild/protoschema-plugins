@@ -1059,6 +1059,15 @@
           },
           "type": "object"
         },
+        "mapStringFieldMask": {
+          "additionalProperties": {
+            "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.strict.json"
+          },
+          "propertyNames": {
+            "type": "string"
+          },
+          "type": "object"
+        },
         "mapStringFloat": {
           "additionalProperties": {
             "anyOf": [
@@ -1977,6 +1986,12 @@
           },
           "type": "array"
         },
+        "repeatedFieldMask": {
+          "items": {
+            "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.strict.json"
+          },
+          "type": "array"
+        },
         "repeatedFixed32": {
           "items": {
             "maximum": 4294967295,
@@ -2215,6 +2230,9 @@
         "singleDuration": {
           "$ref": "#/$defs/google.protobuf.Duration.jsonschema.strict.json"
         },
+        "singleFieldMask": {
+          "$ref": "#/$defs/google.protobuf.FieldMask.jsonschema.strict.json"
+        },
         "singleFixed32": {
           "maximum": 4294967295,
           "minimum": 0,
@@ -2397,6 +2415,11 @@
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "format": "duration",
       "title": "Duration",
+      "type": "string"
+    },
+    "google.protobuf.FieldMask.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Field Mask",
       "type": "string"
     },
     "google.protobuf.FloatValue.jsonschema.strict.json": {
