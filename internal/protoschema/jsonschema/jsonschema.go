@@ -1414,6 +1414,10 @@ func (p *Generator) makeWktGenerators() map[protoreflect.FullName]func(protorefl
 		schema["format"] = "duration"
 		return nil
 	}
+	result["google.protobuf.FieldMask"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldRules, schema map[string]any) error { // nolint: unparam
+		schema["type"] = jsString
+		return nil
+	}
 	result["google.protobuf.Timestamp"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldRules, schema map[string]any) error { // nolint: unparam
 		schema["type"] = jsString
 		schema["format"] = "date-time"
