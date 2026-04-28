@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Buf Technologies, Inc.
+// Copyright 2024-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ package bufext.cel.expr.conformance.proto3;
 
 import "google/protobuf/any.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
@@ -303,6 +304,9 @@ message TestAllTypes {
   map<string, google.protobuf.StringValue> map_string_string_wrapper = 321;
   map<string, google.protobuf.BoolValue> map_string_bool_wrapper = 322;
   map<string, google.protobuf.BytesValue> map_string_bytes_wrapper = 323;
+  google.protobuf.FieldMask single_field_mask = 324;
+  repeated google.protobuf.FieldMask repeated_field_mask = 325;
+  map<string, google.protobuf.FieldMask> map_string_field_mask = 326;
 }
 
 // This proto includes a recursively nested message.

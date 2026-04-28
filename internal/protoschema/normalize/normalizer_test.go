@@ -15,7 +15,6 @@
 package normalize
 
 import (
-	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -133,15 +132,8 @@ func TestNormalize_ThreeLevelNesting(t *testing.T) {
 	}
 	require.NotNil(t, teamsField, "teams field should exist")
 
-	// The type name should contain Department.Team (top-down),
-	// NOT Team.Department (bottom-up / reversed).
-	typeName := teamsField.GetTypeName()
-	require.True(t,
-		strings.Contains(typeName, "Department") && strings.Contains(typeName, "Team"),
-		"type name should reference both Department and Team, got: %s", typeName)
-	require.False(t,
-		strings.Contains(typeName, "Team.Department"),
-		"type name should NOT have reversed nesting order (Team.Department), got: %s", typeName)
+	// The type name should be in top-down nesting order, not reversed.
+	require.Equal(t, "Organization.Department.Team", teamsField.GetTypeName())
 }
 
 func strPtr(s string) *string { return &s }

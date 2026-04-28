@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Buf Technologies, Inc.
+// Copyright 2024-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package normalize
 import (
 	"errors"
 	"fmt"
+	"slices"
 	"strings"
 
 	"google.golang.org/protobuf/proto"
@@ -216,10 +217,7 @@ func (n *Normalizer) updateMessageType(refDesc protoreflect.MessageDescriptor, f
 			return fmt.Errorf("could not find mangled name for %s", ref)
 		}
 	}
-	newType := newRef
-	for _, pathPart := range path {
-		newType += "." + pathPart
-	}
+	newType := strings.Join(append([]string{newRef}, path...), ".")
 	field.TypeName = proto.String(newType)
 	return nil
 }
@@ -282,10 +280,7 @@ func findRootAndPath(target protoreflect.Descriptor) (protoreflect.MessageDescri
 		path = append(path, string(target.Name()))
 		target = parentMsg
 	}
-	// Reverse path from bottom-up to top-down order.
-	for i, j := 0, len(path)-1; i < j; i, j = i+1, j-1 {
-		path[i], path[j] = path[j], path[i]
-	}
+	slices.Reverse(path)
 	msg, _ := target.(protoreflect.MessageDescriptor)
 	return msg, path
 }

@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Buf Technologies, Inc.
+// Copyright 2024-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
@@ -392,6 +393,9 @@ type TestAllTypes struct {
 	MapStringStringWrapper map[string]*wrapperspb.StringValue     `protobuf:"bytes,321,rep,name=map_string_string_wrapper,json=mapStringStringWrapper,proto3" json:"map_string_string_wrapper,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	MapStringBoolWrapper   map[string]*wrapperspb.BoolValue       `protobuf:"bytes,322,rep,name=map_string_bool_wrapper,json=mapStringBoolWrapper,proto3" json:"map_string_bool_wrapper,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	MapStringBytesWrapper  map[string]*wrapperspb.BytesValue      `protobuf:"bytes,323,rep,name=map_string_bytes_wrapper,json=mapStringBytesWrapper,proto3" json:"map_string_bytes_wrapper,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	SingleFieldMask        *fieldmaskpb.FieldMask                 `protobuf:"bytes,324,opt,name=single_field_mask,json=singleFieldMask,proto3" json:"single_field_mask,omitempty"`
+	RepeatedFieldMask      []*fieldmaskpb.FieldMask               `protobuf:"bytes,325,rep,name=repeated_field_mask,json=repeatedFieldMask,proto3" json:"repeated_field_mask,omitempty"`
+	MapStringFieldMask     map[string]*fieldmaskpb.FieldMask      `protobuf:"bytes,326,rep,name=map_string_field_mask,json=mapStringFieldMask,proto3" json:"map_string_field_mask,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -2082,6 +2086,27 @@ func (x *TestAllTypes) GetMapStringBytesWrapper() map[string]*wrapperspb.BytesVa
 	return nil
 }
 
+func (x *TestAllTypes) GetSingleFieldMask() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.SingleFieldMask
+	}
+	return nil
+}
+
+func (x *TestAllTypes) GetRepeatedFieldMask() []*fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.RepeatedFieldMask
+	}
+	return nil
+}
+
+func (x *TestAllTypes) GetMapStringFieldMask() map[string]*fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.MapStringFieldMask
+	}
+	return nil
+}
+
 type isTestAllTypes_NestedType interface {
 	isTestAllTypes_NestedType()
 }
@@ -2202,7 +2227,7 @@ var File_bufext_cel_expr_conformance_proto3_test_all_types_proto protoreflect.Fi
 
 const file_bufext_cel_expr_conformance_proto3_test_all_types_proto_rawDesc = "" +
 	"\n" +
-	"7bufext/cel/expr/conformance/proto3/test_all_types.proto\x12\"bufext.cel.expr.conformance.proto3\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\x81\xb2\x02\n" +
+	"7bufext/cel/expr/conformance/proto3/test_all_types.proto\x12\"bufext.cel.expr.conformance.proto3\x1a\x19google/protobuf/any.proto\x1a\x1egoogle/protobuf/duration.proto\x1a google/protobuf/field_mask.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xf8\xb4\x02\n" +
 	"\fTestAllTypes\x12!\n" +
 	"\fsingle_int32\x18\x01 \x01(\x05R\vsingleInt32\x12!\n" +
 	"\fsingle_int64\x18\x02 \x01(\x03R\vsingleInt64\x12#\n" +
@@ -2444,7 +2469,10 @@ const file_bufext_cel_expr_conformance_proto3_test_all_types_proto_rawDesc = "" 
 	"\x19map_string_uint32_wrapper\x18\xc0\x02 \x03(\v2L.bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringUint32WrapperEntryR\x16mapStringUint32Wrapper\x12\x88\x01\n" +
 	"\x19map_string_string_wrapper\x18\xc1\x02 \x03(\v2L.bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringStringWrapperEntryR\x16mapStringStringWrapper\x12\x82\x01\n" +
 	"\x17map_string_bool_wrapper\x18\xc2\x02 \x03(\v2J.bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBoolWrapperEntryR\x14mapStringBoolWrapper\x12\x85\x01\n" +
-	"\x18map_string_bytes_wrapper\x18\xc3\x02 \x03(\v2K.bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBytesWrapperEntryR\x15mapStringBytesWrapper\x1a\x1f\n" +
+	"\x18map_string_bytes_wrapper\x18\xc3\x02 \x03(\v2K.bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBytesWrapperEntryR\x15mapStringBytesWrapper\x12G\n" +
+	"\x11single_field_mask\x18\xc4\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\x0fsingleFieldMask\x12K\n" +
+	"\x13repeated_field_mask\x18\xc5\x02 \x03(\v2\x1a.google.protobuf.FieldMaskR\x11repeatedFieldMask\x12|\n" +
+	"\x15map_string_field_mask\x18\xc6\x02 \x03(\v2H.bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringFieldMaskEntryR\x12mapStringFieldMask\x1a\x1f\n" +
 	"\rNestedMessage\x12\x0e\n" +
 	"\x02bb\x18\x01 \x01(\x05R\x02bb\x1a}\n" +
 	"\x17MapInt64NestedTypeEntry\x12\x10\n" +
@@ -2935,7 +2963,10 @@ const file_bufext_cel_expr_conformance_proto3_test_all_types_proto_rawDesc = "" 
 	"\x05value\x18\x02 \x01(\v2\x1a.google.protobuf.BoolValueR\x05value:\x028\x01\x1ae\n" +
 	"\x1aMapStringBytesWrapperEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x121\n" +
-	"\x05value\x18\x02 \x01(\v2\x1b.google.protobuf.BytesValueR\x05value:\x028\x01\"'\n" +
+	"\x05value\x18\x02 \x01(\v2\x1b.google.protobuf.BytesValueR\x05value:\x028\x01\x1aa\n" +
+	"\x17MapStringFieldMaskEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x120\n" +
+	"\x05value\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\x05value:\x028\x01\"'\n" +
 	"\n" +
 	"NestedEnum\x12\a\n" +
 	"\x03FOO\x10\x00\x12\a\n" +
@@ -2966,7 +2997,7 @@ func file_bufext_cel_expr_conformance_proto3_test_all_types_proto_rawDescGZIP() 
 }
 
 var file_bufext_cel_expr_conformance_proto3_test_all_types_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_bufext_cel_expr_conformance_proto3_test_all_types_proto_msgTypes = make([]protoimpl.MessageInfo, 166)
+var file_bufext_cel_expr_conformance_proto3_test_all_types_proto_msgTypes = make([]protoimpl.MessageInfo, 167)
 var file_bufext_cel_expr_conformance_proto3_test_all_types_proto_goTypes = []any{
 	(GlobalEnum)(0),                    // 0: bufext.cel.expr.conformance.proto3.GlobalEnum
 	(TestAllTypes_NestedEnum)(0),       // 1: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
@@ -3136,41 +3167,43 @@ var file_bufext_cel_expr_conformance_proto3_test_all_types_proto_goTypes = []any
 	nil,                                // 165: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringStringWrapperEntry
 	nil,                                // 166: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBoolWrapperEntry
 	nil,                                // 167: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBytesWrapperEntry
-	(*anypb.Any)(nil),                  // 168: google.protobuf.Any
-	(*durationpb.Duration)(nil),        // 169: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),      // 170: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),            // 171: google.protobuf.Struct
-	(*structpb.Value)(nil),             // 172: google.protobuf.Value
-	(*wrapperspb.Int64Value)(nil),      // 173: google.protobuf.Int64Value
-	(*wrapperspb.Int32Value)(nil),      // 174: google.protobuf.Int32Value
-	(*wrapperspb.DoubleValue)(nil),     // 175: google.protobuf.DoubleValue
-	(*wrapperspb.FloatValue)(nil),      // 176: google.protobuf.FloatValue
-	(*wrapperspb.UInt64Value)(nil),     // 177: google.protobuf.UInt64Value
-	(*wrapperspb.UInt32Value)(nil),     // 178: google.protobuf.UInt32Value
-	(*wrapperspb.StringValue)(nil),     // 179: google.protobuf.StringValue
-	(*wrapperspb.BoolValue)(nil),       // 180: google.protobuf.BoolValue
-	(*wrapperspb.BytesValue)(nil),      // 181: google.protobuf.BytesValue
-	(*structpb.ListValue)(nil),         // 182: google.protobuf.ListValue
-	(structpb.NullValue)(0),            // 183: google.protobuf.NullValue
+	nil,                                // 168: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringFieldMaskEntry
+	(*anypb.Any)(nil),                  // 169: google.protobuf.Any
+	(*durationpb.Duration)(nil),        // 170: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),      // 171: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),            // 172: google.protobuf.Struct
+	(*structpb.Value)(nil),             // 173: google.protobuf.Value
+	(*wrapperspb.Int64Value)(nil),      // 174: google.protobuf.Int64Value
+	(*wrapperspb.Int32Value)(nil),      // 175: google.protobuf.Int32Value
+	(*wrapperspb.DoubleValue)(nil),     // 176: google.protobuf.DoubleValue
+	(*wrapperspb.FloatValue)(nil),      // 177: google.protobuf.FloatValue
+	(*wrapperspb.UInt64Value)(nil),     // 178: google.protobuf.UInt64Value
+	(*wrapperspb.UInt32Value)(nil),     // 179: google.protobuf.UInt32Value
+	(*wrapperspb.StringValue)(nil),     // 180: google.protobuf.StringValue
+	(*wrapperspb.BoolValue)(nil),       // 181: google.protobuf.BoolValue
+	(*wrapperspb.BytesValue)(nil),      // 182: google.protobuf.BytesValue
+	(*structpb.ListValue)(nil),         // 183: google.protobuf.ListValue
+	(structpb.NullValue)(0),            // 184: google.protobuf.NullValue
+	(*fieldmaskpb.FieldMask)(nil),      // 185: google.protobuf.FieldMask
 }
 var file_bufext_cel_expr_conformance_proto3_test_all_types_proto_depIdxs = []int32{
-	168, // 0: bufext.cel.expr.conformance.proto3.TestAllTypes.single_any:type_name -> google.protobuf.Any
-	169, // 1: bufext.cel.expr.conformance.proto3.TestAllTypes.single_duration:type_name -> google.protobuf.Duration
-	170, // 2: bufext.cel.expr.conformance.proto3.TestAllTypes.single_timestamp:type_name -> google.protobuf.Timestamp
-	171, // 3: bufext.cel.expr.conformance.proto3.TestAllTypes.single_struct:type_name -> google.protobuf.Struct
-	172, // 4: bufext.cel.expr.conformance.proto3.TestAllTypes.single_value:type_name -> google.protobuf.Value
-	173, // 5: bufext.cel.expr.conformance.proto3.TestAllTypes.single_int64_wrapper:type_name -> google.protobuf.Int64Value
-	174, // 6: bufext.cel.expr.conformance.proto3.TestAllTypes.single_int32_wrapper:type_name -> google.protobuf.Int32Value
-	175, // 7: bufext.cel.expr.conformance.proto3.TestAllTypes.single_double_wrapper:type_name -> google.protobuf.DoubleValue
-	176, // 8: bufext.cel.expr.conformance.proto3.TestAllTypes.single_float_wrapper:type_name -> google.protobuf.FloatValue
-	177, // 9: bufext.cel.expr.conformance.proto3.TestAllTypes.single_uint64_wrapper:type_name -> google.protobuf.UInt64Value
-	178, // 10: bufext.cel.expr.conformance.proto3.TestAllTypes.single_uint32_wrapper:type_name -> google.protobuf.UInt32Value
-	179, // 11: bufext.cel.expr.conformance.proto3.TestAllTypes.single_string_wrapper:type_name -> google.protobuf.StringValue
-	180, // 12: bufext.cel.expr.conformance.proto3.TestAllTypes.single_bool_wrapper:type_name -> google.protobuf.BoolValue
-	181, // 13: bufext.cel.expr.conformance.proto3.TestAllTypes.single_bytes_wrapper:type_name -> google.protobuf.BytesValue
-	182, // 14: bufext.cel.expr.conformance.proto3.TestAllTypes.list_value:type_name -> google.protobuf.ListValue
-	183, // 15: bufext.cel.expr.conformance.proto3.TestAllTypes.null_value:type_name -> google.protobuf.NullValue
-	183, // 16: bufext.cel.expr.conformance.proto3.TestAllTypes.optional_null_value:type_name -> google.protobuf.NullValue
+	169, // 0: bufext.cel.expr.conformance.proto3.TestAllTypes.single_any:type_name -> google.protobuf.Any
+	170, // 1: bufext.cel.expr.conformance.proto3.TestAllTypes.single_duration:type_name -> google.protobuf.Duration
+	171, // 2: bufext.cel.expr.conformance.proto3.TestAllTypes.single_timestamp:type_name -> google.protobuf.Timestamp
+	172, // 3: bufext.cel.expr.conformance.proto3.TestAllTypes.single_struct:type_name -> google.protobuf.Struct
+	173, // 4: bufext.cel.expr.conformance.proto3.TestAllTypes.single_value:type_name -> google.protobuf.Value
+	174, // 5: bufext.cel.expr.conformance.proto3.TestAllTypes.single_int64_wrapper:type_name -> google.protobuf.Int64Value
+	175, // 6: bufext.cel.expr.conformance.proto3.TestAllTypes.single_int32_wrapper:type_name -> google.protobuf.Int32Value
+	176, // 7: bufext.cel.expr.conformance.proto3.TestAllTypes.single_double_wrapper:type_name -> google.protobuf.DoubleValue
+	177, // 8: bufext.cel.expr.conformance.proto3.TestAllTypes.single_float_wrapper:type_name -> google.protobuf.FloatValue
+	178, // 9: bufext.cel.expr.conformance.proto3.TestAllTypes.single_uint64_wrapper:type_name -> google.protobuf.UInt64Value
+	179, // 10: bufext.cel.expr.conformance.proto3.TestAllTypes.single_uint32_wrapper:type_name -> google.protobuf.UInt32Value
+	180, // 11: bufext.cel.expr.conformance.proto3.TestAllTypes.single_string_wrapper:type_name -> google.protobuf.StringValue
+	181, // 12: bufext.cel.expr.conformance.proto3.TestAllTypes.single_bool_wrapper:type_name -> google.protobuf.BoolValue
+	182, // 13: bufext.cel.expr.conformance.proto3.TestAllTypes.single_bytes_wrapper:type_name -> google.protobuf.BytesValue
+	183, // 14: bufext.cel.expr.conformance.proto3.TestAllTypes.list_value:type_name -> google.protobuf.ListValue
+	184, // 15: bufext.cel.expr.conformance.proto3.TestAllTypes.null_value:type_name -> google.protobuf.NullValue
+	184, // 16: bufext.cel.expr.conformance.proto3.TestAllTypes.optional_null_value:type_name -> google.protobuf.NullValue
 	4,   // 17: bufext.cel.expr.conformance.proto3.TestAllTypes.single_nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 	1,   // 18: bufext.cel.expr.conformance.proto3.TestAllTypes.single_nested_enum:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
 	4,   // 19: bufext.cel.expr.conformance.proto3.TestAllTypes.standalone_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
@@ -3178,22 +3211,22 @@ var file_bufext_cel_expr_conformance_proto3_test_all_types_proto_depIdxs = []int
 	4,   // 21: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 	1,   // 22: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_nested_enum:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
 	4,   // 23: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_lazy_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
-	168, // 24: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_any:type_name -> google.protobuf.Any
-	169, // 25: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_duration:type_name -> google.protobuf.Duration
-	170, // 26: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_timestamp:type_name -> google.protobuf.Timestamp
-	171, // 27: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_struct:type_name -> google.protobuf.Struct
-	172, // 28: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_value:type_name -> google.protobuf.Value
-	173, // 29: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_int64_wrapper:type_name -> google.protobuf.Int64Value
-	174, // 30: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_int32_wrapper:type_name -> google.protobuf.Int32Value
-	175, // 31: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_double_wrapper:type_name -> google.protobuf.DoubleValue
-	176, // 32: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_float_wrapper:type_name -> google.protobuf.FloatValue
-	177, // 33: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_uint64_wrapper:type_name -> google.protobuf.UInt64Value
-	178, // 34: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_uint32_wrapper:type_name -> google.protobuf.UInt32Value
-	179, // 35: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_string_wrapper:type_name -> google.protobuf.StringValue
-	180, // 36: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_bool_wrapper:type_name -> google.protobuf.BoolValue
-	181, // 37: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_bytes_wrapper:type_name -> google.protobuf.BytesValue
-	182, // 38: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_list_value:type_name -> google.protobuf.ListValue
-	183, // 39: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_null_value:type_name -> google.protobuf.NullValue
+	169, // 24: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_any:type_name -> google.protobuf.Any
+	170, // 25: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_duration:type_name -> google.protobuf.Duration
+	171, // 26: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_timestamp:type_name -> google.protobuf.Timestamp
+	172, // 27: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_struct:type_name -> google.protobuf.Struct
+	173, // 28: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_value:type_name -> google.protobuf.Value
+	174, // 29: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_int64_wrapper:type_name -> google.protobuf.Int64Value
+	175, // 30: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_int32_wrapper:type_name -> google.protobuf.Int32Value
+	176, // 31: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_double_wrapper:type_name -> google.protobuf.DoubleValue
+	177, // 32: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_float_wrapper:type_name -> google.protobuf.FloatValue
+	178, // 33: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_uint64_wrapper:type_name -> google.protobuf.UInt64Value
+	179, // 34: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_uint32_wrapper:type_name -> google.protobuf.UInt32Value
+	180, // 35: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_string_wrapper:type_name -> google.protobuf.StringValue
+	181, // 36: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_bool_wrapper:type_name -> google.protobuf.BoolValue
+	182, // 37: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_bytes_wrapper:type_name -> google.protobuf.BytesValue
+	183, // 38: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_list_value:type_name -> google.protobuf.ListValue
+	184, // 39: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_null_value:type_name -> google.protobuf.NullValue
 	5,   // 40: bufext.cel.expr.conformance.proto3.TestAllTypes.map_int64_nested_type:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64NestedTypeEntry
 	6,   // 41: bufext.cel.expr.conformance.proto3.TestAllTypes.map_bool_bool:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolBoolEntry
 	7,   // 42: bufext.cel.expr.conformance.proto3.TestAllTypes.map_bool_string:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolStringEntry
@@ -3357,122 +3390,126 @@ var file_bufext_cel_expr_conformance_proto3_test_all_types_proto_depIdxs = []int
 	165, // 200: bufext.cel.expr.conformance.proto3.TestAllTypes.map_string_string_wrapper:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringStringWrapperEntry
 	166, // 201: bufext.cel.expr.conformance.proto3.TestAllTypes.map_string_bool_wrapper:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBoolWrapperEntry
 	167, // 202: bufext.cel.expr.conformance.proto3.TestAllTypes.map_string_bytes_wrapper:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBytesWrapperEntry
-	3,   // 203: bufext.cel.expr.conformance.proto3.NestedTestAllTypes.child:type_name -> bufext.cel.expr.conformance.proto3.NestedTestAllTypes
-	2,   // 204: bufext.cel.expr.conformance.proto3.NestedTestAllTypes.payload:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes
-	3,   // 205: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64NestedTypeEntry.value:type_name -> bufext.cel.expr.conformance.proto3.NestedTestAllTypes
-	1,   // 206: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolEnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
-	4,   // 207: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolMessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
-	169, // 208: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolDurationEntry.value:type_name -> google.protobuf.Duration
-	170, // 209: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolTimestampEntry.value:type_name -> google.protobuf.Timestamp
-	183, // 210: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolNullValueEntry.value:type_name -> google.protobuf.NullValue
-	168, // 211: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolAnyEntry.value:type_name -> google.protobuf.Any
-	171, // 212: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolStructEntry.value:type_name -> google.protobuf.Struct
-	172, // 213: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolValueEntry.value:type_name -> google.protobuf.Value
-	182, // 214: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolListValueEntry.value:type_name -> google.protobuf.ListValue
-	173, // 215: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolInt64WrapperEntry.value:type_name -> google.protobuf.Int64Value
-	174, // 216: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolInt32WrapperEntry.value:type_name -> google.protobuf.Int32Value
-	175, // 217: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolDoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
-	176, // 218: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolFloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
-	177, // 219: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolUint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
-	178, // 220: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolUint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
-	179, // 221: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolStringWrapperEntry.value:type_name -> google.protobuf.StringValue
-	180, // 222: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolBoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
-	181, // 223: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolBytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
-	1,   // 224: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32EnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
-	4,   // 225: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32MessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
-	169, // 226: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32DurationEntry.value:type_name -> google.protobuf.Duration
-	170, // 227: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32TimestampEntry.value:type_name -> google.protobuf.Timestamp
-	183, // 228: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32NullValueEntry.value:type_name -> google.protobuf.NullValue
-	168, // 229: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32AnyEntry.value:type_name -> google.protobuf.Any
-	171, // 230: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32StructEntry.value:type_name -> google.protobuf.Struct
-	172, // 231: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32ValueEntry.value:type_name -> google.protobuf.Value
-	182, // 232: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32ListValueEntry.value:type_name -> google.protobuf.ListValue
-	173, // 233: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32Int64WrapperEntry.value:type_name -> google.protobuf.Int64Value
-	174, // 234: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32Int32WrapperEntry.value:type_name -> google.protobuf.Int32Value
-	175, // 235: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32DoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
-	176, // 236: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32FloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
-	177, // 237: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32Uint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
-	178, // 238: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32Uint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
-	179, // 239: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32StringWrapperEntry.value:type_name -> google.protobuf.StringValue
-	180, // 240: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32BoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
-	181, // 241: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32BytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
-	1,   // 242: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64EnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
-	4,   // 243: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64MessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
-	169, // 244: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64DurationEntry.value:type_name -> google.protobuf.Duration
-	170, // 245: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64TimestampEntry.value:type_name -> google.protobuf.Timestamp
-	183, // 246: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64NullValueEntry.value:type_name -> google.protobuf.NullValue
-	168, // 247: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64AnyEntry.value:type_name -> google.protobuf.Any
-	171, // 248: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64StructEntry.value:type_name -> google.protobuf.Struct
-	172, // 249: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64ValueEntry.value:type_name -> google.protobuf.Value
-	182, // 250: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64ListValueEntry.value:type_name -> google.protobuf.ListValue
-	173, // 251: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64Int64WrapperEntry.value:type_name -> google.protobuf.Int64Value
-	174, // 252: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64Int32WrapperEntry.value:type_name -> google.protobuf.Int32Value
-	175, // 253: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64DoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
-	176, // 254: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64FloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
-	177, // 255: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64Uint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
-	178, // 256: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64Uint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
-	179, // 257: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64StringWrapperEntry.value:type_name -> google.protobuf.StringValue
-	180, // 258: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64BoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
-	181, // 259: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64BytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
-	1,   // 260: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32EnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
-	4,   // 261: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32MessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
-	169, // 262: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32DurationEntry.value:type_name -> google.protobuf.Duration
-	170, // 263: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32TimestampEntry.value:type_name -> google.protobuf.Timestamp
-	183, // 264: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32NullValueEntry.value:type_name -> google.protobuf.NullValue
-	168, // 265: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32AnyEntry.value:type_name -> google.protobuf.Any
-	171, // 266: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32StructEntry.value:type_name -> google.protobuf.Struct
-	172, // 267: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32ValueEntry.value:type_name -> google.protobuf.Value
-	182, // 268: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32ListValueEntry.value:type_name -> google.protobuf.ListValue
-	173, // 269: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32Int64WrapperEntry.value:type_name -> google.protobuf.Int64Value
-	174, // 270: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32Int32WrapperEntry.value:type_name -> google.protobuf.Int32Value
-	175, // 271: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32DoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
-	176, // 272: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32FloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
-	177, // 273: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32Uint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
-	178, // 274: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32Uint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
-	179, // 275: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32StringWrapperEntry.value:type_name -> google.protobuf.StringValue
-	180, // 276: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32BoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
-	181, // 277: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32BytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
-	1,   // 278: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64EnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
-	4,   // 279: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64MessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
-	169, // 280: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64DurationEntry.value:type_name -> google.protobuf.Duration
-	170, // 281: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64TimestampEntry.value:type_name -> google.protobuf.Timestamp
-	183, // 282: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64NullValueEntry.value:type_name -> google.protobuf.NullValue
-	168, // 283: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64AnyEntry.value:type_name -> google.protobuf.Any
-	171, // 284: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64StructEntry.value:type_name -> google.protobuf.Struct
-	172, // 285: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64ValueEntry.value:type_name -> google.protobuf.Value
-	182, // 286: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64ListValueEntry.value:type_name -> google.protobuf.ListValue
-	173, // 287: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64Int64WrapperEntry.value:type_name -> google.protobuf.Int64Value
-	174, // 288: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64Int32WrapperEntry.value:type_name -> google.protobuf.Int32Value
-	175, // 289: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64DoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
-	176, // 290: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64FloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
-	177, // 291: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64Uint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
-	178, // 292: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64Uint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
-	179, // 293: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64StringWrapperEntry.value:type_name -> google.protobuf.StringValue
-	180, // 294: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64BoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
-	181, // 295: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64BytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
-	1,   // 296: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringEnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
-	4,   // 297: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringMessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
-	169, // 298: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringDurationEntry.value:type_name -> google.protobuf.Duration
-	170, // 299: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringTimestampEntry.value:type_name -> google.protobuf.Timestamp
-	183, // 300: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringNullValueEntry.value:type_name -> google.protobuf.NullValue
-	168, // 301: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringAnyEntry.value:type_name -> google.protobuf.Any
-	171, // 302: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringStructEntry.value:type_name -> google.protobuf.Struct
-	172, // 303: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringValueEntry.value:type_name -> google.protobuf.Value
-	182, // 304: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringListValueEntry.value:type_name -> google.protobuf.ListValue
-	173, // 305: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringInt64WrapperEntry.value:type_name -> google.protobuf.Int64Value
-	174, // 306: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringInt32WrapperEntry.value:type_name -> google.protobuf.Int32Value
-	175, // 307: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringDoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
-	176, // 308: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringFloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
-	177, // 309: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringUint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
-	178, // 310: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringUint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
-	179, // 311: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringStringWrapperEntry.value:type_name -> google.protobuf.StringValue
-	180, // 312: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
-	181, // 313: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
-	314, // [314:314] is the sub-list for method output_type
-	314, // [314:314] is the sub-list for method input_type
-	314, // [314:314] is the sub-list for extension type_name
-	314, // [314:314] is the sub-list for extension extendee
-	0,   // [0:314] is the sub-list for field type_name
+	185, // 203: bufext.cel.expr.conformance.proto3.TestAllTypes.single_field_mask:type_name -> google.protobuf.FieldMask
+	185, // 204: bufext.cel.expr.conformance.proto3.TestAllTypes.repeated_field_mask:type_name -> google.protobuf.FieldMask
+	168, // 205: bufext.cel.expr.conformance.proto3.TestAllTypes.map_string_field_mask:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringFieldMaskEntry
+	3,   // 206: bufext.cel.expr.conformance.proto3.NestedTestAllTypes.child:type_name -> bufext.cel.expr.conformance.proto3.NestedTestAllTypes
+	2,   // 207: bufext.cel.expr.conformance.proto3.NestedTestAllTypes.payload:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes
+	3,   // 208: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64NestedTypeEntry.value:type_name -> bufext.cel.expr.conformance.proto3.NestedTestAllTypes
+	1,   // 209: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolEnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
+	4,   // 210: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolMessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	170, // 211: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolDurationEntry.value:type_name -> google.protobuf.Duration
+	171, // 212: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolTimestampEntry.value:type_name -> google.protobuf.Timestamp
+	184, // 213: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolNullValueEntry.value:type_name -> google.protobuf.NullValue
+	169, // 214: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolAnyEntry.value:type_name -> google.protobuf.Any
+	172, // 215: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolStructEntry.value:type_name -> google.protobuf.Struct
+	173, // 216: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolValueEntry.value:type_name -> google.protobuf.Value
+	183, // 217: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolListValueEntry.value:type_name -> google.protobuf.ListValue
+	174, // 218: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolInt64WrapperEntry.value:type_name -> google.protobuf.Int64Value
+	175, // 219: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolInt32WrapperEntry.value:type_name -> google.protobuf.Int32Value
+	176, // 220: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolDoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
+	177, // 221: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolFloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
+	178, // 222: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolUint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
+	179, // 223: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolUint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
+	180, // 224: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolStringWrapperEntry.value:type_name -> google.protobuf.StringValue
+	181, // 225: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolBoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
+	182, // 226: bufext.cel.expr.conformance.proto3.TestAllTypes.MapBoolBytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
+	1,   // 227: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32EnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
+	4,   // 228: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32MessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	170, // 229: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32DurationEntry.value:type_name -> google.protobuf.Duration
+	171, // 230: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32TimestampEntry.value:type_name -> google.protobuf.Timestamp
+	184, // 231: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32NullValueEntry.value:type_name -> google.protobuf.NullValue
+	169, // 232: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32AnyEntry.value:type_name -> google.protobuf.Any
+	172, // 233: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32StructEntry.value:type_name -> google.protobuf.Struct
+	173, // 234: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32ValueEntry.value:type_name -> google.protobuf.Value
+	183, // 235: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32ListValueEntry.value:type_name -> google.protobuf.ListValue
+	174, // 236: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32Int64WrapperEntry.value:type_name -> google.protobuf.Int64Value
+	175, // 237: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32Int32WrapperEntry.value:type_name -> google.protobuf.Int32Value
+	176, // 238: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32DoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
+	177, // 239: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32FloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
+	178, // 240: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32Uint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
+	179, // 241: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32Uint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
+	180, // 242: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32StringWrapperEntry.value:type_name -> google.protobuf.StringValue
+	181, // 243: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32BoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
+	182, // 244: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt32BytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
+	1,   // 245: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64EnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
+	4,   // 246: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64MessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	170, // 247: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64DurationEntry.value:type_name -> google.protobuf.Duration
+	171, // 248: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64TimestampEntry.value:type_name -> google.protobuf.Timestamp
+	184, // 249: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64NullValueEntry.value:type_name -> google.protobuf.NullValue
+	169, // 250: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64AnyEntry.value:type_name -> google.protobuf.Any
+	172, // 251: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64StructEntry.value:type_name -> google.protobuf.Struct
+	173, // 252: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64ValueEntry.value:type_name -> google.protobuf.Value
+	183, // 253: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64ListValueEntry.value:type_name -> google.protobuf.ListValue
+	174, // 254: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64Int64WrapperEntry.value:type_name -> google.protobuf.Int64Value
+	175, // 255: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64Int32WrapperEntry.value:type_name -> google.protobuf.Int32Value
+	176, // 256: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64DoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
+	177, // 257: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64FloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
+	178, // 258: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64Uint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
+	179, // 259: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64Uint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
+	180, // 260: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64StringWrapperEntry.value:type_name -> google.protobuf.StringValue
+	181, // 261: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64BoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
+	182, // 262: bufext.cel.expr.conformance.proto3.TestAllTypes.MapInt64BytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
+	1,   // 263: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32EnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
+	4,   // 264: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32MessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	170, // 265: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32DurationEntry.value:type_name -> google.protobuf.Duration
+	171, // 266: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32TimestampEntry.value:type_name -> google.protobuf.Timestamp
+	184, // 267: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32NullValueEntry.value:type_name -> google.protobuf.NullValue
+	169, // 268: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32AnyEntry.value:type_name -> google.protobuf.Any
+	172, // 269: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32StructEntry.value:type_name -> google.protobuf.Struct
+	173, // 270: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32ValueEntry.value:type_name -> google.protobuf.Value
+	183, // 271: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32ListValueEntry.value:type_name -> google.protobuf.ListValue
+	174, // 272: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32Int64WrapperEntry.value:type_name -> google.protobuf.Int64Value
+	175, // 273: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32Int32WrapperEntry.value:type_name -> google.protobuf.Int32Value
+	176, // 274: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32DoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
+	177, // 275: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32FloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
+	178, // 276: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32Uint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
+	179, // 277: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32Uint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
+	180, // 278: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32StringWrapperEntry.value:type_name -> google.protobuf.StringValue
+	181, // 279: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32BoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
+	182, // 280: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint32BytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
+	1,   // 281: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64EnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
+	4,   // 282: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64MessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	170, // 283: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64DurationEntry.value:type_name -> google.protobuf.Duration
+	171, // 284: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64TimestampEntry.value:type_name -> google.protobuf.Timestamp
+	184, // 285: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64NullValueEntry.value:type_name -> google.protobuf.NullValue
+	169, // 286: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64AnyEntry.value:type_name -> google.protobuf.Any
+	172, // 287: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64StructEntry.value:type_name -> google.protobuf.Struct
+	173, // 288: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64ValueEntry.value:type_name -> google.protobuf.Value
+	183, // 289: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64ListValueEntry.value:type_name -> google.protobuf.ListValue
+	174, // 290: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64Int64WrapperEntry.value:type_name -> google.protobuf.Int64Value
+	175, // 291: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64Int32WrapperEntry.value:type_name -> google.protobuf.Int32Value
+	176, // 292: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64DoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
+	177, // 293: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64FloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
+	178, // 294: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64Uint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
+	179, // 295: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64Uint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
+	180, // 296: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64StringWrapperEntry.value:type_name -> google.protobuf.StringValue
+	181, // 297: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64BoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
+	182, // 298: bufext.cel.expr.conformance.proto3.TestAllTypes.MapUint64BytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
+	1,   // 299: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringEnumEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedEnum
+	4,   // 300: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringMessageEntry.value:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	170, // 301: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringDurationEntry.value:type_name -> google.protobuf.Duration
+	171, // 302: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringTimestampEntry.value:type_name -> google.protobuf.Timestamp
+	184, // 303: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringNullValueEntry.value:type_name -> google.protobuf.NullValue
+	169, // 304: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringAnyEntry.value:type_name -> google.protobuf.Any
+	172, // 305: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringStructEntry.value:type_name -> google.protobuf.Struct
+	173, // 306: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringValueEntry.value:type_name -> google.protobuf.Value
+	183, // 307: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringListValueEntry.value:type_name -> google.protobuf.ListValue
+	174, // 308: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringInt64WrapperEntry.value:type_name -> google.protobuf.Int64Value
+	175, // 309: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringInt32WrapperEntry.value:type_name -> google.protobuf.Int32Value
+	176, // 310: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringDoubleWrapperEntry.value:type_name -> google.protobuf.DoubleValue
+	177, // 311: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringFloatWrapperEntry.value:type_name -> google.protobuf.FloatValue
+	178, // 312: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringUint64WrapperEntry.value:type_name -> google.protobuf.UInt64Value
+	179, // 313: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringUint32WrapperEntry.value:type_name -> google.protobuf.UInt32Value
+	180, // 314: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringStringWrapperEntry.value:type_name -> google.protobuf.StringValue
+	181, // 315: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBoolWrapperEntry.value:type_name -> google.protobuf.BoolValue
+	182, // 316: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringBytesWrapperEntry.value:type_name -> google.protobuf.BytesValue
+	185, // 317: bufext.cel.expr.conformance.proto3.TestAllTypes.MapStringFieldMaskEntry.value:type_name -> google.protobuf.FieldMask
+	318, // [318:318] is the sub-list for method output_type
+	318, // [318:318] is the sub-list for method input_type
+	318, // [318:318] is the sub-list for extension type_name
+	318, // [318:318] is the sub-list for extension extendee
+	0,   // [0:318] is the sub-list for field type_name
 }
 
 func init() { file_bufext_cel_expr_conformance_proto3_test_all_types_proto_init() }
@@ -3490,7 +3527,7 @@ func file_bufext_cel_expr_conformance_proto3_test_all_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bufext_cel_expr_conformance_proto3_test_all_types_proto_rawDesc), len(file_bufext_cel_expr_conformance_proto3_test_all_types_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   166,
+			NumMessages:   167,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

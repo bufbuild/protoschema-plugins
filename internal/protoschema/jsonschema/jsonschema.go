@@ -1,4 +1,4 @@
-// Copyright 2024-2025 Buf Technologies, Inc.
+// Copyright 2024-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -382,6 +382,14 @@ func (p *Generator) generateField(entry *msgSchema, field protoreflect.FieldDesc
 func (p *Generator) generateFieldValidation(entry *msgSchema, field protoreflect.FieldDescriptor, hasImplicitPresence bool, rules *validate.FieldRules, schema map[string]any) error {
 	if field.IsList() {
 		schema["type"] = jsArray
+		if repeated := rules.GetRepeated(); repeated != nil {
+			if repeated.HasMinItems() {
+				schema["minItems"] = repeated.GetMinItems()
+			}
+			if repeated.HasMaxItems() {
+				schema["maxItems"] = repeated.GetMaxItems()
+			}
+		}
 		items := make(map[string]any)
 		schema["items"] = items
 		schema = items
@@ -1404,6 +1412,10 @@ func (p *Generator) makeWktGenerators() map[protoreflect.FullName]func(protorefl
 	result["google.protobuf.Duration"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldRules, schema map[string]any) error { // nolint: unparam
 		schema["type"] = jsString
 		schema["format"] = "duration"
+		return nil
+	}
+	result["google.protobuf.FieldMask"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldRules, schema map[string]any) error { // nolint: unparam
+		schema["type"] = jsString
 		return nil
 	}
 	result["google.protobuf.Timestamp"] = func(_ protoreflect.MessageDescriptor, _ *validate.FieldRules, schema map[string]any) error { // nolint: unparam

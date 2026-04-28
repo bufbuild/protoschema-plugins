@@ -57,6 +57,9 @@ message NestedTestAllTypes {
   message Inline_google_protobuf_BytesValue {
     optional bytes value = 1;
   }
+  message Inline_google_protobuf_FieldMask {
+    repeated string paths = 1;
+  }
   message Inline_bufext_cel_expr_conformance_proto3_TestAllTypes {
     optional int32 single_int32 = 1;
     optional int64 single_int64 = 2;
@@ -295,6 +298,9 @@ message NestedTestAllTypes {
     map<string, Inline_google_protobuf_StringValue> map_string_string_wrapper = 321;
     map<string, Inline_google_protobuf_BoolValue> map_string_bool_wrapper = 322;
     map<string, Inline_google_protobuf_BytesValue> map_string_bytes_wrapper = 323;
+    optional Inline_google_protobuf_FieldMask single_field_mask = 324;
+    repeated Inline_google_protobuf_FieldMask repeated_field_mask = 325;
+    map<string, Inline_google_protobuf_FieldMask> map_string_field_mask = 326;
     message NestedMessage {
       optional int32 bb = 1;
     }

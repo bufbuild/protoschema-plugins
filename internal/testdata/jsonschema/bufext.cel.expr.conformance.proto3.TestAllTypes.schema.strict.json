@@ -1026,6 +1026,15 @@
       },
       "type": "object"
     },
+    "map_string_field_mask": {
+      "additionalProperties": {
+        "$ref": "google.protobuf.FieldMask.schema.strict.json"
+      },
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
     "map_string_float": {
       "additionalProperties": {
         "anyOf": [
@@ -1944,6 +1953,12 @@
       },
       "type": "array"
     },
+    "repeated_field_mask": {
+      "items": {
+        "$ref": "google.protobuf.FieldMask.schema.strict.json"
+      },
+      "type": "array"
+    },
     "repeated_fixed32": {
       "items": {
         "maximum": 4294967295,
@@ -2181,6 +2196,9 @@
     },
     "single_duration": {
       "$ref": "google.protobuf.Duration.schema.strict.json"
+    },
+    "single_field_mask": {
+      "$ref": "google.protobuf.FieldMask.schema.strict.json"
     },
     "single_fixed32": {
       "maximum": 4294967295,
