@@ -17,6 +17,7 @@ package normalize
 import (
 	"errors"
 	"fmt"
+	"slices"
 	"strings"
 
 	"google.golang.org/protobuf/proto"
@@ -279,6 +280,7 @@ func findRootAndPath(target protoreflect.Descriptor) (protoreflect.MessageDescri
 		path = append(path, string(target.Name()))
 		target = parentMsg
 	}
+	slices.Reverse(path)
 	msg, _ := target.(protoreflect.MessageDescriptor)
 	return msg, path
 }
