@@ -14,7 +14,7 @@ COPYRIGHT_YEARS := 2024-2026
 GOLANGCI_LINT_VERSION := v2.11.4
 GOLANGCI_LINT := $(BIN)/golangci-lint-$(GOLANGCI_LINT_VERSION)
 GOLANGCILINT_GOTOOLCHAIN_VERSION := $(shell go env GOVERSION | sed 's/^go//')
-LICENSE_IGNORE := --ignore testdata/
+LICENSE_IGNORE := --ignore testdata/  --ignore ".*\.ya?ml"
 
 UNAME_OS := $(shell uname -s)
 ifeq ($(UNAME_OS),Darwin)
