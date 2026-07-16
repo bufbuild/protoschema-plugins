@@ -5,7 +5,7 @@ go 1.25.10
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.11-20260709200747-435963d16310.1
 	buf.build/go/protovalidate v1.2.0
-	github.com/bufbuild/buf v1.70.0
+	github.com/bufbuild/buf v1.71.0
 	github.com/bufbuild/protoplugin v0.0.0-20260414125817-25d1d281b46b
 	github.com/jhump/protoreflect v1.18.0
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2
@@ -21,7 +21,7 @@ require (
 	buf.build/go/standard v0.1.1-0.20260325175353-2b287e071df5 // indirect
 	cel.dev/expr v0.25.2 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
-	github.com/bufbuild/protocompile v0.14.2-0.20260522222248-64e6ad034132 // indirect
+	github.com/bufbuild/protocompile v0.14.2-0.20260605203730-cd7c3c124e10 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/cel-go v0.28.1 // indirect
@@ -32,9 +32,9 @@ require (
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/tidwall/btree v1.8.1 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
-	golang.org/x/exp v0.0.0-20260508232706-74f9aab9d74a // indirect
-	golang.org/x/sync v0.20.0 // indirect
-	golang.org/x/text v0.37.0 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20260523011958-0a33c5d7ca68 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20260523011958-0a33c5d7ca68 // indirect
+	golang.org/x/exp v0.0.0-20260611194520-c48552f49976 // indirect
+	golang.org/x/sync v0.21.0 // indirect
+	golang.org/x/text v0.38.0 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20260610212136-7ab31c22f7ad // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260610212136-7ab31c22f7ad // indirect
 )
