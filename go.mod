@@ -4,7 +4,7 @@ go 1.25.10
 
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.11-20260709200747-435963d16310.1
-	buf.build/go/protovalidate v1.2.0
+	buf.build/go/protovalidate v1.3.0
 	github.com/bufbuild/buf v1.72.0
 	github.com/bufbuild/protoplugin v0.0.0-20260414125817-25d1d281b46b
 	github.com/jhump/protoreflect v1.18.0
@@ -24,7 +24,7 @@ require (
 	github.com/bufbuild/protocompile v0.14.2-0.20260716165721-bb5762d29672 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
-	github.com/google/cel-go v0.29.2 // indirect
+	github.com/google/cel-go v0.30.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/jhump/protoreflect/v2 v2.0.0-beta.2 // indirect
 	github.com/petermattis/goid v0.0.0-20260716134002-a9b348f0a2b9 // indirect
