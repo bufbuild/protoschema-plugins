@@ -265,6 +265,8 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	var required []string
 	properties := make(map[string]any)
 	patternProperties := make(map[string]any)
+	oneofGroups := make(map[protoreflect.OneofDescriptor][]protoreflect.FieldDescriptor)
+
 	for i := range entry.desc.Fields().Len() {
 		field := entry.desc.Fields().Get(i)
 		visibility := p.shouldIgnoreField(field)
@@ -275,27 +277,91 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		if err != nil {
 			return err
 		}
-		if (rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_ZERO_VALUE) || // Required by validate rules.
-			(p.strict && p.hasImplicitDefault(field, field.IsList() || field.IsMap(), rules)) { // Required by strict mode.
-			if p.useJSONNames {
-				required = append(required, field.JSONName())
-			} else {
-				required = append(required, string(field.Name()))
+
+		// Handle oneof fields differently - but only real oneofs, not optional fields
+		if field.ContainingOneof() != nil && !field.ContainingOneof().IsSynthetic() {
+			oneof := field.ContainingOneof()
+			if oneofGroups[oneof] == nil {
+				oneofGroups[oneof] = make([]protoreflect.FieldDescriptor, 0)
+			}
+			oneofGroups[oneof] = append(oneofGroups[oneof], field)
+		} else {
+			// Normal field processing (including optional fields)
+			if (rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_ZERO_VALUE) || // Required by validate rules.
+				(p.strict && p.hasImplicitDefault(field, field.IsList() || field.IsMap(), rules)) { // Required by strict mode.
+				if p.useJSONNames {
+					required = append(required, field.JSONName())
+				} else {
+					required = append(required, string(field.Name()))
+				}
+			}
+
+			// Generate the schema.
+			fieldSchema, err := p.generateField(entry, field, rules)
+			if err != nil {
+				return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
+			}
+
+			// Add the field schema to the properties.
+			aliases := p.addFieldProperties(field, visibility == FieldHide, fieldSchema, properties)
+			// Add any aliases to the pattern properties.
+			if !p.strict && len(aliases) > 0 {
+				pattern := "^(" + strings.Join(aliases, "|") + ")$"
+				patternProperties[pattern] = fieldSchema
 			}
 		}
+	}
 
-		// Generate the schema.
-		fieldSchema, err := p.generateField(entry, field, rules)
-		if err != nil {
-			return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
+	// Generate oneof fields as properties with oneOf constraints
+	for oneof, fields := range oneofGroups {
+		oneofName := string(oneof.Name())
+
+		// Create oneOf constraint with direct field schemas (not wrapped in objects)
+		oneOfSchemas := make([]map[string]any, 0, len(fields))
+		for _, field := range fields {
+			rules, err := p.getFieldRules(field)
+			if err != nil {
+				return err
+			}
+
+			var fieldSchema map[string]any
+			if field.Kind() == protoreflect.MessageKind || field.Kind() == protoreflect.GroupKind {
+				// Message type - use direct reference to the message schema
+				if entry.refs == nil {
+					entry.refs = make(map[protoreflect.FullName]struct{})
+				}
+				entry.refs[field.Message().FullName()] = struct{}{}
+
+				// Ensure the schema for the message type is generated
+				_, err := p.generate(field.Message())
+				if err != nil {
+					return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
+				}
+
+				// Direct reference to the message schema
+				fieldSchema = map[string]any{
+					"$ref": p.getRef(field),
+				}
+			} else {
+				// Scalar type - generate inline schema
+				fieldSchema, err = p.generateField(entry, field, rules)
+				if err != nil {
+					return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
+				}
+				if p.useJSONNames {
+					fieldSchema = map[string]any{field.JSONName(): fieldSchema}
+				} else {
+					fieldSchema = map[string]any{string(field.Name()): fieldSchema}
+				}
+			}
+
+			oneOfSchemas = append(oneOfSchemas, fieldSchema)
 		}
-		// Add the field schema to the properties.
-		aliases := p.addFieldProperties(field, visibility == FieldHide, fieldSchema, properties)
-		// Add any aliases to the pattern properties.
-		if !p.strict && len(aliases) > 0 {
-			pattern := "^(" + strings.Join(aliases, "|") + ")$"
-			patternProperties[pattern] = fieldSchema
+
+		oneofSchema := map[string]any{
+			"oneOf": oneOfSchemas,
 		}
+		properties[oneofName] = oneofSchema
 	}
 	entry.schema["properties"] = properties
 	entry.schema["additionalProperties"] = p.additionalProperties
