@@ -3,7 +3,7 @@ module github.com/bufbuild/protoschema-plugins
 go 1.25.10
 
 require (
-	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.12-20260709200747-435963d16310.1
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.12-20260825204119-511051f7f437.1
 	buf.build/go/protovalidate v1.3.0
 	github.com/bufbuild/buf v1.72.0
 	github.com/bufbuild/protoplugin v0.0.0-20260414125817-25d1d281b46b
