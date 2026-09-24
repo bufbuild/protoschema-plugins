@@ -1,0 +1,83 @@
+{
+  "$id": "buf.protoschema.test.v1.DeprecatedTest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^(activeString)$": {
+      "default": "",
+      "type": "string"
+    },
+    "^(deprecatedMessageField)$": {
+      "$ref": "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.schema.json",
+      "deprecated": true,
+      "description": "A deprecated field referencing a message."
+    },
+    "^(deprecatedRepeated)$": {
+      "deprecated": true,
+      "description": "A deprecated repeated field.",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "^(deprecatedString)$": {
+      "default": "",
+      "deprecated": true,
+      "description": "A deprecated scalar field.",
+      "type": "string"
+    },
+    "^(messageField)$": {
+      "$ref": "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.schema.json"
+    }
+  },
+  "properties": {
+    "active_string": {
+      "default": "",
+      "type": "string"
+    },
+    "deprecated_message_field": {
+      "$ref": "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.schema.json",
+      "deprecated": true,
+      "description": "A deprecated field referencing a message."
+    },
+    "deprecated_repeated": {
+      "deprecated": true,
+      "description": "A deprecated repeated field.",
+      "items": {
+        "anyOf": [
+          {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          {
+            "pattern": "^-?[0-9]+$",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "deprecated_string": {
+      "default": "",
+      "deprecated": true,
+      "description": "A deprecated scalar field.",
+      "type": "string"
+    },
+    "message_field": {
+      "$ref": "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.schema.json"
+    }
+  },
+  "title": "Deprecated Test",
+  "type": "object"
+}

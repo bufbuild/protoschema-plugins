@@ -1,0 +1,109 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "deprecated": true,
+      "description": "Every field of this message is reachable but the message itself is\n deprecated.",
+      "patternProperties": {
+        "^(string_field)$": {
+          "default": "",
+          "type": "string"
+        }
+      },
+      "properties": {
+        "stringField": {
+          "default": "",
+          "type": "string"
+        }
+      },
+      "title": "A deprecated message.",
+      "type": "object"
+    },
+    "buf.protoschema.test.v1.DeprecatedTest.jsonschema.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(active_string)$": {
+          "default": "",
+          "type": "string"
+        },
+        "^(deprecated_message_field)$": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json",
+          "deprecated": true,
+          "description": "A deprecated field referencing a message."
+        },
+        "^(deprecated_repeated)$": {
+          "deprecated": true,
+          "description": "A deprecated repeated field.",
+          "items": {
+            "anyOf": [
+              {
+                "maximum": 2147483647,
+                "minimum": -2147483648,
+                "type": "integer"
+              },
+              {
+                "pattern": "^-?[0-9]+$",
+                "type": "string"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "^(deprecated_string)$": {
+          "default": "",
+          "deprecated": true,
+          "description": "A deprecated scalar field.",
+          "type": "string"
+        },
+        "^(message_field)$": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json"
+        }
+      },
+      "properties": {
+        "activeString": {
+          "default": "",
+          "type": "string"
+        },
+        "deprecatedMessageField": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json",
+          "deprecated": true,
+          "description": "A deprecated field referencing a message."
+        },
+        "deprecatedRepeated": {
+          "deprecated": true,
+          "description": "A deprecated repeated field.",
+          "items": {
+            "anyOf": [
+              {
+                "maximum": 2147483647,
+                "minimum": -2147483648,
+                "type": "integer"
+              },
+              {
+                "pattern": "^-?[0-9]+$",
+                "type": "string"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "deprecatedString": {
+          "default": "",
+          "deprecated": true,
+          "description": "A deprecated scalar field.",
+          "type": "string"
+        },
+        "messageField": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json"
+        }
+      },
+      "title": "Deprecated Test",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.DeprecatedTest.jsonschema.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.jsonschema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

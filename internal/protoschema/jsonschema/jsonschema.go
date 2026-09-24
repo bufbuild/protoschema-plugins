@@ -25,6 +25,7 @@ import (
 	"buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	"buf.build/go/protovalidate"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/descriptorpb"
 )
 
 // An enumeration of the JSON Schema type names.
@@ -262,6 +263,7 @@ func (p *Generator) generate(desc protoreflect.MessageDescriptor) (*msgSchema, e
 func (p *Generator) generateMessage(entry *msgSchema) error {
 	entry.schema["type"] = jsObject
 	p.setDescription(entry.desc, entry.schema)
+	p.setDeprecated(entry.desc, entry.schema)
 	var required []string
 	properties := make(map[string]any)
 	patternProperties := make(map[string]any)
@@ -342,6 +344,21 @@ func (p *Generator) addFieldProperties(
 	return aliases
 }
 
+// setDeprecated marks the schema as deprecated if the descriptor has the
+// `deprecated` option set in its Protobuf options.
+func (p *Generator) setDeprecated(desc protoreflect.Descriptor, schema map[string]any) {
+	var deprecated bool
+	switch options := desc.Options().(type) {
+	case *descriptorpb.MessageOptions:
+		deprecated = options.GetDeprecated()
+	case *descriptorpb.FieldOptions:
+		deprecated = options.GetDeprecated()
+	}
+	if deprecated {
+		schema["deprecated"] = true
+	}
+}
+
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
 	src := desc.ParentFile().SourceLocations().ByDescriptor(desc)
 	if src.LeadingComments != "" {
@@ -373,6 +390,7 @@ func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[stri
 func (p *Generator) generateField(entry *msgSchema, field protoreflect.FieldDescriptor, rules *validate.FieldRules) (map[string]any, error) {
 	var schema = make(map[string]any)
 	p.setDescription(field, schema)
+	p.setDeprecated(field, schema)
 	if err := p.generateFieldValidation(entry, field, false, rules, schema); err != nil {
 		return nil, err
 	}
@@ -1394,6 +1412,7 @@ func (p *Generator) generateWrapperValidation(
 ) error {
 	field := desc.Fields().Get(0)
 	p.setDescription(field, schema)
+	p.setDeprecated(field, schema)
 	return p.generateFieldValidation(nil, field, true, rules, schema)
 }
 
