@@ -437,6 +437,144 @@ func (*JSONNameCollision_BazQux) isJSONNameCollision_Pick() {}
 
 func (*JSONNameCollision_Baz) isJSONNameCollision_Pick() {}
 
+type DeprecatedTest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A deprecated scalar field.
+	//
+	// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+	DeprecatedString string `protobuf:"bytes,1,opt,name=deprecated_string,json=deprecatedString,proto3" json:"deprecated_string,omitempty"`
+	ActiveString     string `protobuf:"bytes,2,opt,name=active_string,json=activeString,proto3" json:"active_string,omitempty"`
+	// A deprecated repeated field.
+	//
+	// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+	DeprecatedRepeated []int32 `protobuf:"varint,3,rep,packed,name=deprecated_repeated,json=deprecatedRepeated,proto3" json:"deprecated_repeated,omitempty"`
+	// A deprecated field referencing a message.
+	//
+	// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+	DeprecatedMessageField *DeprecatedTest_DeprecatedMessage `protobuf:"bytes,4,opt,name=deprecated_message_field,json=deprecatedMessageField,proto3" json:"deprecated_message_field,omitempty"`
+	MessageField           *DeprecatedTest_DeprecatedMessage `protobuf:"bytes,5,opt,name=message_field,json=messageField,proto3" json:"message_field,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *DeprecatedTest) Reset() {
+	*x = DeprecatedTest{}
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeprecatedTest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeprecatedTest) ProtoMessage() {}
+
+func (x *DeprecatedTest) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeprecatedTest.ProtoReflect.Descriptor instead.
+func (*DeprecatedTest) Descriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP(), []int{5}
+}
+
+// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+func (x *DeprecatedTest) GetDeprecatedString() string {
+	if x != nil {
+		return x.DeprecatedString
+	}
+	return ""
+}
+
+func (x *DeprecatedTest) GetActiveString() string {
+	if x != nil {
+		return x.ActiveString
+	}
+	return ""
+}
+
+// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+func (x *DeprecatedTest) GetDeprecatedRepeated() []int32 {
+	if x != nil {
+		return x.DeprecatedRepeated
+	}
+	return nil
+}
+
+// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+func (x *DeprecatedTest) GetDeprecatedMessageField() *DeprecatedTest_DeprecatedMessage {
+	if x != nil {
+		return x.DeprecatedMessageField
+	}
+	return nil
+}
+
+func (x *DeprecatedTest) GetMessageField() *DeprecatedTest_DeprecatedMessage {
+	if x != nil {
+		return x.MessageField
+	}
+	return nil
+}
+
+// A deprecated message.
+//
+// Every field of this message is reachable but the message itself is
+// deprecated.
+//
+// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+type DeprecatedTest_DeprecatedMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StringField   string                 `protobuf:"bytes,1,opt,name=string_field,json=stringField,proto3" json:"string_field,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeprecatedTest_DeprecatedMessage) Reset() {
+	*x = DeprecatedTest_DeprecatedMessage{}
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeprecatedTest_DeprecatedMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeprecatedTest_DeprecatedMessage) ProtoMessage() {}
+
+func (x *DeprecatedTest_DeprecatedMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeprecatedTest_DeprecatedMessage.ProtoReflect.Descriptor instead.
+func (*DeprecatedTest_DeprecatedMessage) Descriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP(), []int{5, 0}
+}
+
+func (x *DeprecatedTest_DeprecatedMessage) GetStringField() string {
+	if x != nil {
+		return x.StringField
+	}
+	return ""
+}
+
 var File_buf_protoschema_test_v1_test_cases_proto protoreflect.FileDescriptor
 
 const file_buf_protoschema_test_v1_test_cases_proto_rawDesc = "" +
@@ -471,7 +609,15 @@ const file_buf_protoschema_test_v1_test_cases_proto_rawDesc = "" +
 	"\x03foo\x18\x02 \x01(\x05R\x03bar\x12\x16\n" +
 	"\abaz_qux\x18\x03 \x01(\tH\x00R\x03baz\x12\x12\n" +
 	"\x03baz\x18\x04 \x01(\tH\x00R\x03quxB\x06\n" +
-	"\x04pickB\x87\x02\n" +
+	"\x04pick\"\xb0\x03\n" +
+	"\x0eDeprecatedTest\x12/\n" +
+	"\x11deprecated_string\x18\x01 \x01(\tB\x02\x18\x01R\x10deprecatedString\x12#\n" +
+	"\ractive_string\x18\x02 \x01(\tR\factiveString\x123\n" +
+	"\x13deprecated_repeated\x18\x03 \x03(\x05B\x02\x18\x01R\x12deprecatedRepeated\x12w\n" +
+	"\x18deprecated_message_field\x18\x04 \x01(\v29.buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessageB\x02\x18\x01R\x16deprecatedMessageField\x12^\n" +
+	"\rmessage_field\x18\x05 \x01(\v29.buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessageR\fmessageField\x1a:\n" +
+	"\x11DeprecatedMessage\x12!\n" +
+	"\fstring_field\x18\x01 \x01(\tR\vstringField:\x02\x18\x01B\x87\x02\n" +
 	"\x1bcom.buf.protoschema.test.v1B\x0eTestCasesProtoP\x01ZYgithub.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1;testv1\xa2\x02\x03BPT\xaa\x02\x17Buf.Protoschema.Test.V1\xca\x02\x17Buf\\Protoschema\\Test\\V1\xe2\x02#Buf\\Protoschema\\Test\\V1\\GPBMetadata\xea\x02\x1aBuf::Protoschema::Test::V1b\x06proto3"
 
 var (
@@ -486,23 +632,27 @@ func file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP() []byte {
 	return file_buf_protoschema_test_v1_test_cases_proto_rawDescData
 }
 
-var file_buf_protoschema_test_v1_test_cases_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_buf_protoschema_test_v1_test_cases_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_buf_protoschema_test_v1_test_cases_proto_goTypes = []any{
 	(*NestedReference)(nil),                   // 0: buf.protoschema.test.v1.NestedReference
 	(*CustomOptions)(nil),                     // 1: buf.protoschema.test.v1.CustomOptions
 	(*IgnoreField)(nil),                       // 2: buf.protoschema.test.v1.IgnoreField
 	(*OneofVisibility)(nil),                   // 3: buf.protoschema.test.v1.OneofVisibility
 	(*JSONNameCollision)(nil),                 // 4: buf.protoschema.test.v1.JSONNameCollision
-	(*proto3.TestAllTypes_NestedMessage)(nil), // 5: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	(*DeprecatedTest)(nil),                    // 5: buf.protoschema.test.v1.DeprecatedTest
+	(*DeprecatedTest_DeprecatedMessage)(nil),  // 6: buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
+	(*proto3.TestAllTypes_NestedMessage)(nil), // 7: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 }
 var file_buf_protoschema_test_v1_test_cases_proto_depIdxs = []int32{
-	5, // 0: buf.protoschema.test.v1.NestedReference.nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	7, // 0: buf.protoschema.test.v1.NestedReference.nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 	0, // 1: buf.protoschema.test.v1.IgnoreField.nested_reference:type_name -> buf.protoschema.test.v1.NestedReference
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	6, // 2: buf.protoschema.test.v1.DeprecatedTest.deprecated_message_field:type_name -> buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
+	6, // 3: buf.protoschema.test.v1.DeprecatedTest.message_field:type_name -> buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_buf_protoschema_test_v1_test_cases_proto_init() }
@@ -528,7 +678,7 @@ func file_buf_protoschema_test_v1_test_cases_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_protoschema_test_v1_test_cases_proto_rawDesc), len(file_buf_protoschema_test_v1_test_cases_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

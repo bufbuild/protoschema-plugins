@@ -1,0 +1,12 @@
+syntax = "proto2";
+message DeprecatedTest {
+  optional string deprecated_string = 1 [deprecated = true];
+  optional string active_string = 2;
+  repeated int32 deprecated_repeated = 3 [deprecated = true];
+  optional DeprecatedMessage deprecated_message_field = 4 [deprecated = true];
+  optional DeprecatedMessage message_field = 5;
+  message DeprecatedMessage {
+    option deprecated = true;
+    optional string string_field = 1;
+  }
+}

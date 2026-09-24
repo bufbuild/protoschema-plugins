@@ -1,0 +1,39 @@
+{
+  "$id": "buf.protoschema.test.v1.DeprecatedTest.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "activeString": {
+      "type": "string"
+    },
+    "deprecatedMessageField": {
+      "$ref": "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.strict.json",
+      "deprecated": true,
+      "description": "A deprecated field referencing a message."
+    },
+    "deprecatedRepeated": {
+      "deprecated": true,
+      "description": "A deprecated repeated field.",
+      "items": {
+        "maximum": 2147483647,
+        "minimum": -2147483648,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "deprecatedString": {
+      "deprecated": true,
+      "description": "A deprecated scalar field.",
+      "type": "string"
+    },
+    "messageField": {
+      "$ref": "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.strict.json"
+    }
+  },
+  "required": [
+    "deprecatedString",
+    "activeString"
+  ],
+  "title": "Deprecated Test",
+  "type": "object"
+}

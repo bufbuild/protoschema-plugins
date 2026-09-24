@@ -1,0 +1,61 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.schema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "deprecated": true,
+      "description": "Every field of this message is reachable but the message itself is\n deprecated.",
+      "properties": {
+        "string_field": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "string_field"
+      ],
+      "title": "A deprecated message.",
+      "type": "object"
+    },
+    "buf.protoschema.test.v1.DeprecatedTest.schema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "active_string": {
+          "type": "string"
+        },
+        "deprecated_message_field": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.schema.strict.json",
+          "deprecated": true,
+          "description": "A deprecated field referencing a message."
+        },
+        "deprecated_repeated": {
+          "deprecated": true,
+          "description": "A deprecated repeated field.",
+          "items": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "deprecated_string": {
+          "deprecated": true,
+          "description": "A deprecated scalar field.",
+          "type": "string"
+        },
+        "message_field": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.schema.strict.json"
+        }
+      },
+      "required": [
+        "deprecated_string",
+        "active_string"
+      ],
+      "title": "Deprecated Test",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.DeprecatedTest.schema.strict.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.schema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
