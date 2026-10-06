@@ -65,29 +65,15 @@
               ]
             },
             {
-              "not": {
-                "anyOf": [
-                  {
-                    "required": [
-                      "single_nested_message"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "singleNestedMessage"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "single_nested_enum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "singleNestedEnum"
-                    ]
-                  }
-                ]
+              "propertyNames": {
+                "not": {
+                  "enum": [
+                    "single_nested_message",
+                    "singleNestedMessage",
+                    "single_nested_enum",
+                    "singleNestedEnum"
+                  ]
+                }
               }
             }
           ]

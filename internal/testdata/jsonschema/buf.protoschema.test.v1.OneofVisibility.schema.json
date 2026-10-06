@@ -26,29 +26,15 @@
           ]
         },
         {
-          "not": {
-            "anyOf": [
-              {
-                "required": [
-                  "visible_choice"
-                ]
-              },
-              {
-                "required": [
-                  "visibleChoice"
-                ]
-              },
-              {
-                "required": [
-                  "hidden_choice"
-                ]
-              },
-              {
-                "required": [
-                  "hiddenChoice"
-                ]
-              }
-            ]
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "visible_choice",
+                "visibleChoice",
+                "hidden_choice",
+                "hiddenChoice"
+              ]
+            }
           }
         }
       ]

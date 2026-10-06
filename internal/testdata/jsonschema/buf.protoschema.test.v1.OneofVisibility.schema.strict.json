@@ -11,14 +11,12 @@
           ]
         },
         {
-          "not": {
-            "anyOf": [
-              {
-                "required": [
-                  "visible_choice"
-                ]
-              }
-            ]
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "visible_choice"
+              ]
+            }
           }
         }
       ]

@@ -21,24 +21,14 @@
           ]
         },
         {
-          "not": {
-            "anyOf": [
-              {
-                "required": [
-                  "baz_qux"
-                ]
-              },
-              {
-                "required": [
-                  "baz"
-                ]
-              },
-              {
-                "required": [
-                  "qux"
-                ]
-              }
-            ]
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "baz_qux",
+                "baz",
+                "qux"
+              ]
+            }
           }
         }
       ]

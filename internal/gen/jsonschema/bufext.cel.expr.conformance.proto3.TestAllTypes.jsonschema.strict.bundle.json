@@ -49,19 +49,13 @@
               ]
             },
             {
-              "not": {
-                "anyOf": [
-                  {
-                    "required": [
-                      "singleNestedMessage"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "singleNestedEnum"
-                    ]
-                  }
-                ]
+              "propertyNames": {
+                "not": {
+                  "enum": [
+                    "singleNestedMessage",
+                    "singleNestedEnum"
+                  ]
+                }
               }
             }
           ]

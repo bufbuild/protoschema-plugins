@@ -345,7 +345,7 @@ func (p *Generator) addOneOfConstraints(entry *msgSchema) error {
 		if !rules.GetRequired() {
 			// A oneof that is not required may have no member set.
 			branches = append(branches, map[string]any{
-				"not": map[string]any{"anyOf": slices.Clone(branches)},
+				"propertyNames": map[string]any{"not": map[string]any{"enum": names}},
 			})
 		}
 		allOf = append(allOf, map[string]any{"oneOf": branches})

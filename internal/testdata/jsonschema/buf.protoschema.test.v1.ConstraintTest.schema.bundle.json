@@ -1197,959 +1197,201 @@
               ]
             },
             {
-              "not": {
-                "anyOf": [
-                  {
-                    "required": [
-                      "required_implicit"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "requiredImplicit"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "required_optional"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "requiredOptional"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_bool"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constBool"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_enum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constEnum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "defined_only_enum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "definedOnlyEnum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_enum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inEnum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "not_in_enum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "notInEnum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "defined_only_not_in_enum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "definedOnlyNotInEnum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_and_not_in_enum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inAndNotInEnum"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "len_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lenString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "min_len_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "minLenString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "max_len_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "maxLenString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "min_max_len_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "minMaxLenString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "pattern_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "patternString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "prefix_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "prefixString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "suffix_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "suffixString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "contains_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "containsString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "prefix_suffix_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "prefixSuffixString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "prefix_contains_suffix_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "prefixContainsSuffixString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "hostname_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "hostnameString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "email_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "emailString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ip_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv4_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv4String"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv6_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv6String"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "uri_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "uriString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "uri_ref_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "uriRefString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "address_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "addressString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "uuid_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "uuidString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "tuuid_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "tuuidString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ip_with_prefixlen_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipWithPrefixlenString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv4_with_prefixlen_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv4WithPrefixlenString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv6_with_prefixlen_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv6WithPrefixlenString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ip_prefix_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipPrefixString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv4_prefix_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv4PrefixString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv6_prefix_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ipv6PrefixString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "host_and_port_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "hostAndPortString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "http_header_name_strict_string"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "httpHeaderNameStrictString"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "len_bytes"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lenBytes"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "min_len_bytes"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "minLenBytes"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "max_len_bytes"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "maxLenBytes"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "min_max_len_bytes"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "minMaxLenBytes"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_int32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constInt32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_int32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltInt32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lte_int32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lteInt32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gt_int32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gtInt32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gte_int32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gteInt32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_int32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inInt32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_gt_int32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltGtInt32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_int64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constInt64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_int64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltInt64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lte_int64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lteInt64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gt_int64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gtInt64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gte_int64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gteInt64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_int64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inInt64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_gt_int64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltGtInt64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_uint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constUint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_uint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltUint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lte_uint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lteUint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gt_uint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gtUint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gte_uint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gteUint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_uint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inUint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_gt_uint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltGtUint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_uint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constUint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_uint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltUint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lte_uint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lteUint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gt_uint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gtUint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gte_uint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gteUint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_uint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inUint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_gt_uint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltGtUint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_sint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constSint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_sint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltSint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lte_sint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lteSint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gt_sint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gtSint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gte_sint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gteSint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_sint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inSint32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_sint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constSint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_sint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltSint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lte_sint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lteSint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gt_sint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gtSint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gte_sint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gteSint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_sint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inSint64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_sfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constSfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_sfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltSfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lte_sfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lteSfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gt_sfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gtSfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gte_sfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gteSfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_sfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inSfixed32"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "const_sfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "constSfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lt_sfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "ltSfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lte_sfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "lteSfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gt_sfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gtSfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gte_sfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "gteSfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "in_sfixed64"
-                    ]
-                  },
-                  {
-                    "required": [
-                      "inSfixed64"
-                    ]
-                  }
-                ]
+              "propertyNames": {
+                "not": {
+                  "enum": [
+                    "required_implicit",
+                    "requiredImplicit",
+                    "required_optional",
+                    "requiredOptional",
+                    "const_bool",
+                    "constBool",
+                    "const_enum",
+                    "constEnum",
+                    "defined_only_enum",
+                    "definedOnlyEnum",
+                    "in_enum",
+                    "inEnum",
+                    "not_in_enum",
+                    "notInEnum",
+                    "defined_only_not_in_enum",
+                    "definedOnlyNotInEnum",
+                    "in_and_not_in_enum",
+                    "inAndNotInEnum",
+                    "const_string",
+                    "constString",
+                    "len_string",
+                    "lenString",
+                    "min_len_string",
+                    "minLenString",
+                    "max_len_string",
+                    "maxLenString",
+                    "min_max_len_string",
+                    "minMaxLenString",
+                    "in_string",
+                    "inString",
+                    "pattern_string",
+                    "patternString",
+                    "prefix_string",
+                    "prefixString",
+                    "suffix_string",
+                    "suffixString",
+                    "contains_string",
+                    "containsString",
+                    "prefix_suffix_string",
+                    "prefixSuffixString",
+                    "prefix_contains_suffix_string",
+                    "prefixContainsSuffixString",
+                    "hostname_string",
+                    "hostnameString",
+                    "email_string",
+                    "emailString",
+                    "ip_string",
+                    "ipString",
+                    "ipv4_string",
+                    "ipv4String",
+                    "ipv6_string",
+                    "ipv6String",
+                    "uri_string",
+                    "uriString",
+                    "uri_ref_string",
+                    "uriRefString",
+                    "address_string",
+                    "addressString",
+                    "uuid_string",
+                    "uuidString",
+                    "tuuid_string",
+                    "tuuidString",
+                    "ip_with_prefixlen_string",
+                    "ipWithPrefixlenString",
+                    "ipv4_with_prefixlen_string",
+                    "ipv4WithPrefixlenString",
+                    "ipv6_with_prefixlen_string",
+                    "ipv6WithPrefixlenString",
+                    "ip_prefix_string",
+                    "ipPrefixString",
+                    "ipv4_prefix_string",
+                    "ipv4PrefixString",
+                    "ipv6_prefix_string",
+                    "ipv6PrefixString",
+                    "host_and_port_string",
+                    "hostAndPortString",
+                    "http_header_name_strict_string",
+                    "httpHeaderNameStrictString",
+                    "len_bytes",
+                    "lenBytes",
+                    "min_len_bytes",
+                    "minLenBytes",
+                    "max_len_bytes",
+                    "maxLenBytes",
+                    "min_max_len_bytes",
+                    "minMaxLenBytes",
+                    "const_int32",
+                    "constInt32",
+                    "lt_int32",
+                    "ltInt32",
+                    "lte_int32",
+                    "lteInt32",
+                    "gt_int32",
+                    "gtInt32",
+                    "gte_int32",
+                    "gteInt32",
+                    "in_int32",
+                    "inInt32",
+                    "lt_gt_int32",
+                    "ltGtInt32",
+                    "const_int64",
+                    "constInt64",
+                    "lt_int64",
+                    "ltInt64",
+                    "lte_int64",
+                    "lteInt64",
+                    "gt_int64",
+                    "gtInt64",
+                    "gte_int64",
+                    "gteInt64",
+                    "in_int64",
+                    "inInt64",
+                    "lt_gt_int64",
+                    "ltGtInt64",
+                    "const_uint32",
+                    "constUint32",
+                    "lt_uint32",
+                    "ltUint32",
+                    "lte_uint32",
+                    "lteUint32",
+                    "gt_uint32",
+                    "gtUint32",
+                    "gte_uint32",
+                    "gteUint32",
+                    "in_uint32",
+                    "inUint32",
+                    "lt_gt_uint32",
+                    "ltGtUint32",
+                    "const_uint64",
+                    "constUint64",
+                    "lt_uint64",
+                    "ltUint64",
+                    "lte_uint64",
+                    "lteUint64",
+                    "gt_uint64",
+                    "gtUint64",
+                    "gte_uint64",
+                    "gteUint64",
+                    "in_uint64",
+                    "inUint64",
+                    "lt_gt_uint64",
+                    "ltGtUint64",
+                    "const_sint32",
+                    "constSint32",
+                    "lt_sint32",
+                    "ltSint32",
+                    "lte_sint32",
+                    "lteSint32",
+                    "gt_sint32",
+                    "gtSint32",
+                    "gte_sint32",
+                    "gteSint32",
+                    "in_sint32",
+                    "inSint32",
+                    "const_sint64",
+                    "constSint64",
+                    "lt_sint64",
+                    "ltSint64",
+                    "lte_sint64",
+                    "lteSint64",
+                    "gt_sint64",
+                    "gtSint64",
+                    "gte_sint64",
+                    "gteSint64",
+                    "in_sint64",
+                    "inSint64",
+                    "const_sfixed32",
+                    "constSfixed32",
+                    "lt_sfixed32",
+                    "ltSfixed32",
+                    "lte_sfixed32",
+                    "lteSfixed32",
+                    "gt_sfixed32",
+                    "gtSfixed32",
+                    "gte_sfixed32",
+                    "gteSfixed32",
+                    "in_sfixed32",
+                    "inSfixed32",
+                    "const_sfixed64",
+                    "constSfixed64",
+                    "lt_sfixed64",
+                    "ltSfixed64",
+                    "lte_sfixed64",
+                    "lteSfixed64",
+                    "gt_sfixed64",
+                    "gtSfixed64",
+                    "gte_sfixed64",
+                    "gteSfixed64",
+                    "in_sfixed64",
+                    "inSfixed64"
+                  ]
+                }
               }
             }
           ]

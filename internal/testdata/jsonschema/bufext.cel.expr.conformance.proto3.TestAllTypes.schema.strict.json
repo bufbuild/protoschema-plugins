@@ -16,19 +16,13 @@
           ]
         },
         {
-          "not": {
-            "anyOf": [
-              {
-                "required": [
-                  "single_nested_message"
-                ]
-              },
-              {
-                "required": [
-                  "single_nested_enum"
-                ]
-              }
-            ]
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "single_nested_message",
+                "single_nested_enum"
+              ]
+            }
           }
         }
       ]
