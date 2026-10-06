@@ -1,0 +1,8 @@
+syntax = "proto2";
+message OneofVisibility {
+  oneof pick {
+    string visible_choice = 1;
+    string hidden_choice = 2;
+    string ignored_choice = 3;
+  }
+}

@@ -1,0 +1,9 @@
+syntax = "proto2";
+message JSONNameCollision {
+  optional string foo_bar = 1 [json_name = "foo"];
+  optional int32 foo = 2 [json_name = "bar"];
+  oneof pick {
+    string baz_qux = 3 [json_name = "baz"];
+    string baz = 4 [json_name = "qux"];
+  }
+}

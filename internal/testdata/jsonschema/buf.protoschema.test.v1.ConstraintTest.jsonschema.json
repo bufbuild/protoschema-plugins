@@ -2,6 +2,1160 @@
   "$id": "buf.protoschema.test.v1.ConstraintTest.jsonschema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "required": [
+            "requiredImplicit"
+          ]
+        },
+        {
+          "required": [
+            "required_implicit"
+          ]
+        },
+        {
+          "required": [
+            "requiredOptional"
+          ]
+        },
+        {
+          "required": [
+            "required_optional"
+          ]
+        },
+        {
+          "required": [
+            "constBool"
+          ]
+        },
+        {
+          "required": [
+            "const_bool"
+          ]
+        },
+        {
+          "required": [
+            "constEnum"
+          ]
+        },
+        {
+          "required": [
+            "const_enum"
+          ]
+        },
+        {
+          "required": [
+            "definedOnlyEnum"
+          ]
+        },
+        {
+          "required": [
+            "defined_only_enum"
+          ]
+        },
+        {
+          "required": [
+            "inEnum"
+          ]
+        },
+        {
+          "required": [
+            "in_enum"
+          ]
+        },
+        {
+          "required": [
+            "notInEnum"
+          ]
+        },
+        {
+          "required": [
+            "not_in_enum"
+          ]
+        },
+        {
+          "required": [
+            "definedOnlyNotInEnum"
+          ]
+        },
+        {
+          "required": [
+            "defined_only_not_in_enum"
+          ]
+        },
+        {
+          "required": [
+            "inAndNotInEnum"
+          ]
+        },
+        {
+          "required": [
+            "in_and_not_in_enum"
+          ]
+        },
+        {
+          "required": [
+            "constString"
+          ]
+        },
+        {
+          "required": [
+            "const_string"
+          ]
+        },
+        {
+          "required": [
+            "lenString"
+          ]
+        },
+        {
+          "required": [
+            "len_string"
+          ]
+        },
+        {
+          "required": [
+            "minLenString"
+          ]
+        },
+        {
+          "required": [
+            "min_len_string"
+          ]
+        },
+        {
+          "required": [
+            "maxLenString"
+          ]
+        },
+        {
+          "required": [
+            "max_len_string"
+          ]
+        },
+        {
+          "required": [
+            "minMaxLenString"
+          ]
+        },
+        {
+          "required": [
+            "min_max_len_string"
+          ]
+        },
+        {
+          "required": [
+            "inString"
+          ]
+        },
+        {
+          "required": [
+            "in_string"
+          ]
+        },
+        {
+          "required": [
+            "patternString"
+          ]
+        },
+        {
+          "required": [
+            "pattern_string"
+          ]
+        },
+        {
+          "required": [
+            "prefixString"
+          ]
+        },
+        {
+          "required": [
+            "prefix_string"
+          ]
+        },
+        {
+          "required": [
+            "suffixString"
+          ]
+        },
+        {
+          "required": [
+            "suffix_string"
+          ]
+        },
+        {
+          "required": [
+            "containsString"
+          ]
+        },
+        {
+          "required": [
+            "contains_string"
+          ]
+        },
+        {
+          "required": [
+            "prefixSuffixString"
+          ]
+        },
+        {
+          "required": [
+            "prefix_suffix_string"
+          ]
+        },
+        {
+          "required": [
+            "prefixContainsSuffixString"
+          ]
+        },
+        {
+          "required": [
+            "prefix_contains_suffix_string"
+          ]
+        },
+        {
+          "required": [
+            "hostnameString"
+          ]
+        },
+        {
+          "required": [
+            "hostname_string"
+          ]
+        },
+        {
+          "required": [
+            "emailString"
+          ]
+        },
+        {
+          "required": [
+            "email_string"
+          ]
+        },
+        {
+          "required": [
+            "ipString"
+          ]
+        },
+        {
+          "required": [
+            "ip_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv4String"
+          ]
+        },
+        {
+          "required": [
+            "ipv4_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv6String"
+          ]
+        },
+        {
+          "required": [
+            "ipv6_string"
+          ]
+        },
+        {
+          "required": [
+            "uriString"
+          ]
+        },
+        {
+          "required": [
+            "uri_string"
+          ]
+        },
+        {
+          "required": [
+            "uriRefString"
+          ]
+        },
+        {
+          "required": [
+            "uri_ref_string"
+          ]
+        },
+        {
+          "required": [
+            "addressString"
+          ]
+        },
+        {
+          "required": [
+            "address_string"
+          ]
+        },
+        {
+          "required": [
+            "uuidString"
+          ]
+        },
+        {
+          "required": [
+            "uuid_string"
+          ]
+        },
+        {
+          "required": [
+            "tuuidString"
+          ]
+        },
+        {
+          "required": [
+            "tuuid_string"
+          ]
+        },
+        {
+          "required": [
+            "ipWithPrefixlenString"
+          ]
+        },
+        {
+          "required": [
+            "ip_with_prefixlen_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv4WithPrefixlenString"
+          ]
+        },
+        {
+          "required": [
+            "ipv4_with_prefixlen_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv6WithPrefixlenString"
+          ]
+        },
+        {
+          "required": [
+            "ipv6_with_prefixlen_string"
+          ]
+        },
+        {
+          "required": [
+            "ipPrefixString"
+          ]
+        },
+        {
+          "required": [
+            "ip_prefix_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv4PrefixString"
+          ]
+        },
+        {
+          "required": [
+            "ipv4_prefix_string"
+          ]
+        },
+        {
+          "required": [
+            "ipv6PrefixString"
+          ]
+        },
+        {
+          "required": [
+            "ipv6_prefix_string"
+          ]
+        },
+        {
+          "required": [
+            "hostAndPortString"
+          ]
+        },
+        {
+          "required": [
+            "host_and_port_string"
+          ]
+        },
+        {
+          "required": [
+            "httpHeaderNameStrictString"
+          ]
+        },
+        {
+          "required": [
+            "http_header_name_strict_string"
+          ]
+        },
+        {
+          "required": [
+            "lenBytes"
+          ]
+        },
+        {
+          "required": [
+            "len_bytes"
+          ]
+        },
+        {
+          "required": [
+            "minLenBytes"
+          ]
+        },
+        {
+          "required": [
+            "min_len_bytes"
+          ]
+        },
+        {
+          "required": [
+            "maxLenBytes"
+          ]
+        },
+        {
+          "required": [
+            "max_len_bytes"
+          ]
+        },
+        {
+          "required": [
+            "minMaxLenBytes"
+          ]
+        },
+        {
+          "required": [
+            "min_max_len_bytes"
+          ]
+        },
+        {
+          "required": [
+            "constInt32"
+          ]
+        },
+        {
+          "required": [
+            "const_int32"
+          ]
+        },
+        {
+          "required": [
+            "ltInt32"
+          ]
+        },
+        {
+          "required": [
+            "lt_int32"
+          ]
+        },
+        {
+          "required": [
+            "lteInt32"
+          ]
+        },
+        {
+          "required": [
+            "lte_int32"
+          ]
+        },
+        {
+          "required": [
+            "gtInt32"
+          ]
+        },
+        {
+          "required": [
+            "gt_int32"
+          ]
+        },
+        {
+          "required": [
+            "gteInt32"
+          ]
+        },
+        {
+          "required": [
+            "gte_int32"
+          ]
+        },
+        {
+          "required": [
+            "inInt32"
+          ]
+        },
+        {
+          "required": [
+            "in_int32"
+          ]
+        },
+        {
+          "required": [
+            "ltGtInt32"
+          ]
+        },
+        {
+          "required": [
+            "lt_gt_int32"
+          ]
+        },
+        {
+          "required": [
+            "constInt64"
+          ]
+        },
+        {
+          "required": [
+            "const_int64"
+          ]
+        },
+        {
+          "required": [
+            "ltInt64"
+          ]
+        },
+        {
+          "required": [
+            "lt_int64"
+          ]
+        },
+        {
+          "required": [
+            "lteInt64"
+          ]
+        },
+        {
+          "required": [
+            "lte_int64"
+          ]
+        },
+        {
+          "required": [
+            "gtInt64"
+          ]
+        },
+        {
+          "required": [
+            "gt_int64"
+          ]
+        },
+        {
+          "required": [
+            "gteInt64"
+          ]
+        },
+        {
+          "required": [
+            "gte_int64"
+          ]
+        },
+        {
+          "required": [
+            "inInt64"
+          ]
+        },
+        {
+          "required": [
+            "in_int64"
+          ]
+        },
+        {
+          "required": [
+            "ltGtInt64"
+          ]
+        },
+        {
+          "required": [
+            "lt_gt_int64"
+          ]
+        },
+        {
+          "required": [
+            "constUint32"
+          ]
+        },
+        {
+          "required": [
+            "const_uint32"
+          ]
+        },
+        {
+          "required": [
+            "ltUint32"
+          ]
+        },
+        {
+          "required": [
+            "lt_uint32"
+          ]
+        },
+        {
+          "required": [
+            "lteUint32"
+          ]
+        },
+        {
+          "required": [
+            "lte_uint32"
+          ]
+        },
+        {
+          "required": [
+            "gtUint32"
+          ]
+        },
+        {
+          "required": [
+            "gt_uint32"
+          ]
+        },
+        {
+          "required": [
+            "gteUint32"
+          ]
+        },
+        {
+          "required": [
+            "gte_uint32"
+          ]
+        },
+        {
+          "required": [
+            "inUint32"
+          ]
+        },
+        {
+          "required": [
+            "in_uint32"
+          ]
+        },
+        {
+          "required": [
+            "ltGtUint32"
+          ]
+        },
+        {
+          "required": [
+            "lt_gt_uint32"
+          ]
+        },
+        {
+          "required": [
+            "constUint64"
+          ]
+        },
+        {
+          "required": [
+            "const_uint64"
+          ]
+        },
+        {
+          "required": [
+            "ltUint64"
+          ]
+        },
+        {
+          "required": [
+            "lt_uint64"
+          ]
+        },
+        {
+          "required": [
+            "lteUint64"
+          ]
+        },
+        {
+          "required": [
+            "lte_uint64"
+          ]
+        },
+        {
+          "required": [
+            "gtUint64"
+          ]
+        },
+        {
+          "required": [
+            "gt_uint64"
+          ]
+        },
+        {
+          "required": [
+            "gteUint64"
+          ]
+        },
+        {
+          "required": [
+            "gte_uint64"
+          ]
+        },
+        {
+          "required": [
+            "inUint64"
+          ]
+        },
+        {
+          "required": [
+            "in_uint64"
+          ]
+        },
+        {
+          "required": [
+            "ltGtUint64"
+          ]
+        },
+        {
+          "required": [
+            "lt_gt_uint64"
+          ]
+        },
+        {
+          "required": [
+            "constSint32"
+          ]
+        },
+        {
+          "required": [
+            "const_sint32"
+          ]
+        },
+        {
+          "required": [
+            "ltSint32"
+          ]
+        },
+        {
+          "required": [
+            "lt_sint32"
+          ]
+        },
+        {
+          "required": [
+            "lteSint32"
+          ]
+        },
+        {
+          "required": [
+            "lte_sint32"
+          ]
+        },
+        {
+          "required": [
+            "gtSint32"
+          ]
+        },
+        {
+          "required": [
+            "gt_sint32"
+          ]
+        },
+        {
+          "required": [
+            "gteSint32"
+          ]
+        },
+        {
+          "required": [
+            "gte_sint32"
+          ]
+        },
+        {
+          "required": [
+            "inSint32"
+          ]
+        },
+        {
+          "required": [
+            "in_sint32"
+          ]
+        },
+        {
+          "required": [
+            "constSint64"
+          ]
+        },
+        {
+          "required": [
+            "const_sint64"
+          ]
+        },
+        {
+          "required": [
+            "ltSint64"
+          ]
+        },
+        {
+          "required": [
+            "lt_sint64"
+          ]
+        },
+        {
+          "required": [
+            "lteSint64"
+          ]
+        },
+        {
+          "required": [
+            "lte_sint64"
+          ]
+        },
+        {
+          "required": [
+            "gtSint64"
+          ]
+        },
+        {
+          "required": [
+            "gt_sint64"
+          ]
+        },
+        {
+          "required": [
+            "gteSint64"
+          ]
+        },
+        {
+          "required": [
+            "gte_sint64"
+          ]
+        },
+        {
+          "required": [
+            "inSint64"
+          ]
+        },
+        {
+          "required": [
+            "in_sint64"
+          ]
+        },
+        {
+          "required": [
+            "constSfixed32"
+          ]
+        },
+        {
+          "required": [
+            "const_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "ltSfixed32"
+          ]
+        },
+        {
+          "required": [
+            "lt_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "lteSfixed32"
+          ]
+        },
+        {
+          "required": [
+            "lte_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "gtSfixed32"
+          ]
+        },
+        {
+          "required": [
+            "gt_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "gteSfixed32"
+          ]
+        },
+        {
+          "required": [
+            "gte_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "inSfixed32"
+          ]
+        },
+        {
+          "required": [
+            "in_sfixed32"
+          ]
+        },
+        {
+          "required": [
+            "constSfixed64"
+          ]
+        },
+        {
+          "required": [
+            "const_sfixed64"
+          ]
+        },
+        {
+          "required": [
+            "ltSfixed64"
+          ]
+        },
+        {
+          "required": [
+            "lt_sfixed64"
+          ]
+        },
+        {
+          "required": [
+            "lteSfixed64"
+          ]
+        },
+        {
+          "required": [
+            "lte_sfixed64"
+          ]
+        },
+        {
+          "required": [
+            "gtSfixed64"
+          ]
+        },
+        {
+          "required": [
+            "gt_sfixed64"
+          ]
+        },
+        {
+          "required": [
+            "gteSfixed64"
+          ]
+        },
+        {
+          "required": [
+            "gte_sfixed64"
+          ]
+        },
+        {
+          "required": [
+            "inSfixed64"
+          ]
+        },
+        {
+          "required": [
+            "in_sfixed64"
+          ]
+        },
+        {
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "requiredImplicit",
+                "required_implicit",
+                "requiredOptional",
+                "required_optional",
+                "constBool",
+                "const_bool",
+                "constEnum",
+                "const_enum",
+                "definedOnlyEnum",
+                "defined_only_enum",
+                "inEnum",
+                "in_enum",
+                "notInEnum",
+                "not_in_enum",
+                "definedOnlyNotInEnum",
+                "defined_only_not_in_enum",
+                "inAndNotInEnum",
+                "in_and_not_in_enum",
+                "constString",
+                "const_string",
+                "lenString",
+                "len_string",
+                "minLenString",
+                "min_len_string",
+                "maxLenString",
+                "max_len_string",
+                "minMaxLenString",
+                "min_max_len_string",
+                "inString",
+                "in_string",
+                "patternString",
+                "pattern_string",
+                "prefixString",
+                "prefix_string",
+                "suffixString",
+                "suffix_string",
+                "containsString",
+                "contains_string",
+                "prefixSuffixString",
+                "prefix_suffix_string",
+                "prefixContainsSuffixString",
+                "prefix_contains_suffix_string",
+                "hostnameString",
+                "hostname_string",
+                "emailString",
+                "email_string",
+                "ipString",
+                "ip_string",
+                "ipv4String",
+                "ipv4_string",
+                "ipv6String",
+                "ipv6_string",
+                "uriString",
+                "uri_string",
+                "uriRefString",
+                "uri_ref_string",
+                "addressString",
+                "address_string",
+                "uuidString",
+                "uuid_string",
+                "tuuidString",
+                "tuuid_string",
+                "ipWithPrefixlenString",
+                "ip_with_prefixlen_string",
+                "ipv4WithPrefixlenString",
+                "ipv4_with_prefixlen_string",
+                "ipv6WithPrefixlenString",
+                "ipv6_with_prefixlen_string",
+                "ipPrefixString",
+                "ip_prefix_string",
+                "ipv4PrefixString",
+                "ipv4_prefix_string",
+                "ipv6PrefixString",
+                "ipv6_prefix_string",
+                "hostAndPortString",
+                "host_and_port_string",
+                "httpHeaderNameStrictString",
+                "http_header_name_strict_string",
+                "lenBytes",
+                "len_bytes",
+                "minLenBytes",
+                "min_len_bytes",
+                "maxLenBytes",
+                "max_len_bytes",
+                "minMaxLenBytes",
+                "min_max_len_bytes",
+                "constInt32",
+                "const_int32",
+                "ltInt32",
+                "lt_int32",
+                "lteInt32",
+                "lte_int32",
+                "gtInt32",
+                "gt_int32",
+                "gteInt32",
+                "gte_int32",
+                "inInt32",
+                "in_int32",
+                "ltGtInt32",
+                "lt_gt_int32",
+                "constInt64",
+                "const_int64",
+                "ltInt64",
+                "lt_int64",
+                "lteInt64",
+                "lte_int64",
+                "gtInt64",
+                "gt_int64",
+                "gteInt64",
+                "gte_int64",
+                "inInt64",
+                "in_int64",
+                "ltGtInt64",
+                "lt_gt_int64",
+                "constUint32",
+                "const_uint32",
+                "ltUint32",
+                "lt_uint32",
+                "lteUint32",
+                "lte_uint32",
+                "gtUint32",
+                "gt_uint32",
+                "gteUint32",
+                "gte_uint32",
+                "inUint32",
+                "in_uint32",
+                "ltGtUint32",
+                "lt_gt_uint32",
+                "constUint64",
+                "const_uint64",
+                "ltUint64",
+                "lt_uint64",
+                "lteUint64",
+                "lte_uint64",
+                "gtUint64",
+                "gt_uint64",
+                "gteUint64",
+                "gte_uint64",
+                "inUint64",
+                "in_uint64",
+                "ltGtUint64",
+                "lt_gt_uint64",
+                "constSint32",
+                "const_sint32",
+                "ltSint32",
+                "lt_sint32",
+                "lteSint32",
+                "lte_sint32",
+                "gtSint32",
+                "gt_sint32",
+                "gteSint32",
+                "gte_sint32",
+                "inSint32",
+                "in_sint32",
+                "constSint64",
+                "const_sint64",
+                "ltSint64",
+                "lt_sint64",
+                "lteSint64",
+                "lte_sint64",
+                "gtSint64",
+                "gt_sint64",
+                "gteSint64",
+                "gte_sint64",
+                "inSint64",
+                "in_sint64",
+                "constSfixed32",
+                "const_sfixed32",
+                "ltSfixed32",
+                "lt_sfixed32",
+                "lteSfixed32",
+                "lte_sfixed32",
+                "gtSfixed32",
+                "gt_sfixed32",
+                "gteSfixed32",
+                "gte_sfixed32",
+                "inSfixed32",
+                "in_sfixed32",
+                "constSfixed64",
+                "const_sfixed64",
+                "ltSfixed64",
+                "lt_sfixed64",
+                "lteSfixed64",
+                "lte_sfixed64",
+                "gtSfixed64",
+                "gt_sfixed64",
+                "gteSfixed64",
+                "gte_sfixed64",
+                "inSfixed64",
+                "in_sfixed64"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
   "patternProperties": {
     "^(address_string)$": {
       "pattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|^(([0-9a-fA-F]{1,4}::?){1,7}([0-9a-fA-F]{1,4})|([0-9a-fA-F]{1,4}:){1,7}:|:((([0-9a-fA-F]{1,4}:){1,6})?[0-9a-fA-F]{1,4})?|::)$|^[A-Za-z0-9][A-Za-z0-9-]{0,63}(\\.[A-Za-z0-9-][A-Za-z0-9-]{0,63})*$",

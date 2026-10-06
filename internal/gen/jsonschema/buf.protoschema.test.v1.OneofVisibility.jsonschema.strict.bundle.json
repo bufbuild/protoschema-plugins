@@ -1,0 +1,38 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.OneofVisibility.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "required": [
+                "visibleChoice"
+              ]
+            },
+            {
+              "propertyNames": {
+                "not": {
+                  "enum": [
+                    "visibleChoice"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "visibleChoice": {
+          "type": "string"
+        }
+      },
+      "title": "Oneof Visibility",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.OneofVisibility.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.OneofVisibility.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

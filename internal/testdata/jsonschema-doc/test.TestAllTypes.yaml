@@ -17,5 +17,5 @@ repeated_float_wrapper:
   - -Infinity
   - NaN
 single_duration: 1h2m3s
-singleNestedMessage:
+standaloneMessage:
  bb: 1

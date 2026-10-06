@@ -262,6 +262,7 @@ func (p *Generator) generate(desc protoreflect.MessageDescriptor) (*msgSchema, e
 func (p *Generator) generateMessage(entry *msgSchema) error {
 	entry.schema["type"] = jsObject
 	p.setDescription(entry.desc, entry.schema)
+
 	var required []string
 	properties := make(map[string]any)
 	patternProperties := make(map[string]any)
@@ -275,13 +276,10 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		if err != nil {
 			return err
 		}
+		names := p.acceptedNames(field)
 		if (rules.GetRequired() && rules.GetIgnore() != validate.Ignore_IGNORE_IF_ZERO_VALUE) || // Required by validate rules.
 			(p.strict && p.hasImplicitDefault(field, field.IsList() || field.IsMap(), rules)) { // Required by strict mode.
-			if p.useJSONNames {
-				required = append(required, field.JSONName())
-			} else {
-				required = append(required, string(field.Name()))
-			}
+			required = append(required, names[0])
 		}
 
 		// Generate the schema.
@@ -289,8 +287,14 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 		if err != nil {
 			return fmt.Errorf("failed to generate field %q: %w", field.FullName(), err)
 		}
-		// Add the field schema to the properties.
-		aliases := p.addFieldProperties(field, visibility == FieldHide, fieldSchema, properties)
+		// Add the field schema to the properties, or hide it behind an alias.
+		// TODO: Add an option to include custom alias.
+		aliases := names[1:]
+		if visibility == FieldHide {
+			aliases = names
+		} else {
+			properties[names[0]] = fieldSchema
+		}
 		// Add any aliases to the pattern properties.
 		if !p.strict && len(aliases) > 0 {
 			pattern := "^(" + strings.Join(aliases, "|") + ")$"
@@ -305,41 +309,71 @@ func (p *Generator) generateMessage(entry *msgSchema) error {
 	if len(required) > 0 {
 		entry.schema["required"] = required
 	}
+	return p.addOneOfConstraints(entry)
+}
+
+// addOneOfConstraints adds a mutual exclusion constraint for each oneof.
+func (p *Generator) addOneOfConstraints(entry *msgSchema) error {
+	var allOf []map[string]any
+	for oneofIndex := range entry.desc.Oneofs().Len() {
+		oneof := entry.desc.Oneofs().Get(oneofIndex)
+		if oneof.IsSynthetic() {
+			continue // Wraps a single proto3 optional field, so there is no choice.
+		}
+
+		var names []string
+		for fieldIndex := range oneof.Fields().Len() {
+			field := oneof.Fields().Get(fieldIndex)
+			fieldVisibility := p.shouldIgnoreField(field)
+			if fieldVisibility == FieldIgnore || (fieldVisibility == FieldHide && p.strict) {
+				continue
+			}
+			names = append(names, p.acceptedNames(field)...)
+		}
+		if len(names) == 0 {
+			continue
+		}
+
+		rules, err := protovalidate.ResolveOneofRules(oneof)
+		if err != nil {
+			return fmt.Errorf("failed to resolve rules for oneof %q: %w", oneof.FullName(), err)
+		}
+		branches := make([]map[string]any, 0, len(names)+1)
+		for _, name := range names {
+			branches = append(branches, map[string]any{"required": []string{name}})
+		}
+		if !rules.GetRequired() {
+			// A oneof that is not required may have no member set.
+			branches = append(branches, map[string]any{
+				"propertyNames": map[string]any{"not": map[string]any{"enum": names}},
+			})
+		}
+		allOf = append(allOf, map[string]any{"oneOf": branches})
+	}
+	if len(allOf) > 0 {
+		entry.schema["allOf"] = allOf
+	}
 	return nil
 }
 
-func (p *Generator) addFieldProperties(
-	field protoreflect.FieldDescriptor,
-	hide bool,
-	fieldSchema map[string]any,
-	properties map[string]any) []string {
-	// TODO: Add an option to include custom alias.
-	aliases := make([]string, 0, 1)
+// acceptedNames lists the JSON keys that reach the field, most preferred first.
+func (p *Generator) acceptedNames(field protoreflect.FieldDescriptor) []string {
+	protoName, jsonName := string(field.Name()), field.JSONName()
+	primary, alternate := protoName, jsonName
 	if p.useJSONNames {
-		// Add the JSON name as the primary name.
-		if hide {
-			aliases = append(aliases, field.JSONName())
-		} else {
-			properties[field.JSONName()] = fieldSchema
-		}
-		// Add the proto name as an alias.
-		if field.JSONName() != string(field.Name()) {
-			aliases = append(aliases, string(field.Name()))
-		}
-		return aliases
+		primary, alternate = jsonName, protoName
 	}
-
-	// Add the proto name as the primary name.
-	if hide {
-		aliases = append(aliases, string(field.Name()))
-	} else {
-		properties[string(field.Name())] = fieldSchema
+	// Strict schemas describe protojson output, which always uses the primary name.
+	if p.strict {
+		return []string{primary}
 	}
-	// Add the JSON name as an alias.
-	if field.JSONName() != string(field.Name()) {
-		aliases = append(aliases, field.JSONName())
+	// protojson resolves a key by jsonName before protoName, so we drop the
+	// protoName if it is already another field's jsonName.
+	// This check also drops protoName if protoName == jsonName.
+	if field.ContainingMessage().Fields().ByJSONName(protoName) != nil {
+		return []string{jsonName}
 	}
-	return aliases
+	return []string{primary, alternate}
 }
 
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {

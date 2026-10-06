@@ -241,6 +241,202 @@ func (x *IgnoreField) GetNestedReference() *NestedReference {
 	return nil
 }
 
+type OneofVisibility struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Pick:
+	//
+	//	*OneofVisibility_VisibleChoice
+	//	*OneofVisibility_HiddenChoice
+	//	*OneofVisibility_IgnoredChoice
+	Pick          isOneofVisibility_Pick `protobuf_oneof:"pick"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OneofVisibility) Reset() {
+	*x = OneofVisibility{}
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OneofVisibility) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OneofVisibility) ProtoMessage() {}
+
+func (x *OneofVisibility) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OneofVisibility.ProtoReflect.Descriptor instead.
+func (*OneofVisibility) Descriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *OneofVisibility) GetPick() isOneofVisibility_Pick {
+	if x != nil {
+		return x.Pick
+	}
+	return nil
+}
+
+func (x *OneofVisibility) GetVisibleChoice() string {
+	if x != nil {
+		if x, ok := x.Pick.(*OneofVisibility_VisibleChoice); ok {
+			return x.VisibleChoice
+		}
+	}
+	return ""
+}
+
+func (x *OneofVisibility) GetHiddenChoice() string {
+	if x != nil {
+		if x, ok := x.Pick.(*OneofVisibility_HiddenChoice); ok {
+			return x.HiddenChoice
+		}
+	}
+	return ""
+}
+
+func (x *OneofVisibility) GetIgnoredChoice() string {
+	if x != nil {
+		if x, ok := x.Pick.(*OneofVisibility_IgnoredChoice); ok {
+			return x.IgnoredChoice
+		}
+	}
+	return ""
+}
+
+type isOneofVisibility_Pick interface {
+	isOneofVisibility_Pick()
+}
+
+type OneofVisibility_VisibleChoice struct {
+	VisibleChoice string `protobuf:"bytes,1,opt,name=visible_choice,json=visibleChoice,proto3,oneof"`
+}
+
+type OneofVisibility_HiddenChoice struct {
+	HiddenChoice string `protobuf:"bytes,2,opt,name=hidden_choice,json=hiddenChoice,proto3,oneof"` // jsonschema:hide
+}
+
+type OneofVisibility_IgnoredChoice struct {
+	IgnoredChoice string `protobuf:"bytes,3,opt,name=ignored_choice,json=ignoredChoice,proto3,oneof"` // jsonschema:ignore
+}
+
+func (*OneofVisibility_VisibleChoice) isOneofVisibility_Pick() {}
+
+func (*OneofVisibility_HiddenChoice) isOneofVisibility_Pick() {}
+
+func (*OneofVisibility_IgnoredChoice) isOneofVisibility_Pick() {}
+
+type JSONNameCollision struct {
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	FooBar string                 `protobuf:"bytes,1,opt,name=foo_bar,json=foo,proto3" json:"foo_bar,omitempty"`
+	Foo    int32                  `protobuf:"varint,2,opt,name=foo,json=bar,proto3" json:"foo,omitempty"`
+	// Types that are valid to be assigned to Pick:
+	//
+	//	*JSONNameCollision_BazQux
+	//	*JSONNameCollision_Baz
+	Pick          isJSONNameCollision_Pick `protobuf_oneof:"pick"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *JSONNameCollision) Reset() {
+	*x = JSONNameCollision{}
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JSONNameCollision) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JSONNameCollision) ProtoMessage() {}
+
+func (x *JSONNameCollision) ProtoReflect() protoreflect.Message {
+	mi := &file_buf_protoschema_test_v1_test_cases_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JSONNameCollision.ProtoReflect.Descriptor instead.
+func (*JSONNameCollision) Descriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *JSONNameCollision) GetFooBar() string {
+	if x != nil {
+		return x.FooBar
+	}
+	return ""
+}
+
+func (x *JSONNameCollision) GetFoo() int32 {
+	if x != nil {
+		return x.Foo
+	}
+	return 0
+}
+
+func (x *JSONNameCollision) GetPick() isJSONNameCollision_Pick {
+	if x != nil {
+		return x.Pick
+	}
+	return nil
+}
+
+func (x *JSONNameCollision) GetBazQux() string {
+	if x != nil {
+		if x, ok := x.Pick.(*JSONNameCollision_BazQux); ok {
+			return x.BazQux
+		}
+	}
+	return ""
+}
+
+func (x *JSONNameCollision) GetBaz() string {
+	if x != nil {
+		if x, ok := x.Pick.(*JSONNameCollision_Baz); ok {
+			return x.Baz
+		}
+	}
+	return ""
+}
+
+type isJSONNameCollision_Pick interface {
+	isJSONNameCollision_Pick()
+}
+
+type JSONNameCollision_BazQux struct {
+	BazQux string `protobuf:"bytes,3,opt,name=baz_qux,json=baz,proto3,oneof"`
+}
+
+type JSONNameCollision_Baz struct {
+	Baz string `protobuf:"bytes,4,opt,name=baz,json=qux,proto3,oneof"`
+}
+
+func (*JSONNameCollision_BazQux) isJSONNameCollision_Pick() {}
+
+func (*JSONNameCollision_Baz) isJSONNameCollision_Pick() {}
+
 var File_buf_protoschema_test_v1_test_cases_proto protoreflect.FileDescriptor
 
 const file_buf_protoschema_test_v1_test_cases_proto_rawDesc = "" +
@@ -264,7 +460,18 @@ const file_buf_protoschema_test_v1_test_cases_proto_rawDesc = "" +
 	"bool_field\x18\x03 \x01(\bR\tboolField\x12\x1f\n" +
 	"\vbytes_field\x18\x04 \x01(\fR\n" +
 	"bytesField\x12S\n" +
-	"\x10nested_reference\x18\x05 \x01(\v2(.buf.protoschema.test.v1.NestedReferenceR\x0fnestedReferenceB\x87\x02\n" +
+	"\x10nested_reference\x18\x05 \x01(\v2(.buf.protoschema.test.v1.NestedReferenceR\x0fnestedReference\"\x92\x01\n" +
+	"\x0fOneofVisibility\x12'\n" +
+	"\x0evisible_choice\x18\x01 \x01(\tH\x00R\rvisibleChoice\x12%\n" +
+	"\rhidden_choice\x18\x02 \x01(\tH\x00R\fhiddenChoice\x12'\n" +
+	"\x0eignored_choice\x18\x03 \x01(\tH\x00R\rignoredChoiceB\x06\n" +
+	"\x04pick\"o\n" +
+	"\x11JSONNameCollision\x12\x14\n" +
+	"\afoo_bar\x18\x01 \x01(\tR\x03foo\x12\x10\n" +
+	"\x03foo\x18\x02 \x01(\x05R\x03bar\x12\x16\n" +
+	"\abaz_qux\x18\x03 \x01(\tH\x00R\x03baz\x12\x12\n" +
+	"\x03baz\x18\x04 \x01(\tH\x00R\x03quxB\x06\n" +
+	"\x04pickB\x87\x02\n" +
 	"\x1bcom.buf.protoschema.test.v1B\x0eTestCasesProtoP\x01ZYgithub.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1;testv1\xa2\x02\x03BPT\xaa\x02\x17Buf.Protoschema.Test.V1\xca\x02\x17Buf\\Protoschema\\Test\\V1\xe2\x02#Buf\\Protoschema\\Test\\V1\\GPBMetadata\xea\x02\x1aBuf::Protoschema::Test::V1b\x06proto3"
 
 var (
@@ -279,15 +486,17 @@ func file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP() []byte {
 	return file_buf_protoschema_test_v1_test_cases_proto_rawDescData
 }
 
-var file_buf_protoschema_test_v1_test_cases_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_buf_protoschema_test_v1_test_cases_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_buf_protoschema_test_v1_test_cases_proto_goTypes = []any{
 	(*NestedReference)(nil),                   // 0: buf.protoschema.test.v1.NestedReference
 	(*CustomOptions)(nil),                     // 1: buf.protoschema.test.v1.CustomOptions
 	(*IgnoreField)(nil),                       // 2: buf.protoschema.test.v1.IgnoreField
-	(*proto3.TestAllTypes_NestedMessage)(nil), // 3: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	(*OneofVisibility)(nil),                   // 3: buf.protoschema.test.v1.OneofVisibility
+	(*JSONNameCollision)(nil),                 // 4: buf.protoschema.test.v1.JSONNameCollision
+	(*proto3.TestAllTypes_NestedMessage)(nil), // 5: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 }
 var file_buf_protoschema_test_v1_test_cases_proto_depIdxs = []int32{
-	3, // 0: buf.protoschema.test.v1.NestedReference.nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	5, // 0: buf.protoschema.test.v1.NestedReference.nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 	0, // 1: buf.protoschema.test.v1.IgnoreField.nested_reference:type_name -> buf.protoschema.test.v1.NestedReference
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
@@ -304,13 +513,22 @@ func file_buf_protoschema_test_v1_test_cases_proto_init() {
 	file_buf_protoschema_test_v1_test_cases_proto_msgTypes[1].OneofWrappers = []any{
 		(*CustomOptions_StringField)(nil),
 	}
+	file_buf_protoschema_test_v1_test_cases_proto_msgTypes[3].OneofWrappers = []any{
+		(*OneofVisibility_VisibleChoice)(nil),
+		(*OneofVisibility_HiddenChoice)(nil),
+		(*OneofVisibility_IgnoredChoice)(nil),
+	}
+	file_buf_protoschema_test_v1_test_cases_proto_msgTypes[4].OneofWrappers = []any{
+		(*JSONNameCollision_BazQux)(nil),
+		(*JSONNameCollision_Baz)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_protoschema_test_v1_test_cases_proto_rawDesc), len(file_buf_protoschema_test_v1_test_cases_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

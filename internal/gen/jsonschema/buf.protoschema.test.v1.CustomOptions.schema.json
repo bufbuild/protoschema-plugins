@@ -2,6 +2,22 @@
   "$id": "buf.protoschema.test.v1.CustomOptions.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "required": [
+            "string_field"
+          ]
+        },
+        {
+          "required": [
+            "stringField"
+          ]
+        }
+      ]
+    }
+  ],
   "description": "This is a test case for the custom options in the buf.validate package... and\n comment parsing.",
   "patternProperties": {
     "^(int32Field)$": {

@@ -67,3 +67,21 @@ message IgnoreField {
   // jsonschema:hide
   NestedReference nested_reference = 5;
 }
+
+message OneofVisibility {
+  oneof pick {
+    string visible_choice = 1;
+    string hidden_choice = 2; // jsonschema:hide
+    string ignored_choice = 3; // jsonschema:ignore
+  }
+}
+
+message JSONNameCollision {
+  string foo_bar = 1 [json_name = "foo"];
+  int32 foo = 2 [json_name = "bar"];
+
+  oneof pick {
+    string baz_qux = 3 [json_name = "baz"];
+    string baz = 4 [json_name = "qux"];
+  }
+}

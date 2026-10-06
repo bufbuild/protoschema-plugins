@@ -3,6 +3,17 @@
     "buf.protoschema.test.v1.CustomOptions.schema.strict.json": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "additionalProperties": false,
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "required": [
+                "string_field"
+              ]
+            }
+          ]
+        }
+      ],
       "description": "This is a test case for the custom options in the buf.validate package... and\n comment parsing.",
       "properties": {
         "int32_field": {

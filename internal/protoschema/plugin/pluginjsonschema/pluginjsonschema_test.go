@@ -77,10 +77,13 @@ func TestJSONSchemaHandler(t *testing.T) {
 	require.Equal(t, wantFiles, gatherGoldenFiles(t, goldenPath))
 
 	for _, file := range response.GetFile() {
-		filename := path.Join(goldenPath, file.GetName())
-		want, err := os.ReadFile(filename)
-		require.NoError(t, err)
-		require.Equal(t, string(want), file.GetContent())
+		t.Run(file.GetName(), func(t *testing.T) {
+			t.Parallel()
+			filename := path.Join(goldenPath, file.GetName())
+			want, err := os.ReadFile(filename)
+			require.NoError(t, err)
+			require.Equal(t, string(want), file.GetContent())
+		})
 	}
 }
 
