@@ -381,16 +381,29 @@ func (p *Generator) acceptedNames(field protoreflect.FieldDescriptor) []string {
 // setDeprecated marks the schema as deprecated if the descriptor has the
 // `deprecated` option set in its Protobuf options.
 func (p *Generator) setDeprecated(desc protoreflect.Descriptor, schema map[string]any) {
-	var deprecated bool
-	switch options := desc.Options().(type) {
-	case *descriptorpb.MessageOptions:
-		deprecated = options.GetDeprecated()
-	case *descriptorpb.FieldOptions:
-		deprecated = options.GetDeprecated()
-	}
-	if deprecated {
+	if isDeprecated(desc) {
 		schema["deprecated"] = true
 	}
+}
+
+// isDeprecated reports whether the descriptor has the `deprecated` option set
+// in its Protobuf options.
+func isDeprecated(desc protoreflect.Descriptor) bool {
+	fileDeprecated := false
+	if fileOptions := desc.ParentFile().Options(); fileOptions != nil {
+		if fo, ok := fileOptions.(*descriptorpb.FileOptions); ok {
+			fileDeprecated = fo.GetDeprecated()
+		}
+	}
+	switch options := desc.Options().(type) {
+	case *descriptorpb.MessageOptions:
+		return options.GetDeprecated() || fileDeprecated
+	case *descriptorpb.FieldOptions:
+		return options.GetDeprecated()
+	case *descriptorpb.EnumOptions:
+		return options.GetDeprecated() || fileDeprecated
+	}
+	return false
 }
 
 func (p *Generator) setDescription(desc protoreflect.Descriptor, schema map[string]any) {
@@ -1446,7 +1459,6 @@ func (p *Generator) generateWrapperValidation(
 ) error {
 	field := desc.Fields().Get(0)
 	p.setDescription(field, schema)
-	p.setDeprecated(field, schema)
 	return p.generateFieldValidation(nil, field, true, rules, schema)
 }
 

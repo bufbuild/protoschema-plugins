@@ -1,0 +1,5 @@
+syntax = "proto2";
+message DeprecatedFileTest {
+  optional string string_field = 1;
+  optional int32 enum_field = 2;
+}

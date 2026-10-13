@@ -1,0 +1,27 @@
+{
+  "$id": "buf.protoschema.test.v1.DeprecatedFileTest.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "deprecated": true,
+  "description": "A message that is deprecated only by the file-level option.",
+  "properties": {
+    "enumField": {
+      "description": "A field referencing an enum deprecated only by the file-level option.",
+      "enum": [
+        "DEPRECATED_FILE_ENUM_UNSPECIFIED",
+        "DEPRECATED_FILE_ENUM_ONE"
+      ],
+      "title": "Deprecated File Enum",
+      "type": "string"
+    },
+    "stringField": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "stringField",
+    "enumField"
+  ],
+  "title": "Deprecated File Test",
+  "type": "object"
+}
