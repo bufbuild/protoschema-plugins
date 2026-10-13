@@ -1,0 +1,17 @@
+{
+  "$id": "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "deprecated": true,
+  "description": "Every field of this message is reachable but the message itself is\n deprecated.",
+  "properties": {
+    "stringField": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "stringField"
+  ],
+  "title": "A deprecated message.",
+  "type": "object"
+}
