@@ -24,6 +24,7 @@
         }
       ],
       "default": 0,
+      "deprecated": true,
       "description": "A field referencing an enum deprecated only by the file-level option.",
       "title": "Deprecated File Enum"
     },
@@ -52,6 +53,7 @@
         }
       ],
       "default": 0,
+      "deprecated": true,
       "description": "A field referencing an enum deprecated only by the file-level option.",
       "title": "Deprecated File Enum"
     },

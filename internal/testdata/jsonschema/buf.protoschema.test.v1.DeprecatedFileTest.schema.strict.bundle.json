@@ -7,6 +7,7 @@
       "description": "A message that is deprecated only by the file-level option.",
       "properties": {
         "enum_field": {
+          "deprecated": true,
           "description": "A field referencing an enum deprecated only by the file-level option.",
           "enum": [
             "DEPRECATED_FILE_ENUM_UNSPECIFIED",

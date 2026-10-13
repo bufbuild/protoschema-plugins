@@ -402,6 +402,8 @@ func isDeprecated(desc protoreflect.Descriptor) bool {
 		return options.GetDeprecated()
 	case *descriptorpb.EnumOptions:
 		return options.GetDeprecated() || fileDeprecated
+	case *descriptorpb.EnumValueOptions:
+		return options.GetDeprecated()
 	}
 	return false
 }
@@ -572,9 +574,10 @@ func (p *Generator) generateBoolValidation(field protoreflect.FieldDescriptor, h
 }
 
 type enumValueSelector struct {
-	remove bool
-	number int32
-	name   protoreflect.Name
+	remove     bool
+	deprecated bool
+	number     int32
+	name       protoreflect.Name
 }
 
 func (p *Generator) generateEnumValidation(field protoreflect.FieldDescriptor, hasImplicitPresence bool, rules *validate.FieldRules, schema map[string]any) {
@@ -596,9 +599,10 @@ func (p *Generator) generateEnumValidation(field protoreflect.FieldDescriptor, h
 	for i := range field.Enum().Values().Len() {
 		val := field.Enum().Values().Get(i)
 		enumValues[i] = enumValueSelector{
-			remove: !allowZero && val.Number() == 0,
-			number: int32(val.Number()),
-			name:   val.Name(),
+			remove:     !allowZero && val.Number() == 0,
+			deprecated: isDeprecated(val),
+			number:     int32(val.Number()),
+			name:       val.Name(),
 		}
 	}
 
@@ -632,21 +636,36 @@ func (p *Generator) generateEnumValidation(field protoreflect.FieldDescriptor, h
 	// Add the selected enum names to the schema, in order of declaration.
 	int32Values := make([]int32, 0, len(enumValues))
 	stringValues := make([]string, 0, len(enumValues))
+	// Deprecated values are emitted as their own schemas, since JSON Schema can
+	// only annotate a whole schema and not individual members of an enum array.
+	deprecatedValues := make([]map[string]any, 0, len(enumValues))
 	for _, enumValue := range enumValues {
 		if enumValue.remove {
 			continue
 		}
 		int32Values = append(int32Values, enumValue.number)
-		if hideZero && enumValue.number == 0 {
+		switch {
+		case hideZero && enumValue.number == 0:
 			// Use a pattern so IDEs don't suggest the zero value, but it is considered valid when explicitly specified.
-			anyOf = append(anyOf, map[string]any{"type": jsString, "pattern": "^" + string(enumValue.name) + "$"})
-		} else {
+			valueSchema := map[string]any{"type": jsString, "pattern": "^" + string(enumValue.name) + "$"}
+			if enumValue.deprecated {
+				valueSchema["deprecated"] = true
+			}
+			anyOf = append(anyOf, valueSchema)
+		case enumValue.deprecated:
+			deprecatedValues = append(deprecatedValues, map[string]any{
+				"type":       jsString,
+				"const":      string(enumValue.name),
+				"deprecated": true,
+			})
+		default:
 			stringValues = append(stringValues, string(enumValue.name))
 		}
 	}
 	if len(stringValues) > 0 {
 		anyOf = append(anyOf, map[string]any{"type": jsString, "enum": stringValues})
 	}
+	anyOf = append(anyOf, deprecatedValues...)
 
 	if !p.strict {
 		// Add the integer values to the schema, in order of value.
@@ -671,6 +690,8 @@ func (p *Generator) generateEnumValidation(field protoreflect.FieldDescriptor, h
 	}
 
 	schema["title"] = nameToTitle(field.Enum().Name())
+	// A field referencing a deprecated enum type is itself deprecated.
+	p.setDeprecated(field.Enum(), schema)
 	p.generateDefault(field, hasImplicitPresence, rules, schema)
 }
 

@@ -28,6 +28,29 @@
           "default": "",
           "type": "string"
         },
+        "^(deprecated_enum_field)$": {
+          "anyOf": [
+            {
+              "pattern": "^DEPRECATED_ENUM_UNSPECIFIED$",
+              "type": "string"
+            },
+            {
+              "enum": [
+                "DEPRECATED_ENUM_ONE"
+              ],
+              "type": "string"
+            },
+            {
+              "maximum": 2147483647,
+              "minimum": -2147483648,
+              "type": "integer"
+            }
+          ],
+          "default": 0,
+          "deprecated": true,
+          "description": "A field referencing a deprecated enum type.",
+          "title": "Deprecated Enum"
+        },
         "^(deprecated_message_field)$": {
           "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json",
           "deprecated": true,
@@ -59,12 +82,67 @@
         },
         "^(message_field)$": {
           "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json"
+        },
+        "^(partly_deprecated_enum_field)$": {
+          "anyOf": [
+            {
+              "pattern": "^PARTLY_DEPRECATED_ENUM_UNSPECIFIED$",
+              "type": "string"
+            },
+            {
+              "enum": [
+                "PARTLY_DEPRECATED_ENUM_ACTIVE"
+              ],
+              "type": "string"
+            },
+            {
+              "const": "PARTLY_DEPRECATED_ENUM_OLD",
+              "deprecated": true,
+              "type": "string"
+            },
+            {
+              "const": "PARTLY_DEPRECATED_ENUM_ANCIENT",
+              "deprecated": true,
+              "type": "string"
+            },
+            {
+              "maximum": 2147483647,
+              "minimum": -2147483648,
+              "type": "integer"
+            }
+          ],
+          "default": 0,
+          "description": "A field whose enum has some deprecated values.",
+          "title": "Partly Deprecated Enum"
         }
       },
       "properties": {
         "activeString": {
           "default": "",
           "type": "string"
+        },
+        "deprecatedEnumField": {
+          "anyOf": [
+            {
+              "pattern": "^DEPRECATED_ENUM_UNSPECIFIED$",
+              "type": "string"
+            },
+            {
+              "enum": [
+                "DEPRECATED_ENUM_ONE"
+              ],
+              "type": "string"
+            },
+            {
+              "maximum": 2147483647,
+              "minimum": -2147483648,
+              "type": "integer"
+            }
+          ],
+          "default": 0,
+          "deprecated": true,
+          "description": "A field referencing a deprecated enum type.",
+          "title": "Deprecated Enum"
         },
         "deprecatedMessageField": {
           "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json",
@@ -97,6 +175,38 @@
         },
         "messageField": {
           "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.json"
+        },
+        "partlyDeprecatedEnumField": {
+          "anyOf": [
+            {
+              "pattern": "^PARTLY_DEPRECATED_ENUM_UNSPECIFIED$",
+              "type": "string"
+            },
+            {
+              "enum": [
+                "PARTLY_DEPRECATED_ENUM_ACTIVE"
+              ],
+              "type": "string"
+            },
+            {
+              "const": "PARTLY_DEPRECATED_ENUM_OLD",
+              "deprecated": true,
+              "type": "string"
+            },
+            {
+              "const": "PARTLY_DEPRECATED_ENUM_ANCIENT",
+              "deprecated": true,
+              "type": "string"
+            },
+            {
+              "maximum": 2147483647,
+              "minimum": -2147483648,
+              "type": "integer"
+            }
+          ],
+          "default": 0,
+          "description": "A field whose enum has some deprecated values.",
+          "title": "Partly Deprecated Enum"
         }
       },
       "title": "Deprecated Test",

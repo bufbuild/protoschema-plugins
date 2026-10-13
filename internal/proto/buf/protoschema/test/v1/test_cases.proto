@@ -86,6 +86,22 @@ message JSONNameCollision {
   }
 }
 
+// A deprecated enum type.
+enum DeprecatedEnum {
+  option deprecated = true;
+
+  DEPRECATED_ENUM_UNSPECIFIED = 0;
+  DEPRECATED_ENUM_ONE = 1;
+}
+
+// An active enum with some deprecated values.
+enum PartlyDeprecatedEnum {
+  PARTLY_DEPRECATED_ENUM_UNSPECIFIED = 0;
+  PARTLY_DEPRECATED_ENUM_ACTIVE = 1;
+  PARTLY_DEPRECATED_ENUM_OLD = 2 [deprecated = true];
+  PARTLY_DEPRECATED_ENUM_ANCIENT = 3 [deprecated = true];
+}
+
 message DeprecatedTest {
   // A deprecated message.
   //
@@ -105,4 +121,8 @@ message DeprecatedTest {
   // A deprecated field referencing a message.
   DeprecatedMessage deprecated_message_field = 4 [deprecated = true];
   DeprecatedMessage message_field = 5;
+  // A field referencing a deprecated enum type.
+  DeprecatedEnum deprecated_enum_field = 6;
+  // A field whose enum has some deprecated values.
+  PartlyDeprecatedEnum partly_deprecated_enum_field = 7;
 }

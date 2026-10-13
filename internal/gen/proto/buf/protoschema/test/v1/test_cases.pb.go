@@ -37,6 +37,110 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// A deprecated enum type.
+//
+// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+type DeprecatedEnum int32
+
+const (
+	DeprecatedEnum_DEPRECATED_ENUM_UNSPECIFIED DeprecatedEnum = 0
+	DeprecatedEnum_DEPRECATED_ENUM_ONE         DeprecatedEnum = 1
+)
+
+// Enum value maps for DeprecatedEnum.
+var (
+	DeprecatedEnum_name = map[int32]string{
+		0: "DEPRECATED_ENUM_UNSPECIFIED",
+		1: "DEPRECATED_ENUM_ONE",
+	}
+	DeprecatedEnum_value = map[string]int32{
+		"DEPRECATED_ENUM_UNSPECIFIED": 0,
+		"DEPRECATED_ENUM_ONE":         1,
+	}
+)
+
+func (x DeprecatedEnum) Enum() *DeprecatedEnum {
+	p := new(DeprecatedEnum)
+	*p = x
+	return p
+}
+
+func (x DeprecatedEnum) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (DeprecatedEnum) Descriptor() protoreflect.EnumDescriptor {
+	return file_buf_protoschema_test_v1_test_cases_proto_enumTypes[0].Descriptor()
+}
+
+func (DeprecatedEnum) Type() protoreflect.EnumType {
+	return &file_buf_protoschema_test_v1_test_cases_proto_enumTypes[0]
+}
+
+func (x DeprecatedEnum) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use DeprecatedEnum.Descriptor instead.
+func (DeprecatedEnum) EnumDescriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP(), []int{0}
+}
+
+// An active enum with some deprecated values.
+type PartlyDeprecatedEnum int32
+
+const (
+	PartlyDeprecatedEnum_PARTLY_DEPRECATED_ENUM_UNSPECIFIED PartlyDeprecatedEnum = 0
+	PartlyDeprecatedEnum_PARTLY_DEPRECATED_ENUM_ACTIVE      PartlyDeprecatedEnum = 1
+	// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+	PartlyDeprecatedEnum_PARTLY_DEPRECATED_ENUM_OLD PartlyDeprecatedEnum = 2
+	// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
+	PartlyDeprecatedEnum_PARTLY_DEPRECATED_ENUM_ANCIENT PartlyDeprecatedEnum = 3
+)
+
+// Enum value maps for PartlyDeprecatedEnum.
+var (
+	PartlyDeprecatedEnum_name = map[int32]string{
+		0: "PARTLY_DEPRECATED_ENUM_UNSPECIFIED",
+		1: "PARTLY_DEPRECATED_ENUM_ACTIVE",
+		2: "PARTLY_DEPRECATED_ENUM_OLD",
+		3: "PARTLY_DEPRECATED_ENUM_ANCIENT",
+	}
+	PartlyDeprecatedEnum_value = map[string]int32{
+		"PARTLY_DEPRECATED_ENUM_UNSPECIFIED": 0,
+		"PARTLY_DEPRECATED_ENUM_ACTIVE":      1,
+		"PARTLY_DEPRECATED_ENUM_OLD":         2,
+		"PARTLY_DEPRECATED_ENUM_ANCIENT":     3,
+	}
+)
+
+func (x PartlyDeprecatedEnum) Enum() *PartlyDeprecatedEnum {
+	p := new(PartlyDeprecatedEnum)
+	*p = x
+	return p
+}
+
+func (x PartlyDeprecatedEnum) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PartlyDeprecatedEnum) Descriptor() protoreflect.EnumDescriptor {
+	return file_buf_protoschema_test_v1_test_cases_proto_enumTypes[1].Descriptor()
+}
+
+func (PartlyDeprecatedEnum) Type() protoreflect.EnumType {
+	return &file_buf_protoschema_test_v1_test_cases_proto_enumTypes[1]
+}
+
+func (x PartlyDeprecatedEnum) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PartlyDeprecatedEnum.Descriptor instead.
+func (PartlyDeprecatedEnum) EnumDescriptor() ([]byte, []int) {
+	return file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP(), []int{1}
+}
+
 type NestedReference struct {
 	state         protoimpl.MessageState             `protogen:"open.v1"`
 	NestedMessage *proto3.TestAllTypes_NestedMessage `protobuf:"bytes,1,opt,name=nested_message,json=nestedMessage,proto3" json:"nested_message,omitempty"`
@@ -453,8 +557,12 @@ type DeprecatedTest struct {
 	// Deprecated: Marked as deprecated in buf/protoschema/test/v1/test_cases.proto.
 	DeprecatedMessageField *DeprecatedTest_DeprecatedMessage `protobuf:"bytes,4,opt,name=deprecated_message_field,json=deprecatedMessageField,proto3" json:"deprecated_message_field,omitempty"`
 	MessageField           *DeprecatedTest_DeprecatedMessage `protobuf:"bytes,5,opt,name=message_field,json=messageField,proto3" json:"message_field,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	// A field referencing a deprecated enum type.
+	DeprecatedEnumField DeprecatedEnum `protobuf:"varint,6,opt,name=deprecated_enum_field,json=deprecatedEnumField,proto3,enum=buf.protoschema.test.v1.DeprecatedEnum" json:"deprecated_enum_field,omitempty"`
+	// A field whose enum has some deprecated values.
+	PartlyDeprecatedEnumField PartlyDeprecatedEnum `protobuf:"varint,7,opt,name=partly_deprecated_enum_field,json=partlyDeprecatedEnumField,proto3,enum=buf.protoschema.test.v1.PartlyDeprecatedEnum" json:"partly_deprecated_enum_field,omitempty"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *DeprecatedTest) Reset() {
@@ -523,6 +631,20 @@ func (x *DeprecatedTest) GetMessageField() *DeprecatedTest_DeprecatedMessage {
 		return x.MessageField
 	}
 	return nil
+}
+
+func (x *DeprecatedTest) GetDeprecatedEnumField() DeprecatedEnum {
+	if x != nil {
+		return x.DeprecatedEnumField
+	}
+	return DeprecatedEnum_DEPRECATED_ENUM_UNSPECIFIED
+}
+
+func (x *DeprecatedTest) GetPartlyDeprecatedEnumField() PartlyDeprecatedEnum {
+	if x != nil {
+		return x.PartlyDeprecatedEnumField
+	}
+	return PartlyDeprecatedEnum_PARTLY_DEPRECATED_ENUM_UNSPECIFIED
 }
 
 // A deprecated message.
@@ -609,15 +731,25 @@ const file_buf_protoschema_test_v1_test_cases_proto_rawDesc = "" +
 	"\x03foo\x18\x02 \x01(\x05R\x03bar\x12\x16\n" +
 	"\abaz_qux\x18\x03 \x01(\tH\x00R\x03baz\x12\x12\n" +
 	"\x03baz\x18\x04 \x01(\tH\x00R\x03quxB\x06\n" +
-	"\x04pick\"\xb0\x03\n" +
+	"\x04pick\"\xfd\x04\n" +
 	"\x0eDeprecatedTest\x12/\n" +
 	"\x11deprecated_string\x18\x01 \x01(\tB\x02\x18\x01R\x10deprecatedString\x12#\n" +
 	"\ractive_string\x18\x02 \x01(\tR\factiveString\x123\n" +
 	"\x13deprecated_repeated\x18\x03 \x03(\x05B\x02\x18\x01R\x12deprecatedRepeated\x12w\n" +
 	"\x18deprecated_message_field\x18\x04 \x01(\v29.buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessageB\x02\x18\x01R\x16deprecatedMessageField\x12^\n" +
-	"\rmessage_field\x18\x05 \x01(\v29.buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessageR\fmessageField\x1a:\n" +
+	"\rmessage_field\x18\x05 \x01(\v29.buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessageR\fmessageField\x12[\n" +
+	"\x15deprecated_enum_field\x18\x06 \x01(\x0e2'.buf.protoschema.test.v1.DeprecatedEnumR\x13deprecatedEnumField\x12n\n" +
+	"\x1cpartly_deprecated_enum_field\x18\a \x01(\x0e2-.buf.protoschema.test.v1.PartlyDeprecatedEnumR\x19partlyDeprecatedEnumField\x1a:\n" +
 	"\x11DeprecatedMessage\x12!\n" +
-	"\fstring_field\x18\x01 \x01(\tR\vstringField:\x02\x18\x01B\x87\x02\n" +
+	"\fstring_field\x18\x01 \x01(\tR\vstringField:\x02\x18\x01*N\n" +
+	"\x0eDeprecatedEnum\x12\x1f\n" +
+	"\x1bDEPRECATED_ENUM_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13DEPRECATED_ENUM_ONE\x10\x01\x1a\x02\x18\x01*\xad\x01\n" +
+	"\x14PartlyDeprecatedEnum\x12&\n" +
+	"\"PARTLY_DEPRECATED_ENUM_UNSPECIFIED\x10\x00\x12!\n" +
+	"\x1dPARTLY_DEPRECATED_ENUM_ACTIVE\x10\x01\x12\"\n" +
+	"\x1aPARTLY_DEPRECATED_ENUM_OLD\x10\x02\x1a\x02\b\x01\x12&\n" +
+	"\x1ePARTLY_DEPRECATED_ENUM_ANCIENT\x10\x03\x1a\x02\b\x01B\x87\x02\n" +
 	"\x1bcom.buf.protoschema.test.v1B\x0eTestCasesProtoP\x01ZYgithub.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1;testv1\xa2\x02\x03BPT\xaa\x02\x17Buf.Protoschema.Test.V1\xca\x02\x17Buf\\Protoschema\\Test\\V1\xe2\x02#Buf\\Protoschema\\Test\\V1\\GPBMetadata\xea\x02\x1aBuf::Protoschema::Test::V1b\x06proto3"
 
 var (
@@ -632,27 +764,32 @@ func file_buf_protoschema_test_v1_test_cases_proto_rawDescGZIP() []byte {
 	return file_buf_protoschema_test_v1_test_cases_proto_rawDescData
 }
 
+var file_buf_protoschema_test_v1_test_cases_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_buf_protoschema_test_v1_test_cases_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_buf_protoschema_test_v1_test_cases_proto_goTypes = []any{
-	(*NestedReference)(nil),                   // 0: buf.protoschema.test.v1.NestedReference
-	(*CustomOptions)(nil),                     // 1: buf.protoschema.test.v1.CustomOptions
-	(*IgnoreField)(nil),                       // 2: buf.protoschema.test.v1.IgnoreField
-	(*OneofVisibility)(nil),                   // 3: buf.protoschema.test.v1.OneofVisibility
-	(*JSONNameCollision)(nil),                 // 4: buf.protoschema.test.v1.JSONNameCollision
-	(*DeprecatedTest)(nil),                    // 5: buf.protoschema.test.v1.DeprecatedTest
-	(*DeprecatedTest_DeprecatedMessage)(nil),  // 6: buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
-	(*proto3.TestAllTypes_NestedMessage)(nil), // 7: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	(DeprecatedEnum)(0),                       // 0: buf.protoschema.test.v1.DeprecatedEnum
+	(PartlyDeprecatedEnum)(0),                 // 1: buf.protoschema.test.v1.PartlyDeprecatedEnum
+	(*NestedReference)(nil),                   // 2: buf.protoschema.test.v1.NestedReference
+	(*CustomOptions)(nil),                     // 3: buf.protoschema.test.v1.CustomOptions
+	(*IgnoreField)(nil),                       // 4: buf.protoschema.test.v1.IgnoreField
+	(*OneofVisibility)(nil),                   // 5: buf.protoschema.test.v1.OneofVisibility
+	(*JSONNameCollision)(nil),                 // 6: buf.protoschema.test.v1.JSONNameCollision
+	(*DeprecatedTest)(nil),                    // 7: buf.protoschema.test.v1.DeprecatedTest
+	(*DeprecatedTest_DeprecatedMessage)(nil),  // 8: buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
+	(*proto3.TestAllTypes_NestedMessage)(nil), // 9: bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
 }
 var file_buf_protoschema_test_v1_test_cases_proto_depIdxs = []int32{
-	7, // 0: buf.protoschema.test.v1.NestedReference.nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
-	0, // 1: buf.protoschema.test.v1.IgnoreField.nested_reference:type_name -> buf.protoschema.test.v1.NestedReference
-	6, // 2: buf.protoschema.test.v1.DeprecatedTest.deprecated_message_field:type_name -> buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
-	6, // 3: buf.protoschema.test.v1.DeprecatedTest.message_field:type_name -> buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	9, // 0: buf.protoschema.test.v1.NestedReference.nested_message:type_name -> bufext.cel.expr.conformance.proto3.TestAllTypes.NestedMessage
+	2, // 1: buf.protoschema.test.v1.IgnoreField.nested_reference:type_name -> buf.protoschema.test.v1.NestedReference
+	8, // 2: buf.protoschema.test.v1.DeprecatedTest.deprecated_message_field:type_name -> buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
+	8, // 3: buf.protoschema.test.v1.DeprecatedTest.message_field:type_name -> buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage
+	0, // 4: buf.protoschema.test.v1.DeprecatedTest.deprecated_enum_field:type_name -> buf.protoschema.test.v1.DeprecatedEnum
+	1, // 5: buf.protoschema.test.v1.DeprecatedTest.partly_deprecated_enum_field:type_name -> buf.protoschema.test.v1.PartlyDeprecatedEnum
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_buf_protoschema_test_v1_test_cases_proto_init() }
@@ -677,13 +814,14 @@ func file_buf_protoschema_test_v1_test_cases_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_buf_protoschema_test_v1_test_cases_proto_rawDesc), len(file_buf_protoschema_test_v1_test_cases_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      2,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_buf_protoschema_test_v1_test_cases_proto_goTypes,
 		DependencyIndexes: file_buf_protoschema_test_v1_test_cases_proto_depIdxs,
+		EnumInfos:         file_buf_protoschema_test_v1_test_cases_proto_enumTypes,
 		MessageInfos:      file_buf_protoschema_test_v1_test_cases_proto_msgTypes,
 	}.Build()
 	File_buf_protoschema_test_v1_test_cases_proto = out.File
