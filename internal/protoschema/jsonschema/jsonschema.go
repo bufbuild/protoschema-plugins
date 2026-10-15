@@ -536,7 +536,7 @@ func (p *Generator) generateBoolValidation(field protoreflect.FieldDescriptor, h
 	}
 	p.generateDefault(field, hasImplicitPresence, rules, schema)
 	if rules.GetBool() != nil && rules.GetBool().Const != nil {
-		schema["enum"] = []bool{rules.GetBool().GetConst()}
+		schema["const"] = rules.GetBool().GetConst()
 	}
 }
 
@@ -684,7 +684,7 @@ type numberRule[T comparable] interface {
 
 func generateConstInValidation[T comparable](rules baseRule[T], schema map[string]any) {
 	if rules.HasConst() {
-		schema["enum"] = []T{rules.GetConst()}
+		schema["const"] = rules.GetConst()
 	} else if len(rules.GetIn()) > 0 {
 		schema["enum"] = rules.GetIn()
 	}
@@ -984,7 +984,7 @@ func (p *Generator) generateFloatValidation(field protoreflect.FieldDescriptor, 
 			includeNaN = false
 		}
 		if rules.GetFloat().Const != nil {
-			numberSchema["enum"] = []float32{rules.GetFloat().GetConst()}
+			numberSchema["const"] = rules.GetFloat().GetConst()
 			includePosInf = false
 			includeNegInf = false
 			includeNaN = false
@@ -1080,7 +1080,7 @@ func (p *Generator) generateFloatValidation(field protoreflect.FieldDescriptor, 
 			includeNaN = false
 		}
 		if rules.GetDouble().Const != nil {
-			numberSchema["enum"] = []float64{rules.GetDouble().GetConst()}
+			numberSchema["const"] = rules.GetDouble().GetConst()
 			includePosInf = false
 			includeNegInf = false
 			includeNaN = false
@@ -1361,7 +1361,7 @@ func (p *Generator) generateStringValidation(field protoreflect.FieldDescriptor,
 	}
 
 	if rules.GetString().Const != nil {
-		schema["enum"] = []string{rules.GetString().GetConst()}
+		schema["const"] = rules.GetString().GetConst()
 	} else if len(rules.GetString().GetIn()) > 0 {
 		schema["enum"] = rules.GetString().GetIn()
 	}
