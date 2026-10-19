@@ -105,3 +105,94 @@ func assertValidation(t *testing.T, schema *jsonschema.Schema, jsonData map[stri
 	expectedStr = strings.TrimSpace(expectedStr)
 	require.Equal(t, expectedStr, errStr, errStr)
 }
+
+func TestDeprecated(t *testing.T) {
+	t.Parallel()
+	dirPath := filepath.FromSlash("../../testdata/jsonschema")
+
+	testCases := []struct {
+		name     string
+		schema   string
+		field    string
+		expected bool
+	}{
+		{name: "message option", schema: "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.schema.json", expected: true},
+		{name: "message without option", schema: "buf.protoschema.test.v1.DeprecatedTest.schema.json", expected: false},
+		{name: "scalar field option", schema: "buf.protoschema.test.v1.DeprecatedTest.schema.json", field: "deprecated_string", expected: true},
+		{name: "scalar field without option", schema: "buf.protoschema.test.v1.DeprecatedTest.schema.json", field: "active_string", expected: false},
+		{name: "repeated field option", schema: "buf.protoschema.test.v1.DeprecatedTest.schema.json", field: "deprecated_repeated", expected: true},
+		{name: "message field option", schema: "buf.protoschema.test.v1.DeprecatedTest.schema.json", field: "deprecated_message_field", expected: true},
+		{name: "message field without option", schema: "buf.protoschema.test.v1.DeprecatedTest.schema.json", field: "message_field", expected: false},
+		{name: "enum type option", schema: "buf.protoschema.test.v1.DeprecatedTest.schema.json", field: "deprecated_enum_field", expected: true},
+		{name: "enum type without option", schema: "buf.protoschema.test.v1.DeprecatedTest.schema.json", field: "partly_deprecated_enum_field", expected: false},
+		{name: "file option on message", schema: "buf.protoschema.test.v1.DeprecatedFileTest.schema.json", expected: true},
+		{name: "file option reaches fields through the enum type", schema: "buf.protoschema.test.v1.DeprecatedFileTest.schema.json", field: "enum_field", expected: true},
+		{name: "file option does not apply to fields", schema: "buf.protoschema.test.v1.DeprecatedFileTest.schema.json", field: "string_field", expected: false},
+	}
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			t.Parallel()
+			schema := readSchema(t, filepath.Join(dirPath, testCase.schema))
+			if testCase.field != "" {
+				properties, ok := schema["properties"].(map[string]any)
+				require.True(t, ok, "schema has no properties")
+				schema, ok = properties[testCase.field].(map[string]any)
+				require.True(t, ok, "no property %q", testCase.field)
+			}
+			deprecated, _ := schema["deprecated"].(bool)
+			require.Equal(t, testCase.expected, deprecated)
+		})
+	}
+}
+
+// TestDeprecatedEnumValues verifies that deprecated enum values are split into
+// their own schemas, since JSON Schema cannot annotate individual members of an
+// enum array, and that doing so doesn't change which values are accepted.
+func TestDeprecatedEnumValues(t *testing.T) {
+	t.Parallel()
+	schemaPath := filepath.FromSlash("../../testdata/jsonschema/buf.protoschema.test.v1.DeprecatedTest.schema.json")
+	schema := readSchema(t, schemaPath)
+	properties, ok := schema["properties"].(map[string]any)
+	require.True(t, ok)
+	field, ok := properties["partly_deprecated_enum_field"].(map[string]any)
+	require.True(t, ok)
+	anyOf, ok := field["anyOf"].([]any)
+	require.True(t, ok)
+
+	// Deprecated values each get their own schema, marked deprecated.
+	deprecated := make(map[string]bool)
+	for _, entry := range anyOf {
+		branch, ok := entry.(map[string]any)
+		require.True(t, ok)
+		if constValue, ok := branch["const"].(string); ok {
+			isDeprecated, _ := branch["deprecated"].(bool)
+			deprecated[constValue] = isDeprecated
+		}
+	}
+	require.Equal(t, map[string]bool{
+		"PARTLY_DEPRECATED_ENUM_OLD":     true,
+		"PARTLY_DEPRECATED_ENUM_ANCIENT": true,
+	}, deprecated)
+
+	// Deprecation is only an annotation: every declared value is still accepted.
+	compiled, err := jsonschema.NewCompiler().Compile(schemaPath)
+	require.NoError(t, err)
+	for _, value := range []string{
+		"PARTLY_DEPRECATED_ENUM_UNSPECIFIED",
+		"PARTLY_DEPRECATED_ENUM_ACTIVE",
+		"PARTLY_DEPRECATED_ENUM_OLD",
+		"PARTLY_DEPRECATED_ENUM_ANCIENT",
+	} {
+		require.NoError(t, compiled.Validate(map[string]any{"partly_deprecated_enum_field": value}), value)
+	}
+	require.Error(t, compiled.Validate(map[string]any{"partly_deprecated_enum_field": "NOT_A_REAL_VALUE"}))
+}
+
+func readSchema(t *testing.T, path string) map[string]any {
+	t.Helper()
+	data, err := os.ReadFile(path)
+	require.NoError(t, err)
+	var schema map[string]any
+	require.NoError(t, json.Unmarshal(data, &schema))
+	return schema
+}

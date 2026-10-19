@@ -1,0 +1,67 @@
+{
+  "$id": "buf.protoschema.test.v1.DeprecatedFileTest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "deprecated": true,
+  "description": "A message that is deprecated only by the file-level option.",
+  "patternProperties": {
+    "^(enumField)$": {
+      "anyOf": [
+        {
+          "pattern": "^DEPRECATED_FILE_ENUM_UNSPECIFIED$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "DEPRECATED_FILE_ENUM_ONE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "deprecated": true,
+      "description": "A field referencing an enum deprecated only by the file-level option.",
+      "title": "Deprecated File Enum"
+    },
+    "^(stringField)$": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "enum_field": {
+      "anyOf": [
+        {
+          "pattern": "^DEPRECATED_FILE_ENUM_UNSPECIFIED$",
+          "type": "string"
+        },
+        {
+          "enum": [
+            "DEPRECATED_FILE_ENUM_ONE"
+          ],
+          "type": "string"
+        },
+        {
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "type": "integer"
+        }
+      ],
+      "default": 0,
+      "deprecated": true,
+      "description": "A field referencing an enum deprecated only by the file-level option.",
+      "title": "Deprecated File Enum"
+    },
+    "string_field": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "title": "Deprecated File Test",
+  "type": "object"
+}

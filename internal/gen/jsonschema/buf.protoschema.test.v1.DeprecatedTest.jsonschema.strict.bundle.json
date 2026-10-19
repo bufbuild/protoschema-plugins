@@ -1,0 +1,96 @@
+{
+  "$defs": {
+    "buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "deprecated": true,
+      "description": "Every field of this message is reachable but the message itself is\n deprecated.",
+      "properties": {
+        "stringField": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "stringField"
+      ],
+      "title": "A deprecated message.",
+      "type": "object"
+    },
+    "buf.protoschema.test.v1.DeprecatedTest.jsonschema.strict.json": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": true,
+      "properties": {
+        "activeString": {
+          "type": "string"
+        },
+        "deprecatedEnumField": {
+          "deprecated": true,
+          "description": "A field referencing a deprecated enum type.",
+          "enum": [
+            "DEPRECATED_ENUM_UNSPECIFIED",
+            "DEPRECATED_ENUM_ONE"
+          ],
+          "title": "Deprecated Enum",
+          "type": "string"
+        },
+        "deprecatedMessageField": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.strict.json",
+          "deprecated": true,
+          "description": "A deprecated field referencing a message."
+        },
+        "deprecatedRepeated": {
+          "deprecated": true,
+          "description": "A deprecated repeated field.",
+          "items": {
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "deprecatedString": {
+          "deprecated": true,
+          "description": "A deprecated scalar field.",
+          "type": "string"
+        },
+        "messageField": {
+          "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.DeprecatedMessage.jsonschema.strict.json"
+        },
+        "partlyDeprecatedEnumField": {
+          "anyOf": [
+            {
+              "enum": [
+                "PARTLY_DEPRECATED_ENUM_UNSPECIFIED",
+                "PARTLY_DEPRECATED_ENUM_ACTIVE"
+              ],
+              "type": "string"
+            },
+            {
+              "const": "PARTLY_DEPRECATED_ENUM_OLD",
+              "deprecated": true,
+              "type": "string"
+            },
+            {
+              "const": "PARTLY_DEPRECATED_ENUM_ANCIENT",
+              "deprecated": true,
+              "type": "string"
+            }
+          ],
+          "description": "A field whose enum has some deprecated values.",
+          "title": "Partly Deprecated Enum"
+        }
+      },
+      "required": [
+        "deprecatedString",
+        "activeString",
+        "deprecatedEnumField",
+        "partlyDeprecatedEnumField"
+      ],
+      "title": "Deprecated Test",
+      "type": "object"
+    }
+  },
+  "$id": "buf.protoschema.test.v1.DeprecatedTest.jsonschema.strict.bundle.json",
+  "$ref": "#/$defs/buf.protoschema.test.v1.DeprecatedTest.jsonschema.strict.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

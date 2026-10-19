@@ -55,6 +55,8 @@ func GetTestDescriptors(testdataPath string) ([]protoreflect.MessageDescriptor, 
 		"buf.protoschema.test.v1.Product",
 		"buf.protoschema.test.v1.OneofVisibility",
 		"buf.protoschema.test.v1.JSONNameCollision",
+		"buf.protoschema.test.v1.DeprecatedTest",
+		"buf.protoschema.test.v1.DeprecatedFileTest",
 	}
 
 	msgs := make([]protoreflect.MessageDescriptor, len(fqns))
