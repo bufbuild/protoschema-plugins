@@ -6,9 +6,11 @@ linters:
     - depguard
     - exhaustive
     - exhaustruct
+    - exhaustruct_v5
     - funlen            # rely on code review to limit function length
     - gochecknoglobals  # globals are fine
     - gocognit          # dubious "cognitive overhead" quantification
+    - goconst           # too noisy, especially in tests
     - ireturn           # "accept interfaces, return structs" isn't ironclad
     - lll               # don't want hard limits for line length
     - maintidx          # covered by gocyclo

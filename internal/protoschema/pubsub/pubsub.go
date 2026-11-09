@@ -16,10 +16,10 @@ package pubsub
 
 import (
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/normalize"
-	"github.com/jhump/protoreflect/desc" //nolint:staticcheck
-	"github.com/jhump/protoreflect/desc/protoprint"
-	"google.golang.org/protobuf/proto"
+	"github.com/jhump/protoreflect/v2/protoprint"
+	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/reflect/protoregistry"
 	"google.golang.org/protobuf/types/descriptorpb"
 )
 
@@ -37,16 +37,16 @@ func Generate(input protoreflect.MessageDescriptor) (string, error) {
 		return "", err
 	}
 	file := &descriptorpb.FileDescriptorProto{
-		Name: proto.String(FileExtension),
+		Name: new(FileExtension),
 		// TODO: If/when Pub/Bub schemas support editions, use Edition 2023 so
 		//       there is no loss of fidelity for syntax-specific semantics
 		//       (such as field presence).
-		Syntax: proto.String("proto2"),
+		Syntax: new("proto2"),
 		MessageType: []*descriptorpb.DescriptorProto{
 			rootMsg,
 		},
 	}
-	fileDesc, err := desc.CreateFileDescriptor(file)
+	fileDesc, err := protodesc.NewFile(file, new(protoregistry.Files))
 	if err != nil {
 		return "", err
 	}
