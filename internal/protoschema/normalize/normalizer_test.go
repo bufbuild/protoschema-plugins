@@ -30,42 +30,42 @@ import (
 func buildThreeLevelDescriptor(t *testing.T) *descriptorpb.FileDescriptorProto {
 	t.Helper()
 	return &descriptorpb.FileDescriptorProto{
-		Name:    strPtr("test.proto"),
-		Package: strPtr("test.v1"),
-		Syntax:  strPtr("proto3"),
+		Name:    new("test.proto"),
+		Package: new("test.v1"),
+		Syntax:  new("proto3"),
 		MessageType: []*descriptorpb.DescriptorProto{
 			{
-				Name: strPtr("Organization"),
+				Name: new("Organization"),
 				Field: []*descriptorpb.FieldDescriptorProto{
 					{
-						Name:     strPtr("department"),
-						Number:   int32Ptr(1),
-						Type:     enumPtr(descriptorpb.FieldDescriptorProto_TYPE_MESSAGE),
-						TypeName: strPtr(".test.v1.Organization.Department"),
-						Label:    labelPtr(descriptorpb.FieldDescriptorProto_LABEL_OPTIONAL),
+						Name:     new("department"),
+						Number:   new(int32(1)),
+						Type:     new(descriptorpb.FieldDescriptorProto_TYPE_MESSAGE),
+						TypeName: new(".test.v1.Organization.Department"),
+						Label:    new(descriptorpb.FieldDescriptorProto_LABEL_OPTIONAL),
 					},
 				},
 				NestedType: []*descriptorpb.DescriptorProto{
 					{
-						Name: strPtr("Department"),
+						Name: new("Department"),
 						Field: []*descriptorpb.FieldDescriptorProto{
 							{
-								Name:     strPtr("teams"),
-								Number:   int32Ptr(1),
-								Type:     enumPtr(descriptorpb.FieldDescriptorProto_TYPE_MESSAGE),
-								TypeName: strPtr(".test.v1.Organization.Department.Team"),
-								Label:    labelPtr(descriptorpb.FieldDescriptorProto_LABEL_REPEATED),
+								Name:     new("teams"),
+								Number:   new(int32(1)),
+								Type:     new(descriptorpb.FieldDescriptorProto_TYPE_MESSAGE),
+								TypeName: new(".test.v1.Organization.Department.Team"),
+								Label:    new(descriptorpb.FieldDescriptorProto_LABEL_REPEATED),
 							},
 						},
 						NestedType: []*descriptorpb.DescriptorProto{
 							{
-								Name: strPtr("Team"),
+								Name: new("Team"),
 								Field: []*descriptorpb.FieldDescriptorProto{
 									{
-										Name:   strPtr("name"),
-										Number: int32Ptr(1),
-										Type:   enumPtr(descriptorpb.FieldDescriptorProto_TYPE_STRING),
-										Label:  labelPtr(descriptorpb.FieldDescriptorProto_LABEL_OPTIONAL),
+										Name:   new("name"),
+										Number: new(int32(1)),
+										Type:   new(descriptorpb.FieldDescriptorProto_TYPE_STRING),
+										Label:  new(descriptorpb.FieldDescriptorProto_LABEL_OPTIONAL),
 									},
 								},
 							},
@@ -134,15 +134,4 @@ func TestNormalize_ThreeLevelNesting(t *testing.T) {
 
 	// The type name should be in top-down nesting order, not reversed.
 	require.Equal(t, "Organization.Department.Team", teamsField.GetTypeName())
-}
-
-func strPtr(s string) *string { return &s }
-func int32Ptr(i int32) *int32 { return &i }
-
-func enumPtr(e descriptorpb.FieldDescriptorProto_Type) *descriptorpb.FieldDescriptorProto_Type {
-	return &e
-}
-
-func labelPtr(l descriptorpb.FieldDescriptorProto_Label) *descriptorpb.FieldDescriptorProto_Label {
-	return &l
 }

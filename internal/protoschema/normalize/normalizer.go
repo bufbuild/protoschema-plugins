@@ -20,7 +20,6 @@ import (
 	"slices"
 	"strings"
 
-	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/descriptorpb"
@@ -85,7 +84,7 @@ func (n *Normalizer) FindDescriptorProto(msgDesc protoreflect.Descriptor) (*desc
 
 func (n *Normalizer) inlineMessage(msgDesc protoreflect.MessageDescriptor) error {
 	msg := protodesc.ToDescriptorProto(msgDesc)
-	msg.Name = proto.String(n.addMangledName(string(msgDesc.FullName()), ""))
+	msg.Name = new(n.addMangledName(string(msgDesc.FullName()), ""))
 	if err := n.inlineRefs(msg, msgDesc); err != nil {
 		return err
 	}
@@ -98,7 +97,7 @@ func (n *Normalizer) inlineEnum(enumDesc protoreflect.EnumDescriptor) error {
 	enum := protodesc.ToEnumDescriptorProto(enumDesc)
 	// Create a message to hold the enum.
 	msg := &descriptorpb.DescriptorProto{
-		Name: proto.String(n.addMangledName(string(enumDesc.FullName()), string(enumDesc.Name()))),
+		Name: new(n.addMangledName(string(enumDesc.FullName()), string(enumDesc.Name()))),
 		EnumType: []*descriptorpb.EnumDescriptorProto{
 			enum,
 		},
@@ -173,7 +172,7 @@ func (n *Normalizer) inlineFieldRefs(
 	case descriptorpb.FieldDescriptorProto_TYPE_MESSAGE:
 		fieldDesc := msgDesc.Fields().ByName(protoreflect.Name(field.GetName()))
 		if fieldDesc.IsMap() {
-			field.TypeName = proto.String(msgDescPb.GetName() + "." + string(fieldDesc.Message().Name()))
+			field.TypeName = new(msgDescPb.GetName() + "." + string(fieldDesc.Message().Name()))
 		} else {
 			refDesc, path := findRootAndPath(fieldDesc.Message())
 			if err := n.updateMessageType(refDesc, field, path); err != nil {
@@ -218,7 +217,7 @@ func (n *Normalizer) updateMessageType(refDesc protoreflect.MessageDescriptor, f
 		}
 	}
 	newType := strings.Join(append([]string{newRef}, path...), ".")
-	field.TypeName = proto.String(newType)
+	field.TypeName = new(newType)
 	return nil
 }
 
@@ -234,7 +233,7 @@ func (n *Normalizer) updateEnumType(refDesc protoreflect.EnumDescriptor, field *
 			return fmt.Errorf("could not find mangled name for %s", ref)
 		}
 	}
-	field.TypeName = proto.String(newRef)
+	field.TypeName = new(newRef)
 	return nil
 }
 
