@@ -17,14 +17,12 @@ package pluginjsonschema
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"slices"
 	"strings"
 
 	"github.com/bufbuild/protoplugin"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/jsonschema"
-	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/descriptorpb"
 )
 
@@ -64,7 +62,7 @@ func Handle(
 	}
 
 	for _, gen := range gens {
-		if err := writeFiles(responseWriter, gen.Generate()); err != nil {
+		if err := writeFiles(responseWriter, gen); err != nil {
 			return err
 		}
 	}
@@ -76,22 +74,15 @@ func Handle(
 
 func writeFiles(
 	responseWriter protoplugin.ResponseWriter,
-	schema map[protoreflect.FullName]map[string]any,
+	gen *jsonschema.Generator,
 ) error {
-	for _, entry := range schema {
+	for name, entry := range gen.Generate() {
 		data, err := json.MarshalIndent(entry, "", "  ")
 		if err != nil {
 			return err
 		}
-		identifier, ok := entry["$id"].(string)
-		if !ok {
-			return fmt.Errorf("expected unique id to be a string, got type %T", entry["$id"])
-		}
-		if identifier == "" {
-			return errors.New("expected unique id to be a non-empty string")
-		}
 		responseWriter.AddFile(
-			identifier,
+			gen.FileName(name),
 			string(data)+"\n",
 		)
 	}
@@ -118,6 +109,12 @@ func parseOptions(param string) ([][]jsonschema.GeneratorOption, error) {
 					return nil, err
 				} else if value {
 					baseOpts = append(baseOpts, jsonschema.WithAdditionalProperties())
+				}
+			case "bundle_id":
+				if value, err := parseBoolean(value); err != nil {
+					return nil, err
+				} else if !value {
+					baseOpts = append(baseOpts, jsonschema.WithoutBundleID())
 				}
 			case "target":
 				// Targets are delimited by '+', e.g. "proto+json".

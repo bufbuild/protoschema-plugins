@@ -21,6 +21,7 @@ import (
 	"strings"
 	"testing"
 
+	testv1 "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
 	"github.com/bufbuild/protoschema-plugins/internal/protoschema/golden"
 	"github.com/santhosh-tekuri/jsonschema/v6"
 	"github.com/stretchr/testify/require"
@@ -53,6 +54,18 @@ func TestJSONSchemaGolden(t *testing.T) {
 		err = golden.CheckGolden(filePath, string(data)+"\n")
 		require.NoError(t, err)
 	}
+}
+
+func TestWithoutBundleID(t *testing.T) {
+	t.Parallel()
+	desc := (&testv1.NestedReference{}).ProtoReflect().Descriptor()
+	generator := NewGenerator(WithStrict(), WithBundle(), WithoutBundleID())
+	require.NoError(t, generator.Add(desc))
+
+	schema := generator.Generate()[desc.FullName()]
+	require.NotContains(t, schema, "$id")
+	require.Equal(t, "#/$defs/buf.protoschema.test.v1.NestedReference.schema.strict.json", schema["$ref"])
+	require.Equal(t, "buf.protoschema.test.v1.NestedReference.schema.strict.bundle.json", generator.FileName(desc.FullName()))
 }
 
 func TestTitle(t *testing.T) {

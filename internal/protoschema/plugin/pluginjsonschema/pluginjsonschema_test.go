@@ -26,7 +26,8 @@ import (
 	imagev1 "github.com/bufbuild/buf/private/gen/proto/go/buf/alpha/image/v1"
 	"github.com/bufbuild/buf/private/pkg/protoencoding"
 	"github.com/bufbuild/protoplugin"
-	_ "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
+	testv1 "github.com/bufbuild/protoschema-plugins/internal/gen/proto/buf/protoschema/test/v1"
+	"github.com/bufbuild/protoschema-plugins/internal/protoschema/jsonschema"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/pluginpb"
@@ -85,6 +86,18 @@ func TestJSONSchemaHandler(t *testing.T) {
 			require.Equal(t, string(want), file.GetContent())
 		})
 	}
+}
+
+func TestParseOptionsBundleIDFalse(t *testing.T) {
+	t.Parallel()
+	opts, err := parseOptions("target=proto-strict-bundle,bundle_id=false")
+	require.NoError(t, err)
+	require.Len(t, opts, 1)
+
+	desc := (&testv1.NestedReference{}).ProtoReflect().Descriptor()
+	generator := jsonschema.NewGenerator(opts[0]...)
+	require.NoError(t, generator.Add(desc))
+	require.NotContains(t, generator.Generate()[desc.FullName()], "$id")
 }
 
 func gatherGoldenFiles(t *testing.T, dir string) []string {
