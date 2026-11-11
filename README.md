@@ -315,6 +315,9 @@ The JSON Schema plugin supports the following options:
   `true`, causing unknown fields to be ignored instead of erroring. Defaults to `false`. Useful when a
   client/sender may have a different version the schema than the server/receiver. Similar to the
   "ignore unknown fields" option in [Protobuf JSON](https://protobuf.dev/programming-guides/json/#json-options).
+- `bundle_id` - If `false`, bundled schemas leave out the root `$id`. Defaults to `true`. Useful for
+  consumers that reject `$id` beside `$ref`, such as
+  [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs) in strict mode.
 
 ## Community
 

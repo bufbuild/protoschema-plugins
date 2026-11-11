@@ -103,6 +103,18 @@ func WithBundle() GeneratorOption {
 	}
 }
 
+// WithoutBundleID sets the generator to leave out the root "$id" of bundled
+// schemas.
+//
+// Some JSON Schema consumers, such as OpenAI Structured Outputs in strict mode,
+// reject "$id" beside "$ref". The bundle resolves without an "$id", because
+// every "$ref" in it points into its own "$defs".
+func WithoutBundleID() GeneratorOption {
+	return func(p *Generator) {
+		p.omitBundleID = true
+	}
+}
+
 // Generator is a JSON schema generator for protobuf messages.
 type Generator struct {
 	schema               map[protoreflect.FullName]*msgSchema
@@ -111,6 +123,7 @@ type Generator struct {
 	additionalProperties bool
 	strict               bool
 	bundle               bool
+	omitBundleID         bool
 }
 
 // NewGenerator creates a new JSON schema generator with the given options.
@@ -155,6 +168,14 @@ func (p *Generator) Generate() map[protoreflect.FullName]map[string]any {
 	return result
 }
 
+// FileName returns the name of the file that holds the generated schema of
+// the given message.
+//
+// The name equals the schema's "$id", which bundled schemas may leave out.
+func (p *Generator) FileName(name protoreflect.FullName) string {
+	return p.getID(p.schema[name].desc, p.bundle)
+}
+
 // bundleSchema creates a bundled schema for the given entry.
 func (p *Generator) bundleSchema(entry *msgSchema) map[string]any {
 	defs := make(map[string]any, len(entry.refs)+1)
@@ -163,12 +184,15 @@ func (p *Generator) bundleSchema(entry *msgSchema) map[string]any {
 	for ref := range entry.refs {
 		p.bundleReferences(ref, defs)
 	}
-	return map[string]any{
+	result := map[string]any{
 		"$schema": "https://json-schema.org/draft/2020-12/schema",
-		"$id":     p.getID(entry.desc, true),
 		"$ref":    p.getID(entry.desc, false),
 		"$defs":   defs,
 	}
+	if !p.omitBundleID {
+		result["$id"] = p.getID(entry.desc, true)
+	}
+	return result
 }
 
 // bundleReferences recursively collects all referenced schemas and adds them to the defs map.
