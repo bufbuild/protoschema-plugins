@@ -1,7 +1,6 @@
 # protoschema-plugins
 
 [![Build](https://github.com/bufbuild/protoschema-plugins/actions/workflows/ci.yaml/badge.svg?branch=main)][badges_ci]
-[![Report Card](https://goreportcard.com/badge/github.com/bufbuild/protoschema-plugins)][badges_goreportcard]
 [![GoDoc](https://pkg.go.dev/badge/github.com/bufbuild/protoschema-plugins.svg)][badges_godoc]
 [![Slack](https://img.shields.io/badge/slack-buf-%23e01563)][badges_slack]
 
@@ -330,7 +329,6 @@ This project is currently in **alpha**. The API should be considered unstable an
 Offered under the [Apache 2 license][license].
 
 [badges_ci]: https://github.com/bufbuild/protoschema-plugins/actions/workflows/ci.yaml
-[badges_goreportcard]: https://goreportcard.com/report/github.com/bufbuild/protoschema-plugins
 [badges_godoc]: https://pkg.go.dev/github.com/bufbuild/protoschema-plugins
 [badges_slack]: https://join.slack.com/t/bufbuild/shared_invite/zt-f5k547ki-dW9LjSwEnl6qTzbyZtPojw
 [license]: https://github.com/bufbuild/protoschema-plugins/blob/main/LICENSE.txt
