@@ -7,7 +7,7 @@ require (
 	buf.build/go/protovalidate v1.4.0
 	github.com/bufbuild/buf v1.75.0
 	github.com/bufbuild/protoplugin v0.0.0-20260414125817-25d1d281b46b
-	github.com/jhump/protoreflect/v2 v2.0.0
+	github.com/jhump/protoreflect/v2 v2.0.1
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2
 	github.com/stretchr/testify v1.12.1
 	google.golang.org/protobuf v1.36.13-0.20261016172727-e9ee2a76ab8e
