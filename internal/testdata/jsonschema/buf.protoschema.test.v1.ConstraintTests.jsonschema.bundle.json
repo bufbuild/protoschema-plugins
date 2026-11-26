@@ -1403,17 +1403,13 @@
           "type": "string"
         },
         "^(const_bool)$": {
-          "enum": [
-            false
-          ],
+          "const": false,
           "type": "boolean"
         },
         "^(const_double)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "type": "number"
             },
             {
@@ -1442,9 +1438,7 @@
         "^(const_fixed32)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 4294967296,
               "minimum": 0,
               "type": "integer"
@@ -1459,9 +1453,7 @@
         "^(const_fixed64)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "minimum": 0,
               "type": "integer"
             },
@@ -1475,9 +1467,7 @@
         "^(const_float)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "maximum": 3.4028234663852886e+38,
               "minimum": -3.4028234663852886e+38,
               "type": "number"
@@ -1492,9 +1482,7 @@
         "^(const_int32)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 2147483648,
               "minimum": -2147483648,
               "type": "integer"
@@ -1508,9 +1496,7 @@
         "^(const_int64)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "type": "integer"
             },
             {
@@ -1522,9 +1508,7 @@
         "^(const_sfixed32)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 2147483648,
               "minimum": -2147483648,
               "type": "integer"
@@ -1538,9 +1522,7 @@
         "^(const_sfixed64)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "type": "integer"
             },
             {
@@ -1552,9 +1534,7 @@
         "^(const_sint32)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 2147483648,
               "minimum": -2147483648,
               "type": "integer"
@@ -1568,9 +1548,7 @@
         "^(const_sint64)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "type": "integer"
             },
             {
@@ -1580,17 +1558,13 @@
           ]
         },
         "^(const_string)$": {
-          "enum": [
-            "const"
-          ],
+          "const": "const",
           "type": "string"
         },
         "^(const_uint32)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 4294967296,
               "minimum": 0,
               "type": "integer"
@@ -1604,9 +1578,7 @@
         "^(const_uint64)$": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "minimum": 0,
               "type": "integer"
             },
@@ -2889,17 +2861,13 @@
           "type": "string"
         },
         "constBool": {
-          "enum": [
-            false
-          ],
+          "const": false,
           "type": "boolean"
         },
         "constDouble": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "type": "number"
             },
             {
@@ -2928,9 +2896,7 @@
         "constFixed32": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 4294967296,
               "minimum": 0,
               "type": "integer"
@@ -2945,9 +2911,7 @@
         "constFixed64": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "minimum": 0,
               "type": "integer"
             },
@@ -2961,9 +2925,7 @@
         "constFloat": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "maximum": 3.4028234663852886e+38,
               "minimum": -3.4028234663852886e+38,
               "type": "number"
@@ -2978,9 +2940,7 @@
         "constInt32": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 2147483648,
               "minimum": -2147483648,
               "type": "integer"
@@ -2994,9 +2954,7 @@
         "constInt64": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "type": "integer"
             },
             {
@@ -3008,9 +2966,7 @@
         "constSfixed32": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 2147483648,
               "minimum": -2147483648,
               "type": "integer"
@@ -3024,9 +2980,7 @@
         "constSfixed64": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "type": "integer"
             },
             {
@@ -3038,9 +2992,7 @@
         "constSint32": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 2147483648,
               "minimum": -2147483648,
               "type": "integer"
@@ -3054,9 +3006,7 @@
         "constSint64": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "type": "integer"
             },
             {
@@ -3066,17 +3016,13 @@
           ]
         },
         "constString": {
-          "enum": [
-            "const"
-          ],
+          "const": "const",
           "type": "string"
         },
         "constUint32": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "exclusiveMaximum": 4294967296,
               "minimum": 0,
               "type": "integer"
@@ -3090,9 +3036,7 @@
         "constUint64": {
           "anyOf": [
             {
-              "enum": [
-                5
-              ],
+              "const": 5,
               "minimum": 0,
               "type": "integer"
             },

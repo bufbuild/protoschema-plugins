@@ -674,15 +674,11 @@
           "type": "string"
         },
         "constBool": {
-          "enum": [
-            false
-          ],
+          "const": false,
           "type": "boolean"
         },
         "constDouble": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "type": "number"
         },
         "constEnum": {
@@ -693,88 +689,64 @@
           "type": "string"
         },
         "constFixed32": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "exclusiveMaximum": 4294967296,
           "minimum": 0,
           "type": "integer"
         },
         "constFixed64": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "minimum": 0,
           "type": "integer"
         },
         "constFloat": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "maximum": 3.4028234663852886e+38,
           "minimum": -3.4028234663852886e+38,
           "type": "number"
         },
         "constInt32": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "exclusiveMaximum": 2147483648,
           "minimum": -2147483648,
           "type": "integer"
         },
         "constInt64": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "type": "integer"
         },
         "constSfixed32": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "exclusiveMaximum": 2147483648,
           "minimum": -2147483648,
           "type": "integer"
         },
         "constSfixed64": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "type": "integer"
         },
         "constSint32": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "exclusiveMaximum": 2147483648,
           "minimum": -2147483648,
           "type": "integer"
         },
         "constSint64": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "type": "integer"
         },
         "constString": {
-          "enum": [
-            "const"
-          ],
+          "const": "const",
           "type": "string"
         },
         "constUint32": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "exclusiveMaximum": 4294967296,
           "minimum": 0,
           "type": "integer"
         },
         "constUint64": {
-          "enum": [
-            5
-          ],
+          "const": 5,
           "minimum": 0,
           "type": "integer"
         },
